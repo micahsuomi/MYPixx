@@ -1,0 +1,214 @@
+.viewphoto-wrapper {
+    padding: 5rem 10rem;
+    background-color: rgb(243, 237, 237);
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; 
+
+}
+
+.viewphoto-container {
+    border: 1px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-position: center;
+    background-size: cover;
+    border-radius: 5px;
+    width: 80vw;
+    color: var(--dark);
+
+
+}
+
+.viewphoto-header {
+    padding: 1rem 3rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+
+
+.back-to-photos__view-link {
+    text-decoration: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: var(--primary)
+}
+
+.back-to-photos__text {
+    margin-left: 1rem;
+}
+.back-to-photos__view-link:hover {
+    color: var(--primary-dark);
+    transform: translateY(-.1rem);
+
+}
+
+.edit-delete__wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.edit-photo__link {
+    margin-right: 1rem;
+    color: var(--secondary);
+
+}
+
+.edit-photo__link:hover {
+    margin-right: 1rem;
+    transform: translateY(-0.1rem);
+    color: var(--secondary-dark);
+
+
+}
+
+.delete-photo__link {
+    color: var(--red);
+
+}
+.delete-photo__link:hover {
+    color: var(--red);
+    transform: translateY(-0.1rem);
+
+}
+
+
+.viewphoto-header-container {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.viewphoto-header {
+    color: var(--primary);
+    text-decoration: none;
+}
+.viewphoto-header-container h3 {
+    margin: 2rem;
+    font-size: 17px;
+}
+
+.viewphoto-body {
+    background: rgb(247, 243, 243);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.viewphoto-container img{
+    width: 100%;
+    align-self: center;
+}
+
+.viewphoto-description {
+    color: rgb(14, 13, 13);
+    line-height: 1.8;
+    margin-top: 2rem;
+
+}
+.buttons-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+button {
+    padding: 1rem;
+}
+
+.btn-edit,
+.btn-delete {
+    padding: 1.2rem;
+    background-color: rgb(81, 165, 199);
+    border: none;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    margin: 1rem;
+    font-family: 'Montserrat';
+    margin: 1.5rem;
+    width: 8rem;
+
+
+}
+
+.btn-delete {
+    background-color: #ee2031;
+    text-decoration: none;
+
+}
+
+.btn-edit:hover {
+    background-color: rgb(85, 152, 194);
+    transform: translateY(-.1rem);
+}
+.btn-delete:hover {
+    background-color: rgb(177, 43, 43);
+    transform: translateY(-.1rem);
+
+}
+
+@media screen and (max-width: 768px) {
+    .viewphoto-container {
+        width: 94vw;
+    }
+
+    .viewphoto-wrapper {
+        padding: 5rem 1rem;
+        min-height: 100vw;
+  
+    }
+
+    .viewphoto-body {
+        padding: 2rem 2rem;
+      
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    h3 {
+        margin: .7rem;
+    }
+    .viewphoto-container, 
+    .viewphoto-body {
+        width: 22rem;
+    
+    }
+
+    .viewphoto-header {
+        padding: 1rem 1rem;
+    }
+
+    .viewphoto-description {
+        line-height: 1.1;
+    }
+
+    .buttons-wrapper {
+        margin-top: 0;
+    }
+
+    .btn-edit, .btn-delete {
+        padding: .7rem;
+        border: none;
+        border-radius: 3px;
+        color: white;
+        cursor: pointer;
+        margin: 1.2rem;
+        font-family: 'Montserrat';
+        margin: .6rem;
+        width: 6rem;
+    }
+}

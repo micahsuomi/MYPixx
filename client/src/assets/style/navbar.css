@@ -1,0 +1,31 @@
+.navbar {
+    padding: 1rem;
+    background-color: transparent;
+}
+
+.navbar-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.navbar-link {
+    text-decoration: none;
+    margin: 5rem;
+    color:  var(--primary);
+    font-weight: 700;   
+
+}
+
+@media screen and (max-width: 500px) {
+    .navbar-links {
+        flex-direction: column;
+    }
+
+    .navbar-link {
+        margin-top: 1rem;
+    }
+
+    
+}
