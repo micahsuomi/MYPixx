@@ -9,11 +9,14 @@ class AddPhoto extends Component {
         this.state = {
             name: '',
             image: '',
-            description: ''
+            description: '',
+            author: ''
 
         }
 
     }
+
+    /*
     handleSubmit = (e) => {
         e.preventDefault();
         let { name, image, description } = this.state
@@ -22,6 +25,15 @@ class AddPhoto extends Component {
         axios.post(url, newPhoto).then((response) => {
         })
         .catch(err => console.log(err))
+        this.props.addPhoto(newPhoto);
+        this.props.history.push('/photos')
+        
+
+    }*/
+    handleSubmit = (e) => {
+        e.preventDefault();
+        let { name, image, description, author } = this.state
+        const newPhoto = { name, image, description, author };
         this.props.addPhoto(newPhoto);
         this.props.history.push('/photos')
         
@@ -37,7 +49,7 @@ class AddPhoto extends Component {
         return (
             <div className="add-photo__container">
 
-                <form onSubmit={this.handleSubmit} className="form">
+                <form onSubmit={this.handleSubmit} className="add-photo__form">
                 <div className="cancel-wrapper">
                     <NavLink to ='/photos'
                     className="delete-link">

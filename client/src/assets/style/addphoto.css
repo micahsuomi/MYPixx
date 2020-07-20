@@ -6,7 +6,7 @@
     justify-content: center; 
 }
 
-.form {
+.add-photo__form {
     padding: 2rem 2rem;
     margin: 2rem 0;
     display: flex;
@@ -25,7 +25,7 @@
 .cancel-wrapper {
     display: flex;
     justify-content: flex-end;
-    width: 55vw;
+    width: 36vw;
 
 }
 
@@ -42,10 +42,9 @@
 label {
     align-self: flex-start;
 }
-input,
-select,
-textarea {
-    width: 40rem;
+
+.add-photo__form input {
+    width: 30rem;
     padding: .6rem;
     font-size: 16px;
     font-family: 'Montserrat';
@@ -70,7 +69,7 @@ textarea {
     padding: .7rem;
     background-color: var(--primary);
     border: none;
-    border-radius: 3px;
+    border-radius: 50px;
     color: white;
     cursor: pointer;
     margin: 1.5rem;
@@ -78,14 +77,17 @@ textarea {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 15px;
+    font-size: 16px;
+    text-transform: uppercase;
+
   
     
 }
 
 .btn-save:hover {
     background-color: var(--primary-dark);
-    transform: translateY(-.1rem);
+    transition: all .2s ease-in-out;
+    transform: scale(1.1);
 }
 
 
