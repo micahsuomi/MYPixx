@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const isAuthorized = require('../../middleware/authorized');
+const currentUser = require('../../middleware/user');
+const User = require('../../models/User');
 
 const Photo = require('../../models/Photo');
 
@@ -15,12 +18,33 @@ router.get('/', (req, res) => {
 //POST ROUTE
 //Description: posts one photo item
 //ACCESS: public
-router.post('/', (req, res) => {
-    const newPhoto = new Photo(
-        req.body
-    );
-    newPhoto.save().then((photo) => res.json(photo))
-    .catch((err) => console.log(err))
+router.post('/', isAuthorized, (req, res) => {
+    let {name, image, description} = req.body;
+    
+    const id = req.params.id;
+    console.log('this is the id', id)
+    User.findOne(({_id: req.user.id}), (err, founduser) => {
+        if(err) {
+            console.log(err)
+        } 
+        console.log('this is the found user from post', founduser)
+        const author = {
+            id: req.user.id,
+            name: founduser.name
+
+        }
+        console.log('this is the author', author)
+
+        const newPhoto = new Photo({
+            name: name,
+            image: image,
+            description: description,
+            author: author
+        });
+        newPhoto.save().then((photo) => res.json(photo))
+        .catch((err) => console.log(err))
+    })
+    
 });
 
 //EDIT ROUTE

@@ -58,7 +58,7 @@ class EditPhoto extends Component {
         return (
             <div className="add-photo__container">
 
-                <form onSubmit={this.handleSubmit} className="form">
+                <form onSubmit={this.handleSubmit} className="add-photo__form">
                 <div className="cancel-wrapper">
                     <NavLink to ='/photos'
                     className="delete-link">

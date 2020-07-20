@@ -12,10 +12,22 @@
 
 .navbar-link {
     text-decoration: none;
-    margin: 5rem;
+    margin: 2rem;
     color:  var(--primary);
     font-weight: 700;   
 
+}
+
+.user-link {
+    text-decoration: none;
+}
+
+.grow { 
+    transition: all .2s ease-in-out; 
+}
+
+.grow:hover { 
+    transform: scale(1.03);
 }
 
 @media screen and (max-width: 500px) {

@@ -5,7 +5,10 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
+const registerRoute = require('./routes/api/register');
 const photosRoute = require('./routes/api/photos');
+const loginRoute = require('./routes/api/login');
+const userRoute = require('./routes/api/user');
 
 //use bodyparser
 app.use(bodyParser.json());
@@ -19,7 +22,12 @@ mongoose.connect(process.env.mongoDBURL, {
 .then(()=> console.log('MongoDB Connected'))
 .catch((err) => console.log(err));
 
+
+app.use('/api/register', registerRoute);
+app.use('/api/login', loginRoute);
+app.use('/api/user', userRoute);
 app.use('/api/photos', photosRoute);
+
 
 const PORT = process.env.PORT || 5000;
 

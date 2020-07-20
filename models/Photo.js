@@ -14,6 +14,17 @@ const photoSchema = new Schema({
         type: String,
         required: true
     },
+    author: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        name: String,
+        avatar: String,
+        bio: String,
+
+
+    },
     createdAt: {
         type: Date,
         default: Date.now

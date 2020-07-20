@@ -11,10 +11,10 @@
   --secondary: #f09819;
   --secondary-dark: #d68719;
   --blue: rgba(112, 131, 241, 0.7);
-  --yellow: rgba(206, 203, 14, 0.7);
+  --yellow: rgba(240, 236, 29, 0.7);
   --purple: rgba(206, 14, 142, 0.7);
-  --green: rgba(30, 209, 149, 0.7);
-  --red: #e21a5db3;
+  --dark: rgba(18, 31, 26, 0.7);
+  --red: #f70944b3;
   --dark: rgb(46, 39, 40);
 }
 .wrapper {
@@ -57,4 +57,27 @@ body {
 
 .nav-cancel {
   text-decoration: none;
+}
+
+.grow { 
+  transition: all .2s ease-in-out; 
+}
+
+.grow:hover { 
+  transform: scale(1.03);
+}
+
+.grow2 { 
+  transition: all .2s ease-in-out; 
+}
+
+.grow2:hover { 
+  transform: scale(1.1);
+}
+
+h3 {
+  font-size: 16px;
+}
+p {
+  font-size: 14px;
 }

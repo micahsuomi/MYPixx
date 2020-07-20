@@ -1,10 +1,12 @@
 .viewphoto-wrapper {
-    padding: 5rem 10rem;
-    background-color: rgb(243, 237, 237);
+    padding: 3rem 2rem;
+    background-color: rgb(35,38,42);
     width: 100vw;
     min-height: 100vh;
-    display: flex;
-    justify-content: center; 
+    display: grid;
+    grid-template-columns: 7% 86% 7%; 
+    justify-items: center;
+    align-items: center;
 
 }
 
@@ -16,14 +18,16 @@
     background-position: center;
     background-size: cover;
     border-radius: 5px;
-    width: 80vw;
+    width: 84vw;
     color: var(--dark);
+    background-color: rgb(247, 243, 243);
+    padding: 4rem 12rem;
 
 
 }
 
 .viewphoto-header {
-    padding: 1rem 3rem;
+    padding: 1rem 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -38,14 +42,15 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    color: var(--primary)
+    color: var(--dark)
 }
 
 .back-to-photos__text {
-    margin-left: 1rem;
+    margin-left: .4rem;
+    align-self: center;
 }
 .back-to-photos__view-link:hover {
-    color: var(--primary-dark);
+    color: var(--purple);
     transform: translateY(-.1rem);
 
 }
@@ -57,20 +62,20 @@
 
 .edit-photo__link {
     margin-right: 1rem;
-    color: var(--secondary);
+    color: var(--dark);
 
 }
 
 .edit-photo__link:hover {
     margin-right: 1rem;
     transform: translateY(-0.1rem);
-    color: var(--secondary-dark);
+    color: var(--secondary);
 
 
 }
 
 .delete-photo__link {
-    color: var(--red);
+    color: var(--dark);
 
 }
 .delete-photo__link:hover {
@@ -96,12 +101,13 @@
 }
 
 .viewphoto-body {
-    background: rgb(247, 243, 243);
     padding: 2rem 4rem;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    line-height: 1.7;
+
 }
 
 .viewphoto-container img{
@@ -156,6 +162,17 @@ button {
     transform: translateY(-.1rem);
 
 }
+
+.slider-arrow__left,
+.slider-arrow__right {
+    color: whitesmoke;
+}
+
+.slider-arrow__left:hover,
+.slider-arrow__right:hover {
+    color: rgb(226, 215, 215);
+}
+
 
 @media screen and (max-width: 768px) {
     .viewphoto-container {
