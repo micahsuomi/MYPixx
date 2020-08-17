@@ -1,12 +1,17 @@
+.viewphoto-big__container {
+    padding: 3rem 0;
+    background-color: rgb(48, 52, 58);
+
+}
 .viewphoto-wrapper {
-    padding: 3rem 2rem;
-    background-color: rgb(35,38,42);
     width: 100vw;
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 7% 86% 7%; 
+    grid-template-columns: 15% 70% 15%; 
     justify-items: center;
     align-items: center;
+    margin-top: 2rem;
+
 
 }
 
@@ -18,39 +23,47 @@
     background-position: center;
     background-size: cover;
     border-radius: 5px;
-    width: 84vw;
+    width: 65vw;
     color: var(--dark);
     background-color: rgb(247, 243, 243);
-    padding: 4rem 12rem;
+    padding: 1rem 7rem;
 
 
 }
 
 .viewphoto-header {
     padding: 1rem 0;
-    width: 100%;
+    width: 70vw;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
 
 }
 
 
 
-.back-to-photos__view-link {
+.viewphoto-exit__header {
     text-decoration: none;
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
+    margin-right: 3rem;
     align-items: center;
-    color: var(--dark)
+    
 }
 
-.back-to-photos__text {
-    margin-left: .4rem;
-    align-self: center;
+.back-to-photos__view-link {
+    color: white;
+    border: 1px solid rgba(247, 243, 243, 0.8);
+    padding: .5rem .8rem;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 3px;
+
 }
+
+
 .back-to-photos__view-link:hover {
-    color: var(--purple);
+    color: whitesmoke;
     transform: translateY(-.1rem);
 
 }
@@ -163,6 +176,30 @@ button {
 
 }
 
+.view-photo__author__link {
+    text-decoration: none;
+    color: var(--primary);
+}
+
+.view-photo__author__link:hover {
+    color: var(--primary-dark);
+}
+
+.like-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.likes-num {
+    margin-left: .6rem;
+}
+
+.empty-heart,
+.full-heart {
+    color: var(--red);
+    cursor: pointer;
+}
 .slider-arrow__left,
 .slider-arrow__right {
     color: whitesmoke;

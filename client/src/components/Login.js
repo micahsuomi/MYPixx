@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import '../assets/style/login.css';
 
 
@@ -65,6 +66,7 @@ class Login extends Component {
                 <div className="btn-save__wrapper">
                 <button className="btn-login">Login</button>
                 </div>
+                <p>Don't have an account yet? <NavLink to="/register">Register</NavLink> here</p>
                 </form>
             </div>
                 

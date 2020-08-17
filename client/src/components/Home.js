@@ -9,7 +9,7 @@ const Home = () => {
                     <h1 className="title">MERN Photo Gallery</h1>
                         <h3 className="subtitle">A Photo Gallery built with MERN Stack</h3>
                             <NavLink to="/photos" className="nav-gallery__link">
-                                    See Gallery
+                                    View Gallery
                             </NavLink>
             </div>
         </div>

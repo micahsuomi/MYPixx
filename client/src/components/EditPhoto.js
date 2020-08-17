@@ -38,7 +38,7 @@ class EditPhoto extends Component {
         let id = this.props.match.params.id;
         const url=`/api/photos/${id}`;
         const updatedPhoto = this.state.photo;
-        axios.put(url, updatedPhoto).then((response) => {
+        axios.put(url, updatedPhoto, this.props.tokenConfig()).then((response) => {
         })
         .catch(err => console.log(err))
         this.props.editPhoto(updatedPhoto);

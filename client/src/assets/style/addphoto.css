@@ -1,7 +1,7 @@
 .add-photo__container {
     padding: 2rem 10rem;
     background-color: rgb(243, 237, 237);
-    width: 100vw;
+    width: 95vw;
     display: flex;
     justify-content: center; 
 }
@@ -25,7 +25,7 @@
 .cancel-wrapper {
     display: flex;
     justify-content: flex-end;
-    width: 36vw;
+    width: 39vw;
 
 }
 

@@ -1,28 +1,26 @@
 const express = require('express');
 const router = express.Router();
 const isAuthorized = require('../../middleware/authorized');
-const currentUser = require('../../middleware/user');
 const User = require('../../models/User');
-
 const Photo = require('../../models/Photo');
 
 //GET ROUTE
 //Description: get all photos route
 //ACCESS: public
 router.get('/', (req, res) => {
-    Photo.find()
-    .sort({ date: -1 })
+    Photo.find().populate('likes').exec()
+    // .sort({ date: -1 })
     .then(photos => res.json(photos));
 });
 
 //POST ROUTE
 //Description: posts one photo item
-//ACCESS: public
+//ACCESS: private
 router.post('/', isAuthorized, (req, res) => {
+    console.log('req.user from add photo', req.user)
     let {name, image, description} = req.body;
     
     const id = req.params.id;
-    console.log('this is the id', id)
     User.findOne(({_id: req.user.id}), (err, founduser) => {
         if(err) {
             console.log(err)
@@ -30,10 +28,11 @@ router.post('/', isAuthorized, (req, res) => {
         console.log('this is the found user from post', founduser)
         const author = {
             id: req.user.id,
-            name: founduser.name
+            name: founduser.name,
+            avatar: founduser.avatar
 
         }
-        console.log('this is the author', author)
+        // console.log('this is the author', author)
 
         const newPhoto = new Photo({
             name: name,
@@ -47,11 +46,13 @@ router.post('/', isAuthorized, (req, res) => {
     
 });
 
+
 //EDIT ROUTE
 //Description: edits one photo item
-//ACCESS: public
+//ACCESS: private
 
-router.put('/:id', (req, res) => {
+router.put('/:id', isAuthorized, (req, res) => {
+    console.log('req.user from edit photo', req.user)
     const id = req.params.id;
     let { name, image, description } = req.body;
     Photo.findById(id)
@@ -69,8 +70,8 @@ router.put('/:id', (req, res) => {
 
 //DELETE ROUTE
 //Description: deletes one photo item
-//ACCESS: public
-router.delete('/:id', (req, res) => {
+//ACCESS: private
+router.delete('/:id', isAuthorized, (req, res) => {
     const id = req.params.id;
     Photo.findById(id)
     .then(photo => photo.remove().then(() => res.json({ success: true})))
@@ -78,5 +79,44 @@ router.delete('/:id', (req, res) => {
 })
 
 //GET Single item route, EDIT single item route are rendered by React render and we don't need to write them
+
+//Like route
+//ACCESS: private
+router.post('/:id/like', isAuthorized, (req, res) => {
+    const id = req.params.id;
+    console.log('req.user from like photo', req.user)
+ 
+    Photo.findById(id, (err, photo) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log('gallery here', photo)
+            let newLike = {_id: req.user.id}
+            const foundUser = photo.likes.some((like) => like.equals(req.user.id));
+            console.log('this is the found user', foundUser)
+            foundUser ? photo.likes.pull(newLike) : photo.likes.push(newLike);
+            photo.save().then((photo) => res.json(photo)) 
+            .catch(err => res.status(404).json({ success: false }))
+                  
+       
+        }
+
+
+    })
+    
+    
+
+});
+
+//GET all likes for a photo
+//Access: public
+router.get('/:id/likes', (req, res) => {
+    const id = req.params.id
+    Photo.findById(id).populate('likes').exec((err, photo) => {
+        if(err) return res.status(404).json({msg: "Not found"})
+        res.json(photo.likes)
+    })
+
+})
 
 module.exports = router;
