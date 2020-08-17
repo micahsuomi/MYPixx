@@ -4,12 +4,19 @@ import '../assets/style/navbar.css'
 
 
 const Navbar = (props) => {
-    let { isAuthenticated, user } = props
+    let { isAuthenticated, user, isLoading } = props
+    // console.log(isAuthenticated, user, isLoading)
     return (
         <div className="navbar">
-        <ul className="navbar-links">
-
-           <li>
+        <div className="navbar-left">
+            <ul className="navbar-links__left">
+            <li>
+            <NavLink exact to="/" 
+                className="navbar-link">
+                <i className="fas fa-camera fa-2x"></i>
+                </NavLink>
+            </li>
+            <li>
                 <NavLink exact to="/" 
                 className="navbar-link" 
                 activeStyle={{color: 'var(--secondary)'}}>
@@ -29,48 +36,69 @@ const Navbar = (props) => {
     </NavLink>
     </li>
    
-        {
-            isAuthenticated && user ?
+            </ul>
 
-            <li>
-                Welcome 
-                <NavLink to={`/user/${user._id}`} 
-                className="user-link"
-                activeStyle={{color: 'var(--secondary)'}}>
-                 {` ${user.name}`}
-                </NavLink> 
-            </li>
-            : 
-            null
+        </div>
+        <div className="navbar-right">
+        <ul className="navbar-links__right">
+
+           
+{
+    isAuthenticated && user && isLoading ?
+
+    <li>
+         
+        <NavLink to={`/user/${user._id}`} 
+        className="user-link"
+        activeStyle={{color: 'var(--secondary)'}}>
+         {` ${user.name}`}
+         <div className="nav-user-image-container">
+
+         {
+                user.avatar === undefined || user.avatar === '' 
+                ?
+                <img src='https://i2.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1' alt={user.name}/>
+                :
+                <img src={user.avatar} alt={user.name}/>
+
+
+            }
+            </div>
+        </NavLink> 
+    </li>
+    : 
+    null
         }
 
-        <li>
-        {
-        !isAuthenticated 
-        ? 
-        <div>
-        <NavLink to="/register" 
-        className="navbar-link"
-        activeStyle={{color: 'var(--secondary)'}}>
-            Register
-        </NavLink>
-        <NavLink to="/login" 
-        className="navbar-link"
-        activeStyle={{color: 'var(--secondary)'}}>
-            Login
-        </NavLink> 
-        </div>
+            <li>
+            {
+            !isLoading
+            ? 
+            <div>
+            <NavLink to="/register" 
+            className="navbar-link"
+            activeStyle={{color: 'var(--secondary)'}}>
+                Register
+            </NavLink>
+            <NavLink to="/login" 
+            className="navbar-link"
+            activeStyle={{color: 'var(--secondary)'}}>
+                Login
+            </NavLink> 
+            </div>
 
-        :
-        <NavLink to="#" className="navbar-link" onClick={props.logout}>
-        Logout
-        </NavLink>
-    }
-    </li>
-  
-  
- 
-    </ul>
+            :
+            <NavLink to="#" className="navbar-link" onClick={props.logout}>
+            Logout
+            </NavLink>
+            }
+            </li>
+
+
+
+            </ul>
+        </div>
+        
 </div>
     )
 }

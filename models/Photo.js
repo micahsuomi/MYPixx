@@ -17,7 +17,7 @@ const photoSchema = new Schema({
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User'
+            ref: 'user'
         },
         name: String,
         avatar: String,
@@ -28,7 +28,15 @@ const photoSchema = new Schema({
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'user'
+            
+            
+        }
+    ]
 
 })
 

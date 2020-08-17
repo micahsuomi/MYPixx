@@ -5,7 +5,7 @@
     align-items: center;
     border: 1px solid rgba(229, 243, 245, 0.5);
     margin: .2rem;
-    width: 17rem;
+    width: 29rem;
     border-radius: 3px;
     cursor: pointer;
     padding: 2rem 1.5rem;
@@ -34,6 +34,13 @@
 .gallery-photo__description {
     margin-top: 1rem;
     
+}
+
+.author-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .author, 
@@ -66,6 +73,8 @@
     font-weight: 700;
     color: var(--primary-dark);
 }
+
+
 
 
 .grow { 

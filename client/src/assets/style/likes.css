@@ -1,0 +1,33 @@
+.likes-container {
+    padding: 5rem 5rem;
+    background-color: rgb(48, 52, 58);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.likes-wrapper {
+    width: 30rem;
+    height: 30rem;
+    background-color: white;
+    padding: 1rem 1rem;
+    overflow-y: scroll;
+
+
+}
+
+.likes-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.likes-header i {
+    color: var(--primary-dark);
+}
+
+.likes-wrapper h2 {
+    text-align: center;
+    margin-top: 1rem;
+}

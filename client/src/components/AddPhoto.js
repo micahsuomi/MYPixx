@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import {NavLink} from 'react-router-dom';
+import axios from 'axios';
 import '../assets/style/addphoto.css';
 
 class AddPhoto extends Component {
@@ -16,29 +16,23 @@ class AddPhoto extends Component {
 
     }
 
-    /*
+    
     handleSubmit = (e) => {
         e.preventDefault();
-        let { name, image, description } = this.state
-        const newPhoto = {name: name, image: image, description: description};
+        let { name, image, description, author } = this.state
+        const newPhoto = {name, image, description, author};
+        console.log(newPhoto)
         const url="/api/photos"
-        axios.post(url, newPhoto).then((response) => {
+        axios.post(url, newPhoto, this.props.tokenConfig()).then((response) => {
+            console.log('saved')
         })
         .catch(err => console.log(err))
         this.props.addPhoto(newPhoto);
         this.props.history.push('/photos')
         
 
-    }*/
-    handleSubmit = (e) => {
-        e.preventDefault();
-        let { name, image, description, author } = this.state
-        const newPhoto = { name, image, description, author };
-        this.props.addPhoto(newPhoto);
-        this.props.history.push('/photos')
-        
-
     }
+   
     handleChange = (e) => {
         let {name, value} = e.target;
         this.setState({[name]: value})

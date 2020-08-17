@@ -64,7 +64,6 @@ router.post('/', (req, res) => {
 
 //this will validate the user with the token
 router.get('/user', isAuthorized, (req, res) => {
-    console.log(req.user.id)
     User.findById(req.user.id)
     .select('-password')
     .then(user =>  res.json(user))

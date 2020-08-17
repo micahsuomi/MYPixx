@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const isAuthorized = require('../../middleware/authorized');
 const User = require('../../models/User');
 const Photo = require('../../models/Photo');
 
@@ -15,7 +16,7 @@ router.get('/', (req, res) => {
 //Gets a single user
 router.get('/:id', (req, res) => {
     let id = req.params.id
-    User.findOne({_id: id}).populate('photos').exec((err, user)=> {
+    User.findOne({_id: id}).populate('photo').exec((err, user)=> {
         if(err) {
             console.log(err)
         }
@@ -35,9 +36,10 @@ router.get('/:id', (req, res) => {
 })
 
 //UPDATES user
-router.put('/:id', (req, res) => {    
+//access: private
+router.put('/:id', isAuthorized, (req, res) => {    
     const id = req.params.id;
-    const {name, email, avatar, bio} = req.body;
+    const { name, email, avatar, bio } = req.body;
     User.findById(id)
     .then((user) => {
         console.log(user)

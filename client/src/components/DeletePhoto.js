@@ -6,11 +6,10 @@ import '../assets/style/deletephoto.css';
 
 const DeletePhoto = (props) => {
     let id = props.match.params.id;
-    console.log(props)
 
     const deletePhoto = () => {
         const url = `/api/photos/${id}`
-        axios.delete(url)
+        axios.delete(url, props.tokenConfig())
         .then((res) => {
             console.log(res.data)
         })

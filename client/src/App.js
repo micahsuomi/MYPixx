@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
+import About from './components/About';
 import Register from './components/Register';
 import Login from './components/Login';
 import User from './components/User';
@@ -10,8 +11,11 @@ import EditUser from './components/EditUser';
 import PhotoList from './components/PhotoList';
 import AddPhoto from './components/AddPhoto';
 import ViewPhoto from './components/ViewPhoto';
+import LikePhoto from './components/LikePhoto';
+import Likes from './components/Likes';
 import EditPhoto from './components/EditPhoto';
 import DeletePhoto from './components/DeletePhoto';
+import ReactPaginate from 'react-paginate';
 import './App.css';
 
 
@@ -30,14 +34,19 @@ class App extends Component {
                 redirectLogin: false,
                 redirectPhotos: false,
                 isPageLoading: true,
-                isErrorShowing: false
+                isErrorShowing: false,
+                isUserPage: true,
+                isPhotoPage: true,
+                offset: 0,
+                perPage: 6,
+                currentPage: 0,
+                pageCount: 0
                       
     }
 }
 
 tokenConfig = () => {
   const token = this.state.token;
-  console.log(token)
   const config = {
     headers: {
         "Content-type": "application/json"
@@ -45,31 +54,32 @@ tokenConfig = () => {
 }
   if(token) {
     config.headers['x-auth-token'] = token;
+    // console.log('I am calling token config here setting headers', token)
 
   }
   return config
 }
+
 
 fetchData = () => {
   const url = '/api/photos/';
   axios.get(url)
   .then((res) => {
     // console.log(res.data)
+    const slice = res.data.slice(this.state.offset, this.state.offset + this.state.perPage);
       this.setState({
-        photos: res.data,
+        pageCount: Math.ceil(res.data.length / this.state.perPage),
+        photos: slice,
         isPageLoading: false
       })
 
   })
   .catch((err) => {
-    if(err.response.data.toLowerCase().startsWith('Proxy error')) {
-      console.log('there is an err loading the page', err.response.data)
       this.setState({
         isPageLoading: false,
         isErrorShowing: true
       })
-
-    }
+    
   })
 
 }
@@ -77,12 +87,14 @@ fetchData = () => {
 fetchUsers = () => {
   axios.get(`/api/user`)
   .then(res => {
-      // console.log(res.data)
+      console.log(res.data)
       this.setState({
            users: res.data
       })
   })
 }
+
+
 
 componentDidMount() {
   this.fetchData();
@@ -90,8 +102,19 @@ componentDidMount() {
 
 }
 
+handlePageClick = (e) => {
+  const selectedPage = e.selected;
+  const offset = selectedPage * this.state.perPage;
+  this.setState({
+    currentPage: selectedPage,
+    offset: offset
+  }, () => {
+    this.fetchData();
+  })
+}
+
 registerUser = (newUser) => {
-  let {name, email, password} = newUser;
+  let { name, email, password } = newUser;
   const config = {
     headers: {
       'Content-Type': 'application/json'
@@ -103,7 +126,7 @@ registerUser = (newUser) => {
   axios.post('/api/register', body, config)
   .then(response => {
     localStorage.setItem('token', response.data.token);
-    console.log(response)
+    console.log(localStorage)
       this.setState({
         isAuthenticated: true,
         isLoading: false,
@@ -131,8 +154,7 @@ registerUser = (newUser) => {
         msg: err.response.data.msg
 
     })
-    console.log('I am also going through here')
-    // console.log(this.state.msg)
+   
    
 
   })
@@ -165,15 +187,14 @@ authenticateUser = (user) => {
 
 
       })
-      console.log(this.state)
+      console.log('localstorage', localStorage, 'config', config)
       //will load the user calling the token and auth route from backend
-      this.loadUser();
+      this.loadUser(config);
       
 
     })
     .catch((err) => {
     
-      console.log(err.response.data.msg)
       localStorage.removeItem('token');
       this.setState({
           token: null,
@@ -183,9 +204,8 @@ authenticateUser = (user) => {
           msg: err.response.data.msg
   
       })
-      console.log(this.state.msg)
-     
-  
+      // console.log(this.state.msg)
+       
     })
   
 
@@ -193,20 +213,22 @@ authenticateUser = (user) => {
 
 
 loadUser = (config) => {
+  console.log('loading user', config)
   this.setState({
     isLoading: true,
-    ...this.state
   })
+  console.log(this.tokenConfig())
+  console.log(this.state.isLoading)
+
   axios.get('/api/login/user', this.tokenConfig(config))
   .then(response => {
     console.log('response from loadUser', response.data)
     this.setState({
       isAuthenticated: true,
-      isLoading: false,
+      // isLoading: false,
       user: response.data,
       redirectPhotos: true,
     })
-    console.log(this.state)
     
   })
 
@@ -225,7 +247,6 @@ logout = () => {
     redirectLogin: false,
     redirectPhotos: false
   })
-  console.log('after logout', this.state)
 
 }
 
@@ -234,21 +255,9 @@ deletePhoto = () => {
   this.fetchData();
 }
 
-/*
+
 addPhoto = (newPhoto) => {
-  this.setState({photos: [newPhoto, ...this.state.photos]})
-  this.fetchData();
-
-}*/
-
-
-
-addPhoto = (newPhoto, config) => {
   console.log(newPhoto)
-  const url="/api/photos"
-        axios.post(url, newPhoto,  this.tokenConfig(config)).then((response) => {
-        })
-  .catch(err => console.log(err))
   this.fetchData();
   this.setState({photos: [newPhoto, ...this.state.photos]});
 
@@ -261,23 +270,30 @@ editPhoto = (updatedPhoto) => {
 }
 
 editUser = (updatedUser) => {
-  console.log(updatedUser)
+  console.log('calling edit user from here')
   this.fetchUsers();
   this.setState({updatedUser});
 
 }
 
+refreshPage = () => {
+  this.setState({
+    isErrorShowing: false,
+  })
+  this.fetchData();
+  this.fetchUsers();
+}
+
+
+likePhoto = () => {
+  console.log('calling like from app.js')
+  this.fetchData();
+}
+
 
 
   render() {
-    // console.log(this.tokenConfig())
-    // console.log(this.loadUser())
-
-
-    // console.log(this.state)
-    // console.log(this.tokenConfig())
-    console.log('page loading', this.state.isPageLoading)
-    console.log('error', this.state.isErrorShowing)
+    // console.log(this.state.token)
 
     return (
         <BrowserRouter>
@@ -287,9 +303,27 @@ editUser = (updatedUser) => {
         isAuthenticated={this.state.isAuthenticated}
         user={this.state.user}
         isLoading={this.state.isLoading}
-        />
+        />   
 
+            <div>
+                <ReactPaginate
+                    previousLabel={"prev"}
+                    nextLabel={"next"}
+                    breakLabel={"..."}
+                    breakClassName={"break-me"}
+                    pageCount={this.state.pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageClick}
+                    containerClassName={"pagination"}
+                    subContainerClassName={"pages pagination"}
+                    activeClassName={"active"}/>
+            </div> 
         <Switch>
+
+        <Route path="/about" component={(props) => <About
+        users={this.state.users}
+        {...props} />} />
 
         <Route path="/register" component={(props) => <Register 
           user={this.state.user}
@@ -312,21 +346,40 @@ editUser = (updatedUser) => {
           users={this.state.users}
           user={this.state.user}
           editUser={this.editUser}
+          tokenConfig={this.tokenConfig}
           {...props}/>} />
           
           <Route path="/user/:id" component={(props) => <User 
           id={props.match.params.id}
           user={this.state.user}
+          users={this.state.users}
+          isUserPage={this.state.isUserPage}
           {...props}/>} />
   
           <Route path="/editphoto/:id" component={(props) => <EditPhoto 
           photos={this.state.photos}
           editPhoto={this.editPhoto}
+          tokenConfig={this.tokenConfig}
           {...props}
           />} />
 
           <Route path="/deletephoto/:id" component={(props) => <DeletePhoto 
           deletePhoto={this.deletePhoto}
+          tokenConfig={this.tokenConfig}
+          {...props}
+          />} />
+
+          <Route path="/photos/:id/likes" component={(props) => <Likes 
+          photos={this.state.photos}
+          user={this.state.user}
+          {...props}
+          />} />
+ 
+          <Route path="/photos/:id/like" component={(props) => <LikePhoto 
+          photos={this.state.photos}
+          user={this.state.user}
+          likePhoto={this.likePhoto}
+          tokenConfig={this.tokenConfig}
           {...props}
           />} />
 
@@ -335,24 +388,49 @@ editUser = (updatedUser) => {
           isAuthenticated={this.state.isAuthenticated}
           user={this.state.user}
           isLoading={this.state.isLoading}
+          tokenConfig={this.tokenConfig}
           {...props}/>} />
 
           <Route path="/photos/:id" component={(props)=><ViewPhoto
-          id={props.match.params.id}
           photos={this.state.photos}
           user={this.state.user}
           isAuthenticated={this.state.isAuthenticated}
+          token={this.state.token}
+          likePhoto={this.likePhoto}
+          tokenConfig={this.tokenConfig}
           {...props} />} />
 
-          <Route path="/photos" component={(props) => <PhotoList 
+          <Route path="/photos" component={(props) => 
+          <div>
+          <PhotoList 
           key={props.match.params.id}
           photos={this.state.photos}
+          token={this.state.token}
           isAuthenticated={this.state.isAuthenticated} 
           redirectPhotos={this.state.redirectPhotos}
           isPageLoading={this.state.isPageLoading}
           isErrorShowing={this.state.isErrorShowing}
+          pageCount={this.state.pageCount}
+          refreshPage={this.refreshPage}
+          handlePageClick={this.handlePageClick}
+          likePhoto={this.likePhoto}
           {...props}
-          />}  
+          />
+          <ReactPaginate
+          previousLabel={"prev"}
+          nextLabel={"next"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={this.state.pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={this.handlePageClick}
+          containerClassName={"pagination"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"active"}
+          {...props}/>
+          </div>
+          } 
           />
       
           <Route path="/" component={Home} />
@@ -362,6 +440,7 @@ editUser = (updatedUser) => {
     )
   }
 }
+
 
 export default App
 

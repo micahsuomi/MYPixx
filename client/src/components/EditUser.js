@@ -22,12 +22,17 @@ class EditUser extends Component {
         e.preventDefault();
         const id = this.props.match.params.id
         const url = `/api/user/${id}`;
-        const updatedUser = this.state.user;
-        axios.put(url, updatedUser).then((response) => {
+        let updatedUser = this.state.user;
+        axios.put(url, updatedUser, this.props.tokenConfig()).then((response) => {
+            updatedUser = response.data
+            
         })
         .catch(err => console.log(err))
         this.props.editUser(updatedUser);
+        console.log(updatedUser)
         this.props.history.push(`/user/${id}`)
+
+        
         
         
 
@@ -94,13 +99,13 @@ class EditUser extends Component {
                             <input type="text" 
                             name="avatar"
                             value={avatar} 
-                            placeholder="avatar"
+                            placeholder="insert image link here"
                             onChange={this.handleChange}/>
                             </div>
 
                             
                             <div className="input-topics">
-                            <label htmlFor="description">Image</label>
+                            <label htmlFor="description">Bio</label>
                             <input type="text" 
                             name="bio"
                             value={bio} 
