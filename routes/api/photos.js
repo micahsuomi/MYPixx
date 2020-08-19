@@ -8,7 +8,7 @@ const Photo = require('../../models/Photo');
 //Description: get all photos route
 //ACCESS: public
 router.get('/', (req, res) => {
-    Photo.find().populate('likes').exec()
+    Photo.find().populate('likes').populate('comments').exec()
     // .sort({ date: -1 })
     .then(photos => res.json(photos));
 });
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 //ACCESS: private
 router.post('/', isAuthorized, (req, res) => {
     console.log('req.user from add photo', req.user)
-    let {name, image, description} = req.body;
+    let { name, image, description } = req.body;
     
     const id = req.params.id;
     User.findOne(({_id: req.user.id}), (err, founduser) => {
@@ -52,7 +52,6 @@ router.post('/', isAuthorized, (req, res) => {
 //ACCESS: private
 
 router.put('/:id', isAuthorized, (req, res) => {
-    console.log('req.user from edit photo', req.user)
     const id = req.params.id;
     let { name, image, description } = req.body;
     Photo.findById(id)
@@ -61,7 +60,6 @@ router.put('/:id', isAuthorized, (req, res) => {
         photo.image = image,
         photo.description = description
         photo.save().then(updatedPhoto => res.json(updatedPhoto))
-        console.log(photo)
         
     })
     
@@ -115,6 +113,18 @@ router.get('/:id/likes', (req, res) => {
     Photo.findById(id).populate('likes').exec((err, photo) => {
         if(err) return res.status(404).json({msg: "Not found"})
         res.json(photo.likes)
+    })
+
+})
+
+//GET all comments for a photo
+//Access: public
+router.get('/:id/comments', (req, res) => {
+    const id = req.params.id
+    Photo.findById(id).populate('comments').exec((err, photo) => {
+        if(err) return res.status(404).json({msg: "Not found"})
+        console.log(photo)
+        res.json(photo.comments)
     })
 
 })

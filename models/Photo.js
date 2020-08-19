@@ -36,6 +36,12 @@ const photoSchema = new Schema({
             
             
         }
+    ],
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'comment'
+        }
     ]
 
 })

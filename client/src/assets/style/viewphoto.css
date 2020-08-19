@@ -33,7 +33,7 @@
 
 .viewphoto-header {
     padding: 1rem 0;
-    width: 70vw;
+    width: 51vw;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -185,21 +185,47 @@ button {
     color: var(--primary-dark);
 }
 
+.likephoto-comments__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .like-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.likes-num {
-    margin-left: .6rem;
-}
 
 .empty-heart,
 .full-heart {
     color: var(--red);
     cursor: pointer;
 }
+
+
+.comments-link__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
+}
+.comments-link {
+    text-decoration: none;
+}
+.comments-icon {
+    color: var(--secondary);
+    margin-top: .4rem;
+}
+
+.comments-number {
+    margin-left: .6rem;
+    margin-bottom: .7rem;
+    font-weight: 700;
+    color: darkgray;
+}
+
 .slider-arrow__left,
 .slider-arrow__right {
     color: whitesmoke;
@@ -213,12 +239,14 @@ button {
 
 @media screen and (max-width: 768px) {
     .viewphoto-container {
-        width: 94vw;
+        width: 74vw;
+        padding: 1rem 4rem;
     }
 
     .viewphoto-wrapper {
         padding: 5rem 1rem;
         min-height: 100vw;
+        margin-top: 0;
   
     }
 
@@ -229,6 +257,10 @@ button {
 }
 
 @media screen and (max-width: 500px) {
+    .viewphoto-big__container {
+        padding: 1rem 0;
+    }
+
     .header-container {
         flex-direction: column;
         align-items: center;
@@ -236,9 +268,21 @@ button {
     h3 {
         margin: .7rem;
     }
+
+    .viewphoto-wrapper {
+        grid-template-columns: 5% 90% 5%;
+        padding: 1rem;
+        align-items: baseline;
+    }
+
+    .viewphoto-exit__header {
+        margin-right: 1rem;
+    }
+
     .viewphoto-container, 
     .viewphoto-body {
-        width: 22rem;
+        width: 24rem;
+        padding: 1rem 0;
     
     }
 
@@ -265,4 +309,23 @@ button {
         margin: .6rem;
         width: 6rem;
     }
+
+
+    .slider-arrow__left,
+    .slider-arrow__right {
+        color: var(--dark);
+        z-index: 100;
+        align-self: start;
+    }
+
+    .slider-arrow__left:hover,
+    .slider-arrow__right:hover {
+    color: var(--dark);
+}
+
+.slider-arrow__left{
+    color: var(--dark);
+    z-index: 100;
+    align-self: start;
+}
 }

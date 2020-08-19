@@ -9,6 +9,7 @@ const registerRoute = require('./routes/api/register');
 const photosRoute = require('./routes/api/photos');
 const loginRoute = require('./routes/api/login');
 const userRoute = require('./routes/api/user');
+const commentRoute = require('./routes/api/comments');
 
 //use bodyparser
 app.use(bodyParser.json());
@@ -27,6 +28,7 @@ app.use('/api/register', registerRoute);
 app.use('/api/login', loginRoute);
 app.use('/api/user', userRoute);
 app.use('/api/photos', photosRoute);
+app.use('/api/photos/:id/comments', commentRoute)
 
 
 const PORT = process.env.PORT || 5000;

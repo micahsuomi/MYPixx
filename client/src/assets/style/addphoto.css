@@ -1,7 +1,7 @@
 .add-photo__container {
     padding: 2rem 10rem;
     background-color: rgb(243, 237, 237);
-    width: 95vw;
+    width: 100vw;
     display: flex;
     justify-content: center; 
 }

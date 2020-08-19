@@ -41,6 +41,8 @@ class User extends Component {
             description={photo.description}
             author={photo.author.name}
             authorId={photo.author.id}
+            likes={photo.likes}
+            comments={photo.comments}
             isUserPage={this.state.isUserPage} />
 ))
 

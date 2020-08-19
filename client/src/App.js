@@ -13,9 +13,12 @@ import AddPhoto from './components/AddPhoto';
 import ViewPhoto from './components/ViewPhoto';
 import LikePhoto from './components/LikePhoto';
 import Likes from './components/Likes';
+import Comments from './components/Comments';
+import Comment from './components/Comment';
 import EditPhoto from './components/EditPhoto';
 import DeletePhoto from './components/DeletePhoto';
 import ReactPaginate from 'react-paginate';
+import Footer from './components/Footer';
 import './App.css';
 
 
@@ -40,7 +43,8 @@ class App extends Component {
                 offset: 0,
                 perPage: 6,
                 currentPage: 0,
-                pageCount: 0
+                pageCount: 0,
+                showPagination: true
                       
     }
 }
@@ -255,9 +259,13 @@ deletePhoto = () => {
   this.fetchData();
 }
 
+deleteComment = () => {
+  console.log('calling delete comment from app.js')
+  this.fetchData();
+}
+
 
 addPhoto = (newPhoto) => {
-  console.log(newPhoto)
   this.fetchData();
   this.setState({photos: [newPhoto, ...this.state.photos]});
 
@@ -285,15 +293,20 @@ refreshPage = () => {
 }
 
 
-likePhoto = () => {
-  console.log('calling like from app.js')
+likePhoto = (likedPhoto) => {
+  this.setState({likedPhoto})
+  console.log(likedPhoto)
+  this.fetchData();
+}
+
+addComment = (newComment) => {
+  this.setState({newComment});
   this.fetchData();
 }
 
 
-
   render() {
-    // console.log(this.state.token)
+    console.log(this.state.token)
 
     return (
         <BrowserRouter>
@@ -304,8 +317,9 @@ likePhoto = () => {
         user={this.state.user}
         isLoading={this.state.isLoading}
         />   
-
             <div>
+                {
+                 this.state.showPagination ? 
                 <ReactPaginate
                     previousLabel={"prev"}
                     nextLabel={"next"}
@@ -318,6 +332,8 @@ likePhoto = () => {
                     containerClassName={"pagination"}
                     subContainerClassName={"pages pagination"}
                     activeClassName={"active"}/>
+                    : null
+                }
             </div> 
         <Switch>
 
@@ -374,6 +390,15 @@ likePhoto = () => {
           user={this.state.user}
           {...props}
           />} />
+
+          <Route path="/photos/:id/comments" component={(props) => <Comments 
+          photos={this.state.photos}
+          user={this.state.user}
+          isAuthenticated={this.state.isAuthenticated}
+          tokenConfig={this.tokenConfig}
+          addComment={this.addComment}
+          {...props}
+          />} />
  
           <Route path="/photos/:id/like" component={(props) => <LikePhoto 
           photos={this.state.photos}
@@ -400,8 +425,25 @@ likePhoto = () => {
           tokenConfig={this.tokenConfig}
           {...props} />} />
 
+          <Route path="/photos/:id/comments/:id" component={(props) => 
+          <Comment deleteComment={this.deleteComment}
+          {...props}/>}/>
+
           <Route path="/photos" component={(props) => 
           <div>
+          {/* <ReactPaginate
+          previousLabel={"prev"}
+          nextLabel={"next"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={this.state.pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={this.handlePageClick}
+          containerClassName={"pagination"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"active"}
+          {...props}/> */}
           <PhotoList 
           key={props.match.params.id}
           photos={this.state.photos}
@@ -416,25 +458,14 @@ likePhoto = () => {
           likePhoto={this.likePhoto}
           {...props}
           />
-          <ReactPaginate
-          previousLabel={"prev"}
-          nextLabel={"next"}
-          breakLabel={"..."}
-          breakClassName={"break-me"}
-          pageCount={this.state.pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-          onPageChange={this.handlePageClick}
-          containerClassName={"pagination"}
-          subContainerClassName={"pages pagination"}
-          activeClassName={"active"}
-          {...props}/>
+        
           </div>
           } 
           />
       
           <Route path="/" component={Home} />
     </Switch>
+    <Footer />
     </div>
     </BrowserRouter>
     )

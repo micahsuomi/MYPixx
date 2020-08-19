@@ -1,7 +1,6 @@
 import React from 'react';
 import '../assets/style/viewphoto.css';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
 import LikePhoto from './LikePhoto';
 
 
@@ -112,30 +111,22 @@ const ViewPhoto = (props) => {
             </div>
             <p>{filteredPhoto.description}</p>  
             </div>
-            <LikePhoto filteredPhoto={filteredPhoto}
+            <div className="likephoto-comments__container">
+                <div>
+                <LikePhoto filteredPhoto={filteredPhoto}
                         tokenConfig={()=>props.tokenConfig()}
                         user={props.user}
                         token={props.token}   
                        {...props}/>
-            {/* <div className="like-container">
-                <form onSubmit={handleSubmit}>
-                {
-                    props.user && filteredPhoto.likes.includes(props.user._id) ?
 
-                    <button><i className="fas fa-heart full-heart grow"> Unlike</i></button>
-
-                    :
-
-                    <button><i className="far fa-heart empty-heart grow"> Like</i></button>
-
-
-                }
-            <p className="likes-num">{filteredPhoto.likes.length} Likes</p>
-            </form>
-            </div> */}
-            <div>
-
-              
+                </div>
+          
+          <div className="comments-link__container">
+            <NavLink to={`/photos/${props.match.params.id}/comments`} className="comments-link">
+            <i className="fas fa-comments fa-2x comments-icon"></i>
+            <span className="comments-number">{filteredPhoto.comments.length} </span>
+            </NavLink>
+            </div>
             </div>
             </div>
             <div>

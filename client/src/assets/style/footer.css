@@ -1,0 +1,12 @@
+.footer {
+    padding: 1rem;
+    background-color: rgb(17, 45, 58);
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+
+}
+
+.app-author {
+    color: whitesmoke;
+}
