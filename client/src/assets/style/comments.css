@@ -1,0 +1,78 @@
+.comments-container {
+    padding: 5rem 5rem;
+    background-color: rgb(48, 52, 58);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.comments-wrapper {
+    width: 56rem;
+    height: 30rem;
+    background-color: white;
+    padding: 1.4rem 1rem;
+    overflow-y: scroll;
+    border-radius: 3px;
+
+
+}
+
+.comments-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.comments-header i {
+    color: var(--primary-dark);
+}
+
+.comments-wrapper h2 {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    color: darkgray;
+
+}
+
+.comments-wrapper h4 {
+    text-align: center;
+    color: rgb(180, 170, 170);
+}
+
+.add-comment__form textarea {
+    margin-top: 1.5rem;
+    width: 51rem;
+    font-family: 'Montserrat';
+    padding: .7rem;
+    font-size: 16px;
+}
+
+.add-comment__btn {
+    padding: .7rem;
+    background-color: var(--primary);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    margin: .8rem;
+    width: 9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-top: 2rem;
+
+}
+
+.add-comment__btn:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.03);
+    transition: all .2s ease-in-out;
+}
+
+.btn-save {
+    margin: .7rem;
+    margin-top: 2rem;
+}

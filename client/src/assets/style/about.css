@@ -34,9 +34,14 @@
     box-shadow: 0 1rem 1rem rgba(88, 83, 83, 0.6);
     width: 27rem;
     height: 28rem;
+    text-decoration: none;
+    color: var(--primary-dark);
 
 }
 
+.user-link__container {
+    text-decoration: none;
+}
 .user-image__container {
     display: inline-block;
     overflow: hidden;
@@ -59,6 +64,7 @@
     margin-top: 1.7rem;
     text-decoration: none;
     color: var(--primary);
+    text-decoration: none;
 }
 
 .user-name:hover {
@@ -73,4 +79,36 @@
 }
 .user-details li {
     margin-top: .6rem;
+}
+
+@media screen and (max-width: 1024px) {
+    .user-container {
+        width: 20rem;
+        height: 24rem;
+    
+    }
+
+    .user-image__container {
+        height: 130px;
+        width: 130px; 
+     
+    
+    }
+
+}
+@media screen and (max-width: 768px) {
+    .users-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+        
+    }
+}
+@media screen and (max-width: 500px) {
+    .about-container {
+        padding: 5rem 1rem;
+    }
+
+    .users-wrapper {
+        grid-template-columns: 1fr;
+        
+    }
 }

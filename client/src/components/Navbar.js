@@ -12,8 +12,9 @@ const Navbar = (props) => {
             <ul className="navbar-links__left">
             <li>
             <NavLink exact to="/" 
-                className="navbar-link">
-                <i className="fas fa-camera fa-2x"></i>
+                className="navbar-link logo">
+                {/* <i className="fas fa-camera fa-2x"></i> */}
+                MYPiC
                 </NavLink>
             </li>
             <li>

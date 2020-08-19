@@ -20,7 +20,6 @@ class EditPhoto extends Component {
 
     componentDidMount() {
         let id = this.props.match.params.id
-        console.log(id)
         const url = `/api/photos`
         axios.get(url)
         .then((response) => {

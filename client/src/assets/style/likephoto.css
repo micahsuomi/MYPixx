@@ -5,6 +5,7 @@
     font-family: 'Montserrat';
     font-size: 10px;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .like-btn:hover {
@@ -14,8 +15,9 @@
     outline: none;
 }
 
-.likes-num {
+.likes-number {
     text-decoration: none;
     color: var(--primary);
     font-weight: 700;
+    margin-left: .7rem;
 }

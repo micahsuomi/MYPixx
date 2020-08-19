@@ -74,6 +74,21 @@
     color: var(--primary-dark);
 }
 
+.likes-comments__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: .6rem;
+}
+
+.likes-num,
+.comments-num {
+    text-decoration: none;
+    margin: .4rem;
+    font-weight: 700;
+    color: var(--primary);
+   
+}
 
 
 

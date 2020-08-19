@@ -31,6 +31,10 @@
 
 }
 
+.lowercase {
+    text-transform: lowercase;
+}
+
 .subtitle {
     font-size: 23px;
     font-weight: 400;
@@ -50,6 +54,7 @@
     text-decoration: none;
     text-transform: uppercase;
     margin-top: 1rem;
+    border-radius: 3px;
 
 }
 

@@ -27,8 +27,7 @@ const LikePhoto = (props) => {
               
             })
             .catch(err => console.log(err))
-            props.likePhoto()
-            console.log('no token', props.token)
+            props.likePhoto(likedPhoto);
 
 
             }
@@ -49,13 +48,13 @@ const LikePhoto = (props) => {
                 {
                     props.user && likedPhoto ?
 
-                    <button className="like-btn"><i className="fas fa-heart full-heart fa-2x grow"> Unlike</i></button>
+                    <button className="like-btn"><i className="fas fa-heart full-heart fa-2x grow"></i></button>
                     :
-                    <button className="like-btn"><i className="far fa-heart empty-heart fa-2x grow"> Like</i></button>
+                    <button className="like-btn"><i className="far fa-heart empty-heart fa-2x grow"></i></button>
                 }
             {
                 props.filteredPhoto.likes.length > 0 ?
-                <NavLink to ={`/photos/${props.match.params.id}/likes`} className="likes-num grow">{props.filteredPhoto.likes.length} 
+                <NavLink to ={`/photos/${props.match.params.id}/likes`} className="likes-number grow">{props.filteredPhoto.likes.length} 
                 {
                     props.filteredPhoto.likes.length === 1 ? <span> Like</span> : <span> Likes</span>
                 }

@@ -4,6 +4,7 @@
     width: 100vw;
     display: flex;
     justify-content: center; 
+    min-height: 81vh;
 }
 
 .login-form {
@@ -85,7 +86,6 @@ textarea {
 }
 
 .btn-login:hover {
-    background-color: var(--primary-dark);
     background-color: var(--primary-dark);
     transform: scale(1.03);
     transition: all .2s ease-in-out;

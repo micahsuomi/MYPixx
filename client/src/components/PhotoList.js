@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PhotoItem from './PhotoItem';
-import ReactPaginate from 'react-paginate';
+// import ReactPaginate from 'react-paginate';
 import '../assets/style/photolist.css';
 
 
 
 const PhotoList = (props) => {
+    console.log(props)
     let { isAuthenticated, isPageLoading, isErrorShowing } = props;
     const photoList = props.photos.map((photo) => (
         <PhotoItem key={photo._id}
@@ -18,12 +19,13 @@ const PhotoList = (props) => {
                    authorId={photo.author.id}
                    authorImg={photo.author.avatar}
                    likes={photo.likes}
+                   comments={photo.comments}
                    likePhoto={()=>props.likePhoto()}
                    {...props} />
     ))
+  
     return (
             <div className="photo-gallery__container">
-                <h1>Photo Gallery</h1>
                 {
                 isAuthenticated ? 
                 <div className="add-photo-link__container">

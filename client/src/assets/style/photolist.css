@@ -142,7 +142,7 @@
   }
   
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 768px) {
     .photo-gallery__container {
         padding: 3rem 2rem;
     }
