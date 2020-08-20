@@ -23,7 +23,9 @@ const PhotoList = (props) => {
                    likePhoto={()=>props.likePhoto()}
                    {...props} />
     ))
-  
+    const closePopup = () => {
+        props.closePopup()
+    }
     return (
             <div className="photo-gallery__container">
                 {
@@ -38,6 +40,20 @@ const PhotoList = (props) => {
                 : 
                    <h3><NavLink to="/login">Login</NavLink> to Upload Your Pictures</h3>
                    }
+
+                    {
+                        props.isPopupOpen ?
+
+                        <div className="photo-added__popup">
+                        <div className="photo-added__popup__header">
+                        <i className="fas fa-times-circle grow" onClick={closePopup}></i>
+                        </div>
+                            <h3>Photo Added!</h3>
+                        </div>
+                        :
+                        null
+                    }
+
                 {
                     !isPageLoading && isErrorShowing ?
 

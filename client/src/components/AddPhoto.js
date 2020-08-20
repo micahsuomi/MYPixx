@@ -43,11 +43,11 @@ class AddPhoto extends Component {
         return (
             <div className="add-photo__container">
 
-                <form onSubmit={this.handleSubmit} className="add-photo__form">
+                <form onSubmit={this.handleSubmit} className="add-photo__form animate-modal">
                 <div className="cancel-wrapper">
                     <NavLink to ='/photos'
                     className="delete-link">
-                        <i className="fas fa-times fa-2x"></i>
+                <i className="fas fa-times-circle fa-2x grow"></i>
                         </NavLink>
                         </div>
                 <h2>Add a new photo</h2>

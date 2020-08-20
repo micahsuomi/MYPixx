@@ -37,7 +37,7 @@ class Login extends Component {
              this.props.history.push('/photos')
          }
         return (
-                <div className="login-form__container">
+                <div className="login-form__container animate-modal">
                     
                     <form onSubmit={this.handleSubmit} className="login-form">
                         <h2>Login</h2>

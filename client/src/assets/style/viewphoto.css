@@ -216,14 +216,33 @@ button {
 }
 .comments-icon {
     color: var(--secondary);
-    margin-top: .4rem;
 }
 
 .comments-number {
     margin-left: .6rem;
-    margin-bottom: .7rem;
+    margin-top: -.7rem;
     font-weight: 700;
-    color: darkgray;
+    color: var(--primary);
+}
+
+.comments-num__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    color: var(--primary);
+    margin-left: .7rem;
+    
+}
+
+.comments-length {
+    margin-left: .7rem;
+}
+
+.comments-num__container span {
+    margin-left: .5rem;
+
+
 }
 
 .slider-arrow__left,

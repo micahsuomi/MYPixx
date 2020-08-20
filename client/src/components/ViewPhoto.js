@@ -22,36 +22,9 @@ const ViewPhoto = (props) => {
         
         
     }) 
-    /*
-    if(props.user && filteredPhoto.likes.includes(props.user._id)) {
-        console.log('it is liked')
-    } else {
-        console.log('it is not liked')
-    }*/
-    /*
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        if(!props.user) {
-            props.history.push('/login')
-        } else {
-            const url = `/api/photos/${id}/like`
-            console.log('token config for likes', props.tokenConfig())
-            axios.post(url, props.tokenConfig()).then(res => {
-                console.log(res)
-              
-            })
-            .catch(err => console.log(err))
-            props.likePhoto()
-        }
-         
-       
-      
-      
-      }*/
-
-
+    
     return (
-        <div className="viewphoto-big__container">
+        <div className="viewphoto-big__container animate-modal">
             <div className="viewphoto-exit__header">
             <NavLink to="/photos" className="back-to-photos__view-link grow">
                 <i className="fas fa-times fa-2x"></i>
@@ -123,8 +96,21 @@ const ViewPhoto = (props) => {
           
           <div className="comments-link__container">
             <NavLink to={`/photos/${props.match.params.id}/comments`} className="comments-link">
-            <i className="fas fa-comments fa-2x comments-icon"></i>
-            <span className="comments-number">{filteredPhoto.comments.length} </span>
+                {
+                    filteredPhoto.comments.length < 1 ?
+                    <i className="far fa-comments fa-2x comments-icon"></i>
+                    :
+                    <div className="comments-num__container">
+                    <i className="fas fa-comments fa-2x comments-icon"></i>
+                    <div className="comments-length">
+                    {filteredPhoto.comments.length} 
+                    </div>
+                    {
+                        filteredPhoto.comments.length === 1 ? <span> Comment</span> : <span> Comments</span>
+                    }
+                    </div>
+                }
+           
             </NavLink>
             </div>
             </div>
