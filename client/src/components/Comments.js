@@ -75,6 +75,7 @@ class Comments extends Component {
 
     updateComment = (updatedComment) => {
         this.setState({updatedComment});
+        this.fetchCommentsData()
     }
     
     
@@ -104,7 +105,7 @@ class Comments extends Component {
                 <i className="fas fa-times-circle fa-2x grow"></i>
                 </NavLink>
                 </div>
-                <h2>Comments</h2>
+                <h3>{comments.length} Comments</h3>
                 {
                     comments.length < 1 ?
                     <h4>No Comments Yet</h4>
@@ -120,7 +121,7 @@ class Comments extends Component {
                     <div>
                         {
                             this.state.isCommentFieldOpened ? 
-                            <form className="add-comment__form"
+                            <form className="add-comment__form animate-modal"
                             onSubmit={this.handleSubmit}>
                             <div className="input-topics">
                             <label htmlFor="description">Comment</label>

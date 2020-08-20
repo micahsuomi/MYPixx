@@ -105,7 +105,7 @@ export class Comment extends Component {
             </div>
 
             :
-            <form className="edit-comment__form" onSubmit={this.handleSubmit}>
+            <form className="edit-comment__form animate-modal" onSubmit={this.handleSubmit}>
                 <textarea type="text"
                     value={text}
                     name="text"

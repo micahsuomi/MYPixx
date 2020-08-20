@@ -44,7 +44,8 @@ class App extends Component {
                 perPage: 6,
                 currentPage: 0,
                 pageCount: 0,
-                showPagination: true
+                showPagination: true,
+                isPopupOpen: false
                       
     }
 }
@@ -147,7 +148,6 @@ registerUser = (newUser) => {
   })
   
   .catch((err) => {
-    
     console.log(err.response.data.msg)
     localStorage.removeItem('token');
     this.setState({
@@ -159,8 +159,6 @@ registerUser = (newUser) => {
 
     })
    
-   
-
   })
   
 
@@ -177,6 +175,7 @@ authenticateUser = (user) => {
     }
     
   }
+
   const body = JSON.stringify({email, password});
   axios.post('/api/login', body, config) 
     .then((response) => {
@@ -189,7 +188,6 @@ authenticateUser = (user) => {
         token: response.data.token,
         msg: ''
 
-
       })
       console.log('localstorage', localStorage, 'config', config)
       //will load the user calling the token and auth route from backend
@@ -198,7 +196,6 @@ authenticateUser = (user) => {
 
     })
     .catch((err) => {
-    
       localStorage.removeItem('token');
       this.setState({
           token: null,
@@ -212,7 +209,6 @@ authenticateUser = (user) => {
        
     })
   
-
 }
 
 
@@ -239,7 +235,6 @@ loadUser = (config) => {
 }
 
 
-
 logout = () => {
   console.log('logout from app.js')
   localStorage.removeItem('token');
@@ -250,6 +245,7 @@ logout = () => {
     isLoading: false,
     redirectLogin: false,
     redirectPhotos: false
+
   })
 
 }
@@ -268,6 +264,8 @@ deleteComment = () => {
 addPhoto = (newPhoto) => {
   this.fetchData();
   this.setState({photos: [newPhoto, ...this.state.photos]});
+  this.setState({isPopupOpen: true})
+  console.log('open popup', this.state.isPopupOpen)
 
 }
 
@@ -302,6 +300,10 @@ likePhoto = (likedPhoto) => {
 addComment = (newComment) => {
   this.setState({newComment});
   this.fetchData();
+}
+
+closePopup = () => {
+  this.setState({isPopupOpen: false})
 }
 
 
@@ -456,6 +458,8 @@ addComment = (newComment) => {
           refreshPage={this.refreshPage}
           handlePageClick={this.handlePageClick}
           likePhoto={this.likePhoto}
+          isPopupOpen={this.state.isPopupOpen}
+          closePopup={this.closePopup}
           {...props}
           />
         

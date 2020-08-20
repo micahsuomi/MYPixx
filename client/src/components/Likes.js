@@ -42,7 +42,7 @@ class Likes extends Component {
                 <i className="fas fa-times-circle fa-2x grow"></i>
                 </NavLink>
                 </div>
-                <h2>Likes</h2>
+                <h3>{likes.length} Likes</h3>
                 {formattedLikes}
                 </div>
             </div>

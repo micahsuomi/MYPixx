@@ -27,7 +27,7 @@
     color: var(--primary-dark);
 }
 
-.comments-wrapper h2 {
+.comments-wrapper h3 {
     text-align: center;
     margin-top: 1rem;
     margin-bottom: 2rem;
@@ -75,4 +75,19 @@
 .btn-save {
     margin: .7rem;
     margin-top: 2rem;
+}
+
+@media screen and (max-width: 500px) {
+
+    .comments-container {
+        padding: 3rem .6rem;
+        min-height: 81vh;
+
+    }
+
+    .comment-user__header {
+        grid-template-columns: 25% 75%;
+    }
+
+
 }

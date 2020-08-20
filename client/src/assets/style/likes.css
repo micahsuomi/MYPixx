@@ -27,11 +27,18 @@
     color: var(--primary-dark);
 }
 
-.likes-wrapper h2 {
+.likes-wrapper h3 {
     text-align: center;
     margin-top: 1rem;
     margin-bottom: 2rem;
     color: rgb(180, 170, 170);
 
+
+}
+
+@media screen and (max-width: 500px) {
+    .likes-wrapper {
+        width: 22rem;
+    }
 
 }

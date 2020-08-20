@@ -6,7 +6,7 @@ const PhotoItem = (props) => {
     let {id, name, image, author, authorId, authorImg, isUserPage, likes, comments} = props;
    
     return (
-        <div className="gallery-photo__container grow">
+        <div className="gallery-photo__container grow animate-modal">
             <NavLink to={`/photos/${id}`} className="view-photo__link">
             <h3 className="gallery-photo__title">{name}</h3>
             <img src={image} alt={name} className="gallery-photo__image"/>
@@ -28,14 +28,32 @@ const PhotoItem = (props) => {
               </div>
             }
           
-          <div className="likes-comments__wrapper">
-            <NavLink to={`/photos/${id}/likes`} className="likes-num">
-            <p>{likes.length} Likes</p>
-            </NavLink>
-            <NavLink to={`/photos/${id}/comments`} className="comments-num">
-            <p>{comments.length} Comments</p>
-            </NavLink>
-            </div>
+          {
+              likes !== undefined && comments !== undefined ? 
+              <div className="likes-comments__wrapper">
+                  {
+                      likes.length < 1 ?
+                      <i className="far fa-heart empty-heart grow" style={{margin: ".5rem"}}></i>
+                      :
+                      <NavLink to={`/photos/${id}/likes`} className="likes-link__num">
+                      <i className="fas fa-heart full-heart grow"><span className="likes-num">{likes.length}</span></i>
+                    </NavLink>
+                      
+                  }
+                  {
+                      comments.length < 1 ?
+                      <i className="far fa-comments comments-icon"></i>
+                    :
+                    <NavLink to={`/photos/${id}/comments`} className="comments-link__num">
+                    <i className="fas fa-comments comments-icon"><span className="comments-num">{comments.length}</span></i>
+                    </NavLink>
+                  }
+         
+            
+            </div> 
+            : null
+          } 
+          
 
             <div> 
         </div>

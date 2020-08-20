@@ -22,7 +22,7 @@ const DeletePhoto = (props) => {
 
     }
     return (
-        <div className="delete-photo__container">
+        <div className="delete-photo__container animate-modal">
         <div className="delete-photo__wrapper">
             <div className="delete-photo__cancel-wrapper">
                     <NavLink to ={`/photos/${id}`}

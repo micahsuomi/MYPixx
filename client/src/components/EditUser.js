@@ -64,7 +64,7 @@ class EditUser extends Component {
         return (
                 <div className="register-form__container">
                     
-                    <form onSubmit={this.handleSubmit} className="register-form">
+                    <form onSubmit={this.handleSubmit} className="register-form animate-modal">
                     <div className="user-cancel-wrapper">
                     <NavLink to ={`/user/${id}`}
                     className="delete-link">
