@@ -28,9 +28,9 @@ const Navbar = (props) => {
     return (
         <div className="navbar">
          <NavLink exact to="/" 
-                className="navbar-link logo">
+                className="logo">
                 {/* <i className="fas fa-camera fa-2x"></i> */}
-                MYPiC
+                MYPixx
                 </NavLink>
                 <div className="toggle-wrapper">
                   <div

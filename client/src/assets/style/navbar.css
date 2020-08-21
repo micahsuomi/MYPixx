@@ -1,9 +1,10 @@
 .navbar {
-    padding: 1rem;
     background-color: rgb(17, 45, 58);
-    display: flex;
-    justify-content: space-between;
-    /* position: fixed; */
+    display: grid;
+    grid-template-columns: 10% 90%;
+    position: fixed; 
+    align-items: center;
+    height: 4rem;
     width: 100vw;
     
 }
@@ -18,9 +19,13 @@
 
 .logo {
     background-color: teal;
-    padding: .7rem;
+    padding: .5rem;
     border-radius: 3px;
     font-weight: 700;
+    margin: 0;
+    text-decoration: none;
+    color: white;
+    height: 2.4rem;
 }
 
 .toggle-wrapper {
@@ -39,6 +44,7 @@
 
 .register-login {
     list-style: none;
+    display: flex;
 }
 
 .user-link {
@@ -79,6 +85,7 @@
         position: relative;
         padding: 1rem;
         height: 5rem;
+        grid-template-columns: 13% 87%;
       }
 
       .hide-mobile {
@@ -138,6 +145,9 @@
       text-align: center;
     }
 
+    .register-login {
+        flex-direction: column;
+    }
     .navbar-link,
     .user-link {
         font-size: 26px;
@@ -192,8 +202,15 @@
  
 @media screen and (max-width: 500px) {
 
+    .navbar {
+        position: relative;
+        padding: 1rem;
+        height: 5rem;
+        grid-template-columns: 25% 75%;
+      }
+
     .toggle-wrapper {
-        margin-left: 12.5rem;
+        margin-left: 13rem;
 
     }
     .navbar-links {
@@ -203,8 +220,24 @@
 }
 
 @media screen and (max-width: 320px) {
+
+    .navbar {
+        grid-template-columns: 33% 67%;
+    }
+
+    .toggle-wrapper {
+        margin-left: 9.5rem;
+
+    }
     .nav-list.open {
       top: -3%;
     }
+
+    .navbar-link,
+    .user-link {
+        font-size: 23px;
+        margin: 0;
+    }
+
   }
   
