@@ -49,7 +49,7 @@ label {
 }
 
 .add-photo__form input {
-    width: 30rem;
+    width: 25rem;
     padding: .6rem;
     font-size: 16px;
     font-family: 'Montserrat';
@@ -95,7 +95,12 @@ textarea {
     transform: scale(1.1);
 }
 
+@media screen and (max-width: 768px) {
+    .add-photo__form {
+        width: 58vw; 
 
+    }
+}
 
 @media screen and (max-width: 500px) {
    

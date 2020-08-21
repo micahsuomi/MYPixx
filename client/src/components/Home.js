@@ -7,7 +7,7 @@ const Home = () => {
         <div className="home-container">
             <div className="home-wrapper">
                     <h1 className="title">MYP<span className="lowercase">i</span>C</h1>
-                        <h3 className="subtitle">A Photo Gallery built with MERN Stack</h3>
+                        <h3 className="subtitle">A MERN Stack Social Photo Gallery App</h3>
                             <NavLink to="/photos" className="nav-gallery__link">
                                     View Gallery
                             </NavLink>

@@ -8,9 +8,10 @@ const Photo = require('../../models/Photo');
 //Description: get all photos route
 //ACCESS: public
 router.get('/', (req, res) => {
-    Photo.find().populate('likes').populate('comments').exec()
-    // .sort({ date: -1 })
-    .then(photos => res.json(photos));
+    Photo.find()
+    .sort([['date', 1]])
+    .populate('likes').populate('comments').exec()
+    .then(photos => res.json(photos.reverse()));
 });
 
 //POST ROUTE

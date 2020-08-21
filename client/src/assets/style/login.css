@@ -5,6 +5,9 @@
     display: flex;
     justify-content: center; 
     min-height: 81vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .login-form {
@@ -91,9 +94,17 @@ textarea {
     transition: all .2s ease-in-out;
 }
 
-
+@media screen and (max-width: 850px) {
+    .login-form {
+        height: 27rem;
+    }
+}
 
 @media screen and (max-width: 500px) {
+    .login-form__container {
+        padding: 1rem 0;
+
+    }
    
     .add-photo__container {
         padding: 6rem 2rem;
@@ -101,7 +112,7 @@ textarea {
         
     }
 
-    .form {
+    .login-form {
         width: 23rem;
         height: 30rem;
     }

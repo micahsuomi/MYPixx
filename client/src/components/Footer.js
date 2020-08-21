@@ -4,9 +4,8 @@ import '../assets/style/footer.css';
 const Footer = () => {
     return (
         <div className="footer">
-            <div>
                 <p className="app-author">Developed By Michele Zucca</p>
-            </div>
+                <p className="app-pexels__link">All photos from <a href="https://www.pexels.com/">Pexels</a></p>
         </div>
     )
 }
