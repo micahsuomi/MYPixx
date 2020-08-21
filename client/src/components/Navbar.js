@@ -1,57 +1,90 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../assets/style/navbar.css'
 
 
 const Navbar = (props) => {
-    let { isAuthenticated, user, isLoading } = props
+    let { isAuthenticated, user, isLoading } = props;
+    const  [ isClicked, setState ] = useState(false);
+
+    let navList = ['nav-list']
+    let navListOpen = ['nav-list open']
+
+    let lineClassOne = ['line top']
+    let lineClassOneActive = ['line top active']
+
+    let lineClassTwo = ['line middle']
+    let lineClassTwoActive = ['line middle active']
+
+    let lineClassThree = ['line bottom']
+    let lineClassThreeActive = ['line bottom active']
+    const toggle = () => {
+        setState(!isClicked);
+        console.log(setState)
+    }
+
+
     // console.log(isAuthenticated, user, isLoading)
     return (
         <div className="navbar">
-        <div className="navbar-left">
-            <ul className="navbar-links__left">
-            <li>
-            <NavLink exact to="/" 
+         <NavLink exact to="/" 
                 className="navbar-link logo">
                 {/* <i className="fas fa-camera fa-2x"></i> */}
                 MYPiC
                 </NavLink>
-            </li>
-            <li>
+                <div className="toggle-wrapper">
+                  <div
+                    className="toggle-bar"
+                    onClick={toggle}
+                    style={
+                    isClicked ? borderToggleBarClicked : borderToggleBarUnclicked
+                    }
+                >
+                    <span
+                    className={isClicked ? lineClassOneActive : lineClassOne}
+                    ></span>
+                    <span
+                    className={isClicked ? lineClassTwoActive : lineClassTwo}
+                    ></span>
+                    <span
+                    className={isClicked ? lineClassThreeActive : lineClassThree}
+                    ></span>
+                </div>
+                </div>
+            <ul className={isClicked ? navListOpen : navList}>
+           
+            <li className="navbar-link">
                 <NavLink exact to="/" 
                 className="navbar-link" 
-                activeStyle={{color: 'var(--secondary)'}}>
+                activeStyle={{color: 'var(--secondary)'}}
+                onClick={toggle}>
                 Home
                 </NavLink>
           </li>  
             <li>
             <NavLink to ="/about" 
             className="navbar-link"
-            activeStyle={{color: 'var(--secondary)'}}>
+            activeStyle={{color: 'var(--secondary)'}}
+            onClick={toggle}>
             About
         </NavLink>
     </li>
     <li>
-    <NavLink to="/photos" className="navbar-link" activeStyle={{color: 'var(--secondary)'}}>
-        Photos
-    </NavLink>
+        <NavLink to="/photos" 
+        className="navbar-link" 
+        activeStyle={{color: 'var(--secondary)'}}
+        onClick={toggle}>
+            Photos
+        </NavLink>
     </li>
-   
-            </ul>
-
-        </div>
-        <div className="navbar-right">
-        <ul className="navbar-links__right">
-
-           
-{
+    {
     isAuthenticated && user && isLoading ?
 
     <li>
-         
         <NavLink to={`/user/${user._id}`} 
         className="user-link"
-        activeStyle={{color: 'var(--secondary)'}}>
+        activeStyle={{color: 'var(--secondary)'}}
+        onClick={toggle}>
          {` ${user.name}`}
          <div className="nav-user-image-container">
 
@@ -75,21 +108,30 @@ const Navbar = (props) => {
             {
             !isLoading
             ? 
-            <div>
+            <ul className="register-login">
+                <li>
             <NavLink to="/register" 
             className="navbar-link"
-            activeStyle={{color: 'var(--secondary)'}}>
+            activeStyle={{color: 'var(--secondary)'}}
+            onClick={toggle}>
                 Register
             </NavLink>
+            </li>
+            <li>
             <NavLink to="/login" 
             className="navbar-link"
-            activeStyle={{color: 'var(--secondary)'}}>
+            activeStyle={{color: 'var(--secondary)'}}
+            onClick={toggle}>
                 Login
             </NavLink> 
-            </div>
+            </li>
+            </ul>
 
             :
-            <NavLink to="#" className="navbar-link" onClick={props.logout}>
+            <NavLink to="#" 
+            className="navbar-link" 
+            onClick={props.logout}
+            onClick={toggle}>
             Logout
             </NavLink>
             }
@@ -97,11 +139,21 @@ const Navbar = (props) => {
 
 
 
+
             </ul>
+
         </div>
         
-</div>
     )
 }
+
+const borderToggleBarClicked = {
+    border: '1px solid white',
+    borderRadius: '500px',
+  }
+  
+  const borderToggleBarUnclicked = {
+    border: 'none',
+  }
 
 export default Navbar;

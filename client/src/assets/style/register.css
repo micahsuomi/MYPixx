@@ -87,19 +87,19 @@ label {
 
 @media screen and (max-width: 500px) {
    
-    .add-photo__container {
+    .register-form__container {
         padding: 6rem 2rem;
         min-height: 100vh;
         
     }
 
-    .form {
+    .register-form {
         width: 23rem;
-        height: 30rem;
+        height: 32rem;
     }
 
-    input {
-        width: 11rem;
+    .register-form input {
+        width: 20rem;
         padding: .7rem;
 
     }

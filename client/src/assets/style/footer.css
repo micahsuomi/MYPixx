@@ -7,6 +7,27 @@
 
 }
 
-.app-author {
+.app-author,
+.app-pexels__link {
     color: whitesmoke;
+}
+
+.app-pexels__link a {
+    text-decoration: none;
+    color: skyblue;
+}
+
+@media screen and (max-width: 500px) {
+    .footer {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+    .app-author,
+    .app-pexels__link {
+    margin: .5rem;
+}
+
+
 }

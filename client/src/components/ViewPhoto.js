@@ -24,7 +24,7 @@ const ViewPhoto = (props) => {
     }) 
     
     return (
-        <div className="viewphoto-big__container animate-modal">
+        <div className="viewphoto-big__container">
             <div className="viewphoto-exit__header">
             <NavLink to="/photos" className="back-to-photos__view-link grow">
                 <i className="fas fa-times fa-2x"></i>

@@ -45,8 +45,6 @@ class Register extends Component {
                     
                     <form onSubmit={this.handleSubmit} className="register-form">
                         <h2>Register</h2>
-                        
-                        
                         <p className="warning-msg">{this.props.msg}</p>
                     
                             <div className="input-topics">

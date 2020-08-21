@@ -81,7 +81,7 @@
         width: 90vw;
     }
     .title {
-        font-size: 25px;
+        font-size: 43px;
         letter-spacing: .5rem;
     
     
@@ -89,5 +89,6 @@
 
     .subtitle {
         font-size: 14px;
+        text-align: center;
     }
 }
