@@ -1,11 +1,14 @@
 .navbar {
     background-color: rgb(17, 45, 58);
     display: grid;
-    grid-template-columns: 10% 90%;
+    grid-template-columns: 6% 94%;
     position: fixed; 
     align-items: center;
-    height: 4rem;
+    height: 5rem;
     width: 100vw;
+    padding: 0 1rem;
+    z-index: 2;
+    
     
 }
 
@@ -18,14 +21,16 @@
 }
 
 .logo {
-    background-color: teal;
-    padding: .5rem;
+    background-color: rgb(73, 214, 214);
+    padding: .7rem;
     border-radius: 3px;
     font-weight: 700;
     margin: 0;
     text-decoration: none;
     color: white;
-    height: 2.4rem;
+    height: 3rem;
+    width: 6.5rem;
+    font-size: 20px;
 }
 
 .toggle-wrapper {

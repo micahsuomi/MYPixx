@@ -40,12 +40,13 @@ class App extends Component {
                 isErrorShowing: false,
                 isUserPage: true,
                 isPhotoPage: true,
-                offset: 0,
-                perPage: 6,
                 currentPage: 0,
+                offset: 0,
+                perPage: 9,
                 pageCount: 0,
-                showPagination: true,
-                isPopupOpen: false
+                showPagination: false,
+                isPopupOpen: false,
+                isPhotoAdded: false
                       
     }
 }
@@ -70,7 +71,6 @@ fetchData = () => {
   const url = '/api/photos/';
   axios.get(url)
   .then((res) => {
-    // console.log(res.data)
     const slice = res.data.slice(this.state.offset, this.state.offset + this.state.perPage);
       this.setState({
         pageCount: Math.ceil(res.data.length / this.state.perPage),
@@ -107,14 +107,22 @@ componentDidMount() {
 
 }
 
-handlePageClick = (e) => {
-  const selectedPage = e.selected;
+
+   loadPagination = () => {
+    console.log('loading pagination from app.js')
+
+
+}
+handlePageClick = (selectedPage) => {
+  console.log('selectedpage from app.js', selectedPage)
+  // const selectedPage = e.selected;
   const offset = selectedPage * this.state.perPage;
   this.setState({
     currentPage: selectedPage,
     offset: offset
   }, () => {
     this.fetchData();
+    // console.log('current page from app.js', this.state.currentPage)
   })
 }
 
@@ -262,9 +270,8 @@ deleteComment = () => {
 
 
 addPhoto = (newPhoto) => {
-  this.fetchData();
-  this.setState({photos: [newPhoto, ...this.state.photos]});
-  this.setState({isPopupOpen: true})
+  this.setState({photos: [newPhoto, ...this.state.photos], isPhotoAdded: true, isPopupOpen: true});
+  this.setState({})
   console.log('open popup', this.state.isPopupOpen)
 
 }
@@ -308,7 +315,7 @@ closePopup = () => {
 
 
   render() {
-    console.log(this.state.token)
+    // console.log(this.state.token)
 
     return (
         <BrowserRouter>
@@ -335,7 +342,7 @@ closePopup = () => {
                     subContainerClassName={"pages pagination"}
                     activeClassName={"active"}/>
                     : null
-                }
+                } 
             </div> 
         <Switch>
 
@@ -456,10 +463,16 @@ closePopup = () => {
           isErrorShowing={this.state.isErrorShowing}
           pageCount={this.state.pageCount}
           refreshPage={this.refreshPage}
+          isPhotoAdded={this.state.isPhotoAdded}
+          offset={this.state.offset}
+          perPage={this.state.perPage}
+          currentPage={this.state.currentPage}
           handlePageClick={this.handlePageClick}
           likePhoto={this.likePhoto}
           isPopupOpen={this.state.isPopupOpen}
           closePopup={this.closePopup}
+          fetchData={this.fetchData}
+          loadPagination={this.loadPagination}
           {...props}
           />
         

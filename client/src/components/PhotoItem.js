@@ -6,7 +6,7 @@ const PhotoItem = (props) => {
     let {id, name, image, author, authorId, authorImg, isUserPage, likes, comments} = props;
    
     return (
-        <div className="gallery-photo__container grow animate-modal">
+        <div className="gallery-photo__container grow">
             <NavLink to={`/photos/${id}`} className="view-photo__link">
             <h3 className="gallery-photo__title">{name}</h3>
             <img src={image} alt={name} className="gallery-photo__image"/>

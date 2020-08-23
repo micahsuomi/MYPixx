@@ -20,7 +20,6 @@ const Navbar = (props) => {
     let lineClassThreeActive = ['line bottom active']
     const toggle = () => {
         setState(!isClicked);
-        console.log(setState)
     }
 
 
@@ -53,7 +52,7 @@ const Navbar = (props) => {
                 </div>
             <ul className={isClicked ? navListOpen : navList}>
            
-            <li className="navbar-link">
+            <li>
                 <NavLink exact to="/" 
                 className="navbar-link" 
                 activeStyle={{color: 'var(--secondary)'}}
