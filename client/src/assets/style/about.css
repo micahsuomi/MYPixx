@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 5rem 6rem;
+    padding: 13rem 8rem;
 }
 
 .about-paragraph__container {
@@ -32,8 +32,8 @@
     align-items: center;
     flex-direction: column;
     box-shadow: 0 1rem 1rem rgba(88, 83, 83, 0.6);
-    width: 27rem;
-    height: 28rem;
+    width: 20rem;
+    height: 26rem;
     text-decoration: none;
     color: var(--primary-dark);
 
@@ -45,8 +45,8 @@
 .user-image__container {
     display: inline-block;
     overflow: hidden;
-    height: 172px;
-    width: 172px; 
+    height: 152px;
+    width: 152px; 
     object-fit: cover;
     margin-top: 1rem;
     border-radius: 50%;

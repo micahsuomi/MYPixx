@@ -78,8 +78,8 @@ body {
 h3 {
   font-size: 16px;
 }
-p {
-  font-size: 16px;
+p, a {
+  font-size: 14px;
 }
 
 

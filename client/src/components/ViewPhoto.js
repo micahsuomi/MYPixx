@@ -5,7 +5,6 @@ import LikePhoto from './LikePhoto';
 
 
 const ViewPhoto = (props) => {
-    console.log(props)
     let id = props.match.params.id;
     const slider = {
         index: '',
