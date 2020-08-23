@@ -126,3 +126,22 @@ label {
 .warning-msg {
     color: var(--red);
 }
+
+@media screen and (max-width: 320px) {
+   
+    .register-form__container {
+        padding: 2rem 2rem;
+        
+    }
+
+    .register-form {
+        width: 19rem;
+        height: 32rem;
+    }
+
+    .register-form input {
+        width: 16rem;
+        padding: .7rem;
+
+    }
+}

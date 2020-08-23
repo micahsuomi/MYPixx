@@ -139,3 +139,34 @@ textarea {
     }
 
 }
+
+@media screen and (max-width: 320px) {
+    .login-form__container {
+        padding: 1rem 0;
+
+    }
+   
+    .add-photo__container {
+        padding: 6rem 2rem;
+        min-height: 100vh;
+        
+    }
+
+    .login-form {
+        width: 19rem;
+        height: 27rem;
+    }
+
+    .login-form input {
+        width: 15rem;
+        padding: .7rem;
+
+    }
+
+    .btn-login {
+        padding: .5rem;
+        margin: .5rem;
+        width: 5rem;
+        font-size: 13px;
+    }
+}

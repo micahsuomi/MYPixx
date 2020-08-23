@@ -110,13 +110,18 @@ textarea {
         
     }
 
-    .form {
-        width: 23rem;
-        height: 30rem;
+    .add-photo__form {
+        width: 92vw;
+        height: 34rem;
     }
 
-    input {
-        width: 11rem;
+    .cancel-wrapper {
+        width: 82vw;
+
+    }
+
+    .add-photo__form input {
+        width: 16rem;
         padding: .7rem;
 
     }
@@ -129,11 +134,15 @@ textarea {
         width: 20rem;
     }
 
-    .btn-save, .btn-cancel {
-        padding: .6rem;
-        margin: .6rem;
-        width: 4rem;
+    .btn-save{
+        width: 7rem;
         font-size: 14px;
     }
 
+}
+
+@media screen and (max-width: 320px) {
+.add-photo__container {
+    padding: 0rem 2rem;
+}
 }

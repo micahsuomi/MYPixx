@@ -348,3 +348,15 @@ button {
     align-self: start;
 }
 }
+
+@media screen and (max-width: 320px) {
+
+    .viewphoto-container {
+        width: 20rem;
+    }
+
+    .viewphoto-body {
+        width: 20rem;
+    }
+
+}
