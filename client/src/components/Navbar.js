@@ -127,11 +127,12 @@ const Navbar = (props) => {
             </ul>
 
             :
-            <NavLink to="#" 
+            <NavLink to="/" 
             className="navbar-link" 
             onClick={props.logout}
-            onClick={toggle}>
+            >
             Logout
+            {/* <i class="fas fa-sign-out-alt"></i> */}
             </NavLink>
             }
             </li>

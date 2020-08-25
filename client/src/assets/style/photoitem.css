@@ -126,3 +126,9 @@
     }
 
 }
+
+@media screen and (max-width: 500px) {
+    .gallery-photo__container {
+        width: 22rem;
+    }
+}

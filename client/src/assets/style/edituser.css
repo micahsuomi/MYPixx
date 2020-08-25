@@ -1,12 +1,12 @@
-.editphoto__container {
-    padding: 2rem 10rem;
+.edit-user-form__container {
+    padding: 5rem 10rem;
     background-color: rgb(243, 237, 237);
     width: 100vw;
     display: flex;
     justify-content: center; 
 }
 
-.editphoto-form {
+.edit-user__form {
     padding: 2rem 2rem;
     margin: 2rem 0;
     display: flex;
@@ -26,7 +26,7 @@
 .user-cancel-wrapper {
     display: flex;
     justify-content: flex-end;
-    width: 46vw;
+    width: 38vw;
 
 }
 
@@ -44,7 +44,8 @@
 label {
     align-self: flex-start;
 }
-.editphoto-form input {
+.edit-user__form input,
+.edit-user__form textarea {
     width: 25rem;
     padding: .6rem;
     font-size: 16px;
@@ -52,6 +53,10 @@ label {
     border-radius: 3px;
     border: 1px solid lightgray;
     margin-top: .6rem;
+}
+
+.edit-image__preview__container {
+    margin-top: 1.5rem;
 }
 
 .file-btn {
@@ -90,23 +95,46 @@ label {
 
 }
 
+@media screen and (max-width: 1024px) {
+    .register-form__container {
+        padding: 7rem 5rem;
+}
+    .edit-user__form {
+        width: 37rem;
+        line-height: 1.7;
 
+}
+.user-cancel-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 49vw;
+}
+}
+
+@media screen and (max-width: 768px) {
+    .user-cancel-wrapper {
+        width: 57vw;
+    }
+}
 
 @media screen and (max-width: 500px) {
    
-    .editphoto__container {
-        padding: 6rem 2rem;
+    .edit-user-form__container {
+        padding: 5rem 2rem;
         min-height: 100vh;
         
     }
 
-    .form {
+    .edit-user__form {
         width: 23rem;
-        height: 30rem;
+    }
+    .user-cancel-wrapper {
+        width: 81vw;
     }
 
-    input {
-        width: 11rem;
+    .edit-user__form input,
+    .edit-user__form textarea {
+        width: 19rem;
         padding: .7rem;
 
     }
