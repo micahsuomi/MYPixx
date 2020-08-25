@@ -10,6 +10,7 @@ class Comments extends Component {
         this.state = {
             comments: [],
             isCommentFieldOpened: false,
+            isAddButtonShowing: true,
             text: '',
             author: ''
 
@@ -72,7 +73,19 @@ class Comments extends Component {
     deleteComment = () => {
         this.fetchCommentsData();
     }
+    editingComment = () => {
+        this.setState({
+            isAddButtonShowing: false
+        })
 
+    }
+
+    closeEditingComment = () => {
+        this.setState({
+            isAddButtonShowing: true
+        })
+    }
+    
     updateComment = (updatedComment) => {
         this.setState({updatedComment});
         this.fetchCommentsData()
@@ -95,6 +108,8 @@ class Comments extends Component {
               isAuthenticated={this.props.isAuthenticated}
               tokenConfig={this.props.tokenConfig}
               deleteComment={this.deleteComment}
+              editingComment={this.editingComment}
+              closeEditingComment={this.closeEditingComment}
               updateComment={this.updateComment}/>
         ))
         return (
@@ -138,9 +153,13 @@ class Comments extends Component {
                     </div>
                     </form>
 
-                    :
+                    : 
                     <div className="add-comment__btn__wrapper">
-                    <button className="add-comment__btn" onClick={this.openCommentField}>Add Comment</button>
+                        {
+                            !this.state.isAddButtonShowing ? '' :                     
+                            <button className="add-comment__btn" onClick={this.openCommentField}>Add Comment</button>
+                            
+                        }
                     </div>
 
                         }

@@ -14,7 +14,11 @@ class User extends Component {
         }
     }
 
-    
+    fetchUserData() {
+        let foundUser = this.props.users.find((user) => {
+            return user._id === this.props.match.params.id
+        })
+    }
     componentDidMount() {
         const userId = this.props.match.params.id
         // let id = this.props.match.params.id
@@ -25,7 +29,14 @@ class User extends Component {
                 userGallery: res.data
             })
         })
+        this.fetchUserData()
         
+    }
+
+    componentWillUnmount() {
+        this.setState({
+            isUserPage: true
+        })
     }
 
     render() {
@@ -53,18 +64,17 @@ class User extends Component {
             bio: ''
         }
         
-        let foundUser = this.props.users.find((user ) => {
+        let foundUser = this.props.users.find((user) => {
             return user._id === this.props.match.params.id
         })
 
-        console.log(foundUser)
         userGallery.find((photo) => {
             // return photo.id === id;
             author.name = photo.author.name;
             author.avatar = photo.author.avatar;
             author.bio = photo.author.bio;
         })
-        console.log(this.props)
+        console.log('user gallery', userGallery)
         return (
             <div>
             {
@@ -85,7 +95,7 @@ class User extends Component {
             <p>{this.props.user.bio}</p>
 
             <NavLink to={`/edituser/${id}`} className="edit-user__link">
-            <button className="profile-update__btn">Update Profile</button>
+            <button className="profile-update__btn grow">Update Profile</button>
             </NavLink>
             
             </div>
