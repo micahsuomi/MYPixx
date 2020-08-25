@@ -39,11 +39,13 @@ export class Comment extends Component {
     openEditComment = () => {
         this.fetchCommentData();
         this.setState({isEditing: true});
+        this.props.editingComment(this.state.isEditing)
 
     }
 
     closeEditComment = () => {
         this.setState({isEditing: false});
+        this.props.closeEditingComment(this.state.isEditing)
 
     }
 

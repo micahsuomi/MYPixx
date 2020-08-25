@@ -3,7 +3,13 @@ import { NavLink } from 'react-router-dom';
 
 
 
-export class Logout extends Component {
+class Logout extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            
+        }
+    }
     render() {
         return (
             <div>
@@ -13,4 +19,4 @@ export class Logout extends Component {
     }
 }
 
-export default Logout
+export default Logout;

@@ -44,9 +44,6 @@ export class PhotoList extends Component {
           })
       }
 
-      testLoad = () => {
-          this.props.loadPagination()
-      }
 
       handlePageClick = (e) => {
           const selectedPage = e.selected;
@@ -152,7 +149,6 @@ export class PhotoList extends Component {
                <div className="photo-gallery__wrapper">
                {photoList}
                </div>
-               { this.testLoad() }
                <div>
           
                </div>

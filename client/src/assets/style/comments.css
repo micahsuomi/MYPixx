@@ -89,10 +89,17 @@
         grid-template-columns: 25% 75%;
     }
 
+    .comments-wrapper {
+        height: 42rem;
+    }
+
     .add-comment__form textarea {
         width: 19rem;
+        height: 11rem;
        
     }
+
+  
 
 
 }
@@ -105,7 +112,8 @@
     }
 
     .add-comment__form textarea {
-        width: 13rem;
+        width: 15rem;
+        border: 1px solid lightgray;
        
     }
 
