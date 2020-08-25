@@ -46,7 +46,9 @@ class App extends Component {
                 pageCount: 0,
                 showPagination: false,
                 isPopupOpen: false,
-                isPhotoAdded: false
+                isPhotoAdded: false,
+                isEditPopupOpen: false,
+
                       
     }
 }
@@ -266,7 +268,7 @@ deleteComment = () => {
 
 addPhoto = (newPhoto) => {
   this.fetchData();
-  this.setState({photos: [newPhoto, ...this.state.photos], isPhotoAdded: true, isPopupOpen: true});
+  this.setState({photos: [newPhoto, ...this.state.photos], isPhotoAdded: true, isPopupOpen: true, isPageLoading: true});
   console.log('open popup', this.state.isPopupOpen)
 
 }
@@ -274,7 +276,7 @@ addPhoto = (newPhoto) => {
 editPhoto = (updatedPhoto) => {
   console.log('calling edit photo from app.js')
   this.fetchData();
-  this.setState({updatedPhoto});
+  this.setState({updatedPhoto, isEditPopupOpen: true, isPageLoading: true});
 
 
 }
@@ -309,7 +311,7 @@ addComment = (newComment) => {
 }
 
 closePopup = () => {
-  this.setState({isPopupOpen: false})
+  this.setState({isPopupOpen: false, isEditPopupOpen: false})
   this.fetchData();
 }
 
@@ -472,6 +474,7 @@ closePopup = () => {
           handlePageClick={this.handlePageClick}
           likePhoto={this.likePhoto}
           isPopupOpen={this.state.isPopupOpen}
+          isEditPopupOpen={this.state.isEditPopupOpen}
           closePopup={this.closePopup}
           fetchData={this.fetchData}
           loadPagination={this.loadPagination}
