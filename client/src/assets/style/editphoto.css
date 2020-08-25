@@ -1,9 +1,17 @@
+.edit-photo__container {
+    padding: 7rem 10rem;
+    background-color: rgb(243, 237, 237);
+    width: 100vw;
+    display: flex;
+    justify-content: center; 
+}
 .edit-image__preview__container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
+
 
 .change-photo,
 .edit-image__cancel {
@@ -39,4 +47,11 @@
 .change-photo:active,
 .edit-image__cancel:active {
     outline: none;
+}
+
+@media screen and (max-width: 500px) {
+    .edit-photo__container {
+        padding: 4rem 10rem;
+    }
+   
 }
