@@ -108,9 +108,9 @@ class EditPhoto extends Component {
         let { name, image, description } = this.state.photo;
         let { isImageEditing, isImageChanged } = this.state;
         return (
-            <div className="add-photo__container">
+            <div className="edit-photo__container">
 
-                <form onSubmit={this.handleSubmit} className="add-photo__form animate-modal">
+                <form onSubmit={this.handleSubmit} className="add-photo__form edit-photo__form animate-modal">
                 <div className="cancel-wrapper">
                     <NavLink to ='/photos'
                     className="delete-link">

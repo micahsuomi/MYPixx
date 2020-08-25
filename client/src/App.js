@@ -265,16 +265,16 @@ deleteComment = () => {
 
 
 addPhoto = (newPhoto) => {
+  this.fetchData();
   this.setState({photos: [newPhoto, ...this.state.photos], isPhotoAdded: true, isPopupOpen: true});
-  this.setState({})
   console.log('open popup', this.state.isPopupOpen)
 
 }
 
 editPhoto = (updatedPhoto) => {
   console.log('calling edit photo from app.js')
-  this.setState({updatedPhoto});
   this.fetchData();
+  this.setState({updatedPhoto});
 
 
 }
@@ -310,6 +310,7 @@ addComment = (newComment) => {
 
 closePopup = () => {
   this.setState({isPopupOpen: false})
+  this.fetchData();
 }
 
 
