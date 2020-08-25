@@ -13,7 +13,6 @@ export class PhotoList extends Component {
         this.state = {
             // offset: '',
             // currentPage: '',
-            isPageLoading: true,
             isPhotosLoaded: true
 
 
@@ -118,6 +117,19 @@ export class PhotoList extends Component {
                    <i className="fas fa-times-circle grow" onClick={this.closePopup}></i>
                    </div>
                        <h3>Photo Added!</h3>
+                   </div>
+                   :
+                   null
+               }
+
+{
+                   this.props.isEditPopupOpen ?
+
+                   <div className="photo-added__popup">
+                   <div className="photo-added__popup__header">
+                   <i className="fas fa-times-circle grow" onClick={this.closePopup}></i>
+                   </div>
+                       <h3>Photo Edited!</h3>
                    </div>
                    :
                    null
