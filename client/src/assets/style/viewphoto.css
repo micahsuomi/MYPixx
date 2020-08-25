@@ -300,9 +300,18 @@ button {
 
     .viewphoto-container, 
     .viewphoto-body {
-        width: 24rem;
-        padding: 1rem 0;
+        width: 23.2rem;
+        padding: 1rem .7rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     
+    }
+
+    .viewphoto-body h2 {
+        font-size: 16px;
+        text-align: center;
     }
 
     .viewphoto-header {
@@ -353,12 +362,11 @@ button {
 
 @media screen and (max-width: 320px) {
 
-    .viewphoto-container {
-        width: 20rem;
+    .viewphoto-container,
+    .viewphoto-body {
+        width: 19.5rem;
     }
 
-    .viewphoto-body {
-        width: 20rem;
-    }
+   
 
 }
