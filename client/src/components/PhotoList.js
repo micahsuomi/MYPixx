@@ -87,16 +87,7 @@ export class PhotoList extends Component {
        
         return (
             <div className="photo-gallery__container">
-                 {
-               !this.props.isPageLoading && this.props.isErrorShowing ?
-
-               <div className="error-container">
-                   <h1>Something went wrong. Click here to refresh the page</h1>
-                   <button onClick={this.props.refreshPage} className="btn-refresh">Refresh</button>
-               </div>
-
-               : ''
-           }
+                
                 {
                     this.props.isPageLoading && !this.props.isErrorShowing ? 
                     <div>
@@ -191,18 +182,24 @@ export class PhotoList extends Component {
                     
                     :
                     
-                    
-                    <div className="loading-container">
+                    <div>
                         {
-                            
+                            !this.props.isPageLoading && this.props.isErrorShowing ?
+                            <div className="error-container">
+                            <h3>Something went wrong. Click here to refresh the page</h3>
+                            <button onClick={this.props.refreshPage} className="btn-refresh">Refresh</button>
+                            </div>
+                            :
+                            <div className="loading-container">
+                            <h1>Loading Photos...</h1>
+                            <div className="lds-circle"><div></div></div>
+                            </div>
                         }
-                    <h1>Loading Photos...</h1>
-                    <div className="lds-circle"><div></div></div>
                     </div>
+
+                   
                 }
-                
-            
-         
+       
        </div>
         )
     }
