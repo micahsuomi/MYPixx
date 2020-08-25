@@ -36,7 +36,7 @@ class App extends Component {
                 msg: '',
                 redirectLogin: false,
                 redirectPhotos: false,
-                isPageLoading: true,
+                isPageLoading: false,
                 isErrorShowing: false,
                 isUserPage: true,
                 isPhotoPage: true,
@@ -73,12 +73,26 @@ fetchData = () => {
   const url = '/api/photos/';
   axios.get(url)
   .then((res) => {
-    const slice = res.data.slice(this.state.offset, this.state.offset + this.state.perPage);
+    let maxWidth = 500;
+    console.log(window.innerWidth > maxWidth)
+    if(window.innerWidth > maxWidth) {
+      const slice = res.data.slice(this.state.offset, this.state.offset + this.state.perPage);
       this.setState({
         pageCount: Math.ceil(res.data.length / this.state.perPage),
         photos: slice,
-        isPageLoading: false
+        isPageLoading: true,
+        showPagination: true
       })
+
+    } else {
+      console.log(window.innerWidth > maxWidth)
+      this.setState({
+        photos: res.data,
+        isPageLoading: true,
+        showPagination: false
+      })
+    }
+    
 
   })
   .catch((err) => {
@@ -268,7 +282,7 @@ deleteComment = () => {
 
 addPhoto = (newPhoto) => {
   this.fetchData();
-  this.setState({photos: [newPhoto, ...this.state.photos], isPhotoAdded: true, isPopupOpen: true, isPageLoading: true});
+  this.setState({photos: [newPhoto, ...this.state.photos], isPhotoAdded: true, isPopupOpen: true, isPageLoading: false});
   console.log('open popup', this.state.isPopupOpen)
 
 }
@@ -276,14 +290,15 @@ addPhoto = (newPhoto) => {
 editPhoto = (updatedPhoto) => {
   console.log('calling edit photo from app.js')
   this.fetchData();
-  this.setState({updatedPhoto, isEditPopupOpen: true, isPageLoading: true});
+  this.setState({updatedPhoto, isEditPopupOpen: true, isPageLoading: false});
 
 
 }
 
 editUser = (updatedUser) => {
   console.log('calling edit user from here')
-  this.setState({updatedUser});
+  this.setState({updatedUser, isPopupOpen: true});
+  this.loadUser()
   this.fetchUsers();
   this.fetchData();
 
@@ -296,6 +311,8 @@ refreshPage = () => {
   })
   this.fetchData();
   this.fetchUsers();
+  this.loadUser();
+
 }
 
 
@@ -313,6 +330,9 @@ addComment = (newComment) => {
 closePopup = () => {
   this.setState({isPopupOpen: false, isEditPopupOpen: false})
   this.fetchData();
+  this.fetchUsers();
+  this.loadUser();
+
 }
 
 
@@ -382,6 +402,8 @@ closePopup = () => {
           users={this.state.users}
           photos={this.state.photos}
           isUserPage={this.state.isUserPage}
+          isPopupOpen={this.state.isPopupOpen}
+          closePopup={this.closePopup}
           {...props}/>} />
   
           <Route path="/editphoto/:id" component={(props) => <EditPhoto 
@@ -478,6 +500,7 @@ closePopup = () => {
           closePopup={this.closePopup}
           fetchData={this.fetchData}
           loadPagination={this.loadPagination}
+          showPagination={this.state.showPagination}
           {...props}
           />
         

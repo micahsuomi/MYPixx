@@ -14,6 +14,7 @@ class EditPhoto extends Component {
                 image: '',
                 description: ''  
             },
+                isPhotoLoaded: false,
                 isImageEditing: false,
                 updatedImage: null,
                 previewSource: null,
@@ -34,7 +35,7 @@ class EditPhoto extends Component {
             console.log(response.data)
             let foundPhoto = response.data.find((photo) => photo._id === id)
             console.log(foundPhoto)
-            this.setState({photo: foundPhoto})
+            this.setState({photo: foundPhoto, isPhotoLoaded: true})
         
         })
         .catch((err) => console.log(err))
@@ -106,7 +107,7 @@ class EditPhoto extends Component {
     render() {
         console.log(this.state.photo)
         let { name, image, description } = this.state.photo;
-        let { isImageEditing, isImageChanged } = this.state;
+        let { isPhotoLoaded, isImageEditing, isImageChanged } = this.state;
         return (
             <div className="edit-photo__container">
 
@@ -118,8 +119,11 @@ class EditPhoto extends Component {
                         </NavLink>
                         </div>
                 <h2>Edit Photo: </h2>
-
-                <div className="input-topics">
+                
+                {
+                    isPhotoLoaded ? 
+                <div>
+                    <div className="input-topics">
                 <label htmlFor="name">Name</label>
                 <input type="text" 
                 name="name"
@@ -153,8 +157,10 @@ class EditPhoto extends Component {
 
                 {
                     !isImageEditing ?
+                    <div className="change-photo__container">
                     <button onClick={this.openImageEditing} className="change-photo grow">Change 
                     </button>
+                    </div>
                     : null
                 }
                 
@@ -206,6 +212,11 @@ class EditPhoto extends Component {
                 <div className="btn-save__wrapper">
                 <button className="btn-save">Submit</button>
                 </div>
+                </div>
+                    :
+                    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                }
+                
                 </form>
             </div>
         )

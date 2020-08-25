@@ -39,6 +39,10 @@ class User extends Component {
         })
     }
 
+    closePopup = () => {
+        this.props.closePopup()
+    }
+
     render() {
         
         let { userGallery } = this.state;
@@ -118,6 +122,19 @@ class User extends Component {
             </div>
 
         }
+        {
+                   this.props.isPopupOpen ?
+                   <div className="photo-added__popup__container">
+                   <div className="photo-added__popup">
+                   <div className="photo-added__popup__header">
+                   <i className="fas fa-times-circle grow" onClick={this.closePopup}></i>
+                   </div>
+                       <h3>User Profile Updated!</h3>
+                   </div>
+                   </div>
+                   :
+                   null
+               }
             <div className="photo-gallery__container">
             <h1>User Gallery</h1>
                 {userGallery.length < 1 ? 
