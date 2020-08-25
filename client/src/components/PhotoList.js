@@ -2,6 +2,9 @@
 import { NavLink } from 'react-router-dom';
 import PhotoItem from './PhotoItem';
 import ReactPaginate from 'react-paginate';
+import {PullToRefresh} from "react-js-pull-to-refresh";
+import {PullDownContent, ReleaseContent, RefreshContent} from "react-js-pull-to-refresh";
+
 import '../assets/style/photolist.css';
 
 
@@ -52,9 +55,19 @@ export class PhotoList extends Component {
        closePopup = () => {
         this.props.closePopup()
     }
+
+    onRefresh = () => {
+        this.props.refreshPage()
+        return new Promise((resolve) => {
+            setTimeout(resolve, 2000);
+
+        });
+    }
  
     
     render() {
+        
+
         // console.log('currentpage', this.props.currentPage, 'offset', this.props.offset)
 
         const photoList = this.props.photos.map((photo) => (
@@ -74,10 +87,35 @@ export class PhotoList extends Component {
        
         return (
             <div className="photo-gallery__container">
-            {
-                !this.props.isPageLoading && !this.props.isErrorShowing ? 
+                 {
+               !this.props.isPageLoading && this.props.isErrorShowing ?
 
-                <ReactPaginate
+               <div className="error-container">
+                   <h1>Something went wrong. Click here to refresh the page</h1>
+                   <button onClick={this.props.refreshPage} className="btn-refresh">Refresh</button>
+               </div>
+
+               : ''
+           }
+                {
+                    this.props.isPageLoading && !this.props.isErrorShowing ? 
+                    <div>
+                <PullToRefresh
+                pullDownContent={<PullDownContent />}
+                releaseContent={<ReleaseContent />}
+                refreshContent={<RefreshContent />}
+                pullDownThreshold={200}
+                onRefresh={this.onRefresh}
+                triggerHeight={50}
+                backgroundColor='white'
+                startInvisible={true}
+                >
+                <div style={{mieight: '150vh', textAlign: 'center', backgroundColor: 'rgb(247, 239, 239)'}}>
+                    <div>PullToRefresh</div>
+                    
+                {
+                    this.props.showPagination ? 
+                    <ReactPaginate
                     previousLabel={"prev"}
                     nextLabel={"next"}
                     breakLabel={"..."}
@@ -90,12 +128,11 @@ export class PhotoList extends Component {
                     subContainerClassName={"pages pagination"}
                     activeClassName={"active"}
                     
-                    /> 
+                    /> : null
 
-               : 
-
-               null
-            }
+                }
+                
+              
            {
            this.props.isAuthenticated ? 
            <div className="add-photo-link__container">
@@ -111,12 +148,13 @@ export class PhotoList extends Component {
 
                {
                    this.props.isPopupOpen ?
-
+                   <div className="photo-added__popup__container">
                    <div className="photo-added__popup">
                    <div className="photo-added__popup__header">
                    <i className="fas fa-times-circle grow" onClick={this.closePopup}></i>
                    </div>
                        <h3>Photo Added!</h3>
+                   </div>
                    </div>
                    :
                    null
@@ -134,28 +172,7 @@ export class PhotoList extends Component {
                    :
                    null
                }
-
-           {
-               !this.props.isPageLoading && this.props.isErrorShowing ?
-
-               <div className="error-container">
-                   <h1>Something went wrong. Click here to refresh the page</h1>
-                   <button onClick={this.props.refreshPage} className="btn-refresh">Refresh</button>
-               </div>
-
-               : ''
-           }
-          
-           {
-               this.props.isPageLoading ? 
-               
-               <div className="loading-container">
-               <h1>Loading Photos...</h1>
-               <div className="lds-circle"><div></div></div>
-               </div>
-
-               :
-               
+     
 
                <div>
                <div className="photo-gallery__wrapper">
@@ -165,14 +182,26 @@ export class PhotoList extends Component {
           
                </div>
                </div>
-
-           
-
-           
-
-       }
-
+        
+                </div>
+                </PullToRefresh>
+          
      
+                    </div>
+                    
+                    :
+                    
+                    
+                    <div className="loading-container">
+                        {
+                            
+                        }
+                    <h1>Loading Photos...</h1>
+                    <div className="lds-circle"><div></div></div>
+                    </div>
+                }
+                
+            
          
        </div>
         )
