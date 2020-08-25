@@ -5,6 +5,7 @@ import LikePhoto from './LikePhoto';
 
 
 const ViewPhoto = (props) => {
+    console.log(props.user)
     let id = props.match.params.id;
     const slider = {
         index: '',
@@ -21,6 +22,7 @@ const ViewPhoto = (props) => {
         
         
     }) 
+    console.log(filteredPhoto)
     
     return (
         <div className="viewphoto-big__container">

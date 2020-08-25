@@ -12,7 +12,11 @@ const userRoute = require('./routes/api/user');
 const commentRoute = require('./routes/api/comments');
 
 //use bodyparser
-app.use(bodyParser.json());
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.json({limit: '50mb', extended: true}));
+
 //use cors
 app.use(cors());
 

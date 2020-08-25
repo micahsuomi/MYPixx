@@ -8,6 +8,10 @@
 
 }
 
+.user-details__wrapper h1 {
+    text-align: center;
+}
+
 .profile-update__btn {
     padding: .7rem;
     background-color: var(--primary);
@@ -22,6 +26,15 @@
     align-items: center;
     font-size: 16px;
     text-transform: uppercase;
+}
+
+.profile-update__btn:hover {
+    background-color: var(--primary-dark);
+
+}
+
+.profile-update__btn:active {
+    outline: active;
 }
 
 .user-image-container {
@@ -47,4 +60,10 @@
 }
 .edit-user__link {
     text-decoration: none;
+}
+
+@media screen and (max-width: 500px) {
+    .user-details__wrapper {
+        padding: 4rem 2rem;
+    }
 }

@@ -124,4 +124,16 @@
      
     }
 
+    .comment-text {
+        padding: .5rem;
+
+    }
+
+    .edit-comment__form textarea {
+        width: 15rem;
+        
+
+    }
+ 
+
 }

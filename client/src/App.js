@@ -108,11 +108,6 @@ componentDidMount() {
 }
 
 
-   loadPagination = () => {
-    console.log('loading pagination from app.js')
-
-
-}
 handlePageClick = (selectedPage) => {
   console.log('selectedpage from app.js', selectedPage)
   // const selectedPage = e.selected;
@@ -270,22 +265,27 @@ deleteComment = () => {
 
 
 addPhoto = (newPhoto) => {
+  this.fetchData();
+  this.fetchUsers();
   this.setState({photos: [newPhoto, ...this.state.photos], isPhotoAdded: true, isPopupOpen: true});
-  this.setState({})
   console.log('open popup', this.state.isPopupOpen)
 
 }
 
 editPhoto = (updatedPhoto) => {
-  this.fetchData();
+  console.log('calling edit photo from app.js')
   this.setState({updatedPhoto});
+  this.fetchData();
+
 
 }
 
 editUser = (updatedUser) => {
   console.log('calling edit user from here')
-  this.fetchUsers();
   this.setState({updatedUser});
+  this.fetchUsers();
+  this.fetchData();
+
 
 }
 
@@ -311,11 +311,12 @@ addComment = (newComment) => {
 
 closePopup = () => {
   this.setState({isPopupOpen: false})
+  this.fetchData();
 }
 
 
   render() {
-    // console.log(this.state.token)
+    // console.log(this.state.users)
 
     return (
         <BrowserRouter>
@@ -378,6 +379,7 @@ closePopup = () => {
           id={props.match.params.id}
           user={this.state.user}
           users={this.state.users}
+          photos={this.state.photos}
           isUserPage={this.state.isUserPage}
           {...props}/>} />
   
@@ -437,6 +439,7 @@ closePopup = () => {
           <Route path="/photos/:id/comments/:id" component={(props) => 
           <Comment deleteComment={this.deleteComment}
           {...props}/>}/>
+          
 
           <Route path="/photos" component={(props) => 
           <div>

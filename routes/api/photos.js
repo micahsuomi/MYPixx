@@ -3,6 +3,31 @@ const router = express.Router();
 const isAuthorized = require('../../middleware/authorized');
 const User = require('../../models/User');
 const Photo = require('../../models/Photo');
+const multer = require('multer');
+const cloudinary = require('cloudinary');
+
+
+const storage = multer.diskStorage({
+  filename: function(req, file, callback) {
+    callback(null, Date.now() + file.originalname);
+  }
+});
+const imageFilter = function (req, file, cb) {
+    // accept image files only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        return cb(new Error('Only image files are allowed!'), false);
+    }
+    cb(null, true);
+};
+const upload = multer({ storage: storage, fileFilter: imageFilter})
+
+cloudinary.config({ 
+  cloud_name: 'du66vzeok', 
+  api_key: process.env.CLOUDINARY_API_KEY, 
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+
 
 //GET ROUTE
 //Description: get all photos route
@@ -17,10 +42,15 @@ router.get('/', (req, res) => {
 //POST ROUTE
 //Description: posts one photo item
 //ACCESS: private
-router.post('/', isAuthorized, (req, res) => {
-    console.log('req.user from add photo', req.user)
-    let { name, image, description } = req.body;
+router.post('/', isAuthorized, upload.single('image'), (req, res) => {
+    const { name, description } = req.body;
+    // console.log('req.file path here', req.body)
+    const fileImage = req.body.image;
+    cloudinary.uploader.upload(fileImage, function(result) {
+        console.log('result is here', result)
+        const uploadedCloudinaryImage = result.secure_url;
     
+    // console.log(uploadedImage)
     const id = req.params.id;
     User.findOne(({_id: req.user.id}), (err, founduser) => {
         if(err) {
@@ -37,14 +67,17 @@ router.post('/', isAuthorized, (req, res) => {
 
         const newPhoto = new Photo({
             name: name,
-            image: image,
+            image: uploadedCloudinaryImage,
             description: description,
             author: author
         });
+        console.log(newPhoto)
         newPhoto.save().then((photo) => res.json(photo))
         .catch((err) => console.log(err))
+
     })
     
+}) 
 });
 
 
@@ -52,19 +85,24 @@ router.post('/', isAuthorized, (req, res) => {
 //Description: edits one photo item
 //ACCESS: private
 
-router.put('/:id', isAuthorized, (req, res) => {
+router.put('/:id', isAuthorized,  upload.single('image'), (req, res) => {
     const id = req.params.id;
     let { name, image, description } = req.body;
+    const fileImage = req.body.image;
+    cloudinary.uploader.upload(fileImage, function(result) {
+        const uploadedCloudinaryImage = result.secure_url;
+
     Photo.findById(id)
     .then(photo => {
         photo.name = name,
-        photo.image = image,
+        photo.image = uploadedCloudinaryImage,
         photo.description = description
         photo.save().then(updatedPhoto => res.json(updatedPhoto))
         
     })
     
     .catch(err => res.status(404).json({ success: false }))
+})
 })
 
 //DELETE ROUTE
