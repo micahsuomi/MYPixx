@@ -127,9 +127,11 @@ class User extends Component {
                    <div className="photo-added__popup__container">
                    <div className="photo-added__popup">
                    <div className="photo-added__popup__header">
-                   <i className="fas fa-times-circle grow" onClick={this.closePopup}></i>
+                   <i className="fas fa-times-circle fa-2x grow" onClick={this.closePopup}></i>
                    </div>
+                   <div className="photo-added__popup__body">
                        <h3>User Profile Updated!</h3>
+                    </div>
                    </div>
                    </div>
                    :

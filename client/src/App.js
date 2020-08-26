@@ -45,6 +45,7 @@ class App extends Component {
                 perPage: 9,
                 pageCount: 0,
                 showPagination: false,
+                showPullToRefresh: false,
                 isPopupOpen: false,
                 isPhotoAdded: false,
                 isEditPopupOpen: false,
@@ -74,22 +75,23 @@ fetchData = () => {
   axios.get(url)
   .then((res) => {
     let maxWidth = 500;
-    console.log(window.innerWidth > maxWidth)
+    //if the screen is not a mobile screen
     if(window.innerWidth > maxWidth) {
       const slice = res.data.slice(this.state.offset, this.state.offset + this.state.perPage);
       this.setState({
         pageCount: Math.ceil(res.data.length / this.state.perPage),
         photos: slice,
         isPageLoading: true,
-        showPagination: true
+        showPagination: true,
+        showPullToRefresh: false,
       })
 
     } else {
-      console.log(window.innerWidth > maxWidth)
       this.setState({
         photos: res.data,
         isPageLoading: true,
-        showPagination: false
+        showPagination: false,
+        showPullToRefresh: true
       })
     }
     
@@ -349,7 +351,7 @@ closePopup = () => {
         isLoading={this.state.isLoading}
         />   
             <div>
-                {
+                {/* {
                  this.state.showPagination ? 
                 <ReactPaginate
                     previousLabel={"prev"}
@@ -364,7 +366,7 @@ closePopup = () => {
                     subContainerClassName={"pages pagination"}
                     activeClassName={"active"}/>
                     : null
-                } 
+                }  */}
             </div> 
         <Switch>
 

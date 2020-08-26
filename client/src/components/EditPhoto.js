@@ -115,10 +115,10 @@ class EditPhoto extends Component {
                 <div className="cancel-wrapper">
                     <NavLink to ='/photos'
                     className="delete-link">
-                        <i className="fas fa-times fa-2x"></i>
+                        <i className="fas fa-times-circle fa-2x"></i>
                         </NavLink>
                         </div>
-                <h2>Edit Photo: </h2>
+                <h2>Edit Photo</h2>
                 
                 {
                     isPhotoLoaded ? 
