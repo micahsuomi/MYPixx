@@ -106,7 +106,10 @@ export class PhotoList extends Component {
                 <div style={{mieight: '150vh', textAlign: 'center', backgroundColor: 'rgb(247, 239, 239)'}}>
                     {
                         this.props.showPullToRefresh ?
-                        <div>PullToRefresh</div>
+                        <div className="pull-to-refresh__wrapper">
+                        <p>Pull To Refresh</p>
+                        <i class="fas fa-chevron-down"></i>
+                        </div>
                         : null
                     }
                     

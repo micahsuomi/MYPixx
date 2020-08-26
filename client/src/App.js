@@ -300,7 +300,7 @@ editPhoto = (updatedPhoto) => {
 editUser = (updatedUser) => {
   console.log('calling edit user from here')
   this.setState({updatedUser, isPopupOpen: true});
-  this.loadUser()
+  this.loadUser();
   this.fetchUsers();
   this.fetchData();
 
@@ -313,7 +313,10 @@ refreshPage = () => {
   })
   this.fetchData();
   this.fetchUsers();
-  this.loadUser();
+  if(this.state.isAuthenticated) {
+    this.loadUser();
+
+  }
 
 }
 
@@ -503,6 +506,7 @@ closePopup = () => {
           fetchData={this.fetchData}
           loadPagination={this.loadPagination}
           showPagination={this.state.showPagination}
+          showPullToRefresh={this.state.showPullToRefresh}
           {...props}
           />
         
