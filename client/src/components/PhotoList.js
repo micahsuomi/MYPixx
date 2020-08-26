@@ -90,7 +90,8 @@ export class PhotoList extends Component {
                 
                 {
                     this.props.isPageLoading && !this.props.isErrorShowing ? 
-                    <div>
+                <div>
+                
                 <PullToRefresh
                 pullDownContent={<PullDownContent />}
                 releaseContent={<ReleaseContent />}
@@ -98,11 +99,16 @@ export class PhotoList extends Component {
                 pullDownThreshold={200}
                 onRefresh={this.onRefresh}
                 triggerHeight={50}
-                backgroundColor='white'
+                backgroundColor='rgb(247, 239, 239)'
                 startInvisible={true}
+                className="pull-to-refresh"
                 >
                 <div style={{mieight: '150vh', textAlign: 'center', backgroundColor: 'rgb(247, 239, 239)'}}>
-                    <div>PullToRefresh</div>
+                    {
+                        this.props.showPullToRefresh ?
+                        <div>PullToRefresh</div>
+                        : null
+                    }
                     
                 {
                     this.props.showPagination ? 
@@ -142,23 +148,29 @@ export class PhotoList extends Component {
                    <div className="photo-added__popup__container">
                    <div className="photo-added__popup">
                    <div className="photo-added__popup__header">
-                   <i className="fas fa-times-circle grow" onClick={this.closePopup}></i>
+                   <i className="fas fa-times-circle fa-2x grow" onClick={this.closePopup}></i>
                    </div>
+                   <div className="photo-added__popup__body">
                        <h3>Photo Added!</h3>
+                    </div>
                    </div>
                    </div>
                    :
                    null
                }
 
-{
+               {
                    this.props.isEditPopupOpen ?
 
+                   <div className="photo-added__popup__container">
                    <div className="photo-added__popup">
                    <div className="photo-added__popup__header">
-                   <i className="fas fa-times-circle grow" onClick={this.closePopup}></i>
+                   <i className="fas fa-times-circle fa-2x grow" onClick={this.closePopup}></i>
                    </div>
+                   <div className="photo-added__popup__body">
                        <h3>Photo Edited!</h3>
+                    </div>
+                   </div>
                    </div>
                    :
                    null
@@ -187,7 +199,7 @@ export class PhotoList extends Component {
                             !this.props.isPageLoading && this.props.isErrorShowing ?
                             <div className="error-container">
                             <h3>Something went wrong. Click here to refresh the page</h3>
-                            <button onClick={this.props.refreshPage} className="btn-refresh">Refresh</button>
+                            <button onClick={this.props.refreshPage} className="btn-refresh grow"><i className="fas fa-redo-alt fa-2x"></i></button>
                             </div>
                             :
                             <div className="loading-container">
