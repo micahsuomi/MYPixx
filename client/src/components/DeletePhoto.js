@@ -27,7 +27,7 @@ const DeletePhoto = (props) => {
             <div className="delete-photo__cancel-wrapper">
                     <NavLink to ={`/photos/${id}`}
                     className="delete-link">
-                        <i className="fas fa-times fa-2x"></i>
+                        <i className="fas fa-times-circle fa-2x"></i>
                         </NavLink>
                         </div>
             <h3 className="warning">Are you sure you want to delete this photo?</h3>

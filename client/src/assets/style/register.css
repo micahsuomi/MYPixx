@@ -85,6 +85,10 @@ label {
 
 }
 
+.btn-register:active {
+    outline: none;
+}
+
 
 
 @media screen and (max-width: 500px) {

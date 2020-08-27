@@ -5,7 +5,7 @@ import LikePhoto from './LikePhoto';
 
 
 const ViewPhoto = (props) => {
-    console.log(props.user)
+    console.log(props)
     let id = props.match.params.id;
     const slider = {
         index: '',
@@ -26,6 +26,7 @@ const ViewPhoto = (props) => {
     
     return (
         <div className="viewphoto-big__container">
+            <div className="viewphoto-nested__container">
             <div className="viewphoto-exit__header">
             <NavLink to="/photos" className="back-to-photos__view-link grow">
                 <i className="fas fa-times fa-2x"></i>
@@ -64,7 +65,7 @@ const ViewPhoto = (props) => {
                 }
               
             </div>
-            <img src={filteredPhoto.image} alt={filteredPhoto.name} />
+            <img src={filteredPhoto.image} alt={filteredPhoto.name} className="viewphoto-image"/>
             <div className="viewphoto-body">
             <h2>{filteredPhoto.name}</h2>
             <NavLink to ={`/user/${filteredPhoto.author.id}`} className="view-photo__author__link">
@@ -126,6 +127,7 @@ const ViewPhoto = (props) => {
 
                 }
         </div>
+        </div> 
         </div>
         </div>
 

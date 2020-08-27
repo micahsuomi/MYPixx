@@ -34,7 +34,7 @@
     padding: .7rem;
     background-color: var(--red);
     border: none;
-    border-radius: 3px;
+    border-radius: 50px;
     color: white;
     cursor: pointer;
     margin: 1.5rem;
@@ -48,4 +48,8 @@
 
 .delete-btn:hover {
     transform: translateY(-.1rem);
+}
+
+.delete-btn:active {
+    outline: none;
 }
