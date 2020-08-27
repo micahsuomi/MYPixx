@@ -23,7 +23,6 @@ const photoSchema = new Schema({
         avatar: String,
         bio: String,
 
-
     },
     createdAt: {
         type: Date,
@@ -33,7 +32,6 @@ const photoSchema = new Schema({
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'user'
-            
             
         }
     ],

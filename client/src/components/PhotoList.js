@@ -41,6 +41,7 @@ export class PhotoList extends Component {
 
 
       componentDidMount() {
+          console.log('calling componetn didmount')
           this.setState({
               isPhotosLoaded: true
           })

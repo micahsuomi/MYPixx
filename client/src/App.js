@@ -38,7 +38,7 @@ class App extends Component {
                 redirectPhotos: false,
                 isPageLoading: false,
                 isErrorShowing: false,
-                isUserPage: true,
+                isUserPage: false,
                 isPhotoPage: true,
                 currentPage: 0,
                 offset: 0,
@@ -74,6 +74,7 @@ fetchData = () => {
   const url = '/api/photos/';
   axios.get(url)
   .then((res) => {
+    // console.log(res.data)
     let maxWidth = 500;
     //if the screen is not a mobile screen
     if(window.innerWidth > maxWidth) {
@@ -110,7 +111,7 @@ fetchData = () => {
 fetchUsers = () => {
   axios.get(`/api/user`)
   .then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       this.setState({
            users: res.data
       })
@@ -122,6 +123,7 @@ fetchUsers = () => {
 componentDidMount() {
   this.fetchData();
   this.fetchUsers();
+  
 
 }
 
@@ -164,8 +166,7 @@ registerUser = (newUser) => {
       console.log(this.state)
     
    
-    // this.props.redirectLogin()
-    // this.props.history.push('/login');
+
   })
   
   .catch((err) => {
@@ -306,6 +307,8 @@ editUser = (updatedUser) => {
 
 
 }
+
+
 
 refreshPage = () => {
   this.setState({
@@ -460,6 +463,8 @@ closePopup = () => {
           user={this.state.user}
           isAuthenticated={this.state.isAuthenticated}
           token={this.state.token}
+          isUserPage={this.state.isUserPage}
+          setUserPage={this.state.setUserPage}
           likePhoto={this.likePhoto}
           tokenConfig={this.tokenConfig}
           {...props} />} />

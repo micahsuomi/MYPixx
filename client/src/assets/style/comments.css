@@ -8,7 +8,7 @@
 }
 
 .comments-wrapper {
-    width: 56rem;
+    width: 38rem;
     height: 30rem;
     background-color: white;
     padding: 1.4rem 1rem;
@@ -40,9 +40,11 @@
     color: rgb(180, 170, 170);
 }
 
+
+
 .add-comment__form textarea {
     margin-top: 1.5rem;
-    width: 51rem;
+    width: 33rem;
     font-family: 'Montserrat';
     padding: .7rem;
     font-size: 16px;

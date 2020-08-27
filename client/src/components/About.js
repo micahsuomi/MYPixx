@@ -33,6 +33,7 @@ const About = (props) => {
                 </div>
                 <h4 className="user-name">{user.name}</h4>
                 <ul className="user-details">
+                    <li></li>
                     <li>{user.email}</li>
                     {user.bio === undefined || user.bio === ''
                     ?

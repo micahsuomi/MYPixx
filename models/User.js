@@ -27,9 +27,9 @@ const userSchema = Schema({
     photos: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'photo'
+            ref: 'photo',
         }
-    ],
+    ]
     
 });
 

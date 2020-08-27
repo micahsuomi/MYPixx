@@ -27,13 +27,11 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-//temp route
 
 //GETS all users
 //Access: public
 router.get('/', (req, res) => {
-    User.find()
-    .populate('photos').exec()
+    User.find().populate('photos').exec()
     .then((user) => res.json(user))
 })
 
@@ -45,15 +43,14 @@ router.get('/:id', (req, res) => {
             console.log(err)
         }
         console.log(user)
-        // res.json(user)
-        
         Photo.find().where('author.id').equals(user._id).exec((err, foundPhotos) => {
-            if(err) {
-                console.log(err)
-                
+            if(err) return res.status(404).json({ msg: 'Not Found' })
+            console.log('found photos', foundPhotos)
+            for(const photo of foundPhotos) {
+                let {_id, author, name, image, description, createdAt, likes, comments} = photo;
+                user.photos.push({_id, author, name, image, description, createdAt, likes, comments})
             }
-            console.log(foundPhotos)
-            res.json(foundPhotos)
+            res.json(user)
         })
 
     })

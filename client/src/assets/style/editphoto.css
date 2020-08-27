@@ -2,6 +2,7 @@
     padding: 7rem 10rem;
     background-color: rgb(243, 237, 237);
     width: 100vw;
+    min-height: 95vh;
     display: flex;
     justify-content: center; 
 }

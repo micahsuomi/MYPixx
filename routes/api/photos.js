@@ -35,7 +35,7 @@ cloudinary.config({
 router.get('/', (req, res) => {
     Photo.find()
     .sort([['date', 1]])
-    .populate('likes').populate('comments').exec()
+    .populate({ path: 'likes', select: 'name'}).populate('comments').exec()
     .then(photos => res.json(photos.reverse()));
 });
 
@@ -47,7 +47,6 @@ router.post('/', isAuthorized, upload.single('image'), (req, res) => {
     // console.log('req.file path here', req.body)
     const fileImage = req.body.image;
     cloudinary.uploader.upload(fileImage, function(result) {
-        console.log('result is here', result)
         const uploadedCloudinaryImage = result.secure_url;
     
     // console.log(uploadedImage)
@@ -71,7 +70,6 @@ router.post('/', isAuthorized, upload.single('image'), (req, res) => {
             description: description,
             author: author
         });
-        console.log(newPhoto)
         newPhoto.save().then((photo) => res.json(photo))
         .catch((err) => console.log(err))
 
