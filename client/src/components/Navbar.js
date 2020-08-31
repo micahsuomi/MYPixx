@@ -110,7 +110,7 @@ const Navbar = (props) => {
             <ul className="register-login">
                 <li>
             <NavLink to="/register" 
-            className="navbar-link"
+            className="navbar-link user-link"
             activeStyle={{color: 'var(--secondary)'}}
             onClick={toggle}>
                 Register
@@ -118,7 +118,7 @@ const Navbar = (props) => {
             </li>
             <li>
             <NavLink to="/login" 
-            className="navbar-link"
+            className="navbar-link login-link"
             activeStyle={{color: 'var(--secondary)'}}
             onClick={toggle}>
                 Login

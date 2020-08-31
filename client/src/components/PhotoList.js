@@ -2,9 +2,8 @@
 import { NavLink } from 'react-router-dom';
 import PhotoItem from './PhotoItem';
 import ReactPaginate from 'react-paginate';
-import {PullToRefresh} from "react-js-pull-to-refresh";
-import {PullDownContent, ReleaseContent, RefreshContent} from "react-js-pull-to-refresh";
-
+import { PullToRefresh } from "react-js-pull-to-refresh";
+import { PullDownContent, ReleaseContent, RefreshContent } from "react-js-pull-to-refresh";
 import '../assets/style/photolist.css';
 
 
@@ -14,8 +13,6 @@ export class PhotoList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            // offset: '',
-            // currentPage: '',
             isPhotosLoaded: true
 
 
@@ -41,7 +38,6 @@ export class PhotoList extends Component {
 
 
       componentDidMount() {
-          console.log('calling componetn didmount')
           this.setState({
               isPhotosLoaded: true
           })
@@ -65,7 +61,6 @@ export class PhotoList extends Component {
         });
     }
  
-    
     render() {
         
 
@@ -122,6 +117,7 @@ export class PhotoList extends Component {
                     breakLabel={"..."}
                     breakClassName={"break-me"}
                     pageCount={this.props.pageCount}
+                    perPage={this.props.perPage}
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={this.handlePageClick}
@@ -130,7 +126,6 @@ export class PhotoList extends Component {
                     activeClassName={"active"}
                     
                     /> : null
-
                 }
                 
               

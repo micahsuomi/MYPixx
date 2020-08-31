@@ -15,9 +15,9 @@ import LikePhoto from './components/LikePhoto';
 import Likes from './components/Likes';
 import Comments from './components/Comments';
 import Comment from './components/Comment';
+import LikeComment from './components/LikeComment';
 import EditPhoto from './components/EditPhoto';
 import DeletePhoto from './components/DeletePhoto';
-import ReactPaginate from 'react-paginate';
 import Footer from './components/Footer';
 import './App.css';
 
@@ -330,6 +330,7 @@ likePhoto = (likedPhoto) => {
   this.fetchData();
 }
 
+
 addComment = (newComment) => {
   this.setState({newComment});
   this.fetchData();
@@ -345,7 +346,7 @@ closePopup = () => {
 
 
   render() {
-    // console.log(this.state.users)
+    
 
     return (
         <BrowserRouter>
@@ -445,7 +446,13 @@ closePopup = () => {
           <Route path="/photos/:id/like" component={(props) => <LikePhoto 
           photos={this.state.photos}
           user={this.state.user}
-          likePhoto={this.likePhoto}
+          tokenConfig={this.tokenConfig}
+          {...props}
+          />} />
+
+          <Route path="/photos/:id/comments/:id/like" component={(props) => <LikeComment
+          photos={this.state.photos}
+          user={this.state.user}
           tokenConfig={this.tokenConfig}
           {...props}
           />} />
@@ -505,6 +512,7 @@ closePopup = () => {
           currentPage={this.state.currentPage}
           handlePageClick={this.handlePageClick}
           likePhoto={this.likePhoto}
+          likeComment={this.likeComment}
           isPopupOpen={this.state.isPopupOpen}
           isEditPopupOpen={this.state.isEditPopupOpen}
           closePopup={this.closePopup}

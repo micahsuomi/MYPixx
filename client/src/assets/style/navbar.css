@@ -4,7 +4,7 @@
     grid-template-columns: 6% 94%;
     position: fixed; 
     align-items: center;
-    height: 5rem;
+    height: 4rem;
     width: 100vw;
     padding: 0 1rem;
     z-index: 2;
@@ -39,7 +39,7 @@
 
 .navbar-link {
     text-decoration: none;
-    margin: 2rem;
+    margin-left: 3rem;
     color:  whitesmoke;
     font-weight: 700;  
     
@@ -51,12 +51,17 @@
     display: flex;
 }
 
+.login-link {
+  margin-top: 0.1rem;
+}
+
 .user-link {
     text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
     color: whitesmoke;
+    margin-left: 35rem;
 }
 
 .grow { 
@@ -108,7 +113,7 @@
         position: relative;
         padding: 1px;
         cursor: pointer;
-        z-index: 3;
+        z-index: 8;
         margin-left: 37rem;
       }
     
@@ -120,7 +125,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        z-index: 3;
+        z-index: 7;
       }
     
     .nav-list {
@@ -143,7 +148,7 @@
       opacity: 0.98;
       background-color: rgb(17, 45, 58);
       line-height: 2;
-      z-index: 2;
+      z-index: 5;
       text-transform: uppercase;
       color: white;
       text-align: center;

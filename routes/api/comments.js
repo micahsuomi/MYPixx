@@ -10,7 +10,6 @@ const Photo = require('../../models/Photo');
 //posts a comment
 //ACCESS: private
 router.post('/', isAuthorized, (req, res) => {
-    let { text } = req.body;
     console.log('text body is here', req.body)
     const id = req.params.id;
     Photo.findById(id, (err, photo) => {
@@ -65,7 +64,7 @@ router.put('/:id', isAuthorized, (req, res) => {
     })
     .catch((err) => res.status(404).json({success: false}))
 
-})
+});
 
 
 //DELETE Route
@@ -77,5 +76,45 @@ router.delete('/:id', isAuthorized, (req, res) => {
     .then(comment => comment.remove().then(() => res.json({success: true})))
     .catch(err => res.status(404).json({success: false}))
 
+});
+
+
+//LIKE Route
+//likes a comment
+//ACCESS: private
+router.post('/:id/like', isAuthorized, (req, res) => {
+    const id = req.params.id;
+    console.log('req.user from like comment', req.user)
+ 
+    Comment.findById(id, (err, comment) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log('comment here', comment)
+            let newLike = {_id: req.user.id}
+            const foundUser = comment.likes.some((like) => like.equals(req.user.id));
+            console.log('this is the found user', foundUser)
+            foundUser ? comment.likes.pull(newLike) : comment.likes.push(newLike);
+            comment.save().then((comment) => res.json(comment)) 
+            .catch(err => res.status(404).json({ success: false }))
+                  
+       
+        }
+
+
+    })
+    
+});
+
+//GET all likes for a comment
+//Access: public
+router.get('/:id/likes', (req, res) => {
+    const id = req.params.id
+    Comment.findById(id).populate('likes').exec((err, comment) => {
+        if(err) return res.status(404).json({msg: "Not found"})
+        res.json(comment.likes)
+    })
+
 })
+
 module.exports = router;

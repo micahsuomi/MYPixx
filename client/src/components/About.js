@@ -27,8 +27,6 @@ const About = (props) => {
                         <img src='https://i2.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1' alt={user.name}/>
                         : 
                         <img src={user.avatar}/>
-
-
                     }
                 </div>
                 <h4 className="user-name">{user.name}</h4>
@@ -40,9 +38,7 @@ const About = (props) => {
                     null 
                     :
                     <li>"{user.bio}"</li>
-
                     }
-
                 </ul>
                 </div>
                 </NavLink>

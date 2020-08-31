@@ -19,13 +19,6 @@ class User extends Component {
         // let id = this.props.match.params.id
         axios.get(`/api/user/${userId}`)
         .then(res => {
-            let userObj = {};
-            userObj.name = res.data.name
-            userObj.email = res.data.email
-            userObj.avatar = res.data.avatar
-            userObj.bio = res.data.bio
-            userObj.photos = res.data.photos
-            
             this.setState({
                 userProfile: res.data,
                 isUserLoaded: true,

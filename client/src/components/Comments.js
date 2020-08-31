@@ -90,9 +90,15 @@ class Comments extends Component {
         this.setState({updatedComment});
         this.fetchCommentsData()
     }
+
+    updateLikesComment = () => {
+        this.fetchCommentsData()
+
+    }
     
     
     render() {
+        console.log(this.state.comments)
         const { comments } = this.state;
         const { isAuthenticated } = this.props;
         const formattedComments = comments.map((comment) => (
@@ -102,16 +108,21 @@ class Comments extends Component {
               name={comment.author.name}
               avatar={comment.author.avatar}
               date={comment.createdAt}
+              likes={comment.likes}
               commentText={comment.text}
               user={this.props.user}
               photoId={this.props.match.params.id}
+              history={this.props.history}
               isAuthenticated={this.props.isAuthenticated}
               tokenConfig={this.props.tokenConfig}
               deleteComment={this.deleteComment}
               editingComment={this.editingComment}
               closeEditingComment={this.closeEditingComment}
-              updateComment={this.updateComment}/>
+              updateComment={this.updateComment}
+              updateLikesComment={this.updateLikesComment}
+              />
         ))
+        console.log(this.props)
         return (
             <div className="comments-container">
                 <div className="comments-wrapper">
