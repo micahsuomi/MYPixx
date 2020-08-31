@@ -27,6 +27,7 @@ const LikePhoto = (props) => {
               
             })
             .catch(err => console.log(err))
+            console.log(likedPhoto)
             props.likePhoto(likedPhoto);
 
 
@@ -38,10 +39,13 @@ const LikePhoto = (props) => {
       } 
       
         let likedPhoto
+        console.log(props.user)
         if(props.user) {
              likedPhoto = props.filteredPhoto.likes.some((like) => like._id === props.user._id)
-            console.log(likedPhoto)
+             console.log(likedPhoto)
+
         }
+
         return (
             <div>
                   <form className="like-container" onSubmit={handleSubmit}>

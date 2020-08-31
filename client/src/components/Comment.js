@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom';
+import LikeComment from './LikeComment';
 import axios from 'axios';
 import '../assets/style/comment.css';
 
@@ -28,7 +29,9 @@ export class Comment extends Component {
         const url = `/api/photos/${this.props.photoId}/comments`;
         axios.get(url)
         .then(res => {
+            
             let foundComment = res.data.find(comment => comment._id === this.props.commentId);
+            console.log(foundComment)
             this.setState({
                 comment: foundComment
             })
@@ -68,9 +71,16 @@ export class Comment extends Component {
         this.setState({isEditing: false})
         
     }
+    updateLikesComment = (likedComment) => {
+        this.props.updateLikesComment(likedComment)
+
+    }
     render() {
+        
+        console.log(this.props)
         let { avatar, authorId, name, date, commentText, user, isAuthenticated } = this.props; 
         let { text } = this.state.comment;
+        console.log(this.state.comment)
         return (
             <div className="comment-user__container">
         <div className="comment-user__header">
@@ -104,6 +114,7 @@ export class Comment extends Component {
                 : null
             }
             </div>
+            
             </div>
 
             :
@@ -122,6 +133,18 @@ export class Comment extends Component {
             
             }
             
+            </div>
+            <div></div>
+            <div className="likephoto-comments__container">
+                <div>
+                <LikeComment foundComment={this.state.comment}
+                        tokenConfig={()=>this.props.tokenConfig()}
+                        user={this.props.user}
+                        token={this.props.token}   
+                        updateLikesComment={this.updateLikesComment}
+                       {...this.props}/>
+
+                </div> 
             </div>
 
            

@@ -12,6 +12,7 @@ const storage = multer.diskStorage({
     callback(null, Date.now() + file.originalname);
   }
 });
+
 const imageFilter = function (req, file, cb) {
     // accept image files only
     if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
@@ -26,8 +27,6 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY, 
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
-
-
 
 //GET ROUTE
 //Description: get all photos route
@@ -85,7 +84,7 @@ router.post('/', isAuthorized, upload.single('image'), (req, res) => {
 
 router.put('/:id', isAuthorized,  upload.single('image'), (req, res) => {
     const id = req.params.id;
-    let { name, image, description } = req.body;
+    let { name, description } = req.body;
     const fileImage = req.body.image;
     cloudinary.uploader.upload(fileImage, function(result) {
         const uploadedCloudinaryImage = result.secure_url;
@@ -139,8 +138,6 @@ router.post('/:id/like', isAuthorized, (req, res) => {
 
     })
     
-    
-
 });
 
 //GET all likes for a photo

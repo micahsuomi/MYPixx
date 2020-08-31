@@ -18,7 +18,14 @@ const commentSchema = new Schema({
         type: Date,
         default: Date.now
 
-    }
+    },
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'user'
+            
+        }
+    ],
 
 });
 
