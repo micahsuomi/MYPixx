@@ -106,9 +106,9 @@ class LikeComment extends Component {
                 {
                     user && likedPhotoComment ?
 
-                    <button className="like-comment__btn"><i className="fas fa-heart full-heart grow"></i> Unlike</button>
+                    <button className="like-comment__btn grow"><i className="fas fa-heart full-heart"></i> Unlike</button>
                     :
-                    <button className="like-comment__btn"><i className="far fa-heart empty-heart grow"></i> Like</button>
+                    <button className="like-comment__btn grow"><i className="far fa-heart empty-heart"></i> Like</button>
                 }
             {
                 this.props.likes.length > 0 ?

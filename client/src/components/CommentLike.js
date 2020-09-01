@@ -3,7 +3,6 @@ import {NavLink} from 'react-router-dom';
 import '../assets/style/commentlike.css';
 
 const CommentLike = (props) => {
-    console.log(props)
     let { userId, name, avatar } = props;
     return (
         <div className="like-comment__user__container">

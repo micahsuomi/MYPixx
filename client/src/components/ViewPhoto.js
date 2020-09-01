@@ -5,13 +5,13 @@ import LikePhoto from './LikePhoto';
 
 
 const ViewPhoto = (props) => {
-    console.log(props)
     let id = props.match.params.id;
     const slider = {
         index: '',
         prev: '',
         next: ''
     } 
+    
     const filteredPhoto = props.photos.find((photo, index) => {
         slider.index = index
         slider.prev = index === 0 ? '' : props.photos[index - 1]._id
@@ -22,7 +22,6 @@ const ViewPhoto = (props) => {
         
         
     }) 
-    console.log(filteredPhoto)
     
     return (
         <div className="viewphoto-big__container">
@@ -30,7 +29,7 @@ const ViewPhoto = (props) => {
             <div className="viewphoto-exit__header">
             <NavLink to="/photos" className="back-to-photos__view-link grow">
                 <i className="fas fa-times fa-2x"></i>
-                    </NavLink>
+            </NavLink>
             </div>
         <div className="viewphoto-wrapper">
                
@@ -97,7 +96,7 @@ const ViewPhoto = (props) => {
                 </div>
           
           <div className="comments-link__container">
-            <NavLink to={`/photos/${props.match.params.id}/comments`} className="comments-link">
+            <NavLink to={`/photos/${id}/comments`} className="comments-link">
                 {
                     filteredPhoto.comments.length < 1 ?
                     <i className="far fa-comments fa-2x comments-icon"></i>

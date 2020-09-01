@@ -10,7 +10,8 @@ class User extends Component {
         super(props)
         this.state = {
             userProfile: [],
-            isUserLoaded: false
+            isUserLoaded: false,
+            isUserPage: false,
         }
     }
 
@@ -22,6 +23,7 @@ class User extends Component {
             this.setState({
                 userProfile: res.data,
                 isUserLoaded: true,
+                isUserPage: true
             })
             
             
@@ -36,11 +38,9 @@ class User extends Component {
         this.fetchUserData()
     }
 
-    // componentWillUnmount() {
-    //     this.setState({
-    //         isUserPage: true
-    //     })
-    // }
+    componentWillUnmount() {
+         console.log('calling here')
+     }
 
     closePopup = () => {
         this.props.closePopup()

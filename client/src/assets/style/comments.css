@@ -1,9 +1,11 @@
 .comments-container {
-    padding: 13rem 5rem;
-    background-color: rgb(48, 52, 58);
+    padding: 5rem 5rem;
+    background-color: var(--overlay-mask);
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 4;
 
 }
 
