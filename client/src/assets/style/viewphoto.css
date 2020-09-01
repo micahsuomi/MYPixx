@@ -1,6 +1,6 @@
 .viewphoto-big__container {
     padding: 2.5rem 0;
-    background-color: rgba(48, 52, 58, 0.9);
+    background-color: var(--overlay-mask);
     z-index: 4;
     width: 100vw;
     min-height: 170vh;

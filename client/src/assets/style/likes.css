@@ -1,11 +1,11 @@
 .likes-container {
-    padding: 13rem 5rem;
-    background-color: rgb(48, 52, 58);
+    padding: 5rem 5rem;
+    background-color: var(--overlay-mask);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    position: relative;
+    z-index: 4;
 
 }
 

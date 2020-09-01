@@ -284,9 +284,13 @@ deleteComment = () => {
 
 
 addPhoto = (newPhoto) => {
+  this.setState({
+        photos: [newPhoto, ...this.state.photos], 
+        isPhotoAdded: true, 
+        isPopupOpen: true, 
+        isPageLoading: false});
   this.fetchData();
-  this.setState({photos: [newPhoto, ...this.state.photos], isPhotoAdded: true, isPopupOpen: true, isPageLoading: false});
-  console.log('open popup', this.state.isPopupOpen)
+
 
 }
 
@@ -379,6 +383,7 @@ closePopup = () => {
 
         <Route path="/about" component={(props) => <About
         users={this.state.users}
+        photos={this.state.photos}
         {...props} />} />
 
         <Route path="/register" component={(props) => <Register 
@@ -410,7 +415,6 @@ closePopup = () => {
           user={this.state.user}
           users={this.state.users}
           photos={this.state.photos}
-          isUserPage={this.state.isUserPage}
           isPopupOpen={this.state.isPopupOpen}
           closePopup={this.closePopup}
           {...props}/>} />
@@ -470,8 +474,7 @@ closePopup = () => {
           user={this.state.user}
           isAuthenticated={this.state.isAuthenticated}
           token={this.state.token}
-          isUserPage={this.state.isUserPage}
-          setUserPage={this.state.setUserPage}
+          isUserPage={this.isUserPage}
           likePhoto={this.likePhoto}
           tokenConfig={this.tokenConfig}
           {...props} />} />

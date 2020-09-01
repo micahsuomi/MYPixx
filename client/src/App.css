@@ -17,6 +17,7 @@
   --red: #f70944b3;
   --red-light: #f53c6ab3;
   --dark: rgb(46, 39, 40);
+  --overlay-mask: rgba(48, 52, 58, 0.9);
 }
 .wrapper {
   min-height: 100%;
