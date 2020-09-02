@@ -38,8 +38,20 @@
 }
 
 @media screen and (max-width: 500px) {
+    .likes-container {
+        padding: 5rem 1rem;
+    }
+
+    .likes-number {
+        font-size: 12px;
+    }
     .likes-wrapper {
         width: 22rem;
+    }
+
+    .like-image-container {
+        height: 50px;
+        width: 50px;
     }
 
 }

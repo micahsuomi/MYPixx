@@ -211,7 +211,6 @@
 @media screen and (max-width: 500px) {
 
     .navbar {
-        position: relative;
         padding: 1rem;
         height: 5rem;
         grid-template-columns: 25% 75%;

@@ -1,10 +1,12 @@
 .like-btn {
-    border: 1px solid var(--red);
+    /* border: 1px solid var(--red); */
+    border: none;
     background-color: transparent;
     border-radius: 3px;
     font-family: 'Montserrat';
     font-weight: 700;
     cursor: pointer;
+    padding: 0;
 }
 
 .like-btn:hover {

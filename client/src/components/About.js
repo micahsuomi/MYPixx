@@ -91,7 +91,7 @@ const About = (props) => {
         </div>
 
         <div className="users-container">
-            <h2 className="users-title">Our Users</h2>
+            <h4>Our Users</h4>
             <div className="users-wrapper">
             {props.users.map((user) => ( 
                 
@@ -108,8 +108,6 @@ const About = (props) => {
                 </div>
                 <h4 className="user-name">{user.name}</h4>
                 <ul className="user-details">
-                    <li></li>
-                    <li>{user.email}</li>
                     {user.bio === undefined || user.bio === ''
                     ?
                     null 

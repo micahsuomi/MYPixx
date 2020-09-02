@@ -273,6 +273,10 @@ button {
 
 
 @media screen and (max-width: 768px) {
+
+    .viewphoto-big__container {
+        min-height: 100vh;
+    }
     .viewphoto-container {
         width: 74vw;
         padding: 1rem 4rem;
@@ -305,13 +309,13 @@ button {
     }
 
     .viewphoto-wrapper {
-        grid-template-columns: 5% 90% 5%;
-        padding: 1rem;
+        grid-template-columns: 1fr;
+        padding: .5rem;
         align-items: baseline;
     }
 
     .viewphoto-exit__header {
-        margin-right: 1rem;
+        width: 105vw;
     }
 
     .viewphoto-container, 
@@ -344,26 +348,27 @@ button {
         margin-top: 0;
     }
 
-    .btn-edit, .btn-delete {
-        padding: .7rem;
+    .edit-photo__link, .delete-photo__link {
+        padding: .1rem;
         border: none;
         border-radius: 3px;
-        color: white;
         cursor: pointer;
         margin: 1.2rem;
         font-family: 'Montserrat';
-        margin: .6rem;
-        width: 6rem;
+        margin: .1rem;
+        width: 3rem;
     }
 
 
     .slider-arrow__left,
     .slider-arrow__right {
-        color: var(--dark);
-        z-index: 100;
-        align-self: start;
-    }
+        margin: .7rem;
+    } 
 
+    .comments-num__container {
+        font-size: 12px;
+    }
+/*
     .slider-arrow__left:hover,
     .slider-arrow__right:hover {
     color: var(--dark);
@@ -374,10 +379,15 @@ button {
     z-index: 100;
     align-self: start;
 }
+*/
+
 }
 
 @media screen and (max-width: 320px) {
 
+    .viewphoto-big__container {
+        min-height: 130vh;
+    }
     .viewphoto-container,
     .viewphoto-body {
         width: 19.5rem;

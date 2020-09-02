@@ -44,6 +44,11 @@
 label {
     align-self: flex-start;
 }
+
+.image-label {
+    align-self: center;
+}
+
 .edit-user__form input,
 .edit-user__form textarea {
     width: 25rem;
