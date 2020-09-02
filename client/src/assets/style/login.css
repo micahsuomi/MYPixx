@@ -142,7 +142,7 @@ textarea {
 
 @media screen and (max-width: 320px) {
     .login-form__container {
-        padding: 1rem 0;
+        padding: 5rem 0;
 
     }
    

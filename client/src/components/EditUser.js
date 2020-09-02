@@ -148,7 +148,7 @@ class EditUser extends Component {
                             {
                             !isImageChanged ? 
                             <div className="input-topics">
-                            <label htmlFor="description">Image</label>
+                            <label htmlFor="image" className="image-label">Image</label>
                             <input type="text" 
                             name="avatar"
                             value={avatar} 
@@ -181,7 +181,7 @@ class EditUser extends Component {
 
                         <div>
                         <div className="input-topics">
-                        <label htmlFor="image">Image</label>
+                        <label htmlFor="image" className="image-label">Image</label>
                         <input type="file" id="image" 
                         accept="image/*" 
                         required
