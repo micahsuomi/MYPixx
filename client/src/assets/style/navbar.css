@@ -1,11 +1,11 @@
 .navbar {
     background-color: rgb(17, 45, 58);
-    display: grid;
-    grid-template-columns: 6% 94%;
+    display: flex;
+    justify-content: space-between;
     position: fixed; 
     align-items: center;
     height: 4rem;
-    width: 100vw;
+    width: 100%;
     padding: 0 1rem;
     z-index: 2;
     
