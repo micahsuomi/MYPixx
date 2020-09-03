@@ -77,10 +77,10 @@ export class Comment extends Component {
     }
     render() {
         
-        console.log(this.props)
         let { avatar, authorId, name, date, commentText, user, isAuthenticated } = this.props; 
+        let { isEditing } = this.state;
         let { text } = this.state.comment;
-        console.log(this.state.comment)
+
         return (
             <div className="comment-user__container">
         <div className="comment-user__header">
@@ -100,7 +100,7 @@ export class Comment extends Component {
             </NavLink>
             <p className="comment-date">{date}</p>
             {
-                !this.state.isEditing ?  
+                !isEditing ?  
             <div>
                 <p className="comment-text">{commentText}</p>
             <div>
@@ -135,7 +135,9 @@ export class Comment extends Component {
             
             </div>
             <div></div>
-            <div className="likephoto-comments__container">
+            {
+                !isEditing ?
+                <div className="likephoto-comments__container">
                 <div>
                 <LikeComment foundComment={this.state.comment}
                         tokenConfig={()=>this.props.tokenConfig()}
@@ -143,13 +145,11 @@ export class Comment extends Component {
                         token={this.props.token}   
                         updateLikesComment={this.updateLikesComment}
                        {...this.props}/>
-
                 </div> 
             </div>
-
-           
-
-
+            : null
+            }
+            
 
         </div>
         
@@ -160,65 +160,3 @@ export class Comment extends Component {
 
 export default Comment
 
-/*
-const Comment = (props) => {
-    console.log(props)
-    let { commentId, authorId, name, date, avatar, text, photoId, user, isAuthenticated } = props;
-    
-    const deleteComment = () => {
-        const url = `/api/photos/${photoId}/comments/${commentId}`
-        axios.delete(url, props.tokenConfig())
-        .then(res => {
-            console.log(res.data)
-        })
-        .catch((err) => console.log('err showing', err))
-        props.deleteComment()
-        
-    }
-
-    const openEditComment = () => {
-
-    }
-    return (
-        
-        <div className="comment-user__container">
-        <div className="comment-user__header">
-               <div className="comment-image-container">  
-              {
-                    avatar === undefined || avatar === ''
-                    ?
-                    <img src='https://i2.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1' alt={avatar}/>
-                    :
-                    <img src={avatar} alt={avatar}/>
-
-                }              
-              </div>
-            <div>
-            <NavLink to ={`/user/${authorId}`} className="comment-user__name grow">
-                <p>{name}</p>
-            </NavLink>
-            <p>{date}</p>
-            <p className="comment-text">{text}</p>
-            <div>
-            {
-                user && isAuthenticated && authorId === user._id ?   <i className="fas fa-trash delete-comment__btn grow" onClick={deleteComment}></i>
-                : null
-            }
-            {
-                user && isAuthenticated && authorId === user._id ?   
-                <i className="fas fa-edit edit-comment__btn grow" onClick={openEditComment}></i>
-                : null
-            }
-            </div>
-            </div>
-
-           
-
-
-
-        </div>
-        
-        </div>
-    )
-}
-export default Comment;*/

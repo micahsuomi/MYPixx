@@ -11,6 +11,7 @@ class User extends Component {
         this.state = {
             userProfile: [],
             isUserLoaded: false,
+            isErrorShowing: false,
             isUserPage: false,
         }
     }
@@ -30,25 +31,27 @@ class User extends Component {
         })
         .catch((err) => {
             this.setState({
-                isUserLoaded: false
+                isUserLoaded: false,
+                isErrorShowing: true
             })
         })
     }
     componentDidMount() {
-        this.fetchUserData()
+        this.fetchUserData();
     }
 
-    componentWillUnmount() {
-         console.log('calling here')
-     }
 
     closePopup = () => {
-        this.props.closePopup()
+        this.props.closePopup();
+    }
+
+    refreshPage = () => {
+        this.fetchUserData();
     }
 
     render() {
         
-        let { userProfile } = this.state;
+        let { userProfile, isUserLoaded, isErrorShowing } = this.state;
         const id = this.props.match.params.id;
         let userPhotos
         this.state.isUserLoaded ? userPhotos = userProfile.photos.map((photo) => (
@@ -67,13 +70,10 @@ class User extends Component {
         
         return (
             <div>
+                
                 {
-                    !this.state.isUserLoaded ? 
-                    <div className="error-container">
-                        <h3>Something went wrong. Refresh the page</h3>
-                        {/* <button onClick={this.props.refreshPage} className="btn-refresh grow"><i className="fas fa-redo-alt fa-2x"></i></button> */}
-                        </div>
-                    :
+                    isUserLoaded && !isErrorShowing ? 
+
                     <div>
                         {
                 
@@ -147,7 +147,24 @@ class User extends Component {
     
                 
             </div>
-            
+            :
+                    <div>
+                        {
+                            !isUserLoaded && isErrorShowing ? 
+                            <div className="error-container" style={{height: '100vh'}}>
+                            <h3>Something went wrong. Refresh the page</h3>
+                            <button onClick={this.refreshPage} className="btn-refresh grow"><i className="fas fa-redo-alt fa-2x"></i></button> 
+                            </div>
+                            :
+                            <div className="loading-container" style={{height: '100vh'}}>
+                            <h1>Loading User...</h1>
+                            <div className="lds-circle"><div></div></div>
+                            </div>
+                        }
+                    </div>
+                 
+                    
+                    
                 /*
             this.props.user !== null && this.props.user._id === this.props.match.params.id ?
             <div className="user-details__wrapper">

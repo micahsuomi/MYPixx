@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import axios from 'axios';
 import {NavLink} from 'react-router-dom';
 import '../assets/style/likephoto.css';
@@ -18,7 +18,6 @@ const LikePhoto = (props) => {
             if(props.user) {
                 console.log('here')
                 
-                const newLike = props.user._id
                 const likedPhoto = props.filteredPhoto
                 console.log('token config for likes', props.tokenConfig())
                 axios.post(url, likedPhoto, props.tokenConfig())
@@ -29,6 +28,7 @@ const LikePhoto = (props) => {
             .catch(err => console.log(err))
             console.log(likedPhoto)
             props.likePhoto(likedPhoto);
+            props.history.push(`/photos/${id}`)
 
 
             }

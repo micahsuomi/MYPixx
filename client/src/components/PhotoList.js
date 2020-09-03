@@ -13,39 +13,47 @@ export class PhotoList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isPhotosLoaded: true
+            isPhotosLoaded: true,
+            currentPage: 0,
+            offset: 0
+
 
 
         }
     }
 
-/*
-      handlePageClick = (e) => {
+
+    
+      /*handlePageClick = (e) => {
         const selectedPage = e.selected;
-        console.log(selectedPage)
         const offset = selectedPage * this.props.perPage;
+
         this.setState({
           currentPage: selectedPage,
           offset: offset
         }, () => {
-        this.props.fetchData();
-          console.log('calling offset from photolist', this.state.offset, 'currentpage', this.state.currentPage)
+            console.log('offset', this.state.offset, 'currentpage', this.state.currentPage)
+            let offset = this.state.offset
+        this.props.fetchData(offset);
+        //     console.log('offset', this.props.offset, 'currentpage', this.props.currentPage)
         })
-      }
+      }*/
 
       
-*/  
+
 
 
       componentDidMount() {
           this.setState({
-              isPhotosLoaded: true
+              isPhotosLoaded: true,
           })
       }
 
 
       handlePageClick = (e) => {
+          console.log('working barely!!!')
           const selectedPage = e.selected;
+          console.log(selectedPage)
           this.props.handlePageClick(selectedPage)
           console.log('selected page from photolist', selectedPage)
       }
@@ -62,9 +70,6 @@ export class PhotoList extends Component {
     }
  
     render() {
-        
-
-        // console.log('currentpage', this.props.currentPage, 'offset', this.props.offset)
 
         const photoList = this.props.photos.map((photo) => (
             <PhotoItem key={photo._id}
@@ -109,7 +114,7 @@ export class PhotoList extends Component {
                         : null
                     }
                     
-                {
+                {/* {
                     this.props.showPagination ? 
                     <ReactPaginate
                     previousLabel={"prev"}
@@ -127,7 +132,7 @@ export class PhotoList extends Component {
                     
                     /> : null
                 }
-                
+                 */}
               
            {
            this.props.isAuthenticated ? 
@@ -218,108 +223,5 @@ export class PhotoList extends Component {
 
 export default PhotoList
 
-/*
-const PhotoList = (props) => {
-    console.log(props)
-    let { isAuthenticated, isPageLoading, isErrorShowing } = props;
-    const photoList = props.photos.map((photo) => (
-        <PhotoItem key={photo._id}
-                   id={photo._id}
-                   name={photo.name}
-                   image={photo.image}
-                   description={photo.description}
-                   author={photo.author.name}
-                   authorId={photo.author.id}
-                   authorImg={photo.author.avatar}
-                   likes={photo.likes}
-                   comments={photo.comments}
-                   likePhoto={()=>props.likePhoto()}
-                   {...props} />
-    ))
-    const closePopup = () => {
-        props.closePopup()
-    }
-    console.log(props)
-    return (
-            <div className="photo-gallery__container">
-                 <ReactPaginate
-                    previousLabel={"prev"}
-                    nextLabel={"next"}
-                    breakLabel={"..."}
-                    breakClassName={"break-me"}
-                    pageCount={props.pageCount}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    onPageChange={props.handlePageClick}
-                    containerClassName={"pagination"}
-                    subContainerClassName={"pages pagination"}
-                    activeClassName={"active"}/> 
-                {
-                isAuthenticated ? 
-                <div className="add-photo-link__container">
-                 <NavLink to='/addphoto' 
-                 className="add-photo-link">
-                   <i className="fas fa-plus-circle fa-2x"></i> 
-                   <span className="add">Add New</span>
-                   </NavLink>
-                </div> 
-                : 
-                   <h3><NavLink to="/login">Login</NavLink> to Upload Your Pictures</h3>
-                   }
-
-                    {
-                        props.isPopupOpen ?
-
-                        <div className="photo-added__popup">
-                        <div className="photo-added__popup__header">
-                        <i className="fas fa-times-circle grow" onClick={closePopup}></i>
-                        </div>
-                            <h3>Photo Added!</h3>
-                        </div>
-                        :
-                        null
-                    }
-
-                {
-                    !isPageLoading && isErrorShowing ?
-
-                    <div className="error-container">
-                        <h1>Something went wrong. Click here to refresh the page</h1>
-                        <button onClick={props.refreshPage} className="btn-refresh">Refresh</button>
-                    </div>
-
-                    : ''
-                }
-               
-                {
-                    isPageLoading ? 
-                    
-                  
-                    <div className="lds-circle"><div></div></div>
-
-                    :
-                    
-
-                    <div>
-                    <div className="photo-gallery__wrapper">
-                    {photoList}
-                    </div>
-                    <div>
-               
-                    </div>
-                    </div>
-
-                
-  
-                
-
-            }
-
-          
-              
-            </div>
-    )
-}
 
     
-export default PhotoList;*/

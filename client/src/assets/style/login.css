@@ -94,6 +94,10 @@ textarea {
     transition: all .2s ease-in-out;
 }
 
+.btn-login:active {
+    outline: none;
+}
+
 @media screen and (max-width: 850px) {
     .login-form {
         height: 27rem;

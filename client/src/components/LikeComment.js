@@ -27,7 +27,6 @@ class LikeComment extends Component {
             if(this.props.user) {
                 console.log('here')
                 
-                const newLike = this.props.user._id
                 const likedComment = this.props.foundComment;
                 console.log(likedComment)
                 axios.post(url, likedComment, this.props.tokenConfig())
