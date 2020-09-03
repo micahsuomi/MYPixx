@@ -34,7 +34,7 @@
     justify-content: center;
     align-items: center;
     padding: 1rem;
-    box-shadow: 0 1rem 1rem rgba(88, 83, 83, 0.6);
+    box-shadow: 0 1rem 2rem rgba(88, 83, 83, 0.6);
     line-height: 1.9;
     width: 15rem;
     height: 16rem;
@@ -155,11 +155,16 @@
 }
 @media screen and (max-width: 500px) {
     .about-container {
-        padding: 5rem 1rem;
+        padding: 8rem 1rem;
     }
 
     .most-liked-photos__wrapper {
         grid-template-columns: 1fr;
+    }
+
+    .photo-sorted__card {
+        width: 20rem;
+        height: 20rem;
     }
     .users-wrapper {
         grid-template-columns: 1fr;

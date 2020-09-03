@@ -27,8 +27,8 @@ const Navbar = (props) => {
     return (
         <div className="navbar">
          <NavLink exact to="/" 
-                className="logo">
-                {/* <i className="fas fa-camera fa-2x"></i> */}
+                className="logo"
+                title=" home">
                 MYPixx
                 </NavLink>
                 <div className="toggle-wrapper">
@@ -57,7 +57,9 @@ const Navbar = (props) => {
                 className="navbar-link" 
                 activeStyle={{color: 'var(--secondary)'}}
                 onClick={toggle}>
-                Home
+                <i className="fas fa-home nav-list__icon grow" title="home"> 
+                {/* <span> Home</span> */}
+                </i>
                 </NavLink>
           </li>  
             <li>
@@ -65,7 +67,10 @@ const Navbar = (props) => {
             className="navbar-link"
             activeStyle={{color: 'var(--secondary)'}}
             onClick={toggle}>
-            About
+            <i className="fas fa-users nav-list__icon grow" title="community">
+                {/* <span> Community</span> */}
+            </i>
+            
         </NavLink>
     </li>
     <li>
@@ -73,7 +78,9 @@ const Navbar = (props) => {
         className="navbar-link" 
         activeStyle={{color: 'var(--secondary)'}}
         onClick={toggle}>
-            Photos
+            <i className="fas fa-images nav-list__icon grow" title="photo gallery">
+                {/* <span> Gallery</span> */}
+            </i>
         </NavLink>
     </li>
     {
@@ -85,7 +92,7 @@ const Navbar = (props) => {
         activeStyle={{color: 'var(--secondary)'}}
         onClick={toggle}>
          {` ${user.name}`}
-         <div className="nav-user-image-container">
+         <div className="nav-user-image-container grow">
 
          {
                 user.avatar === undefined || user.avatar === '' 
@@ -113,7 +120,10 @@ const Navbar = (props) => {
             className="navbar-link user-link"
             activeStyle={{color: 'var(--secondary)'}}
             onClick={toggle}>
-                Register
+            <i class="fas fa-user-plus nav-list__icon grow" title="register">
+                {/* <span> Register</span> */}
+            </i>
+                
             </NavLink>
             </li>
             <li>
@@ -121,7 +131,9 @@ const Navbar = (props) => {
             className="navbar-link login-link"
             activeStyle={{color: 'var(--secondary)'}}
             onClick={toggle}>
-                Login
+                <i className="fas fa-sign-in-alt nav-list__icon grow" title="login">
+                    {/* <span> Login</span> */}
+                </i>
             </NavLink> 
             </li>
             </ul>
@@ -131,8 +143,9 @@ const Navbar = (props) => {
             className="navbar-link" 
             onClick={props.logout}
             >
-            Logout
-            {/* <i class="fas fa-sign-out-alt"></i> */}
+            <i className="fas fa-sign-out-alt nav-list__icon" title="logout">
+            {/* <span> Logout</span>*/}
+            </i>  
             </NavLink>
             }
             </li>

@@ -47,11 +47,14 @@ class EditPhoto extends Component {
         const url=`/api/photos/${id}`;
         const updatedPhoto = this.state.photo;
         if(this.state.isImageChanged) {
-            this.state.photo.image = this.state.previewSource
+            this.setState({
+                updatedPhoto: this.state.previewSource
+            })
         }
         axios.put(url, updatedPhoto, this.props.tokenConfig()).then((response) => {
         })
         .catch(err => console.log(err))
+        console.log(updatedPhoto)
         this.props.editPhoto(updatedPhoto);
         this.props.history.push('/photos')
         
@@ -77,7 +80,6 @@ class EditPhoto extends Component {
     filePreview = (file) => {
         const reader = new FileReader()
         reader.readAsDataURL(file)
-        const {image} = this.state.photo
         reader.onloadend = () => {
             this.setState({
                 previewSource: reader.result,
@@ -89,7 +91,6 @@ class EditPhoto extends Component {
     }
 
     openImageEditing = () => {
-        let {image} = this.state.photo
         this.setState({
             isImageEditing: true,
             image: this.state.updatedImage
@@ -146,7 +147,7 @@ class EditPhoto extends Component {
                     <div className="edit-image__preview__container">
                     <img
                         src={image}
-                        alt="curent image"
+                        alt="current user profile"
                         style={{ height: '200px' }}
                     />
                     </div>

@@ -96,7 +96,6 @@ class Comments extends Component {
 
     }
     
-    
     render() {
         console.log(this.state.comments)
         const { comments } = this.state;
@@ -131,19 +130,26 @@ class Comments extends Component {
                 <i className="fas fa-times-circle fa-2x grow"></i>
                 </NavLink>
                 </div>
-                <h3>{comments.length} Comments</h3>
                 {
                     comments.length < 1 ?
                     <h4>No Comments Yet</h4>
                     :
                     <div>
+                        {
+                            <h3>{comments.length} {
+                                comments.length === 1 ? "Comment" : "Comments"
+                            }
+                            </h3>
+
+                        }
+                    <div>
                         {formattedComments}
+                    </div>
                     </div>
                 }
                 
                 {
                     this.props.user !== null && isAuthenticated ?
-
                     <div>
                         {
                             this.state.isCommentFieldOpened ? 
@@ -178,7 +184,12 @@ class Comments extends Component {
                    
                     :
 
-                    null
+                    <div>
+                        <h3>Login to Leave a Comment</h3>
+                        <div className="buttons-wrapper">
+                        <button className="btn-login">Login</button>
+                        </div>
+                    </div>
 
                 }
 

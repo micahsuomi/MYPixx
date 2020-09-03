@@ -20,7 +20,7 @@ const About = (props) => {
     sortedByComments.length = 8;
     return (
         <div className="about-container">
-            <h1>About</h1>
+            <h1>MYPixx</h1>
             <div className="about-paragraph__container">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Porta lorem mollis aliquam ut porttitor leo a. In pellentesque massa placerat duis ultricies lacus sed turpis tincidunt. Pellentesque id nibh tortor id. At augue eget arcu dictum varius duis at. Non nisi est sit amet. Nisl nunc mi ipsum faucibus. Mauris sit amet massa vitae tortor condimentum lacinia quis vel. Eu lobortis elementum nibh tellus molestie nunc non blandit massa. Nisl tincidunt eget nullam non nisi. Id venenatis a condimentum vitae sapien pellentesque habitant. Sed viverra ipsum nunc aliquet bibendum enim. Odio facilisis mauris sit amet massa. Amet nisl purus in mollis. Praesent tristique magna sit amet purus gravida quis blandit turpis. Amet venenatis urna cursus eget nunc scelerisque viverra mauris in. Duis ut diam quam nulla porttitor. Donec enim diam vulputate ut pharetra sit amet.
             </p>
@@ -34,7 +34,7 @@ const About = (props) => {
                     <NavLink to={`/photos/${photo._id}`} className="most-liked-photos__link">
                     <div className="photo-sorted__card grow">
                         <div className="photo-sorted__image__container">
-                            <img src={photo.image}/>
+                            <img src={photo.image} alt={photo.name}/>
                         </div>
                             <h4>{photo.name}</h4>
                             <h5>{photo.author.name}</h5>
@@ -61,7 +61,7 @@ const About = (props) => {
                     <NavLink to={`/photos/${photo._id}`} className="most-liked-photos__link">
                     <div className="photo-sorted__card grow">
                         <div className="photo-sorted__image__container">
-                            <img src={photo.image}/>
+                            <img src={photo.image} alt={photo.name}/>
                         </div>
                             <h4>{photo.name}</h4>
                             <h5>{photo.author.name}</h5>
@@ -103,7 +103,7 @@ const About = (props) => {
                         ?
                         <img src='https://i2.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1' alt={user.name}/>
                         : 
-                        <img src={user.avatar}/>
+                        <img src={user.avatar} alt={user.name}/>
                     }
                 </div>
                 <h4 className="user-name">{user.name}</h4>

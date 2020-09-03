@@ -269,7 +269,7 @@
 
 @media screen and (max-width: 500px) {
   .photo-gallery__container {
-      padding: 2rem 1rem;
+      padding: 6rem .6rem;
   }
 
   .photo-gallery__wrapper {

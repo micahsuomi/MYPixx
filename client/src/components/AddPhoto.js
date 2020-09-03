@@ -65,7 +65,7 @@ class AddPhoto extends Component {
 
    
     render() {
-        let { name, image, description } = this.state;
+        let { name, description } = this.state;
         return (
             <div className="add-photo__container">
 

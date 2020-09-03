@@ -19,6 +19,7 @@ import LikeComment from './components/LikeComment';
 import EditPhoto from './components/EditPhoto';
 import DeletePhoto from './components/DeletePhoto';
 import Footer from './components/Footer';
+import ReactPaginate from 'react-paginate';
 import './App.css';
 
 
@@ -40,11 +41,11 @@ class App extends Component {
                 isErrorShowing: false,
                 isUserPage: false,
                 isPhotoPage: true,
-                currentPage: 0,
                 offset: 0,
                 perPage: 9,
                 pageCount: 0,
-                showPagination: false,
+                currentPage: 0,
+                showPagination: true,
                 showPullToRefresh: false,
                 isPopupOpen: false,
                 isPhotoAdded: false,
@@ -70,15 +71,28 @@ tokenConfig = () => {
 }
 
 
-fetchData = () => {
+fetchData = (offset) => {
+  console.log('calling fetch data', offset)
   const url = '/api/photos/';
   axios.get(url)
   .then((res) => {
     // console.log(res.data)
     let maxWidth = 500;
+    let slice
     //if the screen is not a mobile screen
     if(window.innerWidth > maxWidth) {
-      const slice = res.data.slice(this.state.offset, this.state.offset + this.state.perPage);
+      if(offset === undefined) {
+        slice = res.data.slice(this.state.offset, this.state.offset + this.state.perPage);
+        console.log(this.state.offset, this.state.offset + this.state.perPage)
+        console.log('here', slice)
+        
+      } else {
+        console.log(offset)
+        slice = res.data.slice(offset, offset + this.state.perPage);
+        console.log(offset, offset + this.state.perPage)
+        console.log('no here', slice)
+      }
+       
       this.setState({
         pageCount: Math.ceil(res.data.length / this.state.perPage),
         photos: slice,
@@ -86,6 +100,7 @@ fetchData = () => {
         showPagination: true,
         showPullToRefresh: false,
       })
+      console.log(this.state.pageCount)
 
     } else {
       this.setState({
@@ -129,15 +144,15 @@ componentDidMount() {
 
 
 handlePageClick = (selectedPage) => {
-  console.log('selectedpage from app.js', selectedPage)
+  // console.log('selectedpage from app.js', selectedPage)
   // const selectedPage = e.selected;
   const offset = selectedPage * this.state.perPage;
   this.setState({
     currentPage: selectedPage,
     offset: offset
   }, () => {
+    console.log('current page from app.js', this.state.currentPage, this.state.currentPage)
     this.fetchData();
-    // console.log('current page from app.js', this.state.currentPage)
   })
 }
 
@@ -154,7 +169,7 @@ registerUser = (newUser) => {
   axios.post('/api/register', body, config)
   .then(response => {
     localStorage.setItem('token', response.data.token);
-    console.log(localStorage)
+    // console.log(localStorage)
       this.setState({
         isAuthenticated: true,
         isLoading: false,
@@ -163,7 +178,7 @@ registerUser = (newUser) => {
         msg: '',
         
       })
-      console.log(this.state)
+      // console.log(this.state)
     
    
 
@@ -211,7 +226,7 @@ authenticateUser = (user) => {
         msg: ''
 
       })
-      console.log('localstorage', localStorage, 'config', config)
+      // console.log('localstorage', localStorage, 'config', config)
       //will load the user calling the token and auth route from backend
       this.loadUser(config);
       
@@ -235,16 +250,16 @@ authenticateUser = (user) => {
 
 
 loadUser = (config) => {
-  console.log('loading user', config)
+  // console.log('loading user', config)
   this.setState({
     isLoading: true,
   })
-  console.log(this.tokenConfig())
-  console.log(this.state.isLoading)
+  // console.log(this.tokenConfig())
+  // console.log(this.state.isLoading)
 
   axios.get('/api/login/user', this.tokenConfig(config))
   .then(response => {
-    console.log('response from loadUser', response.data)
+    // console.log('response from loadUser', response.data)
     this.setState({
       isAuthenticated: true,
       // isLoading: false,
@@ -258,7 +273,7 @@ loadUser = (config) => {
 
 
 logout = () => {
-  console.log('logout from app.js')
+  // console.log('logout from app.js')
   localStorage.removeItem('token');
   this.setState({
     token: null,
@@ -278,24 +293,26 @@ deletePhoto = () => {
 }
 
 deleteComment = () => {
-  console.log('calling delete comment from app.js')
   this.fetchData();
 }
 
 
 addPhoto = (newPhoto) => {
+  
   this.setState({
         photos: [newPhoto, ...this.state.photos], 
         isPhotoAdded: true, 
         isPopupOpen: true, 
-        isPageLoading: false});
+        isPageLoading: false
+      });
+        console.log(this.state.photos)
   this.fetchData();
 
 
 }
 
 editPhoto = (updatedPhoto) => {
-  console.log('calling edit photo from app.js')
+  // console.log('calling edit photo from app.js')
   this.fetchData();
   this.setState({updatedPhoto, isEditPopupOpen: true, isPageLoading: false});
 
@@ -303,7 +320,7 @@ editPhoto = (updatedPhoto) => {
 }
 
 editUser = (updatedUser) => {
-  console.log('calling edit user from here')
+  // console.log('calling edit user from here')
   this.setState({updatedUser, isPopupOpen: true});
   this.loadUser();
   this.fetchUsers();
@@ -330,7 +347,7 @@ refreshPage = () => {
 
 likePhoto = (likedPhoto) => {
   this.setState({likedPhoto})
-  console.log(likedPhoto)
+  // console.log(likedPhoto)
   this.fetchData();
 }
 
@@ -354,6 +371,7 @@ closePopup = () => {
 
     return (
         <BrowserRouter>
+
         <div className="wrapper">
         <Navbar 
         logout={this.logout}
@@ -361,25 +379,10 @@ closePopup = () => {
         user={this.state.user}
         isLoading={this.state.isLoading}
         />   
-            <div>
-                {/* {
-                 this.state.showPagination ? 
-                <ReactPaginate
-                    previousLabel={"prev"}
-                    nextLabel={"next"}
-                    breakLabel={"..."}
-                    breakClassName={"break-me"}
-                    pageCount={this.state.pageCount}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    onPageChange={this.handlePageClick}
-                    containerClassName={"pagination"}
-                    subContainerClassName={"pages pagination"}
-                    activeClassName={"active"}/>
-                    : null
-                }  */}
-            </div> 
+           
         <Switch>
+
+       
 
         <Route path="/about" component={(props) => <About
         users={this.state.users}
@@ -507,13 +510,11 @@ closePopup = () => {
           redirectPhotos={this.state.redirectPhotos}
           isPageLoading={this.state.isPageLoading}
           isErrorShowing={this.state.isErrorShowing}
+          handlePageClick={this.handlePageClick}
           pageCount={this.state.pageCount}
           refreshPage={this.refreshPage}
           isPhotoAdded={this.state.isPhotoAdded}
-          offset={this.state.offset}
           perPage={this.state.perPage}
-          currentPage={this.state.currentPage}
-          handlePageClick={this.handlePageClick}
           likePhoto={this.likePhoto}
           likeComment={this.likeComment}
           isPopupOpen={this.state.isPopupOpen}
@@ -532,6 +533,25 @@ closePopup = () => {
       
           <Route path="/" component={Home} />
     </Switch>
+    <div>
+                {
+                 this.state.showPagination ? 
+                <ReactPaginate
+                    previousLabel={"prev"}
+                    nextLabel={"next"}
+                    breakLabel={"..."}
+                    breakClassName={"break-me"}
+                    pageCount={this.state.pageCount}
+                    perPage={this.state.perPage}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageClick}
+                    containerClassName={"pagination"}
+                    subContainerClassName={"pages pagination"}
+                    activeClassName={"active"}/>
+                    : null
+                }  
+            </div> 
     <Footer />
     </div>
     </BrowserRouter>

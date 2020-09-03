@@ -26,9 +26,10 @@ class EditUser extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const id = this.props.match.params.id
+        const id = this.props.match.params.id;
         if(this.state.isImageChanged) {
             this.state.user.avatar = this.state.previewSource
+           
         }
         const url = `/api/user/${id}`;
         let updatedUser = this.state.user;
@@ -61,7 +62,6 @@ class EditUser extends Component {
     filePreview = (file) => {
         const reader = new FileReader()
         reader.readAsDataURL(file)
-        const {avatar} = this.state.user
         reader.onloadend = () => {
             this.setState({
                 previewSource: reader.result,
@@ -73,7 +73,6 @@ class EditUser extends Component {
     }
 
     openImageEditing = () => {
-        let {avatar} = this.state.user
         this.setState({
             isImageEditing: true,
             avatar: this.state.updatedImage
@@ -159,7 +158,7 @@ class EditUser extends Component {
                              <div className="edit-image__preview__container">
                             <img
                                 src={avatar}
-                                alt="curent image"
+                                alt="curent user profile"
                                 style={{ height: '200px' }}
                             />
                             </div>
