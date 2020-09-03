@@ -127,7 +127,7 @@ class Comments extends Component {
                 <div className="comments-wrapper">
                 <div className="comments-header">
                 <NavLink to ={`/photos/${this.props.match.params.id}`}>
-                <i className="fas fa-times-circle fa-2x grow"></i>
+                <i className="fas fa-chevron-left fa-2x grow"></i>
                 </NavLink>
                 </div>
                 {
@@ -185,9 +185,10 @@ class Comments extends Component {
                     :
 
                     <div>
-                        <h3>Login to Leave a Comment</h3>
+                       
                         <div className="buttons-wrapper">
-                        <button className="btn-login">Login</button>
+                            <h3><NavLink to="/login">
+                            Login</NavLink> to leave a comment</h3>
                         </div>
                     </div>
 

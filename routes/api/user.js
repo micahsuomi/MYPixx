@@ -30,10 +30,12 @@ cloudinary.config({
 
 //GETS all users
 //Access: public
-router.get('/', (req, res) => {
-    User.find().populate('photos').exec()
+router.get('/', (req, res) => { 
+     User.find().populate('photos').exec()
     .then((user) => res.json(user))
 })
+
+
 
 //Gets a single user
 router.get('/:id', (req, res) => {
@@ -43,7 +45,7 @@ router.get('/:id', (req, res) => {
             console.log(err)
         }
         console.log(user)
-        Photo.find().where('author.id').equals(user._id).exec((err, foundPhotos) => {
+        Photo.find().sort({ date: -1 }).where('author.id').equals(user._id).exec((err, foundPhotos) => {
             if(err) return res.status(404).json({ msg: 'Not Found' })
             console.log('found photos', foundPhotos)
             for(const photo of foundPhotos) {

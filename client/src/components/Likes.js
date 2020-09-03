@@ -39,10 +39,10 @@ class Likes extends Component {
                 <div className="likes-wrapper">
                 <div className="likes-header">
                 <NavLink to ={`/photos/${this.props.match.params.id}`}>
-                <i className="fas fa-times-circle fa-2x grow"></i>
+                <i className="fas fa-chevron-left fa-2x grow"></i>
                 </NavLink>
                 </div>
-                <h3>{likes.length} Likes</h3>
+                <h3>{likes.length} { likes.length === 1 ? 'Like' : 'Likes' }</h3>
                 {formattedLikes}
                 </div>
             </div>
