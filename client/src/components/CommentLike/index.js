@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import '../components/CommentLike/style.css';
+import './style.css';
 
 const CommentLike = (props) => {
     let { userId, name, avatar } = props;
