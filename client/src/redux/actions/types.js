@@ -1,0 +1,20 @@
+export const GET_PHOTOS = 'GET_PHOTOS';
+export const ADD_PHOTO = 'ADD_PHOTO';
+export const GET_PHOTO = 'GET_PHOTO';
+export const EDIT_PHOTO = 'EDIT_PHOTO';
+export const DELETE_PHOTO = 'DELETE_PHOTO';
+export const LIKE_PHOTO = 'LIKE_PHOTO';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_FAIL = 'REGISTER_FAIL';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const USER_LOADING = 'USER_LOADING';
+export const USER_LOADED = 'USER_LOADED';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const AUTH_ERR = 'AUTH_ERR';
+export const GET_USERS = 'GET_USERS';
+export const GET_USER = 'GET_USER';
+export const LOADEDIT_USER = 'LOADEDIT_USER';
+export const EDIT_USER = 'EDIT_USER';
+export const LOAD_ERR = 'LOAD_ERR';
+

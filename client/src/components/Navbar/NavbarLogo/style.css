@@ -1,0 +1,12 @@
+.logo {
+    background-color: rgb(73, 214, 214);
+    padding: .7rem;
+    border-radius: 3px;
+    font-weight: 700;
+    margin: 0;
+    text-decoration: none;
+    color: white;
+    height: 3rem;
+    width: 6.5rem;
+    font-size: 20px;
+}

@@ -1,12 +1,12 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import '../components/CommentLike/style.css';
+import './style.css';
 
-const CommentLike = (props) => {
-    let { userId, name, avatar } = props;
+const LikeItem = ({ userId, name, avatar }) => {
+  
     return (
-        <div className="like-comment__user__container">
-             <div className="like-image-container">  
+        <div className="like-user__container">
+               <div className="like-image-container">  
               {
                     avatar === undefined || avatar === ''
                     ?
@@ -16,10 +16,11 @@ const CommentLike = (props) => {
 
                 }              
               </div>
-            <NavLink to ={`/user/${userId}`} className="like-comment__user__name">
+              
+            <NavLink to ={`/user/${userId}`} className="like-user__name grow">
                 <p>{name}</p>
             </NavLink>
         </div>
     )
 }
-export default CommentLike;
+export default LikeItem;

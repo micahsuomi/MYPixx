@@ -5,11 +5,10 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-const registerRoute = require('./routes/api/register');
-const photosRoute = require('./routes/api/photos');
-const loginRoute = require('./routes/api/login');
-const userRoute = require('./routes/api/user');
-const commentRoute = require('./routes/api/comments');
+const photosRoutes = require('./routes/api/photos');
+const authRoutes = require('./routes/api/auth');
+const userRoutes = require('./routes/api/user');
+const commentRoutes = require('./routes/api/comments');
 
 //use bodyparser
 app.use(express.json({limit: '50mb'}));
@@ -28,11 +27,10 @@ mongoose.connect(process.env.mongoDBURL, {
 .catch((err) => console.log(err));
 
 
-app.use('/api/register', registerRoute);
-app.use('/api/login', loginRoute);
-app.use('/api/user', userRoute);
-app.use('/api/photos', photosRoute);
-app.use('/api/photos/:id/comments', commentRoute)
+app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/photos', photosRoutes);
+app.use('/api/photos/:id/comments', commentRoutes)
 
 
 //serve static assets if we are in production
