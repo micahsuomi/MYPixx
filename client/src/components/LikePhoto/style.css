@@ -12,7 +12,9 @@
 .like-btn:hover {
     background-color: rgb(250, 233, 235);
 }
-.like-btn:active {
+.like-btn:active,
+.full-heart:active,
+.empty-heart:active {
     outline: none;
 }
 
