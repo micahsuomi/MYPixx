@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux';
+import { getPhotos } from '../../redux/actions/photoActions';
 import { likePhoto } from '../../redux/actions/photoActions';
 import usePhotos from '../../hooks/usePhotos';
 import {NavLink} from 'react-router-dom';
@@ -28,6 +29,7 @@ const LikePhoto = (props) => {
                 const likedPhoto = props.filteredPhoto
                 dispatch(likePhoto(likedPhoto, id))
                 props.history.push(`/photos/${id}`)
+                dispatch(getPhotos())
 
         }
          

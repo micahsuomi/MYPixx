@@ -33,11 +33,11 @@ cloudinary.config({
 const findAll = async (req, res) => {
     try {
         await Photo.find()
-        .sort({ createdAt: 1 })
+        .sort({ createdAt: -1 })
         .populate({ path: 'likes', select: 'name'})
         .populate('comments')
         .exec()
-        .then(photos => res.json(photos.reverse()));
+        .then(photos => res.json(photos));
         
 
     } catch {
@@ -50,7 +50,7 @@ const findAll = async (req, res) => {
 //POST CONTROLLER
 //Description: adds a new photo
 //ACCESS: private
-const addPhoto = (isAuthorized, upload.single('image'), async (req, res) => {
+const addPhoto = (upload.single('image'), async (req, res) => {
     try {
         const { name, description } = req.body;
         // console.log('req.file path here', req.body)
@@ -59,26 +59,30 @@ const addPhoto = (isAuthorized, upload.single('image'), async (req, res) => {
             const uploadedCloudinaryImage = result.secure_url;
         
         // console.log(uploadedImage)
-        User.findOne(({_id: req.user.id}), (err, founduser) => {
+        User.findOne(({_id: req.user.id}), (err, foundUser) => {
+            console.log(foundUser)
             if(err) {
                 console.log(err)
             } 
-            console.log('this is the found user from post', founduser)
+            console.log('this is the found user from post', foundUser)
             const author = {
                 id: req.user.id,
-                name: founduser.name,
-                avatar: founduser.avatar
+                name: foundUser.name,
+                avatar: foundUser.avatar
     
             }
             // console.log('this is the author', author)
     
             const newPhoto = new Photo({
-                name: name,
+                name,
                 image: uploadedCloudinaryImage,
-                description: description,
-                author: author
+                description,
+                author
             });
             newPhoto.save().then((photo) => res.json(photo))
+            foundUser.photos.push(newPhoto)
+            foundUser.save()
+
             
     
         })
@@ -93,7 +97,7 @@ const addPhoto = (isAuthorized, upload.single('image'), async (req, res) => {
 //EDIT CONTROLLER
 //Description: edits one photo item
 //ACCESS: private
-const editPhoto = (isAuthorized,  upload.single('image'),  async (req, res) => {
+const editPhoto = (upload.single('image'),  async (req, res) => {
     try {
 
     const id = req.params.id;
@@ -122,7 +126,7 @@ const editPhoto = (isAuthorized,  upload.single('image'),  async (req, res) => {
 //DELETE CONTROLLER
 //Description: deletes one photo item
 //ACCESS: private
-const deletePhoto = (isAuthorized, async (req, res) => {
+const deletePhoto = (async (req, res) => {
     try {
         const id = req.params.id;
         await Photo.findById(id)
@@ -138,13 +142,12 @@ const deletePhoto = (isAuthorized, async (req, res) => {
 
 //Like CONTROLLER
 //ACCESS: private
-const likePhoto = (isAuthorized, async (req, res) => {
+const likePhoto = (req, res) => {
 
-    try {
         const id = req.params.id;
         console.log('req.user from like photo', req.user)
         
-        await Photo.findById(id, (err, photo) => {
+        Photo.findById(id, (err, photo) => {
             if(err) {
                 console.log(err);
             } else {
@@ -154,17 +157,17 @@ const likePhoto = (isAuthorized, async (req, res) => {
                 console.log('this is the found user', foundUser)
                 foundUser ? photo.likes.pull(newLike) : photo.likes.push(newLike);
                 photo.save().then((photo) => res.json(photo)) 
+                .catch((err) => res.status(404).json({ success: false }))
                                  
+            
             }
-    
         })
-    }
-    catch(err) {
-        return  res.status(404).json({ success: false })
-    }
     
     
-});
+    
+    
+    
+};
 
 //GET all likes for a photo
 //Access: public

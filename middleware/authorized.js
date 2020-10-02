@@ -2,6 +2,7 @@ require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
 const authorized = (req, res, next) => {
+    console.log('this is coming from middleware')
     const token = req.header('x-auth-token');
     console.log('this is the token from middleware auth', token)
     if(!token) return res.status(401).json({msg: 'no token, authorization denied'});

@@ -86,6 +86,7 @@ const EditPhoto = (props) => {
         setPhoto({
             image: updatedImage
         })
+        console.log(image)
   
     }
 

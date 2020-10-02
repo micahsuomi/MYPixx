@@ -111,12 +111,10 @@ export const Routes = () => {
 
     useEffect(() => {
       dispatch(getPhotos());
-      dispatch(getUsers());
 
 
     }, [dispatch]);
 
-    console.log(loadedUser)
     
     
   
