@@ -1,57 +1,51 @@
-import React, {Component} from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
-class AddComment extends Component{
-    constructor(props) {
-        super(props)
-        this.state = {
-            text: ''
+import { addComment } from "../../../redux/actions/commentActions";
 
-        }
-    }
-    handleSubmit = (e) => {
-        e.preventDefault();
-        let { text } = this.state;
-        let { photoId } = this.props;
-        const newComment = { text };
-        console.log(newComment);
-        // const id = this.props.match.params.id
-        const url = `/api/photos/${photoId}/comments`;
-        axios.post(url, newComment, this.props.tokenConfig()).then((res) => {
-            console.log('comment saved')
-        })
-        this.props.history.push(`/photos/${photoId}/comments`)
-        this.props.addComment(newComment)
-        
-    }
+const AddComment = ({ photoId, closeCommentField, setCommentClose }, props) => {
+  console.log(props);
+  const dispatch = useDispatch();
+  const [comment, setComment] = useState({
+    text: "",
+  });
 
-    handleChange = (e) => {
-        let { name, value } = e.target;
-        this.setState({[name] : value});
-        console.log(name, value)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let { text } = comment;
+    const newComment = { text };
+    dispatch(addComment(photoId, newComment));
+    setCommentClose();
+  };
 
-    }
-    render() {
-        console.log(this.props)
-        return (
-            <form className="add-comment__form animate-modal"
-                onSubmit={this.handleSubmit}>
-                    <div className="input-topics">
-                        <label htmlFor="description">Comment</label>
-                        <textarea type="text" 
-                        name="text"
-                        value={this.state.text} 
-                        placeholder="write a new comment here"
-                        onChange={this.handleChange}/>
-                    <div className="btn-save__wrapper">
-                    <button className="btn-save">Submit</button>
-                <button className="btn-save" onClick={this.closeCommentField}>Cancel</button>
-                </div>
-            </div>
-        </form>
-        )
-    }
-    
-}
+  const handleChange = (e) => {
+    let { name, value } = e.target;
+    setComment({ [name]: value });
+    console.log(name, value);
+  };
+
+  const { text } = comment;
+
+  return (
+    <form className="add-comment__form animate-modal" onSubmit={handleSubmit}>
+      <div className="input-topics">
+        <label htmlFor="description">Comment</label>
+        <textarea
+          type="text"
+          name="text"
+          value={text}
+          placeholder="write a new comment here"
+          onChange={handleChange}
+        />
+        <div className="btn-save__wrapper">
+          <button className="btn-save">Submit</button>
+          <button className="btn-save" onClick={closeCommentField}>
+            Cancel
+          </button>
+        </div>
+      </div>
+    </form>
+  );
+};
 
 export default AddComment;

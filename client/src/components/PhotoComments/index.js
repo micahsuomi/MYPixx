@@ -1,206 +1,145 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import Comment from '../Comment/index';
-import {NavLink} from 'react-router-dom';
-import './style.css';
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-class Comments extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            comments: [],
-            isCommentFieldOpened: false,
-            isAddButtonShowing: true,
-            text: '',
-            author: ''
+import useComments from "../../hooks/useComments";
+import { getComments, addComment } from "../../redux/actions/commentActions";
+import Comment from "../Comment/index";
+import AddComment from "./AddComment";
 
-        }
-        
-    }
+import "./style.css";
 
-    fetchCommentsData = () => {
-        const id = this.props.match.params.id
-        const url = `/api/photos/${id}/comments`;
-        axios.get(url)
-        .then(res => 
-            this.setState({
-                comments: res.data
-            })
-    
-        )
-    }
-    componentDidMount() {
-        this.fetchCommentsData();
-        
-    }
+const Comments = (props) => {
+  const dispatch = useDispatch();
+  const [err, comments] = useComments();
+  const [isCommentFieldOpened, setIsCommentFieldOpened] = useState(false);
+  const [isAddButtonShowing, setIsAddButtonShowing] = useState(true);
+  const [comment, setComment] = useState({
+    text: "",
+  });
 
-    openCommentField = () => {
-        this.setState({
-            isCommentFieldOpened: !this.state.isCommentFieldOpened
-        })
+  const photoId = props.match.params.id;
 
-    }
+  useEffect(() => {
+    dispatch(getComments(photoId));
+  }, [dispatch]);
 
-    closeCommentField = () => {
-        this.setState({
-            isCommentFieldOpened: false
-        })
-    }
+  const openCommentField = () => {
+    setIsCommentFieldOpened(!isCommentFieldOpened);
+  };
 
-    handleChange = (e) => {
-        let { name, value } = e.target;
-        this.setState({[name] : value});
-        console.log(name, value)
+  const closeCommentField = () => {
+    setIsCommentFieldOpened(false);
+  };
 
-    }
+  const setCommentClose = () => {
+    console.log("I am calling from here");
+    props.history.push(`/photos/${photoId}/comments`);
+    closeCommentField();
+    setComment({ text: "" });
+  };
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        let { text } = this.state;
-        const newComment = { text };
-        console.log(newComment);
-        const id = this.props.match.params.id
-        const url = `/api/photos/${id}/comments`;
-        axios.post(url, newComment, this.props.tokenConfig()).then((res) => {
-            console.log('comment saved')
-        })
-        this.props.history.push(`/photos/${id}/comments`)
-        this.props.addComment(newComment)
+  const deleteComment = () => {
+    dispatch(getComments(photoId));
+  };
+  const editingComment = () => {
+    setIsAddButtonShowing(false);
+  };
 
+  const closeEditingComment = () => {
+    setIsAddButtonShowing(true);
+  };
 
-    }
-    
-    deleteComment = () => {
-        this.fetchCommentsData();
-    }
-    editingComment = () => {
-        this.setState({
-            isAddButtonShowing: false
-        })
+  const updateComment = (updatedComment) => {
+    setComment({ text: updatedComment });
+    dispatch(getComments(photoId));
+  };
 
-    }
+  const updateLikesComment = () => {
+    dispatch(getComments(photoId));
+  };
 
-    closeEditingComment = () => {
-        this.setState({
-            isAddButtonShowing: true
-        })
-    }
-    
-    updateComment = (updatedComment) => {
-        this.setState({updatedComment});
-        this.fetchCommentsData()
-    }
+  const { isAuthenticated } = props;
+  const formattedComments = comments.map((comment) => (
+    <Comment
+      key={comment._id}
+      commentId={comment._id}
+      authorId={comment.author.id}
+      name={comment.author.name}
+      avatar={comment.author.avatar}
+      date={comment.createdAt}
+      likes={comment.likes}
+      commentText={comment.text}
+      user={props.user}
+      photoId={props.match.params.id}
+      history={props.history}
+      isAuthenticated={props.isAuthenticated}
+      tokenConfig={props.tokenConfig}
+      deleteComment={deleteComment}
+      editingComment={editingComment}
+      closeEditingComment={closeEditingComment}
+      updateComment={updateComment}
+      updateLikesComment={updateLikesComment}
+    />
+  ));
+  return (
+    <div className="comments-container">
+      <div className="comments-wrapper">
+        <div className="comments-header">
+          <NavLink to={`/photos/${props.match.params.id}`}>
+            <i className="fas fa-chevron-left fa-2x grow"></i>
+          </NavLink>
+        </div>
+        {comments.length < 1 ? (
+          <h4>No Comments Yet</h4>
+        ) : (
+          <div>
+            {
+              <h3>
+                {comments.length}{" "}
+                {comments.length === 1 ? "Comment" : "Comments"}
+              </h3>
+            }
+            <div>{formattedComments}</div>
+          </div>
+        )}
 
-    updateLikesComment = () => {
-        this.fetchCommentsData()
-
-    }
-    
-    render() {
-        console.log(this.state.comments)
-        const { comments } = this.state;
-        const { isAuthenticated } = this.props;
-        const formattedComments = comments.map((comment) => (
-        <Comment key={comment._id}
-              commentId={comment._id}
-              authorId={comment.author.id}
-              name={comment.author.name}
-              avatar={comment.author.avatar}
-              date={comment.createdAt}
-              likes={comment.likes}
-              commentText={comment.text}
-              user={this.props.user}
-              photoId={this.props.match.params.id}
-              history={this.props.history}
-              isAuthenticated={this.props.isAuthenticated}
-              tokenConfig={this.props.tokenConfig}
-              deleteComment={this.deleteComment}
-              editingComment={this.editingComment}
-              closeEditingComment={this.closeEditingComment}
-              updateComment={this.updateComment}
-              updateLikesComment={this.updateLikesComment}
+        {props.user !== null && isAuthenticated ? (
+          <div>
+            {isCommentFieldOpened ? (
+              <AddComment
+                photoId={photoId}
+                closeCommentField={closeCommentField}
+                setCommentClose={setCommentClose}
+                {...props}
               />
-        ))
-        console.log(this.props)
-        return (
-            <div className="comments-container">
-                <div className="comments-wrapper">
-                <div className="comments-header">
-                <NavLink to ={`/photos/${this.props.match.params.id}`}>
-                <i className="fas fa-chevron-left fa-2x grow"></i>
-                </NavLink>
-                </div>
-                {
-                    comments.length < 1 ?
-                    <h4>No Comments Yet</h4>
-                    :
-                    <div>
-                        {
-                            <h3>{comments.length} {
-                                comments.length === 1 ? "Comment" : "Comments"
-                            }
-                            </h3>
-
-                        }
-                    <div>
-                        {formattedComments}
-                    </div>
-                    </div>
-                }
-                
-                {
-                    this.props.user !== null && isAuthenticated ?
-                    <div>
-                        {
-                            this.state.isCommentFieldOpened ? 
-                            <form className="add-comment__form animate-modal"
-                            onSubmit={this.handleSubmit}>
-                            <div className="input-topics">
-                            <label htmlFor="description">Comment</label>
-                            <textarea type="text" 
-                            name="text"
-                            value={this.state.ext} 
-                            placeholder="write a new comment here"
-                            onChange={this.handleChange}/>
-                              <div className="btn-save__wrapper">
-                            <button className="btn-save">Submit</button>
-                        <button className="btn-save" onClick={this.closeCommentField}>Cancel</button>
-
-                    </div>
-                    </div>
-                    </form>
-
-                    : 
-                    <div className="add-comment__btn__wrapper">
-                        {
-                            !this.state.isAddButtonShowing ? '' :                     
-                            <button className="add-comment__btn" onClick={this.openCommentField}>Add Comment</button>
-                            
-                        }
-                    </div>
-
-                        }
-                        </div>
-                    :
-
-                    <div>
-                       
-                        <div className="buttons-wrapper">
-                            <h3><NavLink to="/login">
-                            Login</NavLink> to leave a comment</h3>
-                        </div>
-                    </div>
-
-                }
-
-             
-                </div>
-
-               
+            ) : (
+              <div className="add-comment__btn__wrapper">
+                {!isAddButtonShowing ? (
+                  ""
+                ) : (
+                  <button
+                    className="add-comment__btn"
+                    onClick={openCommentField}
+                  >
+                    Add Comment
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
+        ) : (
+          <div>
+            <div className="buttons-wrapper">
+              <h3>
+                <NavLink to="/login">Login</NavLink> to leave a comment
+              </h3>
             </div>
-        )
-    }
-}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
-export default Comments
-
+export default Comments;

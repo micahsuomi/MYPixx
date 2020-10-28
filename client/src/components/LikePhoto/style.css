@@ -1,26 +1,26 @@
 .like-btn {
-    /* border: 1px solid var(--red); */
-    border: none;
-    background-color: transparent;
-    border-radius: 3px;
-    font-family: 'Montserrat';
-    font-weight: 700;
-    cursor: pointer;
-    padding: 0;
+  /* border: 1px solid var(--red); */
+  border: none;
+  background-color: transparent;
+  border-radius: 3px;
+  font-family: "Montserrat";
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
 }
 
 .like-btn:hover {
-    background-color: rgb(250, 233, 235);
+  background-color: rgb(250, 233, 235);
 }
 .like-btn:active,
 .full-heart:active,
 .empty-heart:active {
-    outline: none;
+  outline: none;
 }
 
 .likes-number {
-    text-decoration: none;
-    color: var(--primary);
-    font-weight: 700;
-    margin-left: .7rem;
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 700;
+  margin-left: 0.7rem;
 }

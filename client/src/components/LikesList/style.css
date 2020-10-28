@@ -1,82 +1,74 @@
 .likes-container {
-    padding: 5rem 5rem;
-    background-color: var(--overlay-mask);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 4;
-
+  padding: 5rem 5rem;
+  background-color: var(--overlay-mask);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 4;
 }
 
 .likes-wrapper {
-    width: 30rem;
-    height: 30rem;
-    background-color: white;
-    padding: 1.5rem 1.5rem;
-    overflow-y: scroll;
-    border-radius: 11px;
-
-
-
+  width: 30rem;
+  height: 30rem;
+  background-color: white;
+  padding: 1.5rem 1.5rem;
+  overflow-y: scroll;
+  border-radius: 11px;
 }
 
 .likes-header {
-    display: flex;
-    justify-content: flex-start;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .likes-header i {
-    color: var(--primary);
+  color: var(--primary);
 }
 
 .likes-wrapper h3 {
-    text-align: center;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    color: rgb(180, 170, 170);
-
-
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  color: rgb(180, 170, 170);
 }
 
 @media screen and (max-width: 500px) {
-    .likes-container {
-        padding: 5rem 1rem;
-    }
+  .likes-container {
+    padding: 5rem 1rem;
+  }
 
-    .likes-number {
-        font-size: 12px;
-    }
-    .likes-wrapper {
-        width: 22rem;
-    }
+  .likes-number {
+    font-size: 12px;
+  }
+  .likes-wrapper {
+    width: 22rem;
+  }
 
-    .likes-wrapper p {
-        font-size: 14px;
-    }
+  .likes-wrapper p {
+    font-size: 14px;
+  }
 
-    .like-image-container {
-        height: 45px;
-        width: 45px;
-    }
-
+  .like-image-container {
+    height: 45px;
+    width: 45px;
+  }
 }
 
 @media screen and (max-width: 320px) {
-    .likes-container {
-        padding: 3rem 1rem;
-    }
+  .likes-container {
+    padding: 3rem 1rem;
+  }
 
-    .likes-number {
-        font-size: 12px;
-    }
-    .likes-wrapper {
-        width: 22rem;
-    }
+  .likes-number {
+    font-size: 12px;
+  }
+  .likes-wrapper {
+    width: 22rem;
+  }
 
-    .like-image-container {
-        height: 45px;
-        width: 45px;
-    }
-
+  .like-image-container {
+    height: 45px;
+    width: 45px;
+  }
 }

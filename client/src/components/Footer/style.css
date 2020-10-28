@@ -1,33 +1,29 @@
 .footer {
-    padding: 1rem 3rem;
-    background-color: rgb(17, 45, 58);
-    display: flex;
-    justify-content: space-between;
-    width: 100vw;
-
+  padding: 1rem 3rem;
+  background-color: rgb(17, 45, 58);
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
 }
 
 .app-author,
 .app-pexels__link {
-    color: whitesmoke;
+  color: whitesmoke;
 }
 
 .app-pexels__link a {
-    text-decoration: none;
-    color: skyblue;
+  text-decoration: none;
+  color: skyblue;
 }
 
 @media screen and (max-width: 500px) {
-    .footer {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-    }
-    .app-author,
-    .app-pexels__link {
-    margin: .5rem;
-}
-
-
+  .footer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .app-author,
+  .app-pexels__link {
+    margin: 0.5rem;
+  }
 }

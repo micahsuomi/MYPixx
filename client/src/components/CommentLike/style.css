@@ -1,12 +1,12 @@
 .like-comment__user__container {
-    display: grid;
-    grid-template-columns: 40% 60%;
-    align-items: center;
-    margin: 1rem;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  align-items: center;
+  margin: 1rem;
 }
 
 .like-comment__user__name {
-    font-size: 14px;
-    text-decoration: none;
-    color: var(--primary)
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--primary);
 }
