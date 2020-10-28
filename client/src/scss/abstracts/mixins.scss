@@ -1,0 +1,163 @@
+@mixin section-padding {
+  padding: 9rem 5rem;
+}
+
+@mixin flex-property-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-property-column-top {
+  align-items: stretch;
+}
+
+@mixin flex-property-row-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin grid {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-gap: 1rem;
+}
+@mixin five-col-grid {
+  @include grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+@mixin four-col-grid {
+  @include grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@mixin three-col-grid {
+  @include grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@mixin two-col-grid {
+  @include grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@mixin one-col-grid {
+  @include grid;
+  grid-template-columns: 1fr;
+}
+
+@mixin thirty-seventy-grid {
+  @include grid;
+  grid-template-columns: 25% 75%;
+}
+
+@mixin three-equal-perc-grid {
+  @include grid;
+  grid-template-columns: 33% 33% 33%;
+}
+
+@mixin shadow-trans {
+  box-shadow: 0 12px 15px 0 rgba(51, 51, 51, 0.1);
+  transform: scale(1);
+  transition: transform 0.35s ease-in-out;
+}
+
+@mixin two-px-border {
+  border: 2px solid rgba(116, 104, 104, 0.5);
+}
+
+@mixin btn-hover-standard {
+  background-color: var(--primary-dark);
+  transform: scale(1.03);
+  transition: all 0.2s ease-in-out;
+}
+
+@mixin standard-button {
+  padding: 0.5rem;
+  background-color: var(--secondary);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  margin: 0.8rem;
+  display: block;
+  width: 10rem;
+
+  font-size: 16px;
+  border: 2px solid var(--primary);
+  box-shadow: 0 1rem 1rem rgba(rgb(136, 136, 153), 0.3);
+
+  &:hover {
+    @include btn-hover-standard;
+  }
+}
+
+@mixin small-button {
+  @include standard-button;
+  padding: 0.3rem;
+  width: 7.5rem;
+  border: 2px solid var(--primary);
+  @include shadow-trans;
+
+  &:hover {
+    @include btn-hover-standard;
+  }
+}
+
+@mixin circled-button {
+  background-color: var(--primary);
+  color: white;
+  padding: 0.3rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 1rem 1rem rgba(rgb(136, 136, 153), 0.3);
+
+  &:hover {
+    @include btn-hover-standard;
+  }
+  &:active {
+    background-color: var(--primary-dark);
+    outline: none;
+  }
+}
+
+@mixin conditionalOpen {
+  -webkit-animation: conditionalOpen 0.5s normal forwards ease-in-out;
+  -moz-animation: conditionalOpen 0.5s normal forwards ease-in-out;
+  animation: conditionalOpen 0.5s normal forwards ease-in-out;
+  -webkit-transform-origin: 100% 0%;
+  -moz-transform-origin: 100% 0%;
+  transform-origin: 100% 0%;
+}
+
+@-webkit-keyframes conditionalOpen {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@-moz-keyframes conditionalOpen {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes conditionalOpen {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}

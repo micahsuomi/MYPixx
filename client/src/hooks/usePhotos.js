@@ -1,22 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getPhotos } from '../redux/actions/photoActions';
-
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function usePhotos() {
-    const photos = useSelector(state => state.photos.photos);
-    // const dispatch = useDispatch()
+  const photos = useSelector((state) => state.photos.photos);
+  // const dispatch = useDispatch()
 
+  const [data, setData] = useState([]);
+  const [err, setErr] = useState(null);
 
-    const [data, setData] = useState([]);
-    const [err, setErr] = useState(null)
+  useEffect(() => {
+    setData(photos);
+  }, [photos, err]);
 
-   
-   
-    useEffect(() => {
-        setData(photos);
-    }, [photos, err])
-
-    
-    return [err, data]
+  return [err, data];
 }

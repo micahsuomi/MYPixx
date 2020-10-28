@@ -1,63 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
+import {
+  PullToRefresh,
+  PullDownContent,
+  ReleaseContent,
+  RefreshContent,
+} from "react-js-pull-to-refresh";
 
-import { useSelector, useDispatch } from 'react-redux';
-import usePhotos from '../../hooks/usePhotos';
-import { NavLink } from 'react-router-dom';
-import PhotoItem from '../../components/PhotoItem/index';
-import ReactPaginate from 'react-paginate';
-import { PullToRefresh } from "react-js-pull-to-refresh";
-import { PullDownContent, ReleaseContent, RefreshContent } from "react-js-pull-to-refresh";
-import AddPhotoButton from '../../components/AddPhotoButton/index';
-import AddPopup from '../../components/AddPopup/index';
-import EditPopup from '../../components/EditPopup/index';
-import ErrorLoading from '../../components/ErrorLoading/index';
-import PhotosLoading from '../../components/PhotosLoading/index';
-import './style.css';
+import usePhotos from "../../hooks/usePhotos";
+import PhotoItem from "../../components/PhotoItem/index";
+import AddPhotoButton from "../../components/AddPhotoButton/index";
+import AddPopup from "../../components/AddPopup/index";
+import EditPopup from "../../components/EditPopup/index";
+import ErrorLoading from "../../components/ErrorLoading/index";
+import PhotosLoading from "../../components/PhotosLoading/index";
+import Pagination from "../../components/Pagination";
 
+import "./style.css";
 
+const PhotoList = (props) => {
+  // console.log('coming from photos', props.isAuthenticated)
+  const isLoading = useSelector((state) => state.photos.isLoading);
+  const errMessage = useSelector((state) => state.photos.err);
 
-const PhotoList = (props) => {   
-    // console.log('coming from photos', props.isAuthenticated)
-    const isLoading = useSelector(state => state.photos.isLoading);
-    const errMessage = useSelector(state => state.photos.err)
+  let {
+    closePopup,
+    refreshPage,
+    isErrorShowing,
+    isAuthenticated,
+    isPopupOpen,
+    isEditPopupOpen,
+    likePhoto,
+    isUserPage,
+    userProfile,
+  } = props;
 
-    let { closePopup, 
-        refreshPage,
-        isErrorShowing,
-        isAuthenticated,
-        isPopupOpen,
-        isEditPopupOpen,
-        likePhoto,
-        isUserPage,
-        userProfile
+  const dispatch = useDispatch();
+  const [err, photos] = usePhotos([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [photosPerPage, setPhotosPerPage] = useState(9);
 
-    } = props;
+  //get current books
+  const indexLastPhoto = currentPage * photosPerPage;
+  const indexFirstPhoto = indexLastPhoto - photosPerPage;
+  const currentPhotos = photos?.slice(indexFirstPhoto, indexLastPhoto);
+  const [showPullToRefresh, setShowPullToRefresh] = useState(false);
 
-    const dispatch = useDispatch()
-    const [err, photos] = usePhotos([])
-    const [isPhotoLoaded, setIsPhotoLoaded] = useState(false);
-    const [offset, setOffset] = useState(0);
-    const [perPage, setPerPage] = useState(10);
-    const [pageCount, setPageCount] = useState(0);
-    const [currentPage, setCurrentPage] = useState(0);
-    const [isPageLoading, setIsPageLoading] = useState(true);
-    const [showPagination, setShowPagination] = useState(true);
-    const [showPullToRefresh, setShowPullToRefresh] = useState(false);
+  // const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
+  // console.log(isAuthenticated)
+  //   useEffect(() => {
+  //     dispatch(getPhotos())
+  //     setIsPhotoLoaded(true)
+  //     // props.getPhotos()
+  //   })
 
-    // const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
-    // console.log(isAuthenticated)
-    //   useEffect(() => {
-    //     dispatch(getPhotos())
-    //     setIsPhotoLoaded(true)
-    //     // props.getPhotos()
-    //   })
+  // useEffect(() => {
+  //      dispatch(getPhotos())
 
-    // useEffect(() => {
-    //      dispatch(getPhotos())
+  //    }, [dispatch]);
 
-    //    }, [dispatch]);
-
-   /*
+  /*
       let maxWidth = 500;
       let slice
       //if the screen is not a mobile screen
@@ -87,142 +90,101 @@ const PhotoList = (props) => {
         
       }*/
 
-      
+  const onRefresh = () => {
+    refreshPage();
+    return new Promise((resolve) => {
+      setTimeout(resolve, 2000);
+    });
+  };
+  // useEffect(() => {
+  //     isUserPage && userProfile ? props.history.push('/user') : console.log('is photo page')
+  // })
 
-    const handlePageClick = (e) => {
-          console.log('working barely!!!')
-          const selectedPage = e.selected;
-          console.log(selectedPage)
-          handlePageClick(selectedPage)
-          console.log('selected page from photolist', selectedPage)
-    }
-  
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-    const onRefresh = () => {
-        refreshPage()
-        return new Promise((resolve) => {
-            setTimeout(resolve, 2000);
+  const photoList = currentPhotos.map((photo) => (
+    <PhotoItem
+      key={photo._id}
+      id={photo._id}
+      name={photo.name}
+      image={photo.image}
+      description={photo.description}
+      author={photo.author.name}
+      authorId={photo.author.id}
+      authorImg={photo.author.avatar}
+      likes={photo.likes}
+      comments={photo.comments}
+      likePhoto={(props) => likePhoto()}
+      {...props}
+    />
+  ));
 
-        });
-    }
-    // useEffect(() => {
-    //     isUserPage && userProfile ? props.history.push('/user') : console.log('is photo page')
-    // })
-   
-        const photoList = photos.map((photo) => (
-            <PhotoItem key={photo._id}
-                       id={photo._id}
-                       name={photo.name}
-                       image={photo.image}
-                       description={photo.description}
-                       author={photo.author.name}
-                       authorId={photo.author.id}
-                       authorImg={photo.author.avatar}
-                       likes={photo.likes}
-                       comments={photo.comments}
-                       likePhoto={(props) => likePhoto()}
-                       {...props} />
-        ))
-       
-        return (
-            <div className="photo-gallery__container">
-                
-                {
-                    isLoading && !isErrorShowing ? 
-                <div>
-                
-                <PullToRefresh
-                pullDownContent={<PullDownContent />}
-                releaseContent={<ReleaseContent />}
-                refreshContent={<RefreshContent />}
-                pullDownThreshold={200}
-                onRefresh={onRefresh}
-                triggerHeight={50}
-                backgroundColor='rgb(247, 239, 239)'
-                startInvisible={true}
-                className="pull-to-refresh"
-                >
-                <div style={{mieight: '150vh', textAlign: 'center', backgroundColor: 'rgb(247, 239, 239)'}}>
-                    {
-                        showPullToRefresh ?
-                        <div className="pull-to-refresh__wrapper">
-                        <p>Pull To Refresh</p>
-                        <i class="fas fa-chevron-down"></i>
-                        </div>
-                        : null
-                    }
-                    
-                
-                    <ReactPaginate
-                    previousLabel={"prev"}
-                    nextLabel={"next"}
-                    breakLabel={"..."}
-                    breakClassName={"break-me"}
-                    pageCount={pageCount}
-                    perPage={perPage}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    onPageChange={handlePageClick}
-                    containerClassName={"pagination"}
-                    subContainerClassName={"pages pagination"}
-                    activeClassName={"active"}
-                    
-                    /> 
-                
-                 
-              
-           {
-           isAuthenticated ? 
-            <AddPhotoButton />
-           : 
-              <h3 className="login-msg"><NavLink to="/login">Login</NavLink> to Upload Your Pictures</h3>
-              }
-
-               {
-                   isPopupOpen ?
-                    <AddPopup closePopup={closePopup}/>
-                   :
-                   null
-               }
-
-               {
-                   isEditPopupOpen ?
-                    <EditPopup closePopup={closePopup}/>
-                   :
-                   null
-               }
-     
-               <div>
-                   <div className="photo-gallery__wrapper">
-                        {photoList}
-                   </div>
-                 <div>
-          
-               </div>
-               </div>
-        
+  return (
+    <div className="photo-gallery__container">
+      {isLoading && !isErrorShowing ? (
+        <div>
+          <PullToRefresh
+            pullDownContent={<PullDownContent />}
+            releaseContent={<ReleaseContent />}
+            refreshContent={<RefreshContent />}
+            pullDownThreshold={200}
+            onRefresh={onRefresh}
+            triggerHeight={50}
+            backgroundColor="rgb(247, 239, 239)"
+            startInvisible={true}
+            className="pull-to-refresh"
+          >
+            <div
+              style={{
+                mieight: "150vh",
+                textAlign: "center",
+                backgroundColor: "rgb(247, 239, 239)",
+              }}
+            >
+              {showPullToRefresh ? (
+                <div className="pull-to-refresh__wrapper">
+                  <p>Pull To Refresh</p>
+                  <i class="fas fa-chevron-down"></i>
                 </div>
-                </PullToRefresh>     
-                    </div>
-                    
-                    :
-                    
-                    <div>
-                        {
-                            isLoading && isErrorShowing ?
-                            <ErrorLoading refreshPage={refreshPage} />
-                            :
-                           <PhotosLoading />
-                        }
-                    </div>
-                }
-       </div>
-        )
-    
-}
+              ) : null}
 
+              <Pagination
+                itemsPerPage={photosPerPage}
+                totalItems={photos?.length}
+                currentPage={currentPage}
+                paginate={paginate}
+              />
 
- export default PhotoList;
+              {isAuthenticated ? (
+                <AddPhotoButton />
+              ) : (
+                <h3 className="login-msg">
+                  <NavLink to="/login">Login</NavLink> to Upload Your Pictures
+                </h3>
+              )}
 
+              {isPopupOpen ? <AddPopup closePopup={closePopup} /> : null}
 
-    
+              {isEditPopupOpen ? <EditPopup closePopup={closePopup} /> : null}
+
+              <div>
+                <div className="photo-gallery__wrapper">{photoList}</div>
+                <div></div>
+              </div>
+            </div>
+          </PullToRefresh>
+        </div>
+      ) : (
+        <div>
+          {isLoading && isErrorShowing ? (
+            <ErrorLoading refreshPage={refreshPage} />
+          ) : (
+            <PhotosLoading />
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default PhotoList;

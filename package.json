@@ -7,6 +7,8 @@
     "client-install": "npm install --prefix client",
     "start": "node server.js",
     "server": "nodemon server.js",
+    "watch-node": "nodemon dist/server.js",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"Sass,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-node\"",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
@@ -28,6 +30,8 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.7",
-    "multer": "^1.4.2"
+    "multer": "^1.4.2",
+    "node-sass": "^4.14.1",
+    "prettier": "^2.1.2"
   }
 }
