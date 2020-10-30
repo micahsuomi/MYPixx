@@ -6,17 +6,18 @@ import {
   ADD_COMMENT,
   EDIT_COMMENT,
   DELETE_COMMENT,
+  GET_COMMENTLIKES,
+  LIKE_COMMENT,
 } from "./types";
 
 import { tokenConfig } from "./authActions";
+import { showErrors } from "./errorActions";
 
 export const getComments = (id) => {
-  console.log('id is here', id)
   return async (dispatch) => {
     try {
       const url = `/api/v1/photos/${id}/comments`;
       const res = await axios.get(url);
-
       dispatch({
         type: GET_COMMENTS,
         payload: res.data,
@@ -30,7 +31,6 @@ export const getComments = (id) => {
 export const getComment = (photoId, commentId) => {
   return async (dispatch) => {
     try {
-      console.log("photo id", photoId, "comment id", commentId);
       const url = `/api/v1/photos/${photoId}/comments`;
       const res = await axios.get(url);
 
@@ -88,6 +88,37 @@ export const deleteComment = (photoId, commentId) => {
       });
     } catch (err) {
       console.log(err.response);
+    }
+  };
+};
+
+export const getCommentLikes = (photoId, commentId) => {
+  return async (dispatch) => {
+    try {
+      const url = `/api/v1/photos/${photoId}/comments/${commentId}/likes`;
+      const res = await axios.get(url);
+      dispatch({
+        type: GET_COMMENTLIKES,
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch(showErrors(err.response.data, err.response.status));
+    }
+  };
+};
+
+export const likeComment = (photoId, commentId, likedComment) => {
+  return async (dispatch, getState) => {
+    try {
+      const url = `/api/v1/photos/${photoId}/comments/${commentId}/like`;
+      const res = await axios.post(url, likedComment, tokenConfig(getState));
+      console.log("from actions", res);
+      dispatch({
+        type: LIKE_COMMENT,
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch(showErrors(err.response.data, err.response.status));
     }
   };
 };

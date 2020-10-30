@@ -11,6 +11,7 @@ const LikePhoto = (props) => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = props.match.params.id;
@@ -19,18 +20,21 @@ const LikePhoto = (props) => {
     } else {
       const likedPhoto = props.filteredPhoto;
       dispatch(likePhoto(likedPhoto, id));
-      props.history.push(`/photos/${id}`);
-      dispatch(getPhotos());
+
+      setTimeout(() => {
+        dispatch(getPhotos());
+      }, 1000);
     }
   };
 
+  /*
   let likedPhoto;
   if (isAuthenticated) {
     likedPhoto = props.filteredPhoto.likes.some((like) => like._id === user.id);
   }
 
   isAuthenticated &&
-    props.filteredPhoto.likes.some((like) => like._id === user.id);
+    props.filteredPhoto.likes.some((like) => like._id === user.id);*/
   return (
     <div>
       <form className="like-container" onSubmit={handleSubmit}>

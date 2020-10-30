@@ -1,15 +1,18 @@
-import { $CombinedState } from "redux";
 import {
   GET_COMMENTS,
   GET_COMMENT,
   ADD_COMMENT,
   EDIT_COMMENT,
   DELETE_COMMENT,
+  GET_COMMENTLIKES,
+  LIKE_COMMENT,
 } from "../actions/types";
 
 const initialState = {
   comments: [],
   comment: {},
+  commentLikes: [],
+  isCommentLiked: false,
   isLoading: false,
   err: null,
 };
@@ -23,7 +26,6 @@ export default function (state = initialState, action) {
       };
     case GET_COMMENT:
     case EDIT_COMMENT:
-      console.log("from reducer", action.payload);
       return {
         ...state,
         comment: action.payload,
@@ -37,6 +39,20 @@ export default function (state = initialState, action) {
       return {
         ...state,
       };
+    case LIKE_COMMENT:
+      console.log("from reducer likes", action.payload);
+      return {
+        ...state,
+        comments: [...state.comments],
+        comment: action.payload,
+      };
+    case GET_COMMENTLIKES:
+      return {
+        ...state,
+        commentLikes: action.payload,
+        // isCommentLiked: !state.isCommentLiked
+      };
+
     default:
       return state;
   }

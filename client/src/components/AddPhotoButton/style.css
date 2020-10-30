@@ -1,9 +1,3 @@
-.add-photo-link__container {
-  padding: 1rem;
-  display: flex;
-  justify-content: flex-start;
-  width: 100vw;
-}
 
 .add-photo-link {
   color: var(--primary);
@@ -14,7 +8,7 @@
   display: flex;
   align-items: center;
   border: 2px solid var(--primary);
-  border-radius: 10px;
+  border-radius: 50px;
   box-shadow: 0 1rem 2rem rgba(179, 170, 170, 0.5);
   margin-left: 1rem;
 }

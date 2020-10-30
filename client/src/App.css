@@ -7,8 +7,8 @@
 :root {
   --primary: #764ba2;
   --primary-dark: #57327c;
-  --primary:  rgb(236, 8, 103);
-  --primary-dark:  rgb(163, 20, 80);
+  --primary: rgb(236, 8, 103);
+  --primary-dark: rgb(163, 20, 80);
   --secondary: #f09819;
   --secondary-dark: #d68719;
   --nav-hover: #f5d8af;

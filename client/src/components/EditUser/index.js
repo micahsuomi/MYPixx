@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
+  getUsers,
   getUser,
-  loadEditUser,
   updateUser,
 } from "../../redux/actions/userActions";
+import {
+  getPhotos
+} from "../../redux/actions/photoActions";
+
 import "./style.css";
 
 const EditUser = (props) => {
@@ -21,26 +24,31 @@ const EditUser = (props) => {
   });
   const dispatch = useDispatch();
   const loadedEditUser = useSelector((state) => state.users.user);
+  // const [err, loadedUser] = useUser();
   const [photoLoaded, setPhotoLoaded] = useState(false);
   const [isImageEditing, setIsImageEditing] = useState(false);
   const [updatedImage, setUpdatedImage] = useState(null);
   const [previewSource, setPreviewSource] = useState(null);
   const [fileInput, setFileInput] = useState(null);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile] = useState(null);
   const [isImageChanged, setIsImageChanged] = useState(false);
-
+  const id = props.match.params.id;
   const handleSubmit = (e) => {
     e.preventDefault();
-    const id = props.match.params.id;
     if (isImageChanged) {
       user.avatar = previewSource;
     }
-    console.log(user);
+    console.log(user)
     dispatch(updateUser(id, user));
-    props.history.push(`/user/${id}`);
-    dispatch(getUser());
+    setTimeout(() => {
+      dispatch(getUsers());
+      dispatch(getPhotos())
+      props.history.push(`/user/${id}`);
+    }, 2000);
   };
 
+
+  
   const fileSelectedHandler = (e) => {
     console.log(e.target.files[0]);
     const file = e.target.files[0];
@@ -72,12 +80,11 @@ const EditUser = (props) => {
   };
 
   useEffect(() => {
-    dispatch(loadEditUser(props.match.params.id));
-  }, [dispatch]);
-
-  useEffect(() => {
-    setUser(loadedEditUser);
-  }, [dispatch]);
+    const foundUser = props.users.find((user) => {
+      return user._id === props.match.params.id
+    })
+    setUser(foundUser);
+  }, []);
 
   const handleChange = (e) => {
     let { name, value } = e.target;
@@ -85,7 +92,6 @@ const EditUser = (props) => {
   };
 
   let { name, email, avatar, bio } = user;
-  let id = props.match.params.id;
   if (avatar === undefined || avatar === "") {
     avatar =
       "https://i2.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1";

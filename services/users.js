@@ -1,7 +1,26 @@
 const User = require("../models/User");
 
-function findOneUser() {}
+function findAllUsers() {
+    return User.find()
+        .select("-password")
+        .populate("photos")
+        .exec();
+}
+
+async function findUserById(userId) {
+    return User.findById(userId)
+        .select("-password")
+        .populate("photos")
+        .exec()
+        .then((user) => {
+            if (!user) {
+                throw new Error(`User ${userId} not found`)
+            }
+            return user
+        })
+}
 
 module.exports = {
-  findOneUser,
+    findAllUsers,
+    findUserById
 };

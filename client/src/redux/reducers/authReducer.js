@@ -38,7 +38,6 @@ export default function (state = initialState, action) {
         user: null,
         isAuthenticated: false,
         isLoading: false,
-        errorMsg: action.payload,
       };
     case USER_LOADING:
       return {

@@ -1,124 +1,127 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
+import {
+  getComment,
+  getComments,
+  getCommentLikes,
+  likeComment,
+} from "../../redux/actions/commentActions";
 import CommentLike from "../CommentLike";
+
 import "../LikePhoto/style.css";
 import "./style.css";
 
-class LikeComment extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      likes: [],
-      isLikesShowing: false,
-    };
-  }
-  handleSubmit = (e) => {
+const LikeComment = ({ photoId, commentId, likes, history, match }, props) => {
+  const dispatch = useDispatch();
+
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector((state) => state.auth.user);
+  const likedComment = useSelector((state) => state.comments.comment);
+  const commentLikes = useSelector((state) => state.comments.commentLikes);
+
+  // const isCommentLiked = useSelector((state) => state.comments.isCommentLiked);
+  const [isLikesShowing, setIsLikeShowing] = useState(false);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (!this.props.user) {
-      this.props.history.push("/login");
+    if (!isAuthenticated && !user) {
+      history.push("/login");
     } else {
-      const url = `/api/v1/photos/${this.props.photoId}/comments/${this.props.commentId}/like`;
+      if (isAuthenticated && user) {
+        dispatch(getComment(match.params.id, commentId));
+        dispatch(likeComment(photoId, commentId, likedComment));
 
-      if (this.props.user) {
-        console.log("here");
-
-        const likedComment = this.props.foundComment;
-        console.log(likedComment);
-        axios
-          .post(url, likedComment, this.props.tokenConfig())
-          .then((res) => {
-            console.log(res.data, "liked");
-          })
-          .catch((err) => console.log(err));
-        console.log("likedcomment", likedComment);
-        this.props.updateLikesComment(likedComment);
-
-        // this.props.history.push(`/photos/${this.props.photoId}/comments`)
+        setTimeout(() => {
+          dispatch(getComments(photoId));
+          dispatch(getCommentLikes(photoId, commentId));
+        }, 1500);
       }
     }
   };
 
-  loadLikes = () => {
-    // const id = this.props.match.params.id
-    let { photoId, commentId } = this.props;
-    const url = `/api/v1/photos/${photoId}/comments/${commentId}/likes`;
-    axios.get(url).then((res) =>
-      // console.log('loading comment likes', res.data)
-      this.setState({
-        likes: res.data,
-        isLikesShowing: true,
-      })
-    );
+  // console.log('likes', likes.lenght)
+
+  useEffect(() => {
+    dispatch(getCommentLikes(photoId, commentId));
+  }, [dispatch]);
+
+  const showCommentLikes = () => {
+    setIsLikeShowing(true);
+  };
+  const closeCommentLikes = () => {
+    setIsLikeShowing(false);
   };
 
-  closeLikes = () => {
-    this.setState({
-      isLikesShowing: false,
-    });
-  };
+  // console.log('like here', likes)
+  const formattedLikes = commentLikes.map((like) => (
+    <CommentLike
+      key={like._id}
+      userId={like._id}
+      avatar={like.avatar}
+      name={like.name}
+    />
+  ));
 
-  render() {
-    let { photoId, commentId, user } = this.props;
-    const { likes, isLikesShowing } = this.state;
-    let likedPhotoComment;
-    if (this.props.user) {
-      likedPhotoComment = this.props.likes.some((like) => like === user._id);
+  // console.log('this should update', likedComment)
+  let likedPhotoComment;
+  useEffect(() => {
+    if (isAuthenticated) {
+      likedPhotoComment = likedComment.likes.some(
+        (like) => like._id === user._id
+      );
     }
-    const formattedLikes = likes.map((like) => (
-      <CommentLike
-        key={like._id}
-        userId={like._id}
-        avatar={like.avatar}
-        name={like.name}
-      />
-    ));
+  }, [likedPhotoComment]);
+  console.log(likedPhotoComment);
 
-    return (
-      <div>
-        <div className="like-comment__form__container">
-          <form className="like-container" onSubmit={this.handleSubmit}>
-            {user && likedPhotoComment ? (
-              <button className="like-comment__btn grow">
-                <i className="fas fa-heart full-heart"></i> Unlike
-              </button>
-            ) : (
-              <button className="like-comment__btn grow">
-                <i className="far fa-heart empty-heart"></i> Like
-              </button>
-            )}
-            {this.props.likes.length > 0 ? (
-              <NavLink
-                to={`/photos/${photoId}/comments/${commentId}/likes`}
-                className="likes-number grow"
-                onClick={this.loadLikes}
-              >
-                {this.props.likes.length}
-                {this.props.likes.length === 1 ? (
-                  <span className="like-comments-num"> Like</span>
-                ) : (
-                  <span> Likes</span>
-                )}
-              </NavLink>
-            ) : null}
-          </form>
-          {isLikesShowing ? (
-            <div className="like-comments__container">
-              <div className="likes-comments__header">
-                <NavLink
-                  to={`/photos/${this.props.photoId}/comments/`}
-                  onClick={this.closeLikes}
-                >
-                  <i className="fas fa-times-circle grow"></i>
-                </NavLink>
-              </div>
-              <div className="likes-comments__body">{formattedLikes}</div>
-            </div>
-          ) : null}
-        </div>
-      </div>
-    );
+  if (!likedComment) {
+    return <p>loading...</p>;
   }
-}
+  return (
+    <div className="like-comment__form__container">
+      <form className="like-container" onSubmit={handleSubmit}>
+        {isAuthenticated && likedPhotoComment ? (
+          // && likedComment.likes.some(
+          // (like) => like._id === user._id)
+          <button className="like-comment__btn grow">
+            <i className="fas fa-heart full-heart"></i> Unlike
+          </button>
+        ) : (
+          <button className="like-comment__btn grow">
+            <i className="far fa-heart empty-heart"></i> Like
+          </button>
+        )}
+        {likes.length > 0 ? (
+          <NavLink
+            to={`/photos/${photoId}/comments/${commentId}/likes`}
+            className="likes-number grow"
+            onClick={showCommentLikes}
+          >
+            {likes.length}
+            {likes.length === 1 ? (
+              <span className="like-comments-num"> Like</span>
+            ) : (
+              <span> Likes</span>
+            )}
+          </NavLink>
+        ) : null}
+      </form>
+      {isLikesShowing ? (
+        <div className="like-comments__container">
+          <div className="likes-comments__header">
+            <NavLink
+              to={`/photos/${photoId}/comments/`}
+              onClick={closeCommentLikes}
+            >
+              <i className="fas fa-times-circle grow"></i>
+            </NavLink>
+          </div>
+          <div className="likes-comments__body">{formattedLikes}</div>
+        </div>
+      ) : null}
+    </div>
+  );
+};
 
 export default LikeComment;

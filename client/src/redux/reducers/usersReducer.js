@@ -1,7 +1,6 @@
 import {
   GET_USERS,
   GET_USER,
-  LOADEDIT_USER,
   EDIT_USER,
   LOAD_ERR,
 } from "../actions/types";
@@ -35,7 +34,6 @@ export default function (state = initialState, action) {
         errorMsg: action.payload,
         isErrorShowing: true,
       };
-    case LOADEDIT_USER:
     case EDIT_USER:
       return {
         ...state,

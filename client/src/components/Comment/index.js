@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import {
   getComments,
@@ -11,13 +11,19 @@ import EditComment from "../EditComment";
 import LikeComment from "../LikeComment/index";
 
 import "./style.css";
+import { useEffect } from "react";
 
 const Comment = (props) => {
-  const { photoId, commentId } = props;
+  // console.log(props)
+  const { photoId, commentId, likes, history, match } = props;
+
   const dispatch = useDispatch();
+  /*
+  const foundComment = useSelector((state) => state.comments.comment);
+  
   const [comment, setComment] = useState({
     text: "",
-  });
+  });*/
   const [isEditing, setIsEditing] = useState(false);
 
   const deleteOnClick = () => {
@@ -26,6 +32,19 @@ const Comment = (props) => {
       dispatch(getComments(photoId));
     }, 2000);
   };
+
+  useEffect(() => {
+    dispatch(getComment(match.params.id, commentId));
+  }, [dispatch]);
+
+  /*
+  useEffect(() => {
+    getComment(photoId, commentId)
+ }, [foundComment]);
+
+  useEffect(() => {
+      setComment(foundComment)
+  }, [foundComment]);*/
 
   const openEditComment = () => {
     setIsEditing(true);
@@ -40,9 +59,6 @@ const Comment = (props) => {
     props.closeEditingComment(isEditing);
   };
 
-  const updateLikesComment = (likedComment) => {
-    props.updateLikesComment(likedComment);
-  };
   let {
     avatar,
     authorId,
@@ -103,12 +119,12 @@ const Comment = (props) => {
           <div className="likephoto-comments__container">
             <div>
               <LikeComment
-                foundComment={comment}
-                tokenConfig={() => props.tokenConfig()}
+                photoId={photoId}
+                commentId={commentId}
+                likes={likes}
                 user={props.user}
-                token={props.token}
-                updateLikesComment={updateLikesComment}
-                {...props}
+                history={history}
+                match={match}
               />
             </div>
           </div>

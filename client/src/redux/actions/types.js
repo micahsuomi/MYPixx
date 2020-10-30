@@ -12,6 +12,8 @@ export const GET_COMMENT = "GET_COMMENT";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const EDIT_COMMENT = "EDIT_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
+export const GET_COMMENTLIKES = "GET_COMMENTLIKES";
+export const LIKE_COMMENT = "LIKE_COMMENT";
 
 //auth types
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
@@ -26,6 +28,9 @@ export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const AUTH_ERR = "AUTH_ERR";
 export const GET_USERS = "GET_USERS";
 export const GET_USER = "GET_USER";
-export const LOADEDIT_USER = "LOADEDIT_USER";
 export const EDIT_USER = "EDIT_USER";
 export const LOAD_ERR = "LOAD_ERR";
+
+//error types
+export const SHOW_ERRORS = "SHOW_ERRORS";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";

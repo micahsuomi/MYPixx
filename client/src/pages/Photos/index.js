@@ -154,7 +154,7 @@ const PhotoList = (props) => {
                 currentPage={currentPage}
                 paginate={paginate}
               />
-
+              <div className="add-photo-link__container">
               {isAuthenticated ? (
                 <AddPhotoButton />
               ) : (
@@ -162,6 +162,7 @@ const PhotoList = (props) => {
                   <NavLink to="/login">Login</NavLink> to Upload Your Pictures
                 </h3>
               )}
+              </div>
 
               {isPopupOpen ? <AddPopup closePopup={closePopup} /> : null}
 

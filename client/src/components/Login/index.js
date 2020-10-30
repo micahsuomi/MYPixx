@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 import { login } from "../../redux/actions/authActions";
-import { NavLink } from "react-router-dom";
+import { clearErrors } from "../../redux/actions/errorActions";
+
 import "./style.css";
 
 const Login = (props) => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const errorMsg = useSelector((state) => state.auth.errorMsg);
+  const errorMsg = useSelector((state) => state.errors.msg.msg);
   const dispatch = useDispatch();
 
   const [state, setState] = useState({
@@ -15,15 +17,19 @@ const Login = (props) => {
     password: "",
   });
 
+  const { email, password } = state;
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    let { email, password } = state;
     const user = {
       email,
       password,
     };
     dispatch(login(user));
-    //props.authenticateUser(user)
+
+    setTimeout(() => {
+      dispatch(clearErrors());
+    }, 4000);
   };
 
   const handleChange = (e) => {
@@ -36,6 +42,7 @@ const Login = (props) => {
 
   useEffect(() => {
     if (isAuthenticated) {
+      dispatch(clearErrors());
       props.history.push("/photos");
     }
   });
@@ -43,7 +50,7 @@ const Login = (props) => {
   return (
     <div className="login-form__container">
       <form onSubmit={handleSubmit} className="login-form">
-        <h2>Login</h2>
+        <h3>Sign in</h3>
 
         <p className="warning-msg">{errorMsg}</p>
         <div className="input-topics">
@@ -51,7 +58,7 @@ const Login = (props) => {
           <input
             type="email"
             name="email"
-            value={state.email}
+            value={email}
             placeholder="email"
             onChange={handleChange}
           />
@@ -62,7 +69,7 @@ const Login = (props) => {
           <input
             type="password"
             name="password"
-            value={state.password}
+            value={password}
             placeholder="password"
             onChange={handleChange}
           />
@@ -72,7 +79,7 @@ const Login = (props) => {
           <button className="btn-login">Login</button>
         </div>
         <p>
-          Don't have an account yet? <NavLink to="/register">Register</NavLink>{" "}
+          Don't have an account yet? <NavLink to="/register">Sign up</NavLink>{" "}
           here
         </p>
       </form>

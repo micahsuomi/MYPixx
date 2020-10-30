@@ -9,7 +9,7 @@ const Home = () => {
         <h1 className="title">
           MYP<span className="lowercase">ixx</span>
         </h1>
-        <h3 className="subtitle">A MERN Stack Social Photo Gallery App</h3>
+        <h3 className="subtitle">A Social Photo Gallery App</h3>
         <NavLink to="/photos" className="nav-gallery__link grow">
           View Gallery
         </NavLink>
