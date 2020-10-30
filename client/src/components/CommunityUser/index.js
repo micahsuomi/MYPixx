@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-const CommunityUser = ({ avatar, name, bio }) => {
+const CommunityUser = ({ avatar, name, bio, photos }) => {
   return (
     <div className="user-container">
       <div className="user-image__container">
@@ -17,6 +17,8 @@ const CommunityUser = ({ avatar, name, bio }) => {
       <h4 className="user-name">{name}</h4>
       <ul className="user-details">
         {bio === undefined || bio === "" ? null : <li>"{bio}"</li>}
+        {photos.length < 1 ? <li>No photos</li> : <li>{photos.length} {photos.length < 2 ? "photo" : "photos"}</li> }
+
       </ul>
     </div>
   );

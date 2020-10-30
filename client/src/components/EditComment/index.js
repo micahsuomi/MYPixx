@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import {
-  getComment,
-  editComment,
-} from "../../redux/actions/commentActions";
+import { getComment, editComment } from "../../redux/actions/commentActions";
 
 const EditComment = ({ photoId, commentId, closeEditComment }) => {
   const dispatch = useDispatch();
@@ -15,12 +12,10 @@ const EditComment = ({ photoId, commentId, closeEditComment }) => {
 
   useEffect(() => {
     dispatch(getComment(photoId, commentId));
-    console.log("fetch comment", foundComment);
   }, [dispatch]);
 
   useEffect(() => {
     setComment(foundComment);
-    console.log("comment is here", comment);
   }, [foundComment]);
 
   const handleChange = (e) => {

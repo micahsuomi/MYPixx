@@ -24,11 +24,12 @@ const Community = ({ users, photos }) => {
 
   sortedByLikes.length = 8;
   sortedByComments.length = 8;
+  console.log(users)
   return (
     <div className="about-container">
       <CommunityHeader />
       <div className="most-liked-photos__container">
-        <h4>Most Liked</h4>
+        <h4>Most Commented</h4>
         <div className="most-liked-photos__wrapper">
           {sortedByLikes.map((photo) => (
             <NavLink
@@ -48,7 +49,7 @@ const Community = ({ users, photos }) => {
       </div>
 
       <div className="most-liked-photos__container">
-        <h4>Most Commented</h4>
+        <h4>Most Liked</h4>
         <div className="most-liked-photos__wrapper">
           {sortedByComments.map((photo) => (
             <NavLink
@@ -78,9 +79,10 @@ const Community = ({ users, photos }) => {
                 name={user.name}
                 avatar={user.avatar}
                 bio={user.bio}
+                photos={user.photos}
               />
             </NavLink>
-          ))}
+          ))} 
         </div>
       </div>
     </div>

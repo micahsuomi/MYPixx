@@ -8,8 +8,8 @@ import "./style.css";
 
 const Register = (props) => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const errorMsg = useSelector((state) => state.auth.errorMsg);
-
+  const errorMsg = useSelector((state) => state.errors.msg.msg);
+  // console.log(errorMsg)
   const dispatch = useDispatch();
 
   const [state, setState] = useState({
@@ -47,7 +47,7 @@ const Register = (props) => {
   return (
     <div className="register-form__container">
       <form onSubmit={handleSubmit} className="register-form">
-        <h2>Register</h2>
+        <h3>Sign up</h3>
         <p className="warning-msg">{errorMsg}</p>
         <div className="input-topics">
           <label htmlFor="name">Full Name</label>
@@ -83,7 +83,7 @@ const Register = (props) => {
         </div>
 
         <p>
-          Have an account already? <NavLink to="/login">Login</NavLink>
+          Have an account already? <NavLink to="/login">Sign in</NavLink>
         </p>
         <div className="btn-save__wrapper">
           <button className="btn-register">Register</button>

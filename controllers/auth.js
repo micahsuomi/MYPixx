@@ -36,11 +36,13 @@ const login =
           //we set an expiration for the token
           { expiresIn: "30d" },
 
-          (err, token) => {
+          async (err, token) => {
             if (err) throw err;
 
             //we make a json file for token and user
             console.log("user is here", user);
+            await user.populate("photos")
+            .execPopulate()
             res.json({
               token,
               user: {

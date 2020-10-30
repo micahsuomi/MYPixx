@@ -12,9 +12,10 @@
 
 .nav-list {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   list-style: none;
+  width: 100vw;
 }
 
 .navbar-link {
@@ -53,7 +54,6 @@
   align-items: center;
   justify-content: center;
   color: whitesmoke;
-  margin-left: 28vw;
 }
 
 .grow {

@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const isAuthorized = require("../middleware/authorized");
 const User = require("../models/User");
 const Photo = require("../models/Photo");
+const UserService = require("../services/users");
 const multer = require("multer");
 const cloudinary = require("cloudinary");
 
@@ -86,10 +87,7 @@ const register = (req, res) => {
 //@ACCESS Public
 const findAll = async (req, res) => {
   try {
-    const user = await User.find()
-      .select("-password")
-      .populate({ path: "photos" })
-      .exec();
+    const user = await UserService.findAllUsers()
     res.json(user);
   } catch (err) {
     return res.status(404).json({ msg: "Not Found" });
@@ -99,48 +97,18 @@ const findAll = async (req, res) => {
 //@GET ROUTE /api/v1/user/:id
 //@DESC - finds  a single user
 //@ACCESS Public
-const findOne = (req, res) => {
-  let id = req.params.id;
-  User.findOne({ _id: id })
-    .populate("photos")
-    .exec((err, user) => {
-      if (err) {
-        return res.status(404).json({ msg: "Not Found" });
-      }
-      Photo.find()
-        .sort({ date: -1 })
-        .where("author.id")
-        .equals(user._id)
-        .exec((err, foundPhotos) => {
-          if (err) return res.status(404).json({ msg: "Not Found" });
-          for (const photo of foundPhotos) {
-            let {
-              _id,
-              author,
-              name,
-              image,
-              description,
-              createdAt,
-              likes,
-              comments,
-            } = photo;
-            user.photos.push({
-              _id,
-              author,
-              name,
-              image,
-              description,
-              createdAt,
-              likes,
-              comments,
-            });
-          }
-          res.json(user);
-        });
-    });
-};
+const findOne = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const user = await UserService.findUserById(userId)
+    res.json(user);
+  }
+  catch (err) {    
+    return res.status(404).json({ msg: "Not Found" });
+  }
+}
 
-//@PUT ROUTE /api/user/:id
+//@PUT ROUTE /api/v1/user/:id
 //@DESC - updates a user
 //@ACCESS Private
 const updateUser =
@@ -205,8 +173,8 @@ const updateUser =
   });
 
 module.exports = {
-  register: register,
-  findAll: findAll,
-  findOne: findOne,
-  updateUser: updateUser,
+  register,
+  findAll,
+  findOne,
+  updateUser,
 };

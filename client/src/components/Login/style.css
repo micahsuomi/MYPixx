@@ -1,5 +1,5 @@
 .login-form__container {
-  padding: 8rem 10rem;
+  padding: 5rem 10rem;
   background-color: rgb(243, 237, 237);
   width: 100vw;
   display: flex;
@@ -46,7 +46,6 @@ label {
   width: 20rem;
   padding: 0.6rem;
   font-size: 16px;
-  font-family: "Montserrat";
   border-radius: 3px;
   border: 1px solid lightgray;
   margin-top: 0.6rem;

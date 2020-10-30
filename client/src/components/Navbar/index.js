@@ -13,21 +13,21 @@ import "./style.css";
 const Navbar = () => {
   const state = useSelector((state) => state.auth);
 
-  let { isAuthenticated, user } = state;
+  const { isAuthenticated, user } = state;
 
   const [isClicked, setState] = useState(false);
 
-  let navList = ["nav-list"];
-  let navListOpen = ["nav-list open"];
+  const navList = ["nav-list"];
+  const navListOpen = ["nav-list open"];
 
-  let lineClassOne = ["line top"];
-  let lineClassOneActive = ["line top active"];
+  const lineClassOne = ["line top"];
+  const lineClassOneActive = ["line top active"];
 
-  let lineClassTwo = ["line middle"];
-  let lineClassTwoActive = ["line middle active"];
+  const lineClassTwo = ["line middle"];
+  const lineClassTwoActive = ["line middle active"];
 
-  let lineClassThree = ["line bottom"];
-  let lineClassThreeActive = ["line bottom active"];
+  const lineClassThree = ["line bottom"];
+  const lineClassThreeActive = ["line bottom active"];
 
   const toggle = () => {
     setState(!isClicked);

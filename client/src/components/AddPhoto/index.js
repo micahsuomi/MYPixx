@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import { addPhoto } from "../../redux/actions/photoActions";
+import { getUsers } from "../../redux/actions/userActions";
+
 import "./style.css";
 
 const AddPhoto = (props) => {
@@ -35,8 +37,8 @@ const AddPhoto = (props) => {
       description: text.description,
     };
 
-    console.log(newPhoto);
     dispatch(addPhoto(newPhoto));
+    dispatch(getUsers())
     props.history.push("/photos");
   };
 

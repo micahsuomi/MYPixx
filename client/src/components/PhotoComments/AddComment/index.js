@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { addComment } from "../../../redux/actions/commentActions";
+import { addComment, getComments } from "../../../redux/actions/commentActions";
 
 const AddComment = ({ photoId, closeCommentField, setCommentClose }, props) => {
   console.log(props);
@@ -15,7 +15,10 @@ const AddComment = ({ photoId, closeCommentField, setCommentClose }, props) => {
     let { text } = comment;
     const newComment = { text };
     dispatch(addComment(photoId, newComment));
-    setCommentClose();
+    setTimeout(() => {
+      dispatch(getComments(photoId));
+      setCommentClose();
+    }, 2000);
   };
 
   const handleChange = (e) => {

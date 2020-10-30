@@ -7,12 +7,12 @@ import "./style.css";
 
 const LikesList = (props) => {
   const [likes, setLikes] = useState([]);
+  const id = props.match.params.id;
 
-  useEffect = () => {
-    const id = props.match.params.id;
+  useEffect(() => {
     const url = `/api/v1/photos/${id}/likes`;
     axios.get(url).then((res) => setLikes(res.data));
-  };
+  }, []);
 
   const formattedLikes = likes.map((like) => (
     <Like
@@ -26,7 +26,7 @@ const LikesList = (props) => {
     <div className="likes-container">
       <div className="likes-wrapper">
         <div className="likes-header">
-          <NavLink to={`/photos/${this.props.match.params.id}`}>
+          <NavLink to={`/photos/${props.match.params.id}`}>
             <i className="fas fa-chevron-left fa-2x grow"></i>
           </NavLink>
         </div>

@@ -3,41 +3,63 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { getUser } from "../../redux/actions/userActions";
+import useUser from "../../hooks/useUser";
 import PhotoItem from "../../components/PhotoItem";
+
 import "./style.css";
 
 const User = (props) => {
   let { isAuthenticated } = props.user;
   const [isUserPage, setIsUserPage] = useState(false);
+  const [err, user] = useUser()
   const dispatch = useDispatch();
   const userProfile = useSelector((state) => state.users.user);
-  const userPhotos = useSelector((state) => state.users.user.photos);
   const isUserLoaded = useSelector((state) => state.users.isUserLoaded);
   const errorMsg = useSelector((state) => state.users.errorMsg);
   const isErrShowing = useSelector((state) => state.users.isErrShowing);
 
   const userId = props.match.params.id;
-
-  const fetchUserData = () => {
-    dispatch(getUser(userId));
-  };
+ 
+  /*
   useEffect(() => {
-    fetchUserData();
-  }, []);
-
+     dispatch(getUser(userId));
+   }, [dispatch]);*/
+/*
   const closePopup = () => {
     props.closePopup();
   };
 
   const refreshPage = () => {
     fetchUserData();
-  };
-  console.log(userPhotos);
-  const id = props.match.params.id;
-  let formattedPhotos;
+  };*/
+  
+  const foundUser = props.users.find((user) => {
+    return user._id === props.match.params.id
+  })
+  // console.log('found user', foundUser)
+  // console.log('user profile', user)
+  
+  let formattedPhotos = foundUser.photos.map((photo) => (
+    <PhotoItem
+      key={photo._id}
+      id={photo._id}
+      name={photo.name}
+      image={photo.image}
+      description={photo.description}
+      author={photo.author.name}
+      authorId={photo.author.id}
+      authorImg={photo.author.avatar}
+      likes={photo.likes}
+      comments={photo.comments}
+      isUserPage={isUserPage}
+      userProfile={userProfile}
+    />
+  ))
+  /*
+  let formattedPhotos
   useEffect(() => {
     isUserLoaded
-      ? (formattedPhotos = userPhotos.map((photo) => (
+      ? (formattedPhotos = userProfile.photos.map((photo) => (
           <PhotoItem
             key={photo._id}
             id={photo._id}
@@ -53,58 +75,51 @@ const User = (props) => {
             userProfile={userProfile}
           />
         )))
-      : fetchUserData();
-  }, []);
+      : dispatch(getUser(userId))
+  }, []);*/
 
-  if (isAuthenticated) {
-    let { name, email, bio } = props.user.user;
-    console.log(name, email, bio);
+
+    const { name, email, bio, avatar } = foundUser;
+  
+  if(!userProfile) {
+    return (
+      <h3>Not Foun</h3>
+
+    )
   }
   return (
     <div>
       <h1>user page</h1>
-      {isUserLoaded && !errorMsg ? (
+      { !errorMsg ? (
         <div>
-          {isAuthenticated && props.user.user.id === props.match.params.id ? (
             <div className="user-details__wrapper">
-              <h1>{props.user.user.name} Dashboard</h1>
-              <p>{props.user.user.email}</p>
+              <h1>{name} {isAuthenticated ? 'Dashboard' : ''}</h1>
+              <p>{email}</p>
               <div className="user-image-container">
-                {userProfile.avatar === undefined ||
-                userProfile.avatar === "" ? (
+                {avatar === undefined ||
+                avatar === "" ? (
                   <img
                     src="https://i2.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1"
-                    alt={props.user.user.name}
+                    alt={name}
                   />
                 ) : (
-                  <img src={userProfile.avatar} alt={userProfile.name} />
+                  <img src={avatar} alt={name} />
                 )}
               </div>
-              <p>{userProfile.bio}</p>
-              <NavLink to={`/edituser/${id}`} className="edit-user__link">
+              <p>{bio}</p>
+              {isAuthenticated && props.user.user.id === props.match.params.id && 
+              <div>
+              <NavLink to={`/edituser/${userId}`} className="edit-user__link">
                 <button className="profile-update__btn grow">
                   Update Profile
                 </button>
               </NavLink>
-            </div>
-          ) : (
-            <div className="user-details__wrapper">
-              <h1>{userProfile.name}</h1>
-              <div className="user-image-container">
-                {userProfile.avatar === undefined ||
-                userProfile.avatar === "" ? (
-                  <img
-                    src="https://i2.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1"
-                    alt={userProfile.name}
-                  />
-                ) : (
-                  <img src={userProfile.avatar} alt={userProfile.name} />
-                )}
               </div>
-              <p>{userProfile.bio}</p>
-            </div>
-          )}
-          {props.isPopupOpen ? (
+            
+              }
+          </div>
+
+          {/* {props.isPopupOpen ? (
             <div className="photo-added__popup__container">
               <div className="photo-added__popup">
                 <div className="photo-added__popup__header">
@@ -118,25 +133,25 @@ const User = (props) => {
                 </div>
               </div>
             </div>
-          ) : null}
+          ) : null}  */}
           <div className="photo-gallery__container">
             <h1>User Gallery</h1>
-            {userPhotos.length < 1 ? (
+            {foundUser.photos.length < 1 ? (
               <h1>This user has not posted any pictures</h1>
             ) : (
-              <h4>{userPhotos.length} photos</h4>
-            )}
+              <h4>{foundUser.photos.length} photos</h4>
+            )} 
             <div className="photo-gallery__wrapper">{formattedPhotos}</div>
           </div>
         </div>
       ) : (
         <div>
-          {!isUserLoaded && errorMsg ? (
+          {/* {!isUserLoaded && errorMsg ? (
             <div className="error-container" style={{ height: "100vh" }}>
               <h3>Something went wrong. Refresh the page</h3>
               <button onClick={refreshPage} className="btn-refresh grow">
                 <i className="fas fa-redo-alt fa-2x"></i>
-              </button>
+              </button> 
             </div>
           ) : (
             <div className="loading-container" style={{ height: "100vh" }}>
@@ -145,9 +160,9 @@ const User = (props) => {
                 <div></div>
               </div>
             </div>
-          )}
-        </div>
-      )}
+          )} */}
+        </div> 
+      )} 
     </div>
   );
 };

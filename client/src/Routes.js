@@ -39,16 +39,6 @@ export const Routes = () => {
   const user = useSelector((state) => state.auth);
   const loadedUser = useSelector((state) => state.users.user);
 
-  console.log(users);
-
-  // console.log(user, isAuthenticated, isLoading)
-  // console.log(users)
-  // const token  = localStorage.getItem('token');
-  // const [initialToken, setToken] = useState(null)
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [user, setUser] = useState(null);
-  // const [ photos, setPhotos ] = useState([]);
   const [msg, setMsg] = useState("");
   const [isErrorShowing, setIsErrorShowing] = useState(false);
   const [isUserPage, setIsUserPage] = useState(false);
@@ -63,19 +53,7 @@ export const Routes = () => {
     dispatch(getUsers());
   }, [dispatch]);
 
-  const tokenConfig = () => {
-    const token = localStorage.getItem("token");
-    const config = {
-      headers: {
-        "Content-type": "application/json",
-      },
-    };
-    if (token) {
-      config.headers["x-auth-token"] = token;
-      // console.log('I am calling token config here setting headers', token)
-    }
-    return config;
-  };
+  
 
   const closePopup = () => {
     setIsPopupOpen(false);
@@ -118,7 +96,6 @@ export const Routes = () => {
               id={props.match.params.id}
               users={users}
               user={user}
-              tokenConfig={tokenConfig}
               {...props}
             />
           )}
@@ -142,7 +119,7 @@ export const Routes = () => {
         <Route
           path="/editphoto/:id"
           component={(props) => (
-            <EditPhoto photos={photos} tokenConfig={tokenConfig} {...props} />
+            <EditPhoto photos={photos} {...props} />
           )}
         />
 
@@ -165,20 +142,19 @@ export const Routes = () => {
               photos={photos}
               user={user}
               isAuthenticated={isAuthenticated}
-              tokenConfig={tokenConfig}
               {...props}
             />
           )}
         />
 
-        <Route
+        {/* <Route
           path="/photos/:id/like"
           component={(props) => (
             <LikePhoto photos={photos} user={user} {...props} />
           )}
-        />
+        /> */}
 
-        <Route
+        {/* <Route
           path="/photos/:id/comments/:id/like"
           component={(props) => (
             <LikeComment
@@ -188,7 +164,7 @@ export const Routes = () => {
               {...props}
             />
           )}
-        />
+        /> */}
 
         <Route
           path="/addphoto"
@@ -211,7 +187,6 @@ export const Routes = () => {
               users={users}
               isAuthenticated={isAuthenticated}
               isUserPage={isUserPage}
-              tokenConfig={tokenConfig}
               userProfile={userProfile}
               {...props}
             />

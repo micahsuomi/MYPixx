@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import useComments from "../../hooks/useComments";
-import { getComments, addComment } from "../../redux/actions/commentActions";
+import { getComments } from "../../redux/actions/commentActions";
 import Comment from "../Comment/index";
 import AddComment from "./AddComment";
 
@@ -33,8 +33,8 @@ const Comments = (props) => {
   };
 
   const setCommentClose = () => {
-    console.log("I am calling from here");
     props.history.push(`/photos/${photoId}/comments`);
+    dispatch(getComments(photoId));
     closeCommentField();
     setComment({ text: "" });
   };
@@ -55,10 +55,6 @@ const Comments = (props) => {
     dispatch(getComments(photoId));
   };
 
-  const updateLikesComment = () => {
-    dispatch(getComments(photoId));
-  };
-
   const { isAuthenticated } = props;
   const formattedComments = comments.map((comment) => (
     <Comment
@@ -73,13 +69,12 @@ const Comments = (props) => {
       user={props.user}
       photoId={props.match.params.id}
       history={props.history}
+      match={props.match}
       isAuthenticated={props.isAuthenticated}
-      tokenConfig={props.tokenConfig}
       deleteComment={deleteComment}
       editingComment={editingComment}
       closeEditingComment={closeEditingComment}
       updateComment={updateComment}
-      updateLikesComment={updateLikesComment}
     />
   ));
   return (

@@ -11,50 +11,54 @@ import {
   AUTH_ERR,
 } from "./types";
 
-export const register = ({ name, email, password }) => (dispatch) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-  const body = JSON.stringify({ name, email, password });
-  axios
-    .post("/api/v1/user", body, config)
-    .then((response) =>
+import { showErrors } from "./errorActions";
+
+export const register = ({ name, email, password }) => {
+  return async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const body = JSON.stringify({ name, email, password });
+      const response = await axios.post("/api/v1/user", body, config);
+
       dispatch({
         type: REGISTER_SUCCESS,
         payload: response.data,
-      })
-    )
-    .catch((err) =>
+      });
+    } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
-        payload: err.response.data.msg,
-      })
-    );
+      });
+      console.log(err.response.data);
+      dispatch(showErrors(err.response.data, err.response.status));
+    }
+  };
 };
 
-export const login = ({ email, password }) => (dispatch) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-  const body = JSON.stringify({ email, password });
-  axios
-    .post("/api/v1/auth", body, config)
-    .then((response) =>
+export const login = ({ email, password }) => {
+  return async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const body = JSON.stringify({ email, password });
+      const response = await axios.post("/api/v1/auth", body, config);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: response.data,
-      })
-    )
-    .catch((err) =>
+      });
+    } catch (err) {
       dispatch({
         type: LOGIN_FAIL,
-        payload: err.response.data.msg,
-      })
-    );
+      });
+      dispatch(showErrors(err.response.data, err.response.status));
+    }
+  };
 };
 
 export const loadUser = () => (dispatch, getState) => {

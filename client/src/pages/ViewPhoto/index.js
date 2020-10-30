@@ -6,7 +6,7 @@ import "./style.css";
 
 const ViewPhoto = (props) => {
   let id = props.match.params.id;
-  console.log(props);
+
   // console.log(props.userProfile, props.isUserPage)
   // console.log(Boolean(props.userProfile))
   // console.log(Boolean(props.userPage))

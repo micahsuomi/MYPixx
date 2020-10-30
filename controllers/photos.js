@@ -126,9 +126,8 @@ const likePhoto = (req, res) => {
 
   Photo.findById(id, (err, photo) => {
     if (err) {
-      console.log(err);
+      return res.status(404).json({ msg: "Not found" });
     } else {
-      console.log("gallery here", photo);
       let newLike = { _id: req.user.id };
       const foundUser = photo.likes.some((like) => like.equals(req.user.id));
       console.log("this is the found user", foundUser);
@@ -168,7 +167,8 @@ const findAllComments = async (req, res) => {
       .populate("comments")
       .exec((err, photo) => {
         if (err) return res.status(404).json({ msg: "Not found" });
-        console.log(photo);
+        console.log("photo comments", photo.comments);
+
         res.json(photo.comments);
       });
   } catch (err) {

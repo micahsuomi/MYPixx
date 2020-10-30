@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getUsers } from "../redux/actions/userActions";
 export default function useUser() {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users.users);
+
+  const user = useSelector((state) => state.users.user);
   const [data, setData] = useState([]);
   const [err, setErr] = useState(null);
-  console.log(users)
+
+  /*
   useEffect(() => {
-    setData(users);
-    dispatch(getUsers());
+    setData(user);
   }, [dispatch]);
 
-  console.log(users);
+  console.log(user);*/
   return [err, data];
 }
