@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { getComment, editComment } from "../../redux/actions/commentActions";
 
+import "./style.scss";
+
 const EditComment = ({ photoId, commentId, closeEditComment }, props) => {
   const dispatch = useDispatch();
   const [comment, setComment] = useState({
@@ -39,7 +41,7 @@ const EditComment = ({ photoId, commentId, closeEditComment }, props) => {
 
   const { text } = comment;
   return (
-    <form className="edit-comment__form animate-modal" onSubmit={handleSubmit}>
+    <form className="edit-comment animate-modal" onSubmit={handleSubmit}>
       <textarea
         type="text"
         value={text}
@@ -47,12 +49,12 @@ const EditComment = ({ photoId, commentId, closeEditComment }, props) => {
         placeholder="write comment here"
         onChange={handleChange}
       ></textarea>
-      <div className="submit-cancel__btn__wrapper">
-        <button className="edit-delete__comment-btn">
-          <i className="fas fa-check-circle fa-2x edit-comment__btn"></i>
+      <div className="edit-comment__edit-delete">
+        <button className="edit-comment__comment-btn">
+          <i className="fas fa-check-circle fa-2x edit-comment__edit-btn"></i>
         </button>
-        <button className="edit-delete__comment-btn" onClick={closeEditComment}>
-          <i className="fas fa-times-circle fa-2x delete-comment__btn"></i>
+        <button className="edit-comment__comment-btn" onClick={closeEditComment}>
+          <i className="fas fa-times-circle fa-2x edit-comment__delete-btn"></i>
         </button>
       </div>
     </form>

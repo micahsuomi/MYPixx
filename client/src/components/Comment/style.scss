@@ -1,44 +1,60 @@
-.comment-user__container {
+.comment-user {
   padding: 0.8rem;
   border-bottom: 1px solid lightgray;
+
+  &__header {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    align-items: center;
+  }
+  &__image-container {
+    display: inline-block;
+    overflow: hidden;
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    margin-left: 1rem;
+    border-radius: 50%;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  
+  
+  &__name {
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 18px;
+    &:hover {
+      color: var(--primary-dark);
+    }
+  }
+  &__delete-btn {
+    color: var(--red);
+    margin-top: 0.7rem;
+    cursor: pointer;
+    margin-left: 1rem;
+  }
+  
+  &__edit-btn {
+    color: var(--blue);
+    cursor: pointer;
+    margin-top: 0.7rem;
+  }
+  
 }
 
-.comment-user__header {
-  display: grid;
-  grid-template-columns: 30% 70%;
-  align-items: center;
-}
 
-.comment-user__container:nth-child(2) {
+
+.comment-user:nth-child(2) {
   margin-top: 1rem;
 }
 
-.comment-image-container {
-  display: inline-block;
-  overflow: hidden;
-  height: 60px;
-  width: 60px;
-  object-fit: cover;
-  margin-left: 1rem;
-  border-radius: 50%;
-}
 
-.comment-image-container img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
 
-.comment-user__name {
-  text-decoration: none;
-  font-weight: 700;
-  color: var(--primary);
-  font-size: 18px;
-}
-
-.comment-user__name:hover {
-  color: var(--primary-dark);
-}
 
 .comment-date {
   font-size: 14px;
@@ -61,39 +77,7 @@
   align-items: center;
 }
 
-.edit-delete__comment-btn {
-  background-color: transparent;
-  border: none;
-}
 
-.delete-comment__btn {
-  color: var(--red);
-  margin-top: 0.7rem;
-  cursor: pointer;
-}
-
-.edit-comment__btn {
-  margin-left: 1rem;
-  color: var(--secondary);
-  cursor: pointer;
-  margin-top: 0.7rem;
-}
-
-.edit-comment__form textarea {
-  margin-top: 1.5rem;
-  width: 22rem;
-  font-family: "Roboto";
-  padding: 0.7rem;
-  font-size: 16px;
-  animation-name: appear;
-  transition: 1s ease-in-out;
-  animation-duration: 1s;
-}
-
-.edit-comment__btn:active,
-.delete-comment__btn:active {
-  outline: none;
-}
 
 @keyframes appear {
   from {

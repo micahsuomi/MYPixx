@@ -74,9 +74,9 @@ const Comment = (props) => {
   // console.log('this is the author id',  user, isAuthenticated, authorId, user.id)
 
   return (
-    <div className="comment-user__container animate-modal">
+    <div className="comment-user animate-modal">
       <div className="comment-user__header">
-        <div className="comment-image-container">
+        <div className="comment-user__image-container">
           {avatar === undefined || avatar === "" ? (
             <img
               src="https://i2.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1"
@@ -95,18 +95,18 @@ const Comment = (props) => {
             <div>
               <p className="comment-text">{commentText}</p>
               <div>
-                {user && isAuthenticated && authorId === user.user.id ? (
+                {user && isAuthenticated && authorId === user.user.id && (
                   <i
-                    className="fas fa-trash delete-comment__btn grow"
-                    onClick={deleteOnClick}
-                  ></i>
-                ) : null}
-                {user && isAuthenticated && authorId === user.user.id ? (
-                  <i
-                    className="fas fa-edit edit-comment__btn grow"
+                    className="fas fa-pen comment-user__edit-btn grow"
                     onClick={openEditComment}
                   ></i>
-                ) : null}
+                )}
+                {user && isAuthenticated && authorId === user.user.id && (
+                  <i
+                    className="fas fa-trash comment-user__delete-btn grow"
+                    onClick={deleteOnClick}
+                  ></i>
+                )}
               </div>
             </div>
           ) : (

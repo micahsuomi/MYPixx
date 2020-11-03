@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUsers, getUser, updateUser } from "../../redux/actions/userActions";
 import { getPhotos } from "../../redux/actions/photoActions";
 
-import "./style.css";
+import "./style.scss";
 
 const EditUser = (props) => {
   const [user, setUser] = useState({
@@ -21,13 +21,19 @@ const EditUser = (props) => {
   const loadedEditUser = useSelector((state) => state.users.user);
   // const [err, loadedUser] = useUser();
   const isUserLoaded = useSelector((state) => state.users.isUserLoaded);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const [isImageEditing, setIsImageEditing] = useState(false);
   const [updatedImage, setUpdatedImage] = useState(null);
   const [previewSource, setPreviewSource] = useState(null);
   const [fileInput, setFileInput] = useState(null);
   const [selectedFile] = useState(null);
   const [isImageChanged, setIsImageChanged] = useState(false);
+  
   const id = props.match.params.id;
+
+  useEffect(() => {
+    if (!isAuthenticated) props.history.push("/login");
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,21 +41,11 @@ const EditUser = (props) => {
       console.log(previewSource);
       setUser(previewSource);
     }
-    // if (isImageChanged) {
-    //   setUser({
-    //     name: name,
-    //     email: email,
-    //     bio,
-    //     avatar:
-    //     previewSource
-    //   });
-    // }
-    console.log("user is updated here", user);
-
     dispatch(updateUser(id, user));
 
     setTimeout(() => {
       props.history.push(`/user/${id}`);
+      props.openUserPopup()
       setTimeout(() => {
         dispatch(getUsers());
         dispatch(getUser(id))
@@ -104,7 +100,6 @@ const EditUser = (props) => {
 
    useEffect(() => {
     setUser(loadedEditUser);
-
    }, [])
 
   const handleChange = (e) => {
@@ -119,9 +114,9 @@ const EditUser = (props) => {
   }
 
   return (
-    <div className="edit-user-form__container">
+    <div className="edit-user">
       <form onSubmit={handleSubmit} className="edit-user__form animate-modal">
-        <div className="user-cancel-wrapper">
+        <div className="edit-user__cancel-wrapper">
           <NavLink to={`/user/${id}`} className="delete-link">
             <i className="fas fa-times fa-2x"></i>
           </NavLink>
@@ -151,7 +146,7 @@ const EditUser = (props) => {
         </div>
         {!isImageChanged ? (
           <div className="input-topics">
-            <label htmlFor="image" className="image-label">
+            <label htmlFor="image" className="edit-user__image-label">
               Image
             </label>
             <input
@@ -162,7 +157,7 @@ const EditUser = (props) => {
               onChange={handleChange}
               style={{ display: "none" }}
             />
-            <div className="edit-image__preview__container">
+            <div className="edit-user__preview-image">
               <img
                 src={avatar}
                 alt="curent user profile"
@@ -173,7 +168,7 @@ const EditUser = (props) => {
         ) : null}
 
         {!isImageEditing ? (
-          <button onClick={openImageEditing} className="change-photo grow">
+          <button onClick={openImageEditing} className="edit-user__change-photo grow">
             Change
           </button>
         ) : null}
@@ -192,14 +187,14 @@ const EditUser = (props) => {
               />
             </div>
             {previewSource && (
-              <div className="edit-image__preview__container">
+              <div className="edit-user__preview-image">
                 <img
                   src={previewSource}
                   alt="chosen"
                   style={{ height: "200px" }}
                 />
                 <button
-                  className="edit-image__cancel grow"
+                  className="edit-user__remove-photo grow"
                   onClick={cancelImage}
                 >
                   Remove
@@ -209,7 +204,7 @@ const EditUser = (props) => {
             {!isImageChanged ? (
               <div className="buttons-wrapper">
                 <button
-                  className="edit-image__cancel grow"
+                  className="edit-user__cancel-photo grow"
                   onClick={cancelImage}
                 >
                   Cancel
@@ -240,8 +235,8 @@ const EditUser = (props) => {
             onChange={handleChange}
           />
         </div>
-        <div className="btn-save__wrapper">
-          <button className="btn-register">Update</button>
+        <div className="edit-user__btn-save-wrapper">
+          <button className="edit-user__btn-save">Update</button>
         </div>
       </form>
     </div>

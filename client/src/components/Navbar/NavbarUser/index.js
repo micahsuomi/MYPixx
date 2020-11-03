@@ -10,7 +10,7 @@ const NavbarUser = ({ user, toggle }) => {
     <ul className="navbar-user">
       <li>
         <NavLink to="/addphoto">
-          <i className="far fa-file-image grow"></i>
+          <i className="fas fa-pen grow" title="add to gallery"></i>
         </NavLink>
       </li>
       <li>

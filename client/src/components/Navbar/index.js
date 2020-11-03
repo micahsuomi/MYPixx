@@ -15,8 +15,6 @@ const Navbar = () => {
   const state = useSelector((state) => state.auth);
 
   const { isAuthenticated, user } = state;
-  console.log("from navbar", isAuthenticated, user);
-
   const [isClicked, setState] = useState(false);
 
   const navList = ["nav-list"];
@@ -109,15 +107,6 @@ const Navbar = () => {
       </ul>
     </div>
   );
-};
-
-const borderToggleBarClicked = {
-  border: "1px solid white",
-  borderRadius: "500px",
-};
-
-const borderToggleBarUnclicked = {
-  border: "none",
 };
 
 export default Navbar;

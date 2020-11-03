@@ -28,7 +28,6 @@ export const Routes = () => {
   const dispatch = useDispatch();
   const photos = useSelector((state) => state.photos.photos);
   const users = useSelector((state) => state.users.users);
-  const userPhotos = useSelector((state) => state.users.userPhotos);
 
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const isLoading = useSelector((state) => state.auth.isLoading);
@@ -41,7 +40,6 @@ export const Routes = () => {
   const [userProfile, setUserProfile] = useState({});
   const [isPhotoPage, setIsPhotoPage] = useState(true);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [isPhotoAdded, setIsPhotoAdded] = useState(false);
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
 
   useEffect(() => {
@@ -52,8 +50,12 @@ export const Routes = () => {
   const closePopup = () => {
     setIsPopupOpen(false);
     setIsEditPopupOpen(false);
-    loadUser();
+    dispatch(getUsers());
   };
+  const openUserPopup = () => {
+    console.log('calling from here')
+    setIsEditPopupOpen(true)
+  }
 
   return (
     <div className="wrapper">
@@ -90,6 +92,7 @@ export const Routes = () => {
               id={props.match.params.id}
               users={users}
               user={user}
+              openUserPopup={openUserPopup}
               {...props}
             />
           )}
@@ -104,6 +107,7 @@ export const Routes = () => {
               users={users}
               photos={photos}
               isPopupOpen={isPopupOpen}
+              isEditPopupOpen={isEditPopupOpen}
               closePopup={closePopup}
               {...props}
             />
@@ -180,7 +184,6 @@ export const Routes = () => {
                 photos={photos}
                 isAuthenticated={isAuthenticated}
                 isErrorShowing={isErrorShowing}
-                isPhotoAdded={isPhotoAdded}
                 isPopupOpen={isPopupOpen}
                 isEditPopupOpen={isEditPopupOpen}
                 closePopup={closePopup}
