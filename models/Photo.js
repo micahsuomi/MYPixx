@@ -2,15 +2,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const photoSchema = new Schema({
-  name: {
+  title: {
     type: String,
     required: true,
   },
   image: {
-    type: String,
-    required: true,
-  },
-  description: {
     type: String,
     required: true,
   },
@@ -21,7 +17,21 @@ const photoSchema = new Schema({
     },
     name: String,
     avatar: String,
-    bio: String,
+  },
+  type: {
+    type: String,
+    required: true,
+  },
+  technique: {
+    type: [String],
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  postedDate: {
+    type: String,
   },
   createdAt: {
     type: Date,

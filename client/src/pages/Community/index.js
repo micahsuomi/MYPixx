@@ -1,12 +1,12 @@
 import React from "react";
-
 import { NavLink } from "react-router-dom";
+
 import CommunityHeader from "../../components/CommunityHeader/index";
 import CommunityMostCommented from "../../components/CommunityMostCommented/index";
 import CommunityMostLiked from "../../components/CommunityMostLiked";
 import CommunityUser from "../../components/CommunityUser/index";
 
-import "./style.css";
+import "./style.scss";
 
 const Community = ({ users, photos }) => {
   console.log(users);
@@ -24,7 +24,7 @@ const Community = ({ users, photos }) => {
 
   sortedByLikes.length = 8;
   sortedByComments.length = 8;
-  console.log(users)
+  console.log(users);
   return (
     <div className="about-container">
       <CommunityHeader />
@@ -57,6 +57,7 @@ const Community = ({ users, photos }) => {
               className="most-liked-photos__link"
             >
               <CommunityMostLiked
+                key={photo._id}
                 image={photo.image}
                 name={photo.name}
                 author={photo.author}
@@ -68,7 +69,7 @@ const Community = ({ users, photos }) => {
       </div>
 
       <div className="users-container">
-        <h4>Our Users</h4>
+        <h4>Active Users</h4>
         <div className="users-wrapper">
           {users.map((user) => (
             <NavLink
@@ -76,13 +77,14 @@ const Community = ({ users, photos }) => {
               className="user-link__container grow"
             >
               <CommunityUser
+                key={user._id}
                 name={user.name}
                 avatar={user.avatar}
                 bio={user.bio}
                 photos={user.photos}
               />
             </NavLink>
-          ))} 
+          ))}
         </div>
       </div>
     </div>

@@ -1,15 +1,16 @@
 import React from "react";
-
 import { NavLink } from "react-router-dom";
+
 import PhotoItemAuthor from "./PhotoItemAuthor";
 import PhotoItemLikes from "./PhotoItemLikes";
 import PhotoItemComments from "./PhotoItemComments";
-import "./style.css";
+
+import "./style.scss";
 
 const PhotoItem = (props) => {
   let {
     id,
-    name,
+    title,
     image,
     author,
     authorId,
@@ -17,34 +18,31 @@ const PhotoItem = (props) => {
     isUserPage,
     likes,
     comments,
-    userProfile,
   } = props;
 
   return (
-    <div className="gallery-photo__container grow">
+    <div className="gallery-photo grow">
       <NavLink to={`/photos/${id}`} className="view-photo__link">
-        <h3 className="gallery-photo__title">{name}</h3>
-        <img src={image} alt={name} className="gallery-photo__image" />
+        <img src={image} alt={title} className="gallery-photo__image" />
       </NavLink>
+      <div className="gallery-photo__body">
+        {isUserPage ? (
+          ""
+        ) : (
+          <PhotoItemAuthor
+            authorId={authorId}
+            author={author}
+            authorImg={authorImg}
+          />
+        )}
 
-      {isUserPage ? (
-        ""
-      ) : (
-        <PhotoItemAuthor
-          authorId={authorId}
-          author={author}
-          authorImg={authorImg}
-        />
-      )}
-
-      {likes !== undefined && comments !== undefined ? (
-        <div className="likes-comments__wrapper">
-          <PhotoItemLikes id={id} likes={likes} />
-          <PhotoItemComments id={id} comments={comments} />
-        </div>
-      ) : null}
-
-      <div></div>
+        {likes !== undefined && comments !== undefined ? (
+          <div className="gallery-photo__likes">
+            <PhotoItemLikes id={id} likes={likes} />
+            <PhotoItemComments id={id} comments={comments} />
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 };

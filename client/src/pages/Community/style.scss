@@ -1,0 +1,61 @@
+@import "../../scss/abstracts/mixins.scss";
+
+.about-container {
+  @include flex-property-column;
+  align-items: center;
+  padding: 13rem 8rem;
+  background-color: rgb(247, 239, 239);
+}
+
+.most-liked-photos__container {
+  padding: 4rem 5rem;
+  margin-top: 3rem;
+}
+
+.most-liked-photos__wrapper {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+}
+
+.most-liked-photos__link {
+  text-decoration: none;
+}
+
+.users-title {
+  margin-top: 3rem;
+  text-align: center;
+}
+.users-wrapper {
+  @include three-col-grid;
+  grid-gap: 1rem;
+  margin-top: 3rem;
+}
+
+@media screen and (max-width: 768px) {
+  .users-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .most-liked-photos__wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (max-width: 500px) {
+  .about-container {
+    padding: 8rem 1rem;
+  }
+
+  .most-liked-photos__wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-sorted__card {
+    width: 20rem;
+    height: 20rem;
+  }
+  .users-wrapper {
+    grid-template-columns: 1fr;
+  }
+}

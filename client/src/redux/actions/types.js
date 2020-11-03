@@ -34,3 +34,4 @@ export const LOAD_ERR = "LOAD_ERR";
 //error types
 export const SHOW_ERRORS = "SHOW_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
+export const CLEAR_ALLVALIDATIONS = "CLEAR_ALLVALIDATIONS";

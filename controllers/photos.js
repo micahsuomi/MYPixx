@@ -4,6 +4,8 @@ const cloudinary = require("cloudinary");
 const User = require("../models/User");
 const Photo = require("../models/Photo");
 const PhotoService = require("../services/photos");
+const UserService = require("../services/users");
+
 //Ckoudinary to upload images
 const storage = multer.diskStorage({
   filename: function (req, file, callback) {
@@ -33,7 +35,7 @@ const findAll = async (req, res) => {
   try {
     res.json(await PhotoService.findAll());
   } catch (err) {
-    res.status(404).json({ err: "Not Found" });
+    res.status(404).json({ msg: "Not Found" });
   }
 };
 
@@ -42,39 +44,44 @@ const findAll = async (req, res) => {
 //ACCESS: private
 const addPhoto =
   (upload.single("image"),
-  async (req, res) => {
+  async (req, res, next) => {
     try {
-      const { name, description } = req.body;
-      // console.log('req.file path here', req.body)
+      const userId = req.user.id;
+      const user = await UserService.findUserByReq(userId);
+      console.log("user here", user);
+      const { title, type, technique, description } = req.body;
       const fileImage = req.body.image;
       cloudinary.uploader.upload(fileImage, function (result) {
         const uploadedCloudinaryImage = result.secure_url;
+        const author = {
+          id: req.user.id,
+          name: user.name,
+          avatar: user.avatar,
+        };
+        // console.log('this is the author', author)
 
-        // console.log(uploadedImage)
-        User.findOne({ _id: req.user.id }, (err, foundUser) => {
-          if (err) {
-            res.status(404).json({ err: "user not found" });
-          }
-          const author = {
-            id: req.user.id,
-            name: foundUser.name,
-            avatar: foundUser.avatar,
-          };
-          // console.log('this is the author', author)
-
-          const newPhoto = new Photo({
-            name,
-            image: uploadedCloudinaryImage,
-            description,
-            author,
-          });
-          newPhoto.save().then((photo) => res.json(photo));
-          foundUser.photos.push(newPhoto);
-          foundUser.save();
+        const newPhoto = new Photo({
+          title,
+          image: uploadedCloudinaryImage,
+          type,
+          author,
+          technique,
+          description,
         });
+
+        console.log("photo here", newPhoto);
+        const date = new Date();
+        newPhoto.postedDate = date.toISOString().split("T")[0];
+
+        console.log("photo here", newPhoto);
+        newPhoto.save();
+        newPhoto.execPopulate().then((photo) => res.json(photo));
+        user.photos.push(newPhoto);
+        console.log("user here", user);
+        user.save();
       });
     } catch (err) {
-      return res.status(500).json({ err: "Something went wrong" });
+      next(res.status(500).json({ err: "Something went wrong" }));
     }
   });
 
@@ -86,14 +93,16 @@ const editPhoto =
   async (req, res) => {
     try {
       const id = req.params.id;
-      let { name, description } = req.body;
+      let { title, type, technique, description } = req.body;
       const fileImage = req.body.image;
       cloudinary.uploader.upload(fileImage, function (result) {
         const uploadedCloudinaryImage = result.secure_url;
 
         Photo.findById(id).then((photo) => {
-          (photo.name = name),
+          (photo.title = title),
             (photo.image = uploadedCloudinaryImage),
+            (photo.type = type),
+            (photo.technique = technique),
             (photo.description = description);
           photo.save().then((updatedPhoto) => res.json(updatedPhoto));
         });
@@ -167,8 +176,6 @@ const findAllComments = async (req, res) => {
       .populate("comments")
       .exec((err, photo) => {
         if (err) return res.status(404).json({ msg: "Not found" });
-        console.log("photo comments", photo.comments);
-
         res.json(photo.comments);
       });
   } catch (err) {

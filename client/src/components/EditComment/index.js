@@ -3,14 +3,18 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { getComment, editComment } from "../../redux/actions/commentActions";
 
-const EditComment = ({ photoId, commentId, closeEditComment }) => {
+const EditComment = ({ photoId, commentId, closeEditComment }, props) => {
   const dispatch = useDispatch();
   const [comment, setComment] = useState({
     text: "",
   });
   const foundComment = useSelector((state) => state.comments.comment);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   useEffect(() => {
+    if (!isAuthenticated) {
+      props.history.push("/login");
+    }
     dispatch(getComment(photoId, commentId));
   }, [dispatch]);
 

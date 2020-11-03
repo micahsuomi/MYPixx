@@ -1,7 +1,8 @@
 import React from "react";
 
 import { NavLink } from "react-router-dom";
-import "./style.css";
+
+import "./style.scss";
 
 const NavbarUserLogin = ({ toggle }) => {
   return (
@@ -12,7 +13,7 @@ const NavbarUserLogin = ({ toggle }) => {
       onClick={toggle}
     >
       <i className="fas fa-sign-in-alt nav-list__icon grow" title="login">
-        {/* <span> Login</span> */}
+        <span> Login</span>
       </i>
     </NavLink>
   );

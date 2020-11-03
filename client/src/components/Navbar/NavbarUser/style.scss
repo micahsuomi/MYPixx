@@ -1,0 +1,16 @@
+@import "../../../scss/abstracts/mixins.scss";
+
+.navbar-user {
+  @include flex-property-row-center;
+  list-style: none;
+  i {
+    color: whitesmoke;
+    font-size: 1.2em;
+  }
+  .user-link {
+    margin-left: 0.7rem;
+  }
+  span {
+    margin-left: 0.5rem;
+  }
+}

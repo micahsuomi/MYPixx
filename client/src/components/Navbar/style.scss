@@ -1,0 +1,151 @@
+@import "../../scss/abstracts/mixins.scss";
+
+.navbar {
+  background-color: rgb(17, 45, 58);
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  align-items: center;
+  height: 4rem;
+  width: 100%;
+  padding: 0 1rem;
+  z-index: 2;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  list-style: none;
+  width: 100vw;
+}
+
+.navbar-link {
+  text-decoration: none;
+  margin-left: 2rem;
+  color: whitesmoke;
+  font-weight: 700;
+}
+
+.navbar-link:hover {
+  color: var(--nav-hover);
+}
+
+.nav-list__icon {
+  font-size: 1.2em;
+  margin-top: 0.1rem;
+  span {
+    font-family: "Montserrat";
+    font-size: var(--font-size-small);
+    margin-top: -0.4rem;
+    margin-left: 0.3rem;
+  }
+}
+
+.register-login {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  li {
+    @include flex-property-row-center;
+  }
+}
+
+.login-link {
+  margin-top: 0.1rem;
+}
+
+.user-link {
+  text-decoration: none;
+  @include flex-property-row-center;
+  color: whitesmoke;
+}
+
+.grow {
+  transition: all 0.2s ease-in-out;
+}
+
+.grow:hover {
+  transform: scale(1.03);
+}
+
+@media screen and (max-width: 1000px) {
+  .navbar {
+    padding: 1rem;
+    height: 5rem;
+    grid-template-columns: 13% 87%;
+  }
+
+  .hide-mobile {
+    display: none;
+  }
+
+  .show-mobile {
+    display: block;
+  }
+
+  .nav-list {
+    -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  }
+
+  .nav-list.open {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    flex-direction: column;
+    justify-content: center;
+    height: 102vh;
+    width: 102vw;
+    position: fixed;
+    top: -2%;
+    left: -2%;
+    padding: 0;
+    transition: all ease-in-out 0.1s;
+    opacity: 0.98;
+    background-color: rgb(17, 45, 58);
+    line-height: 2;
+    z-index: 5;
+    text-transform: uppercase;
+    color: white;
+    text-align: center;
+  }
+
+  .register-login {
+    flex-direction: column;
+  }
+  .navbar-link,
+  .user-link {
+    font-size: 26px;
+    margin: 0;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .navbar {
+    padding: 1rem;
+    height: 5rem;
+    grid-template-columns: 25% 75%;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .navbar {
+    grid-template-columns: 33% 67%;
+  }
+
+  .navbar-link,
+  .user-link {
+    font-size: 23px;
+    margin: 0;
+  }
+}

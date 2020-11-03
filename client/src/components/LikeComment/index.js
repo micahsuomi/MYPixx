@@ -8,10 +8,10 @@ import {
   getCommentLikes,
   likeComment,
 } from "../../redux/actions/commentActions";
-import CommentLike from "../CommentLike";
+import CommentLike from "../CommentLike/index";
 
-import "../LikePhoto/style.css";
-import "./style.css";
+import "../LikePhoto/style.scss";
+import "./style.scss";
 
 const LikeComment = ({ photoId, commentId, likes, history, match }, props) => {
   const dispatch = useDispatch();
@@ -65,6 +65,8 @@ const LikeComment = ({ photoId, commentId, likes, history, match }, props) => {
   ));
 
   // console.log('this should update', likedComment)
+
+  /*
   let likedPhotoComment;
   useEffect(() => {
     if (isAuthenticated) {
@@ -73,7 +75,7 @@ const LikeComment = ({ photoId, commentId, likes, history, match }, props) => {
       );
     }
   }, [likedPhotoComment]);
-  console.log(likedPhotoComment);
+  console.log(likedPhotoComment);*/
 
   if (!likedComment) {
     return <p>loading...</p>;
@@ -81,9 +83,8 @@ const LikeComment = ({ photoId, commentId, likes, history, match }, props) => {
   return (
     <div className="like-comment__form__container">
       <form className="like-container" onSubmit={handleSubmit}>
-        {isAuthenticated && likedPhotoComment ? (
-          // && likedComment.likes.some(
-          // (like) => like._id === user._id)
+        {isAuthenticated &&
+        commentLikes.some((like) => like._id === user._id) ? (
           <button className="like-comment__btn grow">
             <i className="fas fa-heart full-heart"></i> Unlike
           </button>
@@ -108,8 +109,8 @@ const LikeComment = ({ photoId, commentId, likes, history, match }, props) => {
         ) : null}
       </form>
       {isLikesShowing ? (
-        <div className="like-comments__container">
-          <div className="likes-comments__header">
+        <div className="likes-comments-box">
+          <div className="likes-comments-box__header">
             <NavLink
               to={`/photos/${photoId}/comments/`}
               onClick={closeCommentLikes}
@@ -117,7 +118,7 @@ const LikeComment = ({ photoId, commentId, likes, history, match }, props) => {
               <i className="fas fa-times-circle grow"></i>
             </NavLink>
           </div>
-          <div className="likes-comments__body">{formattedLikes}</div>
+          <div className="likes-comments-box__body">{formattedLikes}</div>
         </div>
       ) : null}
     </div>

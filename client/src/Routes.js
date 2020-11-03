@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
-
 import { useSelector, useDispatch } from "react-redux";
 
 import { loadUser } from "./redux/actions/authActions";
@@ -8,23 +7,20 @@ import { getPhotos } from "./redux/actions/photoActions";
 import Navbar from "./components/Navbar/index";
 import Home from "./pages/Home";
 import Community from "./pages/Community/index";
-import Register from "./components/Register/index";
-import Login from "./components/Login/index";
+import Register from "./pages/Register/index";
+import Login from "./pages/Login/index";
 import User from "./pages/User";
 import EditUser from "./components/EditUser/index";
 import PhotoList from "./pages/Photos/index";
 import AddPhoto from "./components/AddPhoto/index";
 import ViewPhoto from "./pages/ViewPhoto/index";
-import LikePhoto from "./components/LikePhoto/index";
 import LikesList from "./components/LikesList/index";
 import PhotoComments from "./components/PhotoComments/index";
 import Comment from "./components/Comment/index";
-import LikeComment from "./components/LikeComment/index";
 import EditPhoto from "./components/EditPhoto/index";
 import DeletePhoto from "./components/DeletePhoto/index";
 import Footer from "./components/Footer/index";
-import useUsers from "./hooks/useUsers";
-import { getUsers, getUser } from "./redux/actions/userActions";
+import { getUsers } from "./redux/actions/userActions";
 
 import "./App.css";
 
@@ -53,14 +49,12 @@ export const Routes = () => {
     dispatch(getUsers());
   }, [dispatch]);
 
-  
-
   const closePopup = () => {
     setIsPopupOpen(false);
     setIsEditPopupOpen(false);
-    // fetchUsers();
     loadUser();
   };
+
   return (
     <div className="wrapper">
       <Navbar
@@ -118,9 +112,7 @@ export const Routes = () => {
 
         <Route
           path="/editphoto/:id"
-          component={(props) => (
-            <EditPhoto photos={photos} {...props} />
-          )}
+          component={(props) => <EditPhoto photos={photos} {...props} />}
         />
 
         <Route
@@ -146,25 +138,6 @@ export const Routes = () => {
             />
           )}
         />
-
-        {/* <Route
-          path="/photos/:id/like"
-          component={(props) => (
-            <LikePhoto photos={photos} user={user} {...props} />
-          )}
-        /> */}
-
-        {/* <Route
-          path="/photos/:id/comments/:id/like"
-          component={(props) => (
-            <LikeComment
-              photos={photos}
-              user={user}
-              tokenConfig={tokenConfig}
-              {...props}
-            />
-          )}
-        /> */}
 
         <Route
           path="/addphoto"

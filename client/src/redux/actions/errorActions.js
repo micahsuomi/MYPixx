@@ -1,4 +1,4 @@
-import { SHOW_ERRORS, CLEAR_ERRORS } from "./types";
+import { SHOW_ERRORS, CLEAR_ERRORS, CLEAR_ALLVALIDATIONS } from "./types";
 
 export const showErrors = (msg, status) => {
   console.log("calling from here", msg);
@@ -14,5 +14,11 @@ export const showErrors = (msg, status) => {
 export const clearErrors = () => {
   return {
     type: CLEAR_ERRORS,
+  };
+};
+
+export const clearAllValidations = () => {
+  return {
+    type: CLEAR_ALLVALIDATIONS,
   };
 };

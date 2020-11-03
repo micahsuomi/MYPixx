@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import {
   getComments,
@@ -10,12 +10,24 @@ import {
 import EditComment from "../EditComment";
 import LikeComment from "../LikeComment/index";
 
-import "./style.css";
-import { useEffect } from "react";
+import "./style.scss";
 
 const Comment = (props) => {
-  // console.log(props)
-  const { photoId, commentId, likes, history, match } = props;
+  console.log("comment props", props);
+  const {
+    avatar,
+    authorId,
+    photoId,
+    commentId,
+    name,
+    commentText,
+    user,
+    isAuthenticated,
+    likes,
+    commentDate,
+    history,
+    match,
+  } = props;
 
   const dispatch = useDispatch();
   /*
@@ -59,15 +71,6 @@ const Comment = (props) => {
     props.closeEditingComment(isEditing);
   };
 
-  let {
-    avatar,
-    authorId,
-    name,
-    date,
-    commentText,
-    user,
-    isAuthenticated,
-  } = props;
   // console.log('this is the author id',  user, isAuthenticated, authorId, user.id)
 
   return (
@@ -87,7 +90,7 @@ const Comment = (props) => {
           <NavLink to={`/user/${authorId}`} className="comment-user__name grow">
             <p>{name}</p>
           </NavLink>
-          <p className="comment-date">{date}</p>
+          <p className="comment-date">{commentDate}</p>
           {!isEditing ? (
             <div>
               <p className="comment-text">{commentText}</p>

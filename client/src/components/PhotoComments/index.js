@@ -7,7 +7,7 @@ import { getComments } from "../../redux/actions/commentActions";
 import Comment from "../Comment/index";
 import AddComment from "./AddComment";
 
-import "./style.css";
+import "./style.scss";
 
 const Comments = (props) => {
   const dispatch = useDispatch();
@@ -63,7 +63,7 @@ const Comments = (props) => {
       authorId={comment.author.id}
       name={comment.author.name}
       avatar={comment.author.avatar}
-      date={comment.createdAt}
+      commentDate={comment.commentDate}
       likes={comment.likes}
       commentText={comment.text}
       user={props.user}
@@ -78,9 +78,9 @@ const Comments = (props) => {
     />
   ));
   return (
-    <div className="comments-container">
-      <div className="comments-wrapper">
-        <div className="comments-header">
+    <div className="comments">
+      <div className="comments__wrapper">
+        <div className="comments__header">
           <NavLink to={`/photos/${props.match.params.id}`}>
             <i className="fas fa-chevron-left fa-2x grow"></i>
           </NavLink>
@@ -109,12 +109,12 @@ const Comments = (props) => {
                 {...props}
               />
             ) : (
-              <div className="add-comment__btn__wrapper">
+              <div className="comments__add-comment-wrapper">
                 {!isAddButtonShowing ? (
                   ""
                 ) : (
                   <button
-                    className="add-comment__btn"
+                    className="comments__add-comment-btn"
                     onClick={openCommentField}
                   >
                     Add Comment
@@ -125,7 +125,7 @@ const Comments = (props) => {
           </div>
         ) : (
           <div>
-            <div className="buttons-wrapper">
+            <div className="comments__buttons-wrapper">
               <h3>
                 <NavLink to="/login">Login</NavLink> to leave a comment
               </h3>

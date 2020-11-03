@@ -1,6 +1,7 @@
 import React from "react";
 
 import { NavLink } from "react-router-dom";
+
 import "./style.css";
 
 const NavbarUserRegister = ({ toggle }) => {
@@ -12,7 +13,7 @@ const NavbarUserRegister = ({ toggle }) => {
       onClick={toggle}
     >
       <i className="fas fa-user-plus nav-list__icon grow" title="register">
-        {/* <span> Register</span> */}
+        <span> Register</span>
       </i>
     </NavLink>
   );

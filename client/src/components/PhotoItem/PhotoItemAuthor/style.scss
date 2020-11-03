@@ -1,0 +1,29 @@
+@import "../../../scss/abstracts/mixins.scss";
+
+.author {
+  @include flex-property-row-center;
+  &__image-container {
+    display: inline-block;
+    overflow: hidden;
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  &__image-container img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  &__link {
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-top: 1rem;
+    margin-left: 0.6rem;
+  }
+}
+
+.author {
+  margin-top: 1rem;
+}

@@ -1,0 +1,71 @@
+@import "../../scss/abstracts/mixins.scss";
+
+.likes {
+  padding: 5rem 5rem;
+  background-color: var(--overlay-mask);
+  @include flex-property-row-center;
+  position: relative;
+  z-index: 4;
+
+  &__wrapper {
+    width: 30rem;
+    height: 30rem;
+    background-color: white;
+    padding: 1.5rem 1.5rem;
+    overflow-y: scroll;
+    border-radius: 11px;
+    h3 {
+      text-align: center;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      color: rgb(180, 170, 170);
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: flex-start;
+    i {
+      color: var(--primary);
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .likes {
+    padding: 5rem 1rem;
+  }
+
+  .likes-number {
+    font-size: 12px;
+  }
+  &__wrapper {
+    width: 22rem;
+    p {
+      font-size: 14px;
+    }
+  }
+
+  .likes-wrapper .like-image-container {
+    height: 45px;
+    width: 45px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .likes-container {
+    padding: 3rem 1rem;
+  }
+
+  .likes-number {
+    font-size: 12px;
+  }
+  .likes-wrapper {
+    width: 22rem;
+  }
+
+  .like-image-container {
+    height: 45px;
+    width: 45px;
+  }
+}

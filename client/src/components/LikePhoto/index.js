@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { getPhotos } from "../../redux/actions/photoActions";
 import { likePhoto } from "../../redux/actions/photoActions";
 
-import "./style.css";
+import "./style.scss";
 
 const LikePhoto = (props) => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const LikePhoto = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = props.match.params.id;
-    if (isAuthenticated === null) {
+    if (!isAuthenticated) {
       props.history.push("/login");
     } else {
       const likedPhoto = props.filteredPhoto;

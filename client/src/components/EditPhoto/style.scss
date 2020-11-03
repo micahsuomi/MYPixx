@@ -1,0 +1,181 @@
+@import "../../scss/abstracts/mixins.scss";
+
+.edit-photo {
+  padding: 7rem 10rem;
+  background-color: rgb(243, 237, 237);
+  width: 100vw;
+  min-height: 95vh;
+  display: flex;
+  justify-content: center;
+  &__form {
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    @include flex-property-column;
+    line-height: 1.9;
+    border-radius: 5px;
+    font-weight: 700;
+    background-color: white;
+    width: 40vw;
+    box-shadow: 0 2rem 2rem rgba(172, 159, 159, 0.5);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+  }
+  &__cancel-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 36vw;
+  }
+  i {
+    color: var(--primary);
+  }
+  &__preview-container {
+    @include flex-property-column;
+  
+  }
+  &__change-photo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__change-photo,
+  &__cancel {
+    @include standard-button;
+    width: 7rem;
+    margin-top: 2rem;
+  }
+  
+  &__change-photo:hover {
+    background-color: var(--primary-dark);
+  }
+  
+  &__cancel {
+    background-color: var(--secondary);
+  }
+  
+  &__cancel:hover {
+    background-color: var(--secondary-dark);
+  }
+  
+  &__hange-photo:active,
+  &__cancel:active {
+    outline: none;
+  }
+  label {
+    align-self: flex-start;
+  }
+  input,
+  select {
+    width: 25rem;
+    padding: 0.6rem;
+    font-size: 16px;
+    font-family: "Roboto";
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    margin-top: 0.6rem;
+  }
+  textarea {
+    height: 15rem;
+  }
+  
+  &__btn-save-wrapper {
+    @include flex-property-row-center;
+  }
+
+  &__btn-save {
+    @include standard-button;
+    width: 13rem;
+  }
+}
+
+.lds-roller {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+  margin: -4px 0 0 -4px;
+}
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+  top: 63px;
+  left: 63px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 68px;
+  left: 56px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 71px;
+  left: 48px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 72px;
+  left: 40px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 71px;
+  left: 32px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 68px;
+  left: 24px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 63px;
+  left: 17px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 56px;
+  left: 12px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .edit-photo__container {
+    padding: 4rem 10rem;
+  }
+}

@@ -13,7 +13,7 @@ import {
 
 import { showErrors } from "./errorActions";
 
-export const register = ({ name, email, password }) => {
+export const register = ({ name, email, password, repeatPassword }) => {
   return async (dispatch) => {
     try {
       const config = {
@@ -21,7 +21,7 @@ export const register = ({ name, email, password }) => {
           "Content-Type": "application/json",
         },
       };
-      const body = JSON.stringify({ name, email, password });
+      const body = JSON.stringify({ name, email, password, repeatPassword });
       const response = await axios.post("/api/v1/user", body, config);
 
       dispatch({

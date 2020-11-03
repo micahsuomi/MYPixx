@@ -1,48 +1,45 @@
 const Comment = require("../models/Comment");
 const User = require("../models/User");
 const Photo = require("../models/Photo");
+const PhotoService = require("../services/photos");
+const CommentService = require("../services/comments");
+const UserService = require("../services/users");
 
 //@POST Route /api/photos/:id/comments
 //@DEC posts a comment
 //@ACCESS: private
-const addComment = async (req, res) => {
-  const id = req.params.id;
-
+const addComment = async (req, res, next) => {
   try {
-    Photo.findById(id, (err, photo) => {
-      if (err) {
-        return res.status(404).send("not found");
-      } else {
-        User.findOne({ _id: req.user.id }, (err, foundUser) => {
-          if (err) {
-            return res.status(404).json({ msg: "Not Found" });
-          }
-          const author = {
-            id: req.user.id,
-            name: foundUser.name,
-            avatar: foundUser.avatar,
-          };
+    const id = req.params.id;
+    const userId = req.user.id;
+    const photo = await PhotoService.findById(id);
+    const user = await UserService.findUserByReq(userId);
 
-          const newComment = new Comment({
-            text: req.body.text,
-            author: author,
-          });
-
-          newComment.save();
-          photo.comments.push(newComment);
-          photo.save().then((photo) => res.json(photo));
-        });
-      }
+    const author = {
+      id: req.user.id,
+      name: user.name,
+      avatar: user.avatar,
+    };
+    const newComment = new Comment({
+      text: req.body.text,
+      author: author,
     });
+
+    const date = new Date();
+    newComment.commentDate = date.toISOString().split("T")[0];
+    newComment.save();
+    console.log("new comment here", newComment);
+    photo.comments.push(newComment);
+    photo.save().then((photo) => res.json(photo));
   } catch (err) {
-    return res.status(500).json({ msg: "Something went wrong" });
+    next(res.status(500).json({ msg: "Something went wrong" }));
   }
 };
 
 //@PUT Route /api/photos/:id/comments/:id
 //@DESC edits a comment
 //@ACCESS: private
-const editComment = async (req, res) => {
+const editComment = async (req, res, next) => {
   try {
     const id = req.params.id;
     Comment.findById(id).then((comment) => {
@@ -50,7 +47,7 @@ const editComment = async (req, res) => {
       comment.save().then((comment) => res.json(comment));
     });
   } catch (err) {
-    return res.status(404).json({ success: false });
+    next(res.status(500).json({ msg: "Internal Server Error" }));
   }
 };
 
@@ -69,6 +66,7 @@ const deleteComment = (req, res) => {
 //@ACCESS: private
 const likeComment = (req, res) => {
   const id = req.params.id;
+
   Comment.findById(id)
     .populate("likes")
     .exec((err, comment) => {

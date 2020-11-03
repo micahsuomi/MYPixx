@@ -1,0 +1,27 @@
+.search-form {
+  padding: 1.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  input {
+    width: 35vw;
+    padding: 1rem;
+    border-radius: 50px;
+    border: none;
+    font-family: "Roboto";
+  }
+
+  input:focus {
+    outline: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .search-form {
+    input {
+      padding: 1rem;
+      font-size: 8px;
+    }
+  }
+}

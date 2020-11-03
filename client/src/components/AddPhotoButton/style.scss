@@ -1,0 +1,24 @@
+@import "../../scss/abstracts/mixins.scss";
+
+.add-photo-link {
+  @include flex-property-row-center;
+  color: var(--primary);
+  padding: 1rem;
+  text-decoration: none;
+  font-family: "Montserrat";
+  cursor: pointer;
+  border: 2px solid var(--primary);
+  border-radius: 50px;
+  box-shadow: 0 1rem 2rem rgba(179, 170, 170, 0.5);
+  margin-left: 1rem;
+}
+
+.add {
+  margin-left: 1rem;
+}
+
+.add-photo-link:hover {
+  color: var(--primary-dark);
+  transform: scale(1.03);
+  transition: all 0.2s ease-in-out;
+}

@@ -1,11 +1,12 @@
 import React from "react";
-import "./style.css";
+
+import "./style.scss";
 
 const CommunityHeader = () => {
   return (
-    <div className="about-header">
+    <div className="community-header">
       <h1>MYPixx</h1>
-      <div className="about-paragraph__container">
+      <div className="community-paragraph">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Porta

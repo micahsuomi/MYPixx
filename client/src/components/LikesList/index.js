@@ -3,7 +3,8 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 
 import Like from "./LikeItem";
-import "./style.css";
+
+import "./style.scss";
 
 const LikesList = (props) => {
   const [likes, setLikes] = useState([]);
@@ -12,7 +13,7 @@ const LikesList = (props) => {
   useEffect(() => {
     const url = `/api/v1/photos/${id}/likes`;
     axios.get(url).then((res) => setLikes(res.data));
-  }, []);
+  }, [id]);
 
   const formattedLikes = likes.map((like) => (
     <Like
@@ -23,9 +24,9 @@ const LikesList = (props) => {
     />
   ));
   return (
-    <div className="likes-container">
-      <div className="likes-wrapper">
-        <div className="likes-header">
+    <div className="likes">
+      <div className="likes__wrapper">
+        <div className="likes__header">
           <NavLink to={`/photos/${props.match.params.id}`}>
             <i className="fas fa-chevron-left fa-2x grow"></i>
           </NavLink>
