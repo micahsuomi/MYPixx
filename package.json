@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "photo gallery app with mern stack",
   "main": "server.js",
+  "engines": {
+    "node": "12.16.0"
+  },
   "scripts": {
     "client-install": "npm install --prefix client",
     "start": "node server.js",
