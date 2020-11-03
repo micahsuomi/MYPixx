@@ -16,13 +16,14 @@ const User = (props) => {
   const isUserLoaded = useSelector((state) => state.users.isUserLoaded);
   const errorMsg = useSelector((state) => state.users.errorMsg);
   const isErrShowing = useSelector((state) => state.users.isErrShowing);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
 
   const userId = props.match.params.id;
   useEffect(() => {
     if (!isAuthenticated) props.history.push("/login");
   }, []);
 
-  
   useEffect(() => {
     if(!isUserLoaded) {
       dispatch(getUser(userId));
@@ -84,7 +85,11 @@ const User = (props) => {
       ));
   }, 4000);*/
   
-  
+  const closePopupOnClick = () => {
+    props.closePopup();
+  };
+
+  /*
   let formattedPhotos
   useEffect(() => {
     if(isUserLoaded) {
@@ -105,14 +110,12 @@ const User = (props) => {
           userProfile={userProfile}
         />
       )))
-    }, 3000)
-
-    
+    }, 3000) 
   }
-  }, []);
+  }, []);*/
 
   const { avatar, name, email, medium, bio } = userProfile;
-  console.log(formattedPhotos)
+
   if (!userProfile) {
     return (
       <div>
@@ -164,13 +167,13 @@ const User = (props) => {
             )}
           </div>
 
-          {/* {props.isPopupOpen ? (
+          {props.isEditPopupOpen && (
             <div className="photo-added__popup__container">
               <div className="photo-added__popup">
                 <div className="photo-added__popup__header">
                   <i
                     className="fas fa-times-circle fa-2x grow"
-                    onClick={closePopup}
+                    onClick={closePopupOnClick}
                   ></i>
                 </div>
                 <div className="photo-added__popup__body">
@@ -178,7 +181,7 @@ const User = (props) => {
                 </div>
               </div>
             </div>
-          ) : null}  */}
+          )}  
           <div className="photo-gallery__container">
             <h1>User Gallery</h1>
             {userProfile.photos.length < 1 ? (

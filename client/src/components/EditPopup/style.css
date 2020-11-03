@@ -2,18 +2,22 @@
   position: fixed;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(75, 68, 68, 0.7);
+  background-color: rgba(29, 26, 26, 0.7);
   top: 0;
   display: flex;
   justify-content: center;
   padding: 4rem 0;
+  position: fixed;
+  scroll-behavior: unset;
+  z-index: 6;
+  overflow-y: unset;
 }
 
 .photo-added__popup {
   border: 2px solid var(--primary);
   padding: 0.5rem 0.5rem;
   border-radius: 5px;
-  background-color: var(--blue);
+  background-color: var(--dark);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 20rem;
   height: 20rem;
@@ -34,9 +38,11 @@
 
 .photo-added__popup h3 {
   color: white;
-  font-size: 30px;
-  margin-top: 7rem;
+  font-size: 32px;
+  margin-top: 5rem;
   text-align: center;
+  font-family: "Sansita Swashed", cursive;
+
 }
 
 .photo-added__popup__body {

@@ -14,7 +14,7 @@
 
 .nav-list {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   list-style: none;
   width: 100vw;
@@ -32,13 +32,13 @@
 }
 
 .nav-list__icon {
+  @include flex-property-row-center;
   font-size: 1.2em;
   margin-top: 0.1rem;
   span {
     font-family: "Montserrat";
     font-size: var(--font-size-small);
-    margin-top: -0.4rem;
-    margin-left: 0.3rem;
+    margin-left: 0.4rem;
   }
 }
 
@@ -53,8 +53,8 @@
   }
 }
 
-.login-link {
-  margin-top: 0.1rem;
+.login-link span {
+  margin-top: -0.2rem;
 }
 
 .user-link {
