@@ -1,11 +1,17 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const isAuthorized = require("../middleware/authorized");
 const User = require("../models/User");
 const Photo = require("../models/Photo");
+const Comment = require("../models/Comment");
 const UserService = require("../services/users");
 const multer = require("multer");
 const cloudinary = require("cloudinary");
+
+const {
+  nameValidator,
+  emailValidator,
+  passwordValidator,
+} = require("../validators/regex");
 
 const storage = multer.diskStorage({
   filename: function (req, file, callback) {
@@ -31,12 +37,35 @@ cloudinary.config({
 //@DESC - registers user
 //@ACCESS Public
 const register = (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, repeatPassword } = req.body;
   //if any of the fields are empty, throw warning with 400 err (bad request)
-  if (!name || !email || !password) {
+  if (!name || !email || !password || !repeatPassword) {
     res.status(400).json({ msg: "please enter all fields" });
   }
-
+  //check all validators
+  if (!name.match(nameValidator)) {
+    console.log("here first last name");
+    return res
+      .status(400)
+      .json({ msg: "Full Name must include 3-16 characters" });
+  }
+  if (!email.match(emailValidator)) {
+    return res.status(400).json({
+      msg: "Email must be a valid address, e.g. example@example.com",
+    });
+  }
+  if (!password.match(passwordValidator)) {
+    return res.status(400).json({
+      msg:
+        "Password must be at least 8 characters long, include an uppercase character, a lowercase character, a number and a special character",
+    });
+  }
+  //check for password match
+  if (!password.match(repeatPassword)) {
+    return res.status(400).json({
+      msg: "Passwords do not match",
+    });
+  }
   //check for existing user using the email, throw 400 err
   User.findOne({ email }).then((user) => {
     if (user)
@@ -87,7 +116,8 @@ const register = (req, res) => {
 //@ACCESS Public
 const findAll = async (req, res) => {
   try {
-    const user = await UserService.findAllUsers()
+    const user = await UserService.findAllUsers();
+    
     res.json(user);
   } catch (err) {
     return res.status(404).json({ msg: "Not Found" });
@@ -100,38 +130,47 @@ const findAll = async (req, res) => {
 const findOne = async (req, res) => {
   try {
     const userId = req.params.id;
-    const user = await UserService.findUserById(userId)
+    const user = await UserService.findUserById(userId);
+    const userPhotos = await Photo.find()            
+    .where("author.id")
+    .equals(user._id)
+    .populate("comments")
+    .exec()
+    user.photos = userPhotos
     res.json(user);
-  }
-  catch (err) {    
+  } catch (err) {
     return res.status(404).json({ msg: "Not Found" });
   }
-}
+};
 
 //@PUT ROUTE /api/v1/user/:id
 //@DESC - updates a user
 //@ACCESS Private
+
 const updateUser =
-  (isAuthorized,
-  upload.single("image"),
-  (req, res) => {
+  (upload.single("image"),
+  async (req, res) => {
     const id = req.params.id;
-    const { name, email, bio } = req.body;
+    const { name, email, medium, bio } = req.body;
     const fileImage = req.body.avatar;
     cloudinary.uploader.upload(fileImage, function (result) {
       console.log("result is here", result);
       const uploadedCloudinaryImage = result.secure_url;
 
       User.findById(id)
+        .populate("photos")
+        .exec()
         .then((user) => {
           console.log(user);
           (user.name = name),
             (user.email = email),
             (user.avatar = uploadedCloudinaryImage),
+            (user.medium = medium),
             (user.bio = bio);
-          Photo.find()
+          Photo.find()            
             .where("author.id")
             .equals(user._id)
+            .populate("comments")
             .exec((err, foundGallery) => {
               if (err) {
                 console.log(err);
@@ -154,21 +193,54 @@ const updateUser =
 
                   doc.save((err, saved) => {
                     if (err) throw err; //handle error
-
                     result.push(saved[0]);
                     console.log(result);
-
                     if (--total) saveAll();
                     else console.log("saved here"); // all saved here
                   });
                 };
 
                 saveAll();
+                Comment.find()
+                  .where("author.id")
+                  .equals(user._id)
+                  .exec((err, foundComments) => {
+                    if (err) {
+                      console.log(err);
+                    } else {
+                      for (const comment of foundComments) {
+                        comment.author.name = user.name;
+                        comment.author.avatar = user.avatar;
+                        console.log("here the gallery should update", comment);
+                      }
+                    }
+
+                    //to save all the multiple updated mongoose documents
+
+                    let total = foundComments.length;
+                    let result = [];
+                    if (total > 0) {
+                      const saveAll = () => {
+                        let doc = foundComments.pop();
+
+                        doc.save((err, saved) => {
+                          if (err) throw err; //handle error
+                          result.push(saved[0]);
+                          console.log(result);
+                          if (--total) saveAll();
+                          else console.log("saved here"); // all saved here
+                        });
+                      };
+
+                      saveAll();
+                    }
+                  });
               }
+
               user.save().then((updatedUser) => res.json(updatedUser));
             });
         })
-        .catch((err) => res.status(404).json({ success: false }));
+        .catch((err) => res.status(404).json({ err: "server error" }));
     });
   });
 

@@ -1,9 +1,11 @@
 import React from "react";
 
+import "./style.scss";
+
 const CommunityMostCommented = ({ image, name, author, comments }) => {
   return (
-    <div className="photo-sorted__card grow">
-      <div className="photo-sorted__image__container">
+    <div className="photo-sorted grow">
+      <div className="photo-sorted__image-container">
         <img src={image} alt={name} />
       </div>
       <h4>{name}</h4>
@@ -13,7 +15,7 @@ const CommunityMostCommented = ({ image, name, author, comments }) => {
           <i className="far fa-comments comments-icon"></i>
         ) : (
           <div className="comments-num__container">
-            <i className="fas fa-comments comments-icon"></i>
+            <i className="far fa-comments comments-icon"></i>
             <div className="comments-length">{comments.length}</div>
             {comments.length === 1 ? (
               <span> Comment</span>

@@ -1,0 +1,38 @@
+.like-user {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  align-items: center;
+  padding: 0.8rem;
+  border-bottom: 1px solid lightgray;
+
+  &__image-container {
+    display: inline-block;
+    overflow: hidden;
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    margin-left: 1rem;
+    border-radius: 50%;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+    p {
+      font-size: 18px;
+    }
+  }
+  &__name {
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--primary);
+    &:hover {
+      color: var(--primary-dark);
+    }
+  }
+}
+
+.like-user:nth-child(2) {
+  margin-top: 1rem;
+}

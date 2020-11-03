@@ -1,0 +1,137 @@
+@import "../../scss/abstracts/mixins.scss";
+
+.registration-container {
+  @include auth-padding;
+  @include full-sizing;
+  @include flex-property-row-center;
+  @include full-sizing;
+  @include flex-property-column;
+  background-image: linear-gradient(
+      to right,
+      rgba(111, 113, 122, 0.8) 0%,
+      rgba(46, 43, 49, 0.8) 100%
+    ),
+    url("https://images.pexels.com/photos/3025620/pexels-photo-3025620.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-size: cover;
+  background-position: top;
+}
+
+.register-form {
+  padding: 2rem 2rem;
+  margin: 2rem 0;
+  display: flex;
+  @include flex-property-column;
+  line-height: 1.9;
+  border: 3px solid lightgray;
+  border-radius: 5px;
+  font-weight: 700;
+  background-color: white;
+  width: 30rem;
+
+  h3 {
+    margin-bottom: 1rem;
+  }
+
+  .input-topics {
+    @include flex-property-row-center;
+    margin: 0.5rem;
+    align-items: center;
+  }
+
+  label {
+    align-self: flex-start;
+  }
+  input {
+    width: 22rem;
+    padding: 0.6rem;
+    font-size: 16px;
+    font-family: "Roboto";
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    margin-top: 0.6rem;
+  }
+  &__btn-save__wrapper {
+    @include flex-property-row-center;
+  }
+  &__btn-register {
+    @include standard-button;
+    padding: 0.6rem;
+    width: 13rem;
+  }
+}
+
+.confirmation-container {
+  @include flex-property-column;
+  @include section-padding;
+  @include full-sizing;
+  z-index: 7;
+  position: fixed;
+  background-color: var(--dark);
+}
+.registration-confirmation-modal {
+  @include flex-property-column;
+  background-color: white;
+  padding: 2rem 3rem;
+  border-radius: 5px;
+
+  &__btn-wrapper {
+    @include flex-property-row-center;
+  }
+  &__btn {
+    @include standard-button;
+    padding: 0.6rem;
+    width: 13rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .register-form__container {
+    padding: 6rem 2rem;
+    min-height: 100vh;
+  }
+
+  .register-form {
+    width: 23rem;
+    height: 32rem;
+  }
+
+  .register-form input {
+    width: 20rem;
+    padding: 0.7rem;
+  }
+  select {
+    width: 8rem;
+    padding: 0.8rem;
+  }
+
+  textarea {
+    width: 20rem;
+  }
+
+  .btn-save,
+  .btn-cancel {
+    padding: 0.6rem;
+    margin: 0.6rem;
+    width: 4rem;
+    font-size: 14px;
+  }
+}
+
+.warning-msg {
+  color: var(--red);
+}
+
+@media screen and (max-width: 320px) {
+  .register-form__container {
+    padding: 2rem 2rem;
+  }
+
+  .register-form {
+    width: 19rem;
+    height: 32rem;
+  }
+
+  .register-form input {
+    width: 16rem;
+    padding: 0.7rem;
+  }
+}

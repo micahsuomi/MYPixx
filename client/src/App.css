@@ -5,6 +5,7 @@
 }
 
 :root {
+  /* color palette */
   --primary: #764ba2;
   --primary-dark: #57327c;
   --primary: rgb(236, 8, 103);
@@ -20,6 +21,9 @@
   --red-light: #f53c6ab3;
   --dark: rgb(46, 39, 40);
   --overlay-mask: rgba(48, 52, 58, 0.9);
+
+  /*fonts */
+  --font-size-small: 14px;
 }
 .wrapper {
   min-height: 100%;

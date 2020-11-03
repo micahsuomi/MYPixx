@@ -1,11 +1,11 @@
 import React from "react";
 
-import "./style.css";
+import "./style.scss";
 
 const PhotosLoading = () => {
   return (
     <div className="loading-container">
-      <h1>Loading Photos...</h1>
+      <h1>Loading Gallery Items...</h1>
       <div className="lds-circle">
         <div></div>
       </div>

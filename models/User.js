@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = Schema({
+  _id: Schema.Types.ObjectId,
   name: {
     type: String,
     required: true,
@@ -21,6 +22,9 @@ const userSchema = Schema({
   },
   bio: String,
   avatar: String,
+  medium: {
+    type: [String],
+  },
 
   photos: [
     {

@@ -14,6 +14,9 @@ const commentSchema = new Schema({
     name: String,
     avatar: String,
   },
+  commentDate: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

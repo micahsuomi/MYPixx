@@ -1,11 +1,13 @@
-import React from "react";
-
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+
 import LikePhoto from "../../components/LikePhoto/index";
-import "./style.css";
+
+import "./style.scss";
 
 const ViewPhoto = (props) => {
   let id = props.match.params.id;
+  const [photoInfo, setPhotoInfo] = useState(false);
 
   // console.log(props.userProfile, props.isUserPage)
   // console.log(Boolean(props.userProfile))
@@ -41,28 +43,33 @@ const ViewPhoto = (props) => {
     });
   }
 
-  console.log(filteredPhoto.comments.length);
-
+  const showPhotoInfo = () => {
+    setPhotoInfo(true);
+  };
+  const hidePhotoInfo = () => {
+    setPhotoInfo(false);
+  };
+  console.log(filteredPhoto);
   let { isUserPage, userProfile } = props;
 
   return (
-    <div className="viewphoto-big__container">
-      <div className="viewphoto-nested__container">
-        <div className="viewphoto-exit__header">
+    <div className="viewphoto">
+      <div className="viewphoto__nested-container">
+        <div className="viewphoto__exit-header">
           {!isUserPage ? (
-            <NavLink to="/photos" className="back-to-photos__view-link grow">
+            <NavLink to="/photos" className="viewphoto__back-to-photos grow">
               <i className="fas fa-times fa-2x"></i>
             </NavLink>
           ) : (
             <NavLink
               to={`/user/${userProfile._id}`}
-              className="back-to-photos__view-link grow"
+              className="viewphoto__back-to-photos grow"
             >
               <i className="fas fa-times fa-2x"></i>
             </NavLink>
           )}
         </div>
-        <div className="viewphoto-wrapper">
+        <div className="viewphoto__wrapper">
           <div>
             {slider.prev !== "" ? (
               <NavLink to={slider.prev}>
@@ -72,17 +79,20 @@ const ViewPhoto = (props) => {
               ""
             )}
           </div>
-          <div className="viewphoto-container">
-            <div className="viewphoto-header">
+          <div className="viewphoto__container">
+            <div className="viewphoto__header">
               {props.isAuthenticated &&
               filteredPhoto.author.id === props.user.user.id ? (
-                <div className="edit-delete__wrapper">
-                  <NavLink to={`/editphoto/${id}`} className="edit-photo__link">
+                <div className="viewphoto__edit-delete-wrapper">
+                  <NavLink
+                    to={`/editphoto/${id}`}
+                    className="viewphoto__edit-photo-link"
+                  >
                     <i className="fas fa-edit fa-2x"></i>
                   </NavLink>
                   <NavLink
                     to={`/deletephoto/${id}`}
-                    className="delete-photo__link"
+                    className="viewphoto__delete-photo-link"
                   >
                     <i className="fas fa-trash fa-2x"></i>
                   </NavLink>
@@ -93,32 +103,57 @@ const ViewPhoto = (props) => {
             </div>
             <img
               src={filteredPhoto.image}
-              alt={filteredPhoto.name}
-              className="viewphoto-image"
+              alt={filteredPhoto.title}
+              className="viewphoto__image"
             />
-            <div className="viewphoto-body">
-              <h2>{filteredPhoto.name}</h2>
-              <NavLink
-                to={`/user/${filteredPhoto.author.id}`}
-                className="view-photo__author__link"
-              >
-                <h3>{filteredPhoto.author.name}</h3>
-              </NavLink>
-              <div className="author-image-container">
-                {filteredPhoto.author.avatar === undefined ||
-                filteredPhoto.author.avatar === "" ? (
-                  <img
-                    src="https://i2.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1"
-                    alt={filteredPhoto.author.name}
-                  />
-                ) : (
-                  <img
-                    src={filteredPhoto.author.avatar}
-                    alt={filteredPhoto.author.name}
-                  />
-                )}
+            <div className="viewphoto__body">
+              <div className="viewphoto__author-info">
+                <NavLink
+                  to={`/user/${filteredPhoto.author.id}`}
+                  className="viewphoto__author-link"
+                >
+                  <h3>{filteredPhoto.author.name}</h3>
+                </NavLink>
+                <div className="viewphoto__author-image-container">
+                  {filteredPhoto.author.avatar === undefined ||
+                  filteredPhoto.author.avatar === "" ? (
+                    <img
+                      src="https://i2.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1"
+                      alt={filteredPhoto.author.name}
+                    />
+                  ) : (
+                    <img
+                      src={filteredPhoto.author.avatar}
+                      alt={filteredPhoto.author.name}
+                    />
+                  )}
+                </div>
               </div>
-              <p>{filteredPhoto.description}</p>
+              {photoInfo ? (
+                <div className="viewphoto__info">
+                  <h4>Title: {filteredPhoto.title}</h4>
+                  <p>Type: {filteredPhoto.type}</p>
+                  <p>
+                    Technique:{" "}
+                    {filteredPhoto.technique.map((t) => (
+                      <span>{t} </span>
+                    ))}
+                  </p>
+                  <p>Description: {filteredPhoto.description}</p>
+                  <p>Uploaded on: {filteredPhoto.postedDate}</p>
+                  <button
+                    className="viewphoto__hide-info"
+                    onClick={hidePhotoInfo}
+                  >
+                    Hide Info
+                  </button>
+                </div>
+              ) : (
+                <i
+                  className="fas fa-info-circle fa-2x viewphoto__info-btn grow"
+                  onClick={showPhotoInfo}
+                ></i>
+              )}
             </div>
             <div className="likephoto-comments__container">
               <div>
@@ -131,16 +166,16 @@ const ViewPhoto = (props) => {
                 />
               </div>
 
-              <div className="comments-link__container">
+              <div className="viewphoto__comments-link-container">
                 <NavLink
                   to={`/photos/${id}/comments`}
                   className="comments-link"
                 >
                   {filteredPhoto.comments.length < 1 ? (
-                    <i className="far fa-comments fa-2x comments-icon"></i>
+                    <i className="far fa-comment fa-2x viewphoto__comments-icon"></i>
                   ) : (
                     <div className="comments-num__container">
-                      <i className="fas fa-comments fa-2x comments-icon"></i>
+                      <i className="far fa-comment fa-2x viewphoto__comments-icon"></i>
                       <div className="comments-length">
                         {filteredPhoto.comments.length}
                       </div>

@@ -8,12 +8,14 @@ import NavbarUser from "./NavbarUser/index";
 import NavbarUserRegister from "./NavbarUser/NavbarUserRegister/index";
 import NavbarUserLogin from "./NavbarUser/NavbarUserLogin/index";
 import NavbarUserLogout from "./NavbarUser/NavbarUserLogout/index";
-import "./style.css";
+
+import "./style.scss";
 
 const Navbar = () => {
   const state = useSelector((state) => state.auth);
 
   const { isAuthenticated, user } = state;
+  console.log("from navbar", isAuthenticated, user);
 
   const [isClicked, setState] = useState(false);
 
@@ -56,7 +58,7 @@ const Navbar = () => {
             onClick={toggle}
           >
             <i className="fas fa-home nav-list__icon grow" title="home">
-              {/* <span> Home</span> */}
+              <span> Home</span>
             </i>
           </NavLink>
         </li>
@@ -68,7 +70,7 @@ const Navbar = () => {
             onClick={toggle}
           >
             <i className="fas fa-users nav-list__icon grow" title="community">
-              {/* <span> Community</span> */}
+              <span> Community</span>
             </i>
           </NavLink>
         </li>
@@ -83,7 +85,7 @@ const Navbar = () => {
               className="fas fa-images nav-list__icon grow"
               title="photo gallery"
             >
-              {/* <span> Gallery</span> */}
+              <span> Gallery</span>
             </i>
           </NavLink>
         </li>
@@ -91,7 +93,9 @@ const Navbar = () => {
           <NavbarUser user={user} toggle={toggle} />
         ) : null}
         <li>
-          {!isAuthenticated && !user ? (
+          {isAuthenticated && user ? (
+            <NavbarUserLogout toggle={toggle} />
+          ) : (
             <ul className="register-login">
               <li>
                 <NavbarUserRegister toggle={toggle} />
@@ -100,8 +104,6 @@ const Navbar = () => {
                 <NavbarUserLogin toggle={toggle} />
               </li>
             </ul>
-          ) : (
-            <NavbarUserLogout toggle={toggle} />
           )}
         </li>
       </ul>

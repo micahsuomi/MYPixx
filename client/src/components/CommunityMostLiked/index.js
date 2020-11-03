@@ -1,9 +1,11 @@
 import React from "react";
 
+import "./style.scss";
+
 const CommunityMostLiked = ({ image, name, author, likes }) => {
   return (
-    <div className="photo-sorted__card grow">
-      <div className="photo-sorted__image__container">
+    <div className="photo-sorted grow">
+      <div className="photo-sorted__image-container">
         <img src={image} alt={name} />
       </div>
       <h4>{name}</h4>

@@ -1,0 +1,23 @@
+@import "../../../scss/abstracts/mixins.scss";
+
+.add-comment-form {
+  label {
+    margin-left: 2.4rem;
+  }
+  textarea {
+    margin-top: 1.5rem;
+    width: 26rem;
+    font-family: "Roboto";
+    padding: 0.7rem;
+    font-size: 16px;
+  }
+  &__btn-submit,
+  &__btn-cancel {
+    @include standard-button;
+    padding: 0.6rem;
+    width: 7rem;
+  }
+  &__btn-cancel {
+    background-color: var(--secondary);
+  }
+}

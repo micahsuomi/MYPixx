@@ -41,8 +41,7 @@ const login =
 
             //we make a json file for token and user
             console.log("user is here", user);
-            await user.populate("photos")
-            .execPopulate()
+            await user.populate("photos").execPopulate();
             res.json({
               token,
               user: {

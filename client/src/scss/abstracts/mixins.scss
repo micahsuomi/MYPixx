@@ -1,5 +1,13 @@
+@mixin auth-padding {
+  padding: 5rem 10rem;
+}
 @mixin section-padding {
   padding: 9rem 5rem;
+}
+
+@mixin full-sizing {
+  width: 100vw;
+  min-height: 100vh;
 }
 
 @mixin flex-property-column {
@@ -77,22 +85,26 @@
 }
 
 @mixin standard-button {
-  padding: 0.5rem;
-  background-color: var(--secondary);
+  padding: 0.7rem;
+  background-color: var(--primary);
   border: none;
   border-radius: 50px;
   color: white;
   cursor: pointer;
-  margin: 0.8rem;
-  display: block;
-  width: 10rem;
-
+  margin: 1.5rem;
+  width: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 16px;
-  border: 2px solid var(--primary);
+  text-transform: uppercase;
   box-shadow: 0 1rem 1rem rgba(rgb(136, 136, 153), 0.3);
 
   &:hover {
     @include btn-hover-standard;
+  }
+  &:active {
+    outline: none;
   }
 }
 

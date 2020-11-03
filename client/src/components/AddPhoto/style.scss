@@ -1,0 +1,105 @@
+@import "../../scss/abstracts/mixins.scss";
+
+.add-photo {
+  padding: 7rem 10rem;
+  background-color: rgb(243, 237, 237);
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+
+  &__form {
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    @include flex-property-column;
+    line-height: 1.9;
+    border-radius: 5px;
+    font-weight: 700;
+    background-color: white;
+    width: 40vw;
+    box-shadow: 0 2rem 2rem rgba(172, 159, 159, 0.5);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+  }
+  &__cancel-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 36vw;
+  }
+  i {
+    color: var(--primary);
+  }
+  label {
+    align-self: flex-start;
+  }
+  input,
+  select {
+    width: 25rem;
+    padding: 0.6rem;
+    font-size: 16px;
+    font-family: "Roboto";
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    margin-top: 0.6rem;
+  }
+  textarea {
+    height: 15rem;
+  }
+  &__btn-save-wrapper {
+    @include flex-property-row-center;
+  }
+
+  &__btn-save {
+    @include standard-button;
+    width: 13rem;
+  }
+}
+.input-topics {
+  @include flex-property-column;
+  margin: 1rem;
+}
+
+.file-btn {
+  padding: 1.4rem;
+}
+
+@media screen and (max-width: 768px) {
+  .add-photo {
+    width: 58vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .add-photo {
+    padding: 6rem 2rem;
+    min-height: 100vh;
+    &__form {
+      width: 92vw;
+    }
+    &__cancel-wrapper {
+      width: 82vw;
+    }
+    input {
+      width: 16rem;
+      padding: 0.7rem;
+    }
+    select {
+      width: 8rem;
+      padding: 0.8rem;
+    }
+    textarea {
+      width: 20rem;
+    }
+    &__btn-save {
+      width: 7rem;
+      font-size: 14px;
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .add-photo__container {
+    padding: 0rem 2rem;
+  }
+}

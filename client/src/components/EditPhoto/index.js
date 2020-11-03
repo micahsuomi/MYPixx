@@ -7,16 +7,19 @@ import {
   getPhoto,
   editPhoto,
 } from "../../redux/actions/photoActions";
-import "../AddPhoto/style.css";
-import "./style.css";
+
+import "../AddPhoto/style.scss";
+import "./style.scss";
 
 const EditPhoto = (props) => {
   const dispatch = useDispatch();
   const filteredPhoto = useSelector((state) => state.photos.photo);
   const [photo, setPhoto] = useState({
     photo: {
-      name: "",
       image: "",
+      title: "",
+      type: "",
+      technique: "",
       description: "",
     },
   });
@@ -27,9 +30,15 @@ const EditPhoto = (props) => {
   const [fileInput, setFileInput] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [isImageChanged, setIsImageChanged] = useState(false);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  const { title, image, type, technique, description } = photo;
 
   useEffect(() => {
     const id = props.match.params.id;
+    if (!isAuthenticated) {
+      props.history.push("/login");
+    }
     dispatch(getPhoto(id));
   }, [dispatch]);
 
@@ -44,10 +53,13 @@ const EditPhoto = (props) => {
     if (isImageChanged) {
       setPhoto(previewSource);
     }
+    console.log("photo here", photo);
     dispatch(editPhoto(id, photo));
     setTimeout(() => {
       props.history.push("/photos");
-      dispatch(getPhotos());
+      setTimeout(() => {
+        dispatch(getPhotos());
+      }, 2000);
     }, 3000);
   };
 
@@ -71,7 +83,10 @@ const EditPhoto = (props) => {
       const result = reader.result;
       setPreviewSource(result);
       setIsImageChanged(true);
+      console.log("before file preview", photo);
+      photo.image = result;
       setPhoto({
+        ...photo,
         image: result,
       });
     };
@@ -80,9 +95,9 @@ const EditPhoto = (props) => {
   const openImageEditing = () => {
     setIsImageEditing(true);
     setPhoto({
+      ...photo,
       image: updatedImage,
     });
-    console.log(image);
   };
 
   const cancelImage = () => {
@@ -91,14 +106,13 @@ const EditPhoto = (props) => {
     setIsImageChanged(false);
   };
 
-  let { name, image, description } = photo;
   return (
-    <div className="edit-photo__container">
+    <div className="edit-photo">
       <form
         onSubmit={handleSubmit}
-        className="add-photo__form edit-photo__form animate-modal"
+        className="edit-photo__form animate-modal"
       >
-        <div className="cancel-wrapper">
+        <div className="edit-photo__cancel-wrapper">
           <NavLink to="/photos" className="delete-link">
             <i className="fas fa-times-circle fa-2x"></i>
           </NavLink>
@@ -107,17 +121,7 @@ const EditPhoto = (props) => {
 
         {photoLoaded ? (
           <div>
-            <div className="input-topics">
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                name="name"
-                value={name}
-                placeholder="name"
-                onChange={handleChange}
-              />
-            </div>
-            {!isImageChanged ? (
+            {!isImageChanged && (
               <div>
                 <div className="input-topics">
                   <label htmlFor="image">Image</label>
@@ -130,26 +134,26 @@ const EditPhoto = (props) => {
                     style={{ display: "none" }}
                   />
                 </div>
-                <div className="edit-image__preview__container">
+                <div className="edit-photo__preview-container">
                   <img
                     src={image}
-                    alt="current user profile"
+                    alt="current photo"
                     style={{ height: "200px" }}
                   />
                 </div>
               </div>
-            ) : null}
+            )}
 
-            {!isImageEditing ? (
-              <div className="change-photo__container">
+            {!isImageEditing && (
+              <div className="edit-photo__change-photo-container">
                 <button
                   onClick={openImageEditing}
-                  className="change-photo grow"
+                  className="edit-photo__change-photo grow"
                 >
                   Change
                 </button>
               </div>
-            ) : null}
+            )}
 
             {isImageEditing || isImageChanged ? (
               <div>
@@ -164,21 +168,21 @@ const EditPhoto = (props) => {
                   />
                 </div>
                 {previewSource && (
-                  <div className="edit-image__preview__container">
+                  <div className="edit-photo__preview-container">
                     <img
                       src={previewSource}
                       alt="chosen"
                       style={{ height: "200px" }}
                     />
                     <button
-                      className="edit-image__cancel grow"
+                      className="edit-photo__cancel grow"
                       onClick={cancelImage}
                     >
                       Remove
                     </button>
                   </div>
                 )}{" "}
-                {!isImageChanged ? (
+                {!isImageChanged && (
                   <div className="buttons-wrapper">
                     <button
                       className="edit-image__cancel grow"
@@ -187,9 +191,43 @@ const EditPhoto = (props) => {
                       Cancel
                     </button>
                   </div>
-                ) : null}
+                )}
               </div>
             ) : null}
+
+            <div className="input-topics">
+              <label htmlFor="name">Title</label>
+              <input
+                type="text"
+                name="title"
+                value={title}
+                placeholder="title"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="input-topics">
+              <label htmlFor="type">Type</label>
+              <select name="type" value={type} onChange={handleChange}>
+                <option value="portrait">Portrait</option>
+                <option value="landscape">Landscape</option>
+                <option value="street">Photography</option>
+                <option value="cousine">Abstract</option>
+                <option value="portrait">Street Art</option>
+                <option value="fashion">Digital</option>
+              </select>
+            </div>
+
+            <div className="input-topics">
+              <label htmlFor="technique">technique</label>
+              <input
+                type="text"
+                name="technique"
+                value={technique}
+                placeholder="technique"
+                onChange={handleChange}
+              />
+            </div>
 
             <div className="input-topics">
               <label htmlFor="description">Description</label>
@@ -202,8 +240,8 @@ const EditPhoto = (props) => {
               />
             </div>
 
-            <div className="btn-save__wrapper">
-              <button className="btn-save">Submit</button>
+            <div className="edit-photo__btn-save-wrapper">
+              <button className="edit-photo__btn-save">Submit</button>
             </div>
           </div>
         ) : (

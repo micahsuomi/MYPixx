@@ -1,0 +1,40 @@
+@import "../../scss/abstracts/mixins.scss";
+
+.header {
+  background-image: linear-gradient(
+      to right,
+      rgba(65, 62, 59, 0.63),
+      rgba(18, 11, 29, 0.9)
+    ),
+    url("https://images.pexels.com/photos/4343180/pexels-photo-4343180.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 1rem 1rem rgba(140, 153, 153, 0.5);
+  background-color: rgb(202, 194, 194);
+  padding: 9rem 2rem;
+  z-index: 0;
+  transition: ease-in-out 0.6s;
+  position: sticky;
+  // margin-top: 4rem;
+  padding-bottom: 20rem;
+  display: block;
+  width: 100vw;
+  &__wrapper,
+  .header-search {
+    @include flex-property-column;
+  }
+  &__title {
+    text-align: center;
+  }
+  &__wrapper h1,
+  h3 {
+    font-size: 33px;
+    color: white;
+  }
+  h3 {
+    font-size: 25px;
+  }
+  &__wrapper {
+    padding: 0.8rem;
+  }
+}

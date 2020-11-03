@@ -1,0 +1,151 @@
+@import "../../scss/abstracts/mixins.scss";
+
+.login-container {
+  @include auth-padding;
+  @include full-sizing;
+  @include flex-property-row-center;
+  background-image: linear-gradient(
+      to right,
+      rgba(111, 113, 122, 0.8) 0%,
+      rgba(46, 43, 49, 0.8) 100%
+    ),
+    url("https://images.pexels.com/photos/1191503/pexels-photo-1191503.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-image: linear-gradient(
+      to right,
+      rgba(111, 113, 122, 0.8) 0%,
+      rgba(46, 43, 49, 0.8) 100%
+    ),
+    url("https://images.pexels.com/photos/3025620/pexels-photo-3025620.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-size: cover;
+  background-position: top;
+}
+
+.login-form {
+  padding: 2rem 2rem;
+  margin: 2rem 0;
+  @include flex-property-column;
+  line-height: 1.9;
+  border: 3px solid lightgray;
+  border-radius: 5px;
+  font-weight: 700;
+  background-color: white;
+  width: 27rem;
+
+  input {
+    width: 20rem;
+    padding: 0.6rem;
+    font-size: 16px;
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    margin-top: 0.6rem;
+  }
+
+  .input-topics {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 1rem;
+    align-items: center;
+  }
+
+  label {
+    align-self: flex-start;
+  }
+
+  textarea {
+    height: 15rem;
+  }
+}
+
+.cancel-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 55vw;
+}
+
+.file-btn {
+  padding: 1.4rem;
+}
+
+.btn-save__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-login {
+  @include standard-button;
+  padding: 0.6rem;
+  width: 13rem;
+}
+
+@media screen and (max-width: 850px) {
+  .login-form {
+    height: 27rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .login-form__container {
+    padding: 1rem 0;
+  }
+
+  .add-photo__container {
+    padding: 6rem 2rem;
+    min-height: 100vh;
+  }
+
+  .login-form {
+    width: 23rem;
+    height: 30rem;
+  }
+
+  input {
+    width: 11rem;
+    padding: 0.7rem;
+  }
+  select {
+    width: 8rem;
+    padding: 0.8rem;
+  }
+
+  textarea {
+    width: 20rem;
+  }
+
+  .btn-save,
+  .btn-cancel {
+    padding: 0.6rem;
+    margin: 0.6rem;
+    width: 4rem;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .login-form__container {
+    padding: 5rem 0;
+  }
+
+  .add-photo__container {
+    padding: 6rem 2rem;
+    min-height: 100vh;
+  }
+
+  .login-form {
+    width: 19rem;
+    height: 27rem;
+  }
+
+  .login-form input {
+    width: 15rem;
+    padding: 0.7rem;
+  }
+
+  .btn-login {
+    padding: 0.5rem;
+    margin: 0.5rem;
+    width: 5rem;
+    font-size: 13px;
+  }
+}

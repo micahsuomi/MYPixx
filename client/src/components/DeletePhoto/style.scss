@@ -1,0 +1,31 @@
+@import "../../scss/abstracts/mixins.scss";
+
+.delete-photo {
+  height: 100vh;
+  @include flex-property-column;
+  background-color: rgb(243, 237, 237);
+
+  &__wrapper {
+    padding: 3rem 2rem;
+    background-color: white;
+    width: 30rem;
+  }
+
+  &__cancel-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__warning {
+    color: var(--violet);
+    margin-top: 2rem;
+  }
+
+  &__btn-wrapper {
+    @include flex-property-row-center;
+  }
+
+  &__delete-btn {
+    @include standard-button;
+  }
+}

@@ -6,11 +6,13 @@ import {
   USER_LOADING,
   USER_LOADED,
   LOGOUT_SUCCESS,
+  CLEAR_ALLVALIDATIONS,
 } from "../actions/types";
 
 const initialState = {
   token: null,
-  isAuthenticated: null,
+  isValidated: false,
+  isAuthenticated: false,
   isLoading: false,
   user: null,
   errorMsg: "",
@@ -19,6 +21,12 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case REGISTER_SUCCESS:
+      return {
+        ...state,
+        ...action.payload,
+        isValidated: true,
+        errorMsg: "",
+      };
     case LOGIN_SUCCESS:
       localStorage.setItem("token", action.payload.token);
       return {
@@ -50,6 +58,11 @@ export default function (state = initialState, action) {
         isLoading: false,
         user: action.payload,
         isAuthenticated: true,
+      };
+    case CLEAR_ALLVALIDATIONS:
+      return {
+        ...state,
+        isValidated: false,
       };
 
     default:
