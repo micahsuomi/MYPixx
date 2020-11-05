@@ -28,7 +28,7 @@ const EditUser = (props) => {
   const [fileInput, setFileInput] = useState(null);
   const [selectedFile] = useState(null);
   const [isImageChanged, setIsImageChanged] = useState(false);
-  
+
   const id = props.match.params.id;
 
   useEffect(() => {
@@ -45,10 +45,10 @@ const EditUser = (props) => {
 
     setTimeout(() => {
       props.history.push(`/user/${id}`);
-      props.openUserPopup()
+      props.openUserPopup();
       setTimeout(() => {
         dispatch(getUsers());
-        dispatch(getUser(id))
+        dispatch(getUser(id));
       }, 2000);
     }, 2000);
   };
@@ -93,14 +93,14 @@ const EditUser = (props) => {
   }, []);*/
 
   useEffect(() => {
-    if(!isUserLoaded) {
+    if (!isUserLoaded) {
       dispatch(getUser(id));
     }
-   }, [dispatch, id]);
+  }, [dispatch, id]);
 
-   useEffect(() => {
+  useEffect(() => {
     setUser(loadedEditUser);
-   }, [])
+  }, []);
 
   const handleChange = (e) => {
     let { name, value } = e.target;
@@ -168,7 +168,10 @@ const EditUser = (props) => {
         ) : null}
 
         {!isImageEditing ? (
-          <button onClick={openImageEditing} className="edit-user__change-photo grow">
+          <button
+            onClick={openImageEditing}
+            className="edit-user__change-photo grow"
+          >
             Change
           </button>
         ) : null}

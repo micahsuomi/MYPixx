@@ -89,6 +89,7 @@ const Register = (props) => {
                 value={name}
                 placeholder="full name"
                 onChange={handleChange}
+                required={true}
               />
             </div>
 
@@ -100,6 +101,7 @@ const Register = (props) => {
                 value={email}
                 placeholder="email"
                 onChange={handleChange}
+                required={true}
               />
             </div>
 
@@ -111,6 +113,7 @@ const Register = (props) => {
                 value={password}
                 placeholder="password"
                 onChange={handleChange}
+                required={true}
               />
             </div>
 
@@ -122,6 +125,7 @@ const Register = (props) => {
                 value={repeatPassword}
                 placeholder="repeat password"
                 onChange={handleChange}
+                required={true}
               />
             </div>
             <p className="warning-msg">{errorMsg}</p>

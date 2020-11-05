@@ -53,7 +53,10 @@ const EditComment = ({ photoId, commentId, closeEditComment }, props) => {
         <button className="edit-comment__comment-btn">
           <i className="fas fa-check-circle fa-2x edit-comment__edit-btn"></i>
         </button>
-        <button className="edit-comment__comment-btn" onClick={closeEditComment}>
+        <button
+          className="edit-comment__comment-btn"
+          onClick={closeEditComment}
+        >
           <i className="fas fa-times-circle fa-2x edit-comment__delete-btn"></i>
         </button>
       </div>

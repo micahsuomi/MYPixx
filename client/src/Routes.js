@@ -53,9 +53,9 @@ export const Routes = () => {
     dispatch(getUsers());
   };
   const openUserPopup = () => {
-    console.log('calling from here')
-    setIsEditPopupOpen(true)
-  }
+    console.log("calling from here");
+    setIsEditPopupOpen(true);
+  };
 
   return (
     <div className="wrapper">

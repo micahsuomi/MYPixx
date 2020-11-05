@@ -31,11 +31,16 @@ const EditPhoto = (props) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [isImageChanged, setIsImageChanged] = useState(false);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const [warning, setWarning] = useState("");
 
   const { title, image, type, technique, description } = photo;
 
+  const id = props.match.params.id;
+
+  const [techniqueArr, setTechniqueArr] = useState([]);
+  console.log(photo);
+  console.log(techniqueArr);
   useEffect(() => {
-    const id = props.match.params.id;
     if (!isAuthenticated) {
       props.history.push("/login");
     }
@@ -43,17 +48,27 @@ const EditPhoto = (props) => {
   }, [dispatch]);
 
   useEffect(() => {
-    setPhoto(filteredPhoto);
+    if (!photoLoaded) {
+      dispatch(getPhoto(id));
+    }
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    setPhoto({ ...filteredPhoto });
+    setTechniqueArr(filteredPhoto.technique);
+    setPhoto({ ...filteredPhoto, technique: "" });
     setPhotoLoaded(true);
   }, [filteredPhoto]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const id = props.match.params.id;
+    photo.technique = techniqueArr;
+
     if (isImageChanged) {
-      setPhoto(previewSource);
+      setPhoto({ ...photo, image: previewSource, technique: techniqueArr });
     }
     console.log("photo here", photo);
+
     dispatch(editPhoto(id, photo));
     setTimeout(() => {
       props.history.push("/photos");
@@ -106,20 +121,47 @@ const EditPhoto = (props) => {
     setIsImageChanged(false);
   };
 
+  const addToTechniques = (e) => {
+    e.preventDefault();
+
+    let techniqueIndex = techniqueArr.indexOf(technique);
+
+    if (technique.length < 1) {
+      setWarning("Please enter a value");
+    }
+    if (techniqueIndex !== -1) {
+      setWarning("Tag already present");
+    } else {
+      setTechniqueArr([...techniqueArr, technique]);
+      setPhoto({ ...photo, technique: "" });
+      setWarning("");
+    }
+  };
+
+  const deleteTechnique = (t) => {
+    const tecniqueIndex = techniqueArr.indexOf(t);
+    techniqueArr.splice(tecniqueIndex, 1);
+    setTechniqueArr([...techniqueArr]);
+  };
+
+  if (!photoLoaded) {
+    return <h1>Loading</h1>;
+  }
+
   return (
     <div className="edit-photo">
-      <form
-        onSubmit={handleSubmit}
-        className="edit-photo__form animate-modal"
-      >
-        <div className="edit-photo__cancel-wrapper">
-          <NavLink to="/photos" className="delete-link">
-            <i className="fas fa-times-circle fa-2x"></i>
-          </NavLink>
-        </div>
-        <h2>Edit Photo</h2>
+      {photoLoaded && techniqueArr !== undefined ? (
+        <form
+          onSubmit={handleSubmit}
+          className="edit-photo__form animate-modal"
+        >
+          <div className="edit-photo__cancel-wrapper">
+            <NavLink to="/photos" className="delete-link">
+              <i className="fas fa-times-circle fa-2x"></i>
+            </NavLink>
+          </div>
+          <h2>Edit Photo</h2>
 
-        {photoLoaded ? (
           <div>
             {!isImageChanged && (
               <div>
@@ -219,14 +261,43 @@ const EditPhoto = (props) => {
             </div>
 
             <div className="input-topics">
-              <label htmlFor="technique">technique</label>
-              <input
-                type="text"
-                name="technique"
-                value={technique}
-                placeholder="technique"
-                onChange={handleChange}
-              />
+              <label htmlFor="technique">Tags</label>
+              <div className="input-topics-technique">
+                <input
+                  type="text"
+                  name="technique"
+                  value={technique}
+                  placeholder={
+                    "eg(oil, acrylics, dripping, analog photography etc)"
+                  }
+                  onChange={handleChange}
+                />
+                <button
+                  onClick={addToTechniques}
+                  className="input-topics-technique__add-btn"
+                >
+                  <i className="fas fa-plus-square fa-2x"></i>
+                </button>
+              </div>
+              <div className="edit-photo__techniques-container">
+                <div className="edit-photo__techniques-wrapper">
+                  {techniqueArr.map((t) => (
+                    <div className="edit-photo__technique-item grow animate-modal">
+                      <div className="edit-photo__technique-item-body">
+                        <p>{`${t}`}</p>
+                      </div>
+                      <div className="edit-photo__technique-item-delete">
+                        <i
+                          className="fas fa-times"
+                          title="remove"
+                          onClick={() => deleteTechnique(t)}
+                        ></i>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p className="edit-photo__technique-warning">{warning}</p>
+              </div>
             </div>
 
             <div className="input-topics">
@@ -244,19 +315,19 @@ const EditPhoto = (props) => {
               <button className="edit-photo__btn-save">Submit</button>
             </div>
           </div>
-        ) : (
-          <div class="lds-roller">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        )}
-      </form>
+        </form>
+      ) : (
+        <div class="lds-roller">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      )}
     </div>
   );
 };

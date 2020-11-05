@@ -18,7 +18,7 @@
     background-color: white;
     width: 35rem;
   }
-  
+
   &__cancel-wrapper {
     display: flex;
     justify-content: flex-end;
@@ -38,45 +38,43 @@
 
   input,
   textarea {
-  width: 25rem;
-  padding: 0.6rem;
-  font-size: 16px;
-  font-family: "Roboto";
-  border-radius: 3px;
-  border: 1px solid lightgray;
-  margin-top: 0.6rem;
-}
+    width: 25rem;
+    padding: 0.6rem;
+    font-size: 16px;
+    font-family: "Roboto";
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    margin-top: 0.6rem;
+  }
   &__image-label {
     align-self: center;
   }
-  
-&__preview-image {
-  margin-top: 1.5rem;
-  @include flex-property-column;
-}
-&__change-photo,
-&__remove-photo,
-&__cancel-photo {
-  @include standard-button;
-  width: 7rem;
-}
-&__remove-photo,
-&__cancel-photo {
-  background-color: var(--secondary);
 
-}
+  &__preview-image {
+    margin-top: 1.5rem;
+    @include flex-property-column;
+  }
+  &__change-photo,
+  &__remove-photo,
+  &__cancel-photo {
+    @include standard-button;
+    width: 7rem;
+  }
+  &__remove-photo,
+  &__cancel-photo {
+    background-color: var(--secondary);
+  }
 
-&__btn-save-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  &__btn-save-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-&__btn-save {
-  @include standard-button;
-  width: 13rem;
-}
-
+  &__btn-save {
+    @include standard-button;
+    width: 13rem;
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -113,7 +111,7 @@
     &__cancel-wrapper {
       width: 81vw;
     }
-  
+
     input,
     textarea {
       width: 19rem;
@@ -123,7 +121,7 @@
       width: 8rem;
       padding: 0.8rem;
     }
-  
+
     textarea {
       width: 20rem;
     }
@@ -135,12 +133,8 @@
       font-size: 14px;
     }
   }
-  
+
   .warning-msg {
     color: var(--red);
   }
-  }
-
-  
-
- 
+}
