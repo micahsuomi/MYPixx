@@ -14,10 +14,9 @@ const DeletePhoto = (props) => {
   const deleteOnClick = () => {
     dispatch(deletePhoto(id));
     setTimeout(() => {
-      props.history.push("/photos");  
-      dispatch(getUsers())    
+      props.history.push("/photos");
+      dispatch(getUsers());
     }, 1000);
-
   };
 
   return (

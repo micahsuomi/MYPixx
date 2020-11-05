@@ -21,8 +21,7 @@
       height: 100%;
     }
   }
-  
-  
+
   &__name {
     text-decoration: none;
     font-weight: 700;
@@ -38,23 +37,17 @@
     cursor: pointer;
     margin-left: 1rem;
   }
-  
+
   &__edit-btn {
     color: var(--blue);
     cursor: pointer;
     margin-top: 0.7rem;
   }
-  
 }
-
-
 
 .comment-user:nth-child(2) {
   margin-top: 1rem;
 }
-
-
-
 
 .comment-date {
   font-size: 14px;
@@ -76,8 +69,6 @@
   justify-content: center;
   align-items: center;
 }
-
-
 
 @keyframes appear {
   from {

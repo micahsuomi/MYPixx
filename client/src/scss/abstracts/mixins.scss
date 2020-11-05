@@ -21,10 +21,24 @@
   align-items: stretch;
 }
 
-@mixin flex-property-row-center {
+@mixin flex-property-row {
   display: flex;
-  justify-content: center;
   align-items: center;
+}
+
+@mixin flex-property-row-center {
+  @include flex-property-row;
+  justify-content: center;
+}
+
+@mixin flex-property-row-start {
+  @include flex-property-row;
+  justify-content: flex-start;
+}
+
+@mixin flex-property-row-end {
+  @include flex-property-row;
+  justify-content: flex-end;
 }
 
 @mixin grid {

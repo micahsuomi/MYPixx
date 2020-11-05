@@ -130,13 +130,13 @@ const ViewPhoto = (props) => {
                 </div>
               </div>
               {photoInfo ? (
-                <div className="viewphoto__info">
+                <div className="viewphoto__info animate-modal">
                   <h4>Title: {filteredPhoto.title}</h4>
                   <p>Type: {filteredPhoto.type}</p>
                   <p>
-                    Technique:{" "}
+                    Tags:{" "}
                     {filteredPhoto.technique.map((t) => (
-                      <span>{t} </span>
+                      <span>{`${t}`} </span>
                     ))}
                   </p>
                   <p>Description: {filteredPhoto.description}</p>

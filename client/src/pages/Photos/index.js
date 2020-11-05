@@ -130,7 +130,6 @@ const PhotoList = (props) => {
     />
   ));
 
-  console.log("photos", photos);
   return (
     <>
       <Header

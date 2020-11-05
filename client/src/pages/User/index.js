@@ -25,11 +25,10 @@ const User = (props) => {
   }, []);
 
   useEffect(() => {
-    if(!isUserLoaded) {
+    if (!isUserLoaded) {
       dispatch(getUser(userId));
     }
-   }, [dispatch, userId]);
-
+  }, [dispatch, userId]);
 
   /*
   const closePopup = () => {
@@ -39,13 +38,13 @@ const User = (props) => {
   const refreshPage = () => {
     fetchUserData();
   };*/
-/*
+  /*
   const foundUser = props.users.find((user) => {
     return user._id === props.match.params.id;
   });*/
   // console.log("found user", userProfile);
   // console.log('user profile', user)
-/*
+  /*
   let formattedPhotos = foundUser.photos.map((photo) => (
     <PhotoItem
       key={photo._id}
@@ -62,7 +61,7 @@ const User = (props) => {
       userProfile={userProfile}
     />
   ));*/
-  console.log(userProfile)
+  console.log(userProfile);
   /*
   let formattedPhotos 
   setTimeout(() => {
@@ -84,7 +83,7 @@ const User = (props) => {
       />
       ));
   }, 4000);*/
-  
+
   const closePopupOnClick = () => {
     props.closePopup();
   };
@@ -126,7 +125,7 @@ const User = (props) => {
   }
   return (
     <>
-      { isUserLoaded ? (
+      {isUserLoaded ? (
         <div>
           <div className="user-details">
             <h1>
@@ -151,7 +150,7 @@ const User = (props) => {
               {userProfile.medium.map((m) => (
                 <span>{m} </span>
               ))}
-            </p> 
+            </p>
             <p>{bio}</p>
             {isAuthenticated && props.user.user.id === props.match.params.id && (
               <div>
@@ -181,7 +180,7 @@ const User = (props) => {
                 </div>
               </div>
             </div>
-          )}  
+          )}
           <div className="photo-gallery__container">
             <h1>User Gallery</h1>
             {userProfile.photos.length < 1 ? (
@@ -189,28 +188,27 @@ const User = (props) => {
             ) : (
               <h4>{userProfile.photos.length} photos</h4>
             )}
-              {isUserLoaded &&
+            {isUserLoaded && (
               <div className="photo-gallery__wrapper">
-              {userProfile.photos.map((photo) => (
-              <PhotoItem
-                key={photo._id}
-                id={photo._id}
-                title={photo.title}
-                image={photo.image}
-                description={photo.description}
-                author={photo.author.name}
-                authorId={photo.author.id}
-                authorImg={photo.author.avatar}
-                likes={photo.likes}
-                comments={photo.comments}
-                isUserPage={isUserPage}
-                userProfile={userProfile}
-              />))}
+                {userProfile.photos.map((photo) => (
+                  <PhotoItem
+                    key={photo._id}
+                    id={photo._id}
+                    title={photo.title}
+                    image={photo.image}
+                    description={photo.description}
+                    author={photo.author.name}
+                    authorId={photo.author.id}
+                    authorImg={photo.author.avatar}
+                    likes={photo.likes}
+                    comments={photo.comments}
+                    isUserPage={isUserPage}
+                    userProfile={userProfile}
+                  />
+                ))}
               </div>
-
-              }
-                 
-          </div> 
+            )}
+          </div>
         </div>
       ) : (
         <div>
@@ -222,13 +220,12 @@ const User = (props) => {
               </button> 
             </div>
           ) : ( */}
-            <div className="loading-container" style={{ height: "100vh" }}>
-              <h1>Loading User...</h1>
-              <div className="lds-circle">
-                <div></div>
-              </div>
+          <div className="loading-container" style={{ height: "100vh" }}>
+            <h1>Loading User...</h1>
+            <div className="lds-circle">
+              <div></div>
             </div>
-           
+          </div>
         </div>
       )}
     </>

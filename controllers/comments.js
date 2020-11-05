@@ -28,7 +28,7 @@ const addComment = async (req, res, next) => {
     const date = new Date();
     newComment.commentDate = date.toISOString().split("T")[0];
     newComment.save();
-    console.log("new comment here", newComment);
+
     photo.comments.push(newComment);
     photo.save().then((photo) => res.json(photo));
   } catch (err) {

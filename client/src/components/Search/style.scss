@@ -17,6 +17,12 @@
   }
 }
 
+@media screen and (max-width: 1024px) {
+  .search-form {
+    width: 67vw;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .search-form {
     input {

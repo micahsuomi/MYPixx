@@ -22,17 +22,22 @@
     animation-name: animatetop;
     animation-duration: 0.4s;
   }
+
   &__cancel-wrapper {
     display: flex;
     justify-content: flex-end;
     width: 36vw;
   }
+
   i {
     color: var(--primary);
   }
+
   label {
     align-self: flex-start;
+    color: var(--dark);
   }
+
   input,
   select {
     width: 25rem;
@@ -43,18 +48,69 @@
     border: 1px solid lightgray;
     margin-top: 0.6rem;
   }
+
   textarea {
     height: 15rem;
   }
+
+  .input-topics-technique {
+    @include flex-property-row-center;
+    input {
+      width: 20rem;
+    }
+    &__add-btn {
+      border: none;
+      background: none;
+      cursor: pointer;
+      margin-top: 0.6rem;
+      font-size: 1.3rem;
+    }
+  }
+  &__techniques-wrapper {
+    @include flex-property-row-start;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    p {
+      display: block;
+    }
+  }
+
+  &__technique-item {
+    padding: 0.2rem;
+    background-color: var(--dark);
+    color: var(--dark);
+    font-size: 12px;
+    margin: 0.2rem;
+    border-radius: 3px;
+    min-width: 3rem;
+    color: white;
+  }
+
+  &__technique-item-header {
+    @include flex-property-row-end;
+
+    i {
+      font-size: 10px;
+      cursor: pointer;
+      color: whitesmoke;
+    }
+  }
+
+  &__technique-item-body {
+    @include flex-property-column;
+    min-width: 2rem;
+  }
+
   &__btn-save-wrapper {
     @include flex-property-row-center;
   }
 
   &__btn-save {
     @include standard-button;
-    width: 13rem;
+    width: 20rem;
   }
 }
+
 .input-topics {
   @include flex-property-column;
   margin: 1rem;

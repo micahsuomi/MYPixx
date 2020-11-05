@@ -26,6 +26,8 @@ const AddPhoto = (props) => {
     fileInput: null,
     selectedFile: null,
   });
+  const [techniqueArr, setTechniqueArr] = useState([]);
+  const [warning, setWarning] = useState("");
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -45,12 +47,13 @@ const AddPhoto = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newPhoto = {
-      title,
+      title: title,
       image: image.previewSource,
-      type,
-      technique,
-      description,
+      type: type,
+      technique: techniqueArr,
+      description: description,
     };
+    console.log("new photo is here", newPhoto);
 
     dispatch(addPhoto(newPhoto));
     setTimeout(() => {
@@ -79,6 +82,28 @@ const AddPhoto = (props) => {
     };
   };
 
+  const addToTechniques = (e) => {
+    e.preventDefault();
+    let techniqueIndex = techniqueArr.indexOf(technique);
+    if (technique.length < 1) {
+      setWarning("Please enter a value");
+    }
+    if (techniqueIndex !== -1) {
+      setWarning("Tag already present");
+    } else {
+      setTechniqueArr([...techniqueArr, technique]);
+      setText({ ...text, technique: "" });
+      console.log(techniqueArr);
+      setWarning("");
+    }
+  };
+
+  const deleteTechnique = (t) => {
+    const tecniqueIndex = techniqueArr.indexOf(t);
+    techniqueArr.splice(tecniqueIndex, 1);
+    setTechniqueArr([...techniqueArr]);
+  };
+
   return (
     <div className="add-photo">
       <form onSubmit={handleSubmit} className="add-photo__form animate-modal">
@@ -87,8 +112,8 @@ const AddPhoto = (props) => {
             <i className="fas fa-times-circle fa-2x grow"></i>
           </NavLink>
         </div>
-        <h2>Add gallery item</h2>
 
+        <h2>Add gallery item</h2>
         <div className="input-topics">
           <label htmlFor="image">Image </label>
           <input
@@ -115,6 +140,7 @@ const AddPhoto = (props) => {
             value={title}
             placeholder="title"
             onChange={handleChange}
+            required={true}
           />
         </div>
 
@@ -132,14 +158,40 @@ const AddPhoto = (props) => {
         </div>
 
         <div className="input-topics">
-          <label htmlFor="technique">Technique</label>
-          <input
-            type="text"
-            name="technique"
-            value={technique}
-            placeholder="tecnique"
-            onChange={handleChange}
-          />
+          <label htmlFor="technique">Tags</label>
+          <div className="input-topics-technique">
+            <input
+              type="text"
+              name="technique"
+              value={technique}
+              placeholder={
+                "eg(oil, acrylics, dripping, analog photography etc)"
+              }
+              onChange={handleChange}
+            />
+            <button
+              onClick={addToTechniques}
+              className="input-topics-technique__add-btn"
+            >
+              <i className="fas fa-plus-square fa-2x"></i>
+            </button>
+          </div>
+          <div className="add-photo__techniques-wrapper">
+            {techniqueArr.map((t) => (
+              <div className="add-photo__technique-item grow">
+                <div className="add-photo__technique-item-header">
+                  <i
+                    className="fas fa-times"
+                    title="remove"
+                    onClick={() => deleteTechnique(t)}
+                  ></i>
+                </div>
+                <div className="add-photo__technique-item-body">
+                  <p>{`${t}`}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="input-topics">
@@ -150,6 +202,7 @@ const AddPhoto = (props) => {
             value={description}
             placeholder="description"
             onChange={handleChange}
+            required={true}
           />
         </div>
 

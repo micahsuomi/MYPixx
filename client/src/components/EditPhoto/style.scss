@@ -32,7 +32,6 @@
   }
   &__preview-container {
     @include flex-property-column;
-  
   }
   &__change-photo-container {
     display: flex;
@@ -45,19 +44,19 @@
     width: 7rem;
     margin-top: 2rem;
   }
-  
+
   &__change-photo:hover {
     background-color: var(--primary-dark);
   }
-  
+
   &__cancel {
     background-color: var(--secondary);
   }
-  
+
   &__cancel:hover {
     background-color: var(--secondary-dark);
   }
-  
+
   &__hange-photo:active,
   &__cancel:active {
     outline: none;
@@ -78,7 +77,66 @@
   textarea {
     height: 15rem;
   }
-  
+  .input-topics-technique {
+    @include flex-property-row-center;
+    input {
+      width: 20rem;
+    }
+    &__add-btn {
+      border: none;
+      background: none;
+      cursor: pointer;
+      margin-top: 0.6rem;
+      font-size: 1.3rem;
+    }
+  }
+
+  &__techniques-container {
+    @include flex-property-column;
+  }
+
+  &__techniques-wrapper {
+    @include flex-property-row-start;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    p {
+      display: block;
+    }
+  }
+
+  &__technique-item {
+    padding: 0.2rem;
+    background-color: var(--dark);
+    color: var(--dark);
+    font-size: 12px;
+    margin: 0.2rem;
+    border-radius: 3px;
+    min-width: 3.1rem;
+    color: white;
+    @include flex-property-row-center;
+    @include shadow-trans;
+  }
+
+  &__technique-item-delete {
+    i {
+      font-size: 12px;
+      cursor: pointer;
+      color: whitesmoke;
+      margin-left: 0.2rem;
+    }
+  }
+
+  &__technique-item-body {
+    @include flex-property-column;
+    min-width: 2.1rem;
+    padding: 0 0.2rem;
+  }
+
+  &__technique-warning {
+    color: var(--red);
+    font-size: 11px;
+  }
+
   &__btn-save-wrapper {
     @include flex-property-row-center;
   }
