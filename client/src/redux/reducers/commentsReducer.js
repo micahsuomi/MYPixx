@@ -20,9 +20,10 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case GET_COMMENTS:
+      const { comments } = action.payload;
       return {
         ...state,
-        comments: action.payload,
+        comments: comments,
       };
     case GET_COMMENT:
     case EDIT_COMMENT:
@@ -50,7 +51,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         commentLikes: action.payload,
-        // isCommentLiked: !state.isCommentLiked
       };
 
     default:

@@ -38,8 +38,7 @@ const EditPhoto = (props) => {
   const id = props.match.params.id;
 
   const [techniqueArr, setTechniqueArr] = useState([]);
-  console.log(photo);
-  console.log(techniqueArr);
+
   useEffect(() => {
     if (!isAuthenticated) {
       props.history.push("/login");
@@ -67,7 +66,6 @@ const EditPhoto = (props) => {
     if (isImageChanged) {
       setPhoto({ ...photo, image: previewSource, technique: techniqueArr });
     }
-    console.log("photo here", photo);
 
     dispatch(editPhoto(id, photo));
     setTimeout(() => {

@@ -16,7 +16,7 @@ import { showErrors } from "./errorActions";
 export const getComments = (id) => {
   return async (dispatch) => {
     try {
-      const url = `/api/v1/photos/${id}/comments`;
+      const url = `/api/v1/photos/${id}`;
       const res = await axios.get(url);
       dispatch({
         type: GET_COMMENTS,
@@ -31,10 +31,10 @@ export const getComments = (id) => {
 export const getComment = (photoId, commentId) => {
   return async (dispatch) => {
     try {
-      const url = `/api/v1/photos/${photoId}/comments`;
+      const url = `/api/v1/photos/${photoId}`;
       const res = await axios.get(url);
 
-      const foundComment = res.data.find((comment) => {
+      const foundComment = res.data.comments.find((comment) => {
         return comment._id === commentId;
       });
       dispatch({
