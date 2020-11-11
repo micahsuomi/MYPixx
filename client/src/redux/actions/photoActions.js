@@ -6,6 +6,7 @@ import {
   GET_PHOTO,
   EDIT_PHOTO,
   LIKE_PHOTO,
+  GET_PHOTOLIKES,
 } from "./types";
 
 import { tokenConfig } from "./authActions";
@@ -92,8 +93,19 @@ export const likePhoto = (likedPhoto, id) => {
     try {
       const url = `/api/v1/photos/${id}/like`;
       const res = await axios.post(url, likedPhoto, tokenConfig(getState));
-      console.log("from like photo action", res);
       dispatch({ type: LIKE_PHOTO, payload: res.data });
+    } catch (err) {
+      dispatch(showErrors(err.response.data, err.response.status));
+    }
+  };
+};
+
+export const getPhotoLikes = (id) => {
+  return async (dispatch) => {
+    try {
+      const url = `/api/v1/photos/${id}`;
+      const res = await axios.get(url);
+      dispatch({ type: GET_PHOTOLIKES, payload: res.data });
     } catch (err) {
       dispatch(showErrors(err.response.data, err.response.status));
     }

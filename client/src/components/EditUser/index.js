@@ -28,6 +28,8 @@ const EditUser = (props) => {
   const [fileInput, setFileInput] = useState(null);
   const [selectedFile] = useState(null);
   const [isImageChanged, setIsImageChanged] = useState(false);
+  const [mediumArr, setMediumArr] = useState([]);
+  const [warning, setWarning] = useState("");
 
   const id = props.match.params.id;
 
@@ -37,6 +39,7 @@ const EditUser = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    user.medium = mediumArr;
     if (isImageChanged) {
       console.log(previewSource);
       setUser(previewSource);
@@ -75,7 +78,7 @@ const EditUser = (props) => {
 
   const openImageEditing = () => {
     setIsImageEditing(true);
-    setUser({ ...user, avatar: updatedImage });
+    setUser({ ...user, avatar: updatedImage, medium: mediumArr });
   };
 
   const cancelImage = () => {
@@ -100,6 +103,8 @@ const EditUser = (props) => {
 
   useEffect(() => {
     setUser(loadedEditUser);
+    setMediumArr(loadedEditUser.medium);
+    setUser({ ...loadedEditUser, medium: "" });
   }, []);
 
   const handleChange = (e) => {
@@ -107,6 +112,28 @@ const EditUser = (props) => {
     setUser({ ...user, [name]: value });
   };
 
+  const addToMedium = (e) => {
+    e.preventDefault();
+
+    let mediumIndex = mediumArr.indexOf(medium);
+
+    if (medium.length < 1) {
+      setWarning("Please enter a value");
+    }
+    if (mediumIndex !== -1) {
+      setWarning("Tag already present");
+    } else {
+      setMediumArr([...mediumArr, medium]);
+      setUser({ ...user, medium: "" });
+      setWarning("");
+    }
+  };
+
+  const deleteMedium = (m) => {
+    const mediumIndex = mediumArr.indexOf(m);
+    mediumArr.splice(mediumIndex, 1);
+    setMediumArr([...mediumArr]);
+  };
   let { name, email, avatar, medium, bio } = user;
   if (avatar === undefined || avatar === "") {
     avatar =
@@ -219,13 +246,42 @@ const EditUser = (props) => {
 
         <div className="input-topics">
           <label htmlFor="medium">Medium</label>
-          <input
-            type="text"
-            name="medium"
-            value={medium}
-            placeholder="medium (e.g. oils, drawings, photography)"
-            onChange={handleChange}
-          />
+          <div className="input-topics-medium">
+            <input
+              type="text"
+              name="medium"
+              value={medium}
+              placeholder={
+                "eg(oil, acrylics, dripping, analog photography etc)"
+              }
+              onChange={handleChange}
+            />
+            <button
+              onClick={addToMedium}
+              className="input-topics-medium__add-btn"
+            >
+              <i className="fas fa-plus-square fa-2x"></i>
+            </button>
+          </div>
+          <div className="edit-user__mediums-container">
+            <div className="edit-user__mediums-wrapper">
+              {mediumArr.map((m) => (
+                <div className="edit-user__medium-item grow animate-modal">
+                  <div className="edit-user__medium-item-body">
+                    <p>{`${m}`}</p>
+                  </div>
+                  <div className="edit-user__medium-item-delete">
+                    <i
+                      className="fas fa-times"
+                      title="remove"
+                      onClick={() => deleteMedium(m)}
+                    ></i>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="edit-user__medium-warning">{warning}</p>
+          </div>
         </div>
 
         <div className="input-topics">

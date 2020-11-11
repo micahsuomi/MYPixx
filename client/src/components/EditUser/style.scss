@@ -65,6 +65,66 @@
     background-color: var(--secondary);
   }
 
+  .input-topics-medium {
+    @include flex-property-row-center;
+    input {
+      width: 20rem;
+    }
+    &__add-btn {
+      border: none;
+      background: none;
+      cursor: pointer;
+      margin-top: 0.6rem;
+      font-size: 1.3rem;
+    }
+  }
+
+  &__mediums-container {
+    @include flex-property-column;
+  }
+
+  &__mediums-wrapper {
+    @include flex-property-row-start;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    p {
+      display: block;
+    }
+  }
+
+  &__medium-item {
+    padding: 0.2rem;
+    background-color: var(--dark);
+    color: var(--dark);
+    font-size: 12px;
+    margin: 0.2rem;
+    border-radius: 3px;
+    min-width: 3.1rem;
+    color: white;
+    @include flex-property-row-center;
+    @include shadow-trans;
+  }
+
+  &__medium-item-delete {
+    i {
+      font-size: 12px;
+      cursor: pointer;
+      color: whitesmoke;
+      margin-left: 0.2rem;
+    }
+  }
+
+  &__medium-item-body {
+    @include flex-property-column;
+    min-width: 2.1rem;
+    padding: 0 0.2rem;
+  }
+
+  &__medium-warning {
+    color: var(--red);
+    font-size: 11px;
+  }
+
   &__btn-save-wrapper {
     display: flex;
     justify-content: center;

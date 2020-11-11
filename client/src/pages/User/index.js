@@ -11,6 +11,7 @@ import "./style.scss";
 const User = (props) => {
   const [isUserPage, setIsUserPage] = useState(false);
   const dispatch = useDispatch();
+  const [user, setUser] = useState({});
   const userProfile = useSelector((state) => state.users.user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const isUserLoaded = useSelector((state) => state.users.isUserLoaded);
@@ -29,7 +30,6 @@ const User = (props) => {
       dispatch(getUser(userId));
     }
   }, [dispatch, userId]);
-
   /*
   const closePopup = () => {
     props.closePopup();

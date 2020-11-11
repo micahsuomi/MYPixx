@@ -1,19 +1,28 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { NavLink } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
+import { getPhotoLikes } from "../../redux/actions/photoActions";
 import Like from "./LikeItem";
 
 import "./style.scss";
 
 const LikesList = (props) => {
+  const dispatch = useDispatch();
   const [likes, setLikes] = useState([]);
+  const photoLikes = useSelector((state) => state.photos.likes);
+
   const id = props.match.params.id;
 
   useEffect(() => {
-    const url = `/api/v1/photos/${id}/likes`;
-    axios.get(url).then((res) => setLikes(res.data));
-  }, [id]);
+    dispatch(getPhotoLikes(id));
+  }, [dispatch]);
+
+  useEffect(() => {
+    setLikes(photoLikes);
+  }, [photoLikes]);
+
+  console.log(likes);
 
   const formattedLikes = likes.map((like) => (
     <Like

@@ -149,34 +149,18 @@ const likePhoto = (req, res) => {
   });
 };
 
-//GET Route /api/photos/:id/likes
-//GET all likes for a photo
-//Access: public
-const findAllLikes = async (req, res) => {
-  try {
-    const id = req.params.id;
-    await Photo.findById(id)
-      .populate("likes")
-      .exec((err, photo) => {
-        if (err) return res.status(404).json({ msg: "Not found" });
-        res.json(photo.likes);
-      });
-  } catch (err) {
-    return res.status(404).json({ msg: err });
-  }
-};
-
 //GET Route /api/photos/:id/comments
 //GET all comments for a photo
 //Access: public
-const findAllComments = async (req, res) => {
+const findPhotoById = async (req, res) => {
   try {
     const id = req.params.id;
     Photo.findById(id)
       .populate("comments")
+      .populate("likes")
       .exec((err, photo) => {
         if (err) return res.status(404).json({ msg: "Not found" });
-        res.json(photo.comments);
+        res.json(photo);
       });
   } catch (err) {
     return res.status(404).json({ msg: err });
@@ -184,11 +168,10 @@ const findAllComments = async (req, res) => {
 };
 
 module.exports = {
-  findAll: findAll,
-  addPhoto: addPhoto,
-  editPhoto: editPhoto,
-  deletePhoto: deletePhoto,
-  likePhoto: likePhoto,
-  findAllLikes: findAllLikes,
-  findAllComments: findAllComments,
+  findAll,
+  findPhotoById,
+  addPhoto,
+  editPhoto,
+  deletePhoto,
+  likePhoto,
 };

@@ -6,11 +6,13 @@ import {
   GET_PHOTO,
   EDIT_PHOTO,
   LIKE_PHOTO,
+  GET_PHOTOLIKES,
 } from "../actions/types";
 
 const initialState = {
   photos: [],
   photo: {},
+  likes: [],
   isLoading: false,
   err: null,
 };
@@ -53,6 +55,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         photo: action.payload,
+      };
+    case GET_PHOTOLIKES:
+      const { likes } = action.payload;
+      return {
+        ...state,
+        likes: likes,
       };
     default:
       return state;
