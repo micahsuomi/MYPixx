@@ -52,7 +52,7 @@ const Navbar = () => {
             exact
             to="/"
             className="navbar-link"
-            activeStyle={{ color: "var(--secondary)" }}
+            activeStyle={{ color: "black" }}
             onClick={toggle}
           >
             <i className="fas fa-home nav-list__icon grow" title="home">
@@ -64,7 +64,7 @@ const Navbar = () => {
           <NavLink
             to="/community"
             className="navbar-link"
-            activeStyle={{ color: "var(--secondary)" }}
+            activeStyle={{ color: "black" }}
             onClick={toggle}
           >
             <i className="fas fa-users nav-list__icon grow" title="community">
@@ -76,7 +76,7 @@ const Navbar = () => {
           <NavLink
             to="/photos"
             className="navbar-link"
-            activeStyle={{ color: "var(--secondary)" }}
+            activeStyle={{ color: "black" }}
             onClick={toggle}
           >
             <i

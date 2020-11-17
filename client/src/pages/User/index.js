@@ -26,10 +26,18 @@ const User = (props) => {
   }, []);
 
   useEffect(() => {
-    if (!isUserLoaded) {
-      dispatch(getUser(userId));
-    }
+    // if (!isUserLoaded) {
+      setTimeout(() => {
+        dispatch(getUser(userId));
+      }, 2000);
+    // }
   }, [dispatch, userId]);
+
+  useEffect(() => {
+    if (!isUserLoaded) {
+    setUser(userProfile)
+  }
+  }, [userProfile])
   /*
   const closePopup = () => {
     props.closePopup();
@@ -63,7 +71,7 @@ const User = (props) => {
   ));*/
   console.log(userProfile);
   /*
-  let formattedPhotos 
+  let formattedPhotos
   setTimeout(() => {
     console.log('photos a re', userProfile.photos)
     userProfile.photos.map((photo) => (
@@ -109,7 +117,7 @@ const User = (props) => {
           userProfile={userProfile}
         />
       )))
-    }, 3000) 
+    }, 3000)
   }
   }, []);*/
 
@@ -217,7 +225,7 @@ const User = (props) => {
               <h3>Something went wrong. Refresh the page</h3>
               <button onClick={refreshPage} className="btn-refresh grow">
                 <i className="fas fa-redo-alt fa-2x"></i>
-              </button> 
+              </button>
             </div>
           ) : ( */}
           <div className="loading-container" style={{ height: "100vh" }}>
