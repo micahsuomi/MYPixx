@@ -68,6 +68,8 @@ const findUser =
   (req, res) => {
     User.findById(req.user.id)
       .select("-password")
+      .populate('photos')
+      .populate('medium')
       .then((user) => res.json(user));
   });
 
