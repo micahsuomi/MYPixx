@@ -1,7 +1,7 @@
 @import "../../scss/abstracts/mixins.scss";
 
 .navbar {
-  background-color: rgb(17, 45, 58);
+  background-color: rgb(208, 219, 224);
   display: flex;
   justify-content: space-between;
   position: fixed;
@@ -14,7 +14,7 @@
 
 .nav-list {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   list-style: none;
   width: 100vw;
@@ -23,12 +23,12 @@
 .navbar-link {
   text-decoration: none;
   margin-left: 2rem;
-  color: whitesmoke;
+  color: rgb(75, 74, 74);
   font-weight: 700;
 }
 
 .navbar-link:hover {
-  color: var(--nav-hover);
+  color: grey;
 }
 
 .nav-list__icon {
@@ -47,6 +47,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  margin-left: 34rem;
 
   li {
     @include flex-property-row-center;
@@ -60,7 +61,7 @@
 .user-link {
   text-decoration: none;
   @include flex-property-row-center;
-  color: whitesmoke;
+  color: rgb(75, 74, 74);
 }
 
 .grow {

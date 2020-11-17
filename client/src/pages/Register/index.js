@@ -79,7 +79,7 @@ const Register = (props) => {
       ) : (
         <div className="registration-container">
           <form onSubmit={handleSubmit} className="register-form">
-            <h3>Sign up</h3>
+            <h2>Sign up to MyPixx</h2>
 
             <div className="input-topics">
               <label htmlFor="name">Full Name</label>
@@ -134,7 +134,7 @@ const Register = (props) => {
               Have an account already? <NavLink to="/login">Sign in</NavLink>
             </p>
             <div className="register-form__btn-save__wrapper">
-              <button className="register-form__btn-register">Register</button>
+              <button className="register-form__btn-register">Sign Up</button>
             </div>
           </form>
         </div>

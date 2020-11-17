@@ -9,7 +9,7 @@ const NavbarUserLogin = ({ toggle }) => {
     <NavLink
       to="/login"
       className="navbar-link login-link"
-      activeStyle={{ color: "var(--secondary)" }}
+      activeStyle={{ color: "black" }}
       onClick={toggle}
     >
       <i className="fas fa-sign-in-alt nav-list__icon grow" title="login">

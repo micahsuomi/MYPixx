@@ -3,6 +3,7 @@
 .navbar-user {
   @include flex-property-row-center;
   list-style: none;
+  margin-left: 28rem;
   i {
     color: whitesmoke;
     font-size: 1.2em;
