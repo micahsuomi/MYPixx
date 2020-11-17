@@ -4,25 +4,27 @@ import createSagaMiddleware from "redux-saga";
 import rootReducer from "./reducers";
 import rootSaga from "./sagas";
 
-let initState = {};
+let initState = {
+  
+};
 
-const sagaMiddleware = createSagaMiddleware();
-const middleware = [thunk];
+// const sagaMiddleware = createSagaMiddleware();
+// const middleware = [thunk];
 // let localState = localStorage.getItem("app-state");
 // localState && (initState = JSON.parse(localState));
-
+/*
 const store = createStore(
   rootReducer,
   initState,
   compose(
     applyMiddleware(...middleware),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    // sagaMiddleware.run(rootSaga),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    sagaMiddleware.run(rootSaga),
   )
 );
-export default store;
+export default store;*/
 
-/*
+
 export default function makeStore(initialState = initState) {
     const sagaMiddleware = createSagaMiddleware()
     const middlewares = [sagaMiddleware, thunk]
@@ -53,4 +55,5 @@ export default function makeStore(initialState = initState) {
   
     return store
 
-}*/
+}
+

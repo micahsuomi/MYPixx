@@ -5,9 +5,11 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import "./index.css";
 import App from "./App";
-import store from "./redux/store";
+import makeStore from "./redux/store";
 
 import * as serviceWorker from "./serviceWorker";
+
+const store = makeStore();
 
 const WithProvider = () => (
   <Provider store={store}>
