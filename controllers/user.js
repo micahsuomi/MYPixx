@@ -84,6 +84,8 @@ const register = (req, res) => {
         if (err) throw err;
         (newUser.password = hash),
           //save the user as new user within mongoose schema
+          console.log('user after saving', user)
+
           newUser.save().then((user) => {
             //send the token, create object for user with id, name and user email
             jwt.sign(
@@ -101,6 +103,8 @@ const register = (req, res) => {
                     name: user.name,
                     email: user.email,
                     avatar: user.avatar,
+                    photos: user.photos,
+                    medium: user.medium
                   },
                 });
               }

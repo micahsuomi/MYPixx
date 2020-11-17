@@ -22,8 +22,9 @@ export const register = ({ name, email, password, repeatPassword }) => {
         },
       };
       const body = JSON.stringify({ name, email, password, repeatPassword });
-      const response = await axios.post("/api/v1/user", body, config);
+      console.log(body)
 
+      const response = await axios.post("/api/v1/user", body, config);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: response.data,
@@ -69,12 +70,16 @@ export const loadUser = () => (dispatch, getState) => {
 
   axios
     .get("/api/v1/login/user", tokenConfig(getState))
-    .then((response) =>
-      dispatch({
+    .then((response) =>{
+      console.log('from load user', response.data)
+
+
+    }
+   /*   dispatch({
         type: USER_LOADED,
         payload: response.data,
         // console.log('response from loadUser', response.data)
-      })
+      })*/
     )
     .catch((err) =>
       dispatch({

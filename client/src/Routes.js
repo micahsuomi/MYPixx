@@ -45,6 +45,8 @@ export const Routes = () => {
   useEffect(() => {
     dispatch(getPhotos());
     dispatch(getUsers());
+    dispatch(loadUser());
+
   }, [dispatch]);
 
   const closePopup = () => {

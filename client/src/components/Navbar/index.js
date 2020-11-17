@@ -13,8 +13,12 @@ import "./style.scss";
 
 const Navbar = () => {
   const state = useSelector((state) => state.auth);
+  const userProfile = useSelector((state) => state.users.user);
 
   const { isAuthenticated, user } = state;
+  console.log(user)
+  console.log(userProfile)
+
   const [isClicked, setState] = useState(false);
 
   const navList = ["nav-list"];
