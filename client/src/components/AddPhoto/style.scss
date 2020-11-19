@@ -123,7 +123,13 @@
 
 @media screen and (max-width: 768px) {
   .add-photo {
-    width: 58vw;
+    width: 100vw;
+    &__form {
+      width: 74vw;
+    }
+    &__cancel-wrapper {
+      width: 63vw;
+    }
   }
 }
 
@@ -132,7 +138,7 @@
     padding: 6rem 2rem;
     min-height: 100vh;
     &__form {
-      width: 92vw;
+      width: 98vw;
     }
     &__cancel-wrapper {
       width: 82vw;
@@ -142,8 +148,13 @@
       padding: 0.7rem;
     }
     select {
-      width: 8rem;
+      width: 16rem;
       padding: 0.8rem;
+    }
+    .input-topics-technique {
+      input {
+        width: 12rem;
+      }
     }
     textarea {
       width: 20rem;

@@ -53,9 +53,9 @@
 }
 
 @media screen and (max-width: 500px) {
-  .comments-container {
-    padding: 3rem 0.6rem;
-    min-height: 81vh;
+  .comments {
+    padding: 4rem 1rem;
+    min-height: 100vh;
   }
 
   .comment-user__header {

@@ -22,3 +22,10 @@
     background-color: var(--secondary);
   }
 }
+@media screen and (max-width: 500px) {
+  .add-comment-form {
+    textarea {
+      width: 19rem;
+    }
+  }
+}

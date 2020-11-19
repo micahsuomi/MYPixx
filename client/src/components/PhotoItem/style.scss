@@ -33,19 +33,19 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .gallery-photo__container {
+  .gallery-photo {
     width: 19rem;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .gallery-photo__container {
+  .gallery-photo {
     width: 22rem;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .gallery-photo__container {
+  .gallery-photo {
     width: 19.2rem;
   }
 }
