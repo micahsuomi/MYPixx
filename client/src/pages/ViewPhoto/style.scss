@@ -278,15 +278,21 @@ button {
   color: rgb(226, 215, 215);
 }
 
-@media screen and (max-width: 768px) {
-  .viewphoto-big__container {
+@media screen and (max-width: 1024px) {
+  .viewphoto {
     min-height: 100vh;
-  }
-  .viewphoto-container {
-    width: 74vw;
-    padding: 1rem 4rem;
-  }
 
+    &__exit-header {
+      width: 101vw;
+    }
+    &__container {
+      width: 98vw;
+    }
+    &__header {
+      width: 83vw;
+    }
+  }
+  
   .viewphoto-wrapper {
     padding: 5rem 1rem;
     min-height: 100vw;
@@ -303,8 +309,23 @@ button {
     padding: 1rem 0;
 
     &__exit-header {
-      width: 105vw;
+      width: 110vw;
+      margin-top: 2rem;
     }
+    &__container {
+      width: 100vw;
+      color: var(--dark);
+      background-color: #f7f3f3;
+      padding: 2rem 0rem;    
+    }
+    &__header {
+      width: 96vw;
+  }
+  &__edit-delete-wrapper i {
+      height: 2rem;
+      width: 2rem;
+    
+  }
   }
 
   .header-container {
@@ -369,18 +390,6 @@ button {
   .comments-num__container {
     font-size: 12px;
   }
-  /*
-    .slider-arrow__left:hover,
-    .slider-arrow__right:hover {
-    color: var(--dark);
-}
-
-.slider-arrow__left{
-    color: var(--dark);
-    z-index: 100;
-    align-self: start;
-}
-*/
 }
 
 @media screen and (max-width: 320px) {

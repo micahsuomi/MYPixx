@@ -72,7 +72,7 @@
   transform: scale(1.03);
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1024px) {
   .navbar {
     padding: 1rem;
     height: 5rem;
@@ -120,6 +120,8 @@
   .user-link {
     font-size: 26px;
     margin: 0;
+    color: white;
+
   }
 
   .logo {
