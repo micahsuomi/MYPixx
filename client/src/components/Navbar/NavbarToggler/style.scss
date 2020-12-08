@@ -1,9 +1,9 @@
 .toggle-wrapper {
   display: none;
 }
-
+/*
 @media screen and (max-width: 1000px) {
-  .toggle-wrapper {
+    display: none;
     background-color: var(--primary-blue);
     display: inline-block;
     border-radius: 500px;
@@ -69,10 +69,6 @@
 
 @media screen and (max-width: 500px) {
   .toggle-wrapper {
-    margin-left: 58vw;
+    margin-left: 57vw;
   }
-
-  .toggle-wrapper {
-    margin-left: 48vw;
-  }
-}
+}*/

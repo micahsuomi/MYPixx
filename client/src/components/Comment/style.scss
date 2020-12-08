@@ -37,7 +37,19 @@
     cursor: pointer;
     margin-left: 1rem;
   }
-
+  &__date {
+    font-size: 14px;
+    color: lightgray;
+    margin-top: 0.4rem;
+  }
+  &__text {
+    display: block;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgb(241, 235, 235);
+    border-radius: 10px;
+  }
   &__edit-btn {
     color: var(--blue);
     cursor: pointer;
@@ -49,20 +61,7 @@
   margin-top: 1rem;
 }
 
-.comment-date {
-  font-size: 14px;
-  color: lightgray;
-  margin-top: 0.4rem;
-}
 
-.comment-text {
-  display: block;
-  width: 100%;
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: rgb(241, 235, 235);
-  border-radius: 10px;
-}
 
 .add-comment__btn__wrapper {
   display: flex;
@@ -87,19 +86,19 @@
 }
 
 @media screen and (max-width: 500px) {
-  .comment-user__container {
+  .comment-user {
     padding: 0.6rem 0;
+    &__image-container {
+      height: 50px;
+      width: 50px;
+    }
+    &__date {
+      margin-top: 0;
+    }
+    &__text {
+      padding: 0.5rem;
+    }
   }
-
-  .comment-image-container {
-    height: 50px;
-    width: 50px;
-  }
-
-  .comment-text {
-    padding: 0.5rem;
-  }
-
   .edit-comment__form textarea {
     width: 15rem;
   }

@@ -97,10 +97,7 @@ const PhotoList = (props) => {
       setTimeout(resolve, 2000);
     });
   };
-  // useEffect(() => {
-  //     isUserPage && userProfile ? props.history.push('/user') : console.log('is photo page')
-  // })
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
   };

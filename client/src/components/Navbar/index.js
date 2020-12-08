@@ -102,7 +102,7 @@ const Navbar = () => {
               <li>
                 <NavbarUserRegister toggle={toggle} />
               </li>
-              <li>
+              <li className="login">
                 <NavbarUserLogin toggle={toggle} />
               </li>
             </ul>

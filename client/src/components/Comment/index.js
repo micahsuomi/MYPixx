@@ -90,10 +90,10 @@ const Comment = (props) => {
           <NavLink to={`/user/${authorId}`} className="comment-user__name grow">
             <p>{name}</p>
           </NavLink>
-          <p className="comment-date">{commentDate}</p>
+          <p className="comment-user__date">{commentDate}</p>
           {!isEditing ? (
             <div>
-              <p className="comment-text">{commentText}</p>
+              <p className="comment-user__text">{commentText}</p>
               <div>
                 {user && isAuthenticated && authorId === user.user.id && (
                   <i

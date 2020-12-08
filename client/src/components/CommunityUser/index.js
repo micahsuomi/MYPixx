@@ -3,7 +3,6 @@ import React from "react";
 import "./style.scss";
 
 const CommunityUser = ({ avatar, name, bio, photos }) => {
-  console.log(avatar);
 
   return (
     <div className="community-user">

@@ -77,8 +77,15 @@
     padding: 1rem;
     height: 5rem;
     grid-template-columns: 13% 87%;
+    .nav-list {
+      justify-content: space-around;
+    }
+    span {
+      display: none;
+    }
   }
-
+  
+  /*
   .hide-mobile {
     display: none;
   }
@@ -115,7 +122,7 @@
 
   .register-login {
     flex-direction: column;
-  }
+  }*/
   .navbar-link,
   .user-link {
     font-size: 26px;
@@ -131,13 +138,26 @@
 
 @media screen and (max-width: 500px) {
   .navbar {
-    padding: 1rem;
-    height: 5rem;
+    padding: 1rem .5rem;
+    height: 3.3rem;
     grid-template-columns: 25% 75%;
+    bottom: 0;
+   
   }
-
   .navbar-links {
     flex-direction: column;
+  }
+  .nav-list__icon {
+    font-size: .7em;
+    
+  }
+  .register-login {
+    margin-left: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  .login {
+    margin-left: 2.2rem;
   }
 }
 
