@@ -9,7 +9,7 @@ const NavbarUser = ({ user, toggle }) => {
   return (
     <ul className="navbar-user">
       <li>
-        <NavLink to="/addphoto">
+        <NavLink to="/addphoto" onClick={toggle}>
           <i className="fas fa-pen grow" title="add to gallery"></i>
         </NavLink>
       </li>

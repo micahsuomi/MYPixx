@@ -48,7 +48,14 @@
 }
 
 @media screen and (max-width: 500px) {
-  .user-details__wrapper {
-    padding: 4rem 2rem;
+  .user-details {
+    padding: 5rem 2rem;
+    &__image-container {
+      height: 132px;
+      width: 132px;
+    }
+    span {
+      line-height: 2.9;
+    }
   }
 }

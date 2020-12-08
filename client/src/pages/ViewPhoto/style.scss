@@ -139,6 +139,13 @@
   &__author-link {
     text-decoration: none;
   }
+  &__show-info {
+    @include flex-property-row-center; 
+    span {
+      margin-left: .4rem;
+      margin-top: .8rem;
+    }
+  }
   &__info-btn {
     margin-top: 1rem;
     color: rgb(73, 60, 60);
@@ -324,7 +331,6 @@ button {
   &__edit-delete-wrapper i {
       height: 2rem;
       width: 2rem;
-    
   }
   }
 

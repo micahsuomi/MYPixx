@@ -22,3 +22,8 @@
   transform: scale(1.03);
   transition: all 0.2s ease-in-out;
 }
+@media screen and (max-width: 500px) {
+  .add-photo-link {
+    display: none;
+  }
+}

@@ -149,10 +149,15 @@ const ViewPhoto = (props) => {
                   </button>
                 </div>
               ) : (
+                <div className="viewphoto__show-info">
                 <i
                   className="fas fa-info-circle fa-2x viewphoto__info-btn grow"
                   onClick={showPhotoInfo}
                 ></i>
+                <span>
+                Show Info
+                </span>
+                </div>
               )}
             </div>
             <div className="likephoto-comments__container">
