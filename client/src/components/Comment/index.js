@@ -12,23 +12,23 @@ import LikeComment from "../LikeComment/index";
 
 import "./style.scss";
 
-const Comment = (props) => {
-  console.log("comment props", props);
-  const {
-    avatar,
-    authorId,
-    photoId,
-    commentId,
-    name,
-    commentText,
-    user,
-    isAuthenticated,
-    likes,
-    commentDate,
-    history,
-    match,
-  } = props;
-
+const Comment = ({
+  avatar,
+  authorId,
+  photoId,
+  commentId,
+  name,
+  commentText,
+  user,
+  isAuthenticated,
+  likes,
+  commentDate,
+  editingComment,
+  closeEditingComment,
+  history,
+  match
+}) => {
+ 
   const dispatch = useDispatch();
   /*
   const foundComment = useSelector((state) => state.comments.comment);
@@ -60,7 +60,7 @@ const Comment = (props) => {
 
   const openEditComment = () => {
     setIsEditing(true);
-    props.editingComment(isEditing);
+    editingComment(isEditing);
   };
 
   const closeEditComment = () => {
@@ -68,7 +68,7 @@ const Comment = (props) => {
     setTimeout(() => {
       dispatch(getComments(photoId));
     }, 1000);
-    props.closeEditingComment(isEditing);
+    closeEditingComment(isEditing);
   };
 
   // console.log('this is the author id',  user, isAuthenticated, authorId, user.id)
@@ -113,7 +113,7 @@ const Comment = (props) => {
             <EditComment
               photoId={photoId}
               commentId={commentId}
-              editingComment={props.editingComment}
+              editingComment={editingComment}
               closeEditComment={closeEditComment}
             />
           )}
@@ -125,7 +125,7 @@ const Comment = (props) => {
                 photoId={photoId}
                 commentId={commentId}
                 likes={likes}
-                user={props.user}
+                user={user}
                 history={history}
                 match={match}
               />
@@ -136,5 +136,7 @@ const Comment = (props) => {
     </div>
   );
 };
+
+
 
 export default Comment;
