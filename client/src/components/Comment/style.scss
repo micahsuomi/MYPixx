@@ -89,11 +89,12 @@
   .comment-user {
     padding: 0.6rem 0;
     &__image-container {
-      height: 50px;
-      width: 50px;
+      height: 40px;
+      width: 40px;
     }
     &__date {
       margin-top: 0;
+      font-size: 11px;
     }
     &__text {
       padding: 0.5rem;

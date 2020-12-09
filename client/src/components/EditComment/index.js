@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getComment, editComment } from "../../redux/actions/commentActions";
+import { getComments, getComment, editComment } from "../../redux/actions/commentActions";
 
 import "./style.scss";
 
@@ -36,6 +36,7 @@ const EditComment = ({ photoId, commentId, closeEditComment }, props) => {
     dispatch(editComment(photoId, commentId, updatedComment));
     setTimeout(() => {
       closeEditComment();
+      dispatch(getComments(photoId))
     }, 2000);
   };
 
