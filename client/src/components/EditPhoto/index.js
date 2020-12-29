@@ -251,10 +251,10 @@ const EditPhoto = (props) => {
               <select name="type" value={type} onChange={handleChange}>
                 <option value="portrait">Portrait</option>
                 <option value="landscape">Landscape</option>
-                <option value="street">Photography</option>
-                <option value="cousine">Abstract</option>
-                <option value="portrait">Street Art</option>
-                <option value="fashion">Digital</option>
+                <option value="photography">Photography</option>
+                <option value="abstract">Abstract</option>
+                <option value="street art">Street Art</option>
+                <option value="digital">Digital</option>
               </select>
             </div>
 
