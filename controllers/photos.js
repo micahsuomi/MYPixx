@@ -48,7 +48,6 @@ const addPhoto =
     try {
       const userId = req.user.id;
       const user = await UserService.findUserByReq(userId);
-      console.log("user here", user);
       const { title, type, technique, description } = req.body;
       const fileImage = req.body.image;
       cloudinary.uploader.upload(fileImage, function (result) {
@@ -68,16 +67,12 @@ const addPhoto =
           technique,
           description,
         });
-
-        console.log("photo here", newPhoto);
         const date = new Date();
         newPhoto.postedDate = date.toISOString().split("T")[0];
 
-        console.log("photo here", newPhoto);
         newPhoto.save();
         newPhoto.execPopulate().then((photo) => res.json(photo));
         user.photos.push(newPhoto);
-        console.log("user here", user);
         user.save();
       });
     } catch (err) {
@@ -139,7 +134,6 @@ const likePhoto = (req, res) => {
     } else {
       let newLike = { _id: req.user.id };
       const foundUser = photo.likes.some((like) => like.equals(req.user.id));
-      console.log("this is the found user", foundUser);
       foundUser ? photo.likes.pull(newLike) : photo.likes.push(newLike);
       photo
         .save()
