@@ -15,7 +15,7 @@ import { showErrors } from "./errorActions";
 export const getPhotos = () => {
   return async (dispatch) => {
     try {
-      const url = "/api/v1/photos/";
+      const url = "/api/v1/photos";
       const res = await axios.get(url);
       dispatch({
         type: GET_PHOTOS,
