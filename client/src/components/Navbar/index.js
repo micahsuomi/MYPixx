@@ -16,20 +16,15 @@ const Navbar = () => {
   const userProfile = useSelector((state) => state.users.user);
 
   const { isAuthenticated, user } = state;
-  console.log(user)
-  console.log(userProfile)
 
   const [isClicked, setState] = useState(false);
 
   const navList = ["nav-list"];
   const navListOpen = ["nav-list open"];
-
   const lineClassOne = ["line top"];
   const lineClassOneActive = ["line top active"];
-
   const lineClassTwo = ["line middle"];
   const lineClassTwoActive = ["line middle active"];
-
   const lineClassThree = ["line bottom"];
   const lineClassThreeActive = ["line bottom active"];
 
