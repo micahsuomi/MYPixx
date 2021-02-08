@@ -62,6 +62,7 @@ export const login = ({ email, password }) => {
   };
 };
 
+//this action is causing an error when deployed
 export const loadUser = () => (dispatch, getState) => {
   console.log("loading user");
   dispatch({
