@@ -2,15 +2,20 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { getComments, deleteComment } from "../../redux/actions/commentActions";
+import {
+  getComments,
+  getComment,
+  deleteComment,
+  likeComment,
+} from "../../redux/actions/commentActions";
 import EditComment from "../EditComment";
-import AddCommentLike from "../AddCommentLike/index";
 import AddCommentReply from "../AddCommentReply";
 import EditDeleteCommentModal from "../EditDeleteCommentModal";
 import CommentReplies from "../CommentReplies";
+import AddCommentLikeForm from "../AddCommentLikeForm";
+import CommentLike from "../CommentLike";
 
 import "./style.scss";
-import Comments from "../PhotoComments";
 
 const Comment = ({
   avatar,
@@ -19,6 +24,7 @@ const Comment = ({
   comment,
   name,
   user,
+  users,
   isAuthenticated,
   editingComment,
   closeEditingComment,
@@ -30,6 +36,7 @@ const Comment = ({
   const [isEditing, setIsEditing] = useState(false);
   const [isCommentReplyOpen, setIsCommentReplyOpen] = useState(false);
   const [isArrowShowing, setIsArrowShowing] = useState(false);
+  const [isLikesShowing, setIsLikeShowing] = useState(true);
   const { _id, text, likes, commentDate } = comment;
   // console.log('from comment', comment)
 
@@ -73,6 +80,31 @@ const Comment = ({
   const hideEditingArrow = () => {
     setIsArrowShowing(false);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!isAuthenticated) {
+      history.push("/login");
+    } else {
+      if (isAuthenticated && user) {
+        console.log("photo id", photoId, "comment id", comment._id, comment);
+        // dispatch(getComment(match.params.id, commentId));
+        dispatch(likeComment(photoId, comment._id, comment));
+        setTimeout(() => {
+          dispatch(getComments(photoId));
+          dispatch(getComment(photoId, comment._id));
+        }, 500);
+      }
+    }
+  };
+
+  const showCommentLikes = () => {
+    setIsLikeShowing(true);
+  };
+
+  const hideCommentLike = () => {
+    setIsLikeShowing(false);
+  }
 
   return (
     <div className="comment-user animate-modal">
@@ -141,21 +173,40 @@ const Comment = ({
           {!isEditing && (
             <div className="comment-user__like-reply-comment">
               <div className="comment-user__like-reply-wrapper">
-                {/* consider moving here the like component */}
-                {
-                  comment.likes !== undefined && comment.likes.map((like) => (
-                   <p>{like}</p>
-                  ))
-                } 
+                { isLikesShowing &&
+                  <div className="comment-user__likes-list-container">
+                  <div className="comment-user__likes-header">
+            <i className="fas fa-chevron-left fa comment-user__close-likes-comment grow" onClick={hideCommentLike}></i>
+            </div>
+                    {comment.likes !== undefined &&
+                      users.map((user) => {
+                        for (let i = 0; i < comment.likes.length; i++) {
+                          const like = comment.likes[i];
+                          if (user._id === like) {
+                            return (
+                              <CommentLike
+                                key={like}
+                                userId={user._id}
+                                avatar={user.avatar}
+                                name={user.name}
+                                hideCommentLike={hideCommentLike}
+                              />
+                            );
+                          }
+                        }
+                      })}
+                      </div>
 
-                <AddCommentLike
+                }
+              
+                  
+                <AddCommentLikeForm
                   photoId={photoId}
-                  comment={comment}
                   commentId={comment._id}
-                  likes={comment.likes}
-                  user={user}
-                  history={history}
-                  match={match}
+                  handleSubmit={handleSubmit}
+                  commentLikes={comment.likes !== undefined && comment.likes}
+                  showCommentLikes={showCommentLikes}
+                  users={users}
                 />
                 {!isCommentReplyOpen ? (
                   <button

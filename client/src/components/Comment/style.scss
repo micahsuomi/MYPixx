@@ -52,11 +52,29 @@
   &__like-reply-wrapper {
     @include flex-property-row-start;
     width: 25vw;
+    flex-direction: column;
   }
 
-  &__like-reply-comment {
+  &__likes-list-container {
     @include flex-property-column;
     justify-content: flex-start;
+    padding: 2rem;
+    background-color: rgb(245, 234, 234);
+    position: fixed;
+    top: 13%;
+    left: 23.4%;
+    height: 79vh;
+    width: 52.6vw;
+    border-radius: 16px 0 0 16px;
+    z-index: 4;
+  }
+
+  &__likes-header {
+    width: 38rem;
+    @include flex-property-row-start;
+  }
+  &__close-likes-comment {
+    cursor: pointer;
   }
   &__reply-btn {
     background-color: transparent;

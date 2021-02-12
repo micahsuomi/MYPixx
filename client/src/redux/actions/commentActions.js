@@ -110,7 +110,12 @@ export const addCommentReply = (photoId, commentId, commentReply) => {
       const url = `/api/v1/photos/${photoId}/comments/${commentId}`;
       const res = await axios.post(url, commentReply, tokenConfig(getState));
       console.log("from actions", res);
+      dispatch({
+        type: ADD_COMMENT_REPLY,
+        payload: res.data
+      })
     } catch(err) {
+      
 
     }
   }

@@ -135,6 +135,7 @@ export const Routes = () => {
             <PhotoComments
               photos={photos}
               user={user}
+              users={users}
               isAuthenticated={isAuthenticated}
               {...props}
             />
@@ -166,11 +167,6 @@ export const Routes = () => {
               {...props}
             />
           )}
-        />
-
-        <Route
-          path="/photos/:id/comments/:id"
-          component={(props) => <Comment {...props} />}
         />
 
         <Route
