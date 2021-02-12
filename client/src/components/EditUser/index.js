@@ -18,10 +18,10 @@ const EditUser = (props) => {
     },
   });
   const dispatch = useDispatch();
-  const loadedEditUser = useSelector((state) => state.users.user);
+  const loadedEditUser = useSelector((state) => state.user.user);
   // const [err, loadedUser] = useUser();
-  const isUserLoaded = useSelector((state) => state.users.isUserLoaded);
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isUserLoaded = useSelector((state) => state.user.isUserLoaded);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const [isImageEditing, setIsImageEditing] = useState(false);
   const [updatedImage, setUpdatedImage] = useState(null);
   const [previewSource, setPreviewSource] = useState(null);
@@ -33,10 +33,6 @@ const EditUser = (props) => {
 
   const id = props.match.params.id;
 
-  useEffect(() => {
-    if (!isAuthenticated) props.history.push("/login");
-  }, []);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     user.medium = mediumArr;
@@ -44,8 +40,10 @@ const EditUser = (props) => {
       console.log(previewSource);
       setUser(previewSource);
     }
+    console.log('usr after setting', user)
     dispatch(updateUser(id, user));
 
+    
     setTimeout(() => {
       props.history.push(`/user/${id}`);
       props.openUserPopup();
@@ -88,6 +86,15 @@ const EditUser = (props) => {
   };
 
   /*
+  const loadedEditUser = async () => {
+    try {
+
+    }
+    catch(err) {
+      console.log(err)
+    }
+  } */
+  /*
   useEffect(() => {
     const foundUser = props.users.find((user) => {
       return user._id === props.match.params.id;
@@ -96,13 +103,19 @@ const EditUser = (props) => {
   }, []);*/
 
   useEffect(() => {
-    if (!isUserLoaded) {
-      dispatch(getUser(id));
+    if (!isAuthenticated) {
+      props.history.push("/login")
+    } else {
+      // loadedEditUser();
+      setUser(loadedEditUser)
+      console.log('after setting', user)
     }
-  }, [dispatch, id]);
+      // dispatch(getUser(id));
+  }, [isAuthenticated, props.history, loadedEditUser]);
 
+  // console.log('after setting', user)
   useEffect(() => {
-    setUser(loadedEditUser);
+    // setUser(loadedEditUser);
     setMediumArr(loadedEditUser.medium);
     setUser({ ...loadedEditUser, medium: "" });
   }, []);
@@ -114,9 +127,7 @@ const EditUser = (props) => {
 
   const addToMedium = (e) => {
     e.preventDefault();
-
-    let mediumIndex = mediumArr.indexOf(medium);
-
+    const mediumIndex = mediumArr.indexOf(medium);
     if (medium.length < 1) {
       setWarning("Please enter a value");
     }
@@ -252,7 +263,7 @@ const EditUser = (props) => {
               name="medium"
               value={medium}
               placeholder={
-                "eg(oil, acrylics, dripping, analog photography etc)"
+                "painting, photography, street art... etc)"
               }
               onChange={handleChange}
             />
@@ -265,7 +276,7 @@ const EditUser = (props) => {
           </div>
           <div className="edit-user__mediums-container">
             <div className="edit-user__mediums-wrapper">
-              {mediumArr.map((m) => (
+              {mediumArr.length > 0 && mediumArr.map((m) => (
                 <div className="edit-user__medium-item grow animate-modal">
                   <div className="edit-user__medium-item-body">
                     <p>{`${m}`}</p>
@@ -297,7 +308,7 @@ const EditUser = (props) => {
         <div className="edit-user__btn-save-wrapper">
           <button className="edit-user__btn-save">Update</button>
         </div>
-      </form>
+      </form> 
     </div>
   );
 };

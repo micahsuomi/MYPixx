@@ -22,16 +22,13 @@ const photoSchema = new Schema({
     type: String,
     required: true,
   },
-  technique: {
+  medium: {
     type: [String],
     required: true,
   },
   description: {
     type: String,
     required: true,
-  },
-  postedDate: {
-    type: String,
   },
   createdAt: {
     type: Date,

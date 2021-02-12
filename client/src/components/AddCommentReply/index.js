@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { addComment, getComments } from "../../../redux/actions/commentActions";
+import { getComments, addCommentReply } from "../../redux/actions/commentActions";
 
 import "./style.scss";
 
-const AddComment = ({ photoId, closeCommentField, setCommentClose }, props) => {
+const AddCommentReply = ({ 
+    photoId, 
+    commentId, 
+    closeCommentReply 
+}, props) => {
   console.log(props);
   const dispatch = useDispatch();
   const [comment, setComment] = useState({
@@ -15,11 +19,12 @@ const AddComment = ({ photoId, closeCommentField, setCommentClose }, props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let { text } = comment;
-    const newComment = { text };
-    dispatch(addComment(photoId, newComment));
+    const commentReply = { text };
+    console.log('comment here', commentReply)
+    dispatch(addCommentReply(photoId, commentId, commentReply));
     setTimeout(() => {
       dispatch(getComments(photoId));
-      setCommentClose();
+      closeCommentReply();
     }, 2000);
   };
 
@@ -32,21 +37,20 @@ const AddComment = ({ photoId, closeCommentField, setCommentClose }, props) => {
   const { text } = comment;
 
   return (
-    <form className="add-comment-form animate-modal" onSubmit={handleSubmit}>
+    <form className="add-commentreply-form animate-modal" onSubmit={handleSubmit}>
       <div className="input-topics">
-        <label htmlFor="comment">Comment</label>
         <textarea
           type="text"
           name="text"
           value={text}
-          placeholder="write a new comment here"
+          placeholder="reply to comment..."
           onChange={handleChange}
         />
-        <div className="btn-save__wrapper">
-          <button className="add-comment-form__btn-submit">Submit</button>
+        <div className="add-commentreply__save-wrapper">
+          <button className="add-commentreply-form__btn-submit">Submit</button>
           <button
-            className="add-comment-form__btn-cancel"
-            onClick={closeCommentField}
+            className="add-commentreply-form__btn-cancel"
+            onClick={closeCommentReply}
           >
             Cancel
           </button>
@@ -56,4 +60,4 @@ const AddComment = ({ photoId, closeCommentField, setCommentClose }, props) => {
   );
 };
 
-export default AddComment;
+export default AddCommentReply;

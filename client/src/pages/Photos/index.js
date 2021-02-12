@@ -23,13 +23,12 @@ import "./style.scss";
 const PhotoList = (props) => {
   const [search, setSearch] = useState("");
   // console.log('coming from photos', props.isAuthenticated)
-  const isLoading = useSelector((state) => state.photos.isLoading);
-  const errMessage = useSelector((state) => state.photos.err);
+  const isLoading = useSelector((state) => state.photo.isLoading);
+  const errMessage = useSelector((state) => state.photo.err);
   const dispatch = useDispatch();
   const [err, photos] = usePhotos(search);
   const [currentPage, setCurrentPage] = useState(1);
   const [photosPerPage, setPhotosPerPage] = useState(9);
-
   //get current photos
   const indexLastPhoto = currentPage * photosPerPage;
   const indexFirstPhoto = indexLastPhoto - photosPerPage;

@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 
 export default function usePhotos(search) {
-  const photos = useSelector((state) => state.photos.photos);
+  const photos = useSelector((state) => state.photo.photos);
   // const dispatch = useDispatch()
   const [data, setData] = useState([]);
   const [err, setErr] = useState(null);

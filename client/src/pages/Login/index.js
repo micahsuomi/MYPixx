@@ -8,8 +8,8 @@ import { clearErrors } from "../../redux/actions/errorActions";
 import "./style.scss";
 
 const Login = (props) => {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const errorMsg = useSelector((state) => state.errors.msg.msg);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const errorMsg = useSelector((state) => state.error.msg.msg);
   const dispatch = useDispatch();
 
   const [state, setState] = useState({

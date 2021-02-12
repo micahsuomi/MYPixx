@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import moment from "moment";
 
 import LikePhoto from "../../components/LikePhoto/index";
 
 import "./style.scss";
 
 const ViewPhoto = (props) => {
-  let id = props.match.params.id;
+  const id = props.match.params.id;
+  const { isUserPage, userProfile } = props
   const [photoInfo, setPhotoInfo] = useState(false);
-
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const user = useSelector((state) => state.user.user);
   // console.log(props.userProfile, props.isUserPage)
   // console.log(Boolean(props.userProfile))
   // console.log(Boolean(props.userPage))
-
+  console.log(user)
   const slider = {
     index: "",
     prev: "",
@@ -49,9 +53,19 @@ const ViewPhoto = (props) => {
   const hidePhotoInfo = () => {
     setPhotoInfo(false);
   };
-  console.log(filteredPhoto);
-  let { isUserPage, userProfile } = props;
+  console.log("from viewphoto", filteredPhoto);
 
+  const {
+    author,
+    image,
+    title,
+    type,
+    description,
+    medium,
+    createdAt,
+    comments,
+  } = filteredPhoto;
+  console.log(comments)
   return (
     <div className="viewphoto">
       <div className="viewphoto__nested-container">
@@ -81,66 +95,57 @@ const ViewPhoto = (props) => {
           </div>
           <div className="viewphoto__container">
             <div className="viewphoto__header">
-              {props.isAuthenticated &&
-              filteredPhoto.author.id === props.user.user.id ? (
+              {isAuthenticated && author.id === user._id ? (
                 <div className="viewphoto__edit-delete-wrapper">
                   <NavLink
                     to={`/editphoto/${id}`}
                     className="viewphoto__edit-photo-link"
                   >
-                    <i className="fas fa-edit fa-2x"></i>
+                    <i className="fas fa-edit"></i>
                   </NavLink>
                   <NavLink
                     to={`/deletephoto/${id}`}
                     className="viewphoto__delete-photo-link"
                   >
-                    <i className="fas fa-trash fa-2x"></i>
+                    <i className="fas fa-trash"></i>
                   </NavLink>
                 </div>
               ) : (
                 ""
               )}
             </div>
-            <img
-              src={filteredPhoto.image}
-              alt={filteredPhoto.title}
-              className="viewphoto__image"
-            />
+            <img src={image} alt={title} className="viewphoto__image" />
             <div className="viewphoto__body">
               <div className="viewphoto__author-info">
                 <NavLink
-                  to={`/user/${filteredPhoto.author.id}`}
+                  to={`/user/${author.id}`}
                   className="viewphoto__author-link"
                 >
-                  <h3>{filteredPhoto.author.name}</h3>
+                  <h3>{author.name}</h3>
                 </NavLink>
                 <div className="viewphoto__author-image-container">
-                  {filteredPhoto.author.avatar === undefined ||
-                  filteredPhoto.author.avatar === "" ? (
+                  {author.avatar === undefined || author.avatar === "" ? (
                     <img
                       src="https://i2.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1"
-                      alt={filteredPhoto.author.name}
+                      alt={author.name}
                     />
                   ) : (
-                    <img
-                      src={filteredPhoto.author.avatar}
-                      alt={filteredPhoto.author.name}
-                    />
+                    <img src={author.avatar} alt={author.name} />
                   )}
                 </div>
               </div>
               {photoInfo ? (
                 <div className="viewphoto__info animate-modal">
-                  <h4>Title: {filteredPhoto.title}</h4>
-                  <p>Type: {filteredPhoto.type}</p>
+                  <h4>Title: {title}</h4>
+                  <p>Type: {type}</p>
                   <p>
                     Tags:{" "}
-                    {filteredPhoto.technique.map((t) => (
+                    {medium.map((t) => (
                       <span>{`${t}`} </span>
                     ))}
                   </p>
-                  <p>Description: {filteredPhoto.description}</p>
-                  <p>Uploaded on: {filteredPhoto.postedDate}</p>
+                  <p>Description: {description}</p>
+                  <p>Uploaded on: {moment(createdAt).format("LL")}</p>
                   <button
                     className="viewphoto__hide-info"
                     onClick={hidePhotoInfo}
@@ -150,13 +155,11 @@ const ViewPhoto = (props) => {
                 </div>
               ) : (
                 <div className="viewphoto__show-info">
-                <i
-                  className="fas fa-info-circle fa-2x viewphoto__info-btn grow"
-                  onClick={showPhotoInfo}
-                ></i>
-                <span>
-                Show Info
-                </span>
+                  <i
+                    className="fas fa-info-circle fa-2x viewphoto__info-btn grow"
+                    onClick={showPhotoInfo}
+                  ></i>
+                  <span>Show Info</span>
                 </div>
               )}
             </div>
@@ -164,9 +167,7 @@ const ViewPhoto = (props) => {
               <div>
                 <LikePhoto
                   filteredPhoto={filteredPhoto}
-                  tokenConfig={() => props.tokenConfig()}
-                  user={props.user}
-                  token={props.token}
+                  user={user}
                   {...props}
                 />
               </div>
@@ -176,15 +177,13 @@ const ViewPhoto = (props) => {
                   to={`/photos/${id}/comments`}
                   className="comments-link"
                 >
-                  {filteredPhoto.comments.length < 1 ? (
-                    <i className="far fa-comment fa-2x viewphoto__comments-icon"></i>
+                  {comments.length < 1 ? (
+                    <i className="far fa-comment fa-2x grow2 viewphoto__comments-icon"></i>
                   ) : (
                     <div className="comments-num__container">
-                      <i className="far fa-comment fa-2x viewphoto__comments-icon"></i>
-                      <div className="comments-length">
-                        {filteredPhoto.comments.length}
-                      </div>
-                      {filteredPhoto.comments.length === 1 ? (
+                      <i className="far fa-comment fa-2x grow2 viewphoto__comments-icon"></i>
+                      <div className="comments-length">{comments.length}</div>
+                      {comments.length === 1 ? (
                         <span> Comment</span>
                       ) : (
                         <span> Comments</span>

@@ -10,6 +10,9 @@
   margin-top: 2rem;
   line-height: 1.7;
 }
+&__link {
+  text-decoration: none;
+}
 &__btn-container {
   @include flex-property-row-center;
   button {

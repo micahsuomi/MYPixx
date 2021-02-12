@@ -38,7 +38,10 @@ body {
 }
 
 h1,
-h2,
+h2 {
+  font-family: "Sansita Swashed", cursive;
+
+}
 h3,
 h4 {
   font-family: "Montserrat", sans-serif;
@@ -110,7 +113,7 @@ h3 {
 
 @-webkit-keyframes animatetop {
   from {
-    top: -300px;
+    top: -10px;
     opacity: 0;
   }
   to {
@@ -121,7 +124,7 @@ h3 {
 
 @keyframes animatetop {
   from {
-    top: -300px;
+    top: -10px;
     opacity: 0;
   }
   to {

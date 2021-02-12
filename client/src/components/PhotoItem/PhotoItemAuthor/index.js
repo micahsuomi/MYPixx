@@ -3,7 +3,11 @@ import { NavLink } from "react-router-dom";
 
 import "./style.scss";
 
-const PhotoItemAuthor = ({ authorId, author, authorImg }) => {
+const PhotoItemAuthor = ({ 
+  authorId, 
+  author, 
+  authorImg 
+}) => {
   return (
     <div className="author">
       <div className="author__image-container">

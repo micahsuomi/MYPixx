@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getComments } from "../redux/actions/photoActions";
 
 export default function useComments() {
-  const comments = useSelector((state) => state.comments.comments);
+  const comments = useSelector((state) => state.comment.comments);
   // const dispatch = useDispatch()
 
   const [data, setData] = useState([]);

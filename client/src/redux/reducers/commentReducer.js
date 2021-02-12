@@ -4,14 +4,12 @@ import {
   ADD_COMMENT,
   EDIT_COMMENT,
   DELETE_COMMENT,
-  GET_COMMENTLIKES,
   LIKE_COMMENT,
 } from "../actions/types";
 
 const initialState = {
   comments: [],
   comment: {},
-  commentLikes: [],
   isCommentLiked: false,
   isLoading: false,
   err: null,
@@ -47,12 +45,6 @@ export default function (state = initialState, action) {
         comments: [...state.comments],
         comment: action.payload,
       };
-    case GET_COMMENTLIKES:
-      return {
-        ...state,
-        commentLikes: action.payload,
-      };
-
     default:
       return state;
   }

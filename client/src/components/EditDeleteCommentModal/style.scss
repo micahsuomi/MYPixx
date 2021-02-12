@@ -1,0 +1,31 @@
+@import "../../scss/abstracts/mixins.scss";
+
+.edit-delete-comment {
+    position: absolute;
+    right: 8%;
+    top: 7%;
+    background: white;
+    height: 6rem;
+    padding: .8rem .5rem;
+    border-radius: 3px;
+    box-shadow: 0 1rem 1.3rem rgba(143, 143, 154, 0.5);
+    @include flex-property-column;
+    span {
+      font-family: 'Montserrat';
+      font-weight: 500;
+      font-size: 14px;
+    }
+    &__edit-btn {
+        color: var(--blue);
+        cursor: pointer;
+        margin-top: 0.7rem;
+    }
+    &__delete-btn {
+        color: var(--red);
+        margin-top: 0.7rem;
+        cursor: pointer;
+        margin-left: 1rem;
+    }
+  }
+
+ 

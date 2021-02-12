@@ -31,27 +31,28 @@ const login =
         //if they match we sign the user and get the token
 
         jwt.sign(
-          { id: user.id },
+          { id: user._id },
           process.env.jwtSecret,
           //we set an expiration for the token
           { expiresIn: "30d" },
-
           async (err, token) => {
             if (err) throw err;
-
             //we make a json file for token and user
             console.log("user is here", user);
             await user.populate("photos").execPopulate();
             res.json({
               token,
               user: {
-                id: user.id,
+                _id: user._id,
                 name: user.name,
                 email: user.email,
                 avatar: user.avatar,
+                photos: user.photos,
+                medium: user.medium,
+                bio: user.bio
               },
             });
-            console.log("this is coming from login route", token, user);
+            console.log("this is coming from login route", user);
           }
         );
       });
