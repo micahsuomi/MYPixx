@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import useComments from "../../hooks/useComments";
 import { getComments } from "../../redux/actions/commentActions";
 import Comment from "../Comment/index";
-import AddComment from "./AddComment";
+import AddComment from "../AddComment";
 
 import "./style.scss";
 
@@ -17,7 +17,8 @@ const Comments = (props) => {
   const [comment, setComment] = useState({
     text: "",
   });
-
+  //comment likes and replies should come from here via props to the rest of the components
+  console.log('comments from photo comments', comments)
   const photoId = props.match.params.id;
 
   useEffect(() => {
@@ -42,6 +43,7 @@ const Comments = (props) => {
   const deleteComment = () => {
     dispatch(getComments(photoId));
   };
+
   const editingComment = () => {
     setIsAddButtonShowing(false);
   };
@@ -59,15 +61,12 @@ const Comments = (props) => {
   const formattedComments = comments.map((comment) => (
     <Comment
       key={comment._id}
-      commentId={comment._id}
+      photoId={props.match.params.id}
+      comment={comment}
       authorId={comment.author.id}
       name={comment.author.name}
       avatar={comment.author.avatar}
-      commentDate={comment.commentDate}
-      likes={comment.likes}
-      commentText={comment.text}
       user={props.user}
-      photoId={props.match.params.id}
       history={props.history}
       match={props.match}
       isAuthenticated={props.isAuthenticated}

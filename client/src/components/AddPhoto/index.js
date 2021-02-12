@@ -9,16 +9,16 @@ import "./style.scss";
 
 const AddPhoto = (props) => {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   const [text, setText] = useState({
     title: "",
     type: "",
-    technique: "",
+    medium: "",
     description: "",
   });
 
-  const { title, type, technique, description } = text;
+  const { title, type, medium, description } = text;
 
   const [image, setImage] = useState({
     image: "",
@@ -26,7 +26,7 @@ const AddPhoto = (props) => {
     fileInput: null,
     selectedFile: null,
   });
-  const [techniqueArr, setTechniqueArr] = useState([]);
+  const [mediumArr, setMediumArr] = useState([]);
   const [warning, setWarning] = useState("");
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const AddPhoto = (props) => {
       title: title,
       image: image.previewSource,
       type: type,
-      technique: techniqueArr,
+      medium: mediumArr,
       description: description,
     };
     console.log("new photo is here", newPhoto);
@@ -84,24 +84,24 @@ const AddPhoto = (props) => {
 
   const addToTechniques = (e) => {
     e.preventDefault();
-    let techniqueIndex = techniqueArr.indexOf(technique);
-    if (technique.length < 1) {
+    let mediumIndex = mediumArr.indexOf(medium);
+    if (medium.length < 1) {
       setWarning("Please enter a value");
     }
-    if (techniqueIndex !== -1) {
+    if (mediumIndex !== -1) {
       setWarning("Tag already present");
     } else {
-      setTechniqueArr([...techniqueArr, technique]);
-      setText({ ...text, technique: "" });
-      console.log(techniqueArr);
+      setMediumArr([...mediumArr, medium]);
+      setText({ ...text, medium: "" });
+      console.log(mediumArr);
       setWarning("");
     }
   };
 
-  const deleteTechnique = (t) => {
-    const tecniqueIndex = techniqueArr.indexOf(t);
-    techniqueArr.splice(tecniqueIndex, 1);
-    setTechniqueArr([...techniqueArr]);
+  const deleteMedium = (t) => {
+    const mediumIndex = mediumArr.indexOf(t);
+    mediumArr.splice(mediumIndex, 1);
+    setMediumArr([...mediumArr]);
   };
 
   return (
@@ -162,8 +162,8 @@ const AddPhoto = (props) => {
           <div className="input-topics-technique">
             <input
               type="text"
-              name="technique"
-              value={technique}
+              name="medium"
+              value={medium}
               placeholder={
                 "eg(oil, acrylics, dripping, analog photography etc)"
               }
@@ -177,17 +177,17 @@ const AddPhoto = (props) => {
             </button>
           </div>
           <div className="add-photo__techniques-wrapper">
-            {techniqueArr.map((t) => (
+            {mediumArr.map((m) => (
               <div className="add-photo__technique-item grow">
                 <div className="add-photo__technique-item-header">
                   <i
                     className="fas fa-times"
                     title="remove"
-                    onClick={() => deleteTechnique(t)}
+                    onClick={() => deleteMedium(m)}
                   ></i>
                 </div>
                 <div className="add-photo__technique-item-body">
-                  <p>{`${t}`}</p>
+                  <p>{`${m}`}</p>
                 </div>
               </div>
             ))}

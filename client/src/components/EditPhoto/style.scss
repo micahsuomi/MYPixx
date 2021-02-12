@@ -78,7 +78,7 @@
   textarea {
     height: 15rem;
   }
-  .input-topics-technique {
+  .input-topics-medium {
     @include flex-property-row-center;
     input {
       width: 20rem;
@@ -92,11 +92,11 @@
     }
   }
 
-  &__techniques-container {
+  &__medium-container {
     @include flex-property-column;
   }
 
-  &__techniques-wrapper {
+  &__medium-wrapper {
     @include flex-property-row-start;
     flex-wrap: wrap;
     margin-top: 1rem;
@@ -105,7 +105,7 @@
     }
   }
 
-  &__technique-item {
+  &__medium-item {
     padding: 0.2rem;
     background-color: var(--dark);
     color: var(--dark);
@@ -118,7 +118,7 @@
     @include shadow-trans;
   }
 
-  &__technique-item-delete {
+  &__medium-item-delete {
     i {
       font-size: 12px;
       cursor: pointer;
@@ -127,13 +127,13 @@
     }
   }
 
-  &__technique-item-body {
+  &__medium-item-body {
     @include flex-property-column;
     min-width: 2.1rem;
     padding: 0 0.2rem;
   }
 
-  &__technique-warning {
+  &__medium-warning {
     color: var(--red);
     font-size: 11px;
   }

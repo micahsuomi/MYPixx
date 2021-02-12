@@ -7,6 +7,11 @@
   font-family: "Montserrat";
   font-weight: 700;
   cursor: pointer;
+  padding: 0;
+
+  :active {
+    outline: none;
+  }
 }
 
 .like-comment__btn:active {
@@ -14,6 +19,7 @@
 }
 .like-comment__form__container {
   @include flex-property-row-center;
+  
 }
 .like-comments-num {
   font-size: 12px;
@@ -40,7 +46,7 @@
   }
 
   &__body {
-    @include flex-property-row-center;
+    @include flex-property-column;
     justify-content: space-between;
     line-height: 1.8;
   }

@@ -1,4 +1,4 @@
-@import "../../../scss/abstracts/mixins.scss";
+@import "../../scss/abstracts/mixins.scss";
 
 .add-comment-form {
   label {
@@ -8,15 +8,19 @@
     margin-top: 1.5rem;
     width: 26rem;
     height: 13rem;
-    font-family: "Roboto";
-    padding: 0.7rem;
+    font-family: "Open sans";
+    padding: 0.4rem;
     font-size: 16px;
+  }
+  &__btn-wrapper {
+    @include flex-property-row-center;
+    margin-top: 1rem;
   }
   &__btn-submit,
   &__btn-cancel {
     @include standard-button;
-    padding: 0.6rem;
-    width: 7rem;
+    padding: 0.4rem;
+    width: 8rem;
   }
   &__btn-cancel {
     background-color: var(--secondary);

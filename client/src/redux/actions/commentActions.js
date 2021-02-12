@@ -6,8 +6,8 @@ import {
   ADD_COMMENT,
   EDIT_COMMENT,
   DELETE_COMMENT,
-  GET_COMMENTLIKES,
   LIKE_COMMENT,
+  ADD_COMMENT_REPLY
 } from "./types";
 
 import { tokenConfig } from "./authActions";
@@ -29,17 +29,14 @@ export const getComments = (id) => {
 };
 
 export const getComment = (photoId, commentId) => {
+  // console.log('from get comment action', photoId, commentId)
   return async (dispatch) => {
     try {
-      const url = `/api/v1/photos/${photoId}`;
+      const url = `/api/v1/photos/${photoId}/comments/${commentId}`;
       const res = await axios.get(url);
-
-      const foundComment = res.data.comments.find((comment) => {
-        return comment._id === commentId;
-      });
       dispatch({
         type: GET_COMMENT,
-        payload: foundComment,
+        payload: res.data,
       });
     } catch (err) {
       console.log(err.response);
@@ -92,27 +89,11 @@ export const deleteComment = (photoId, commentId) => {
   };
 };
 
-export const getCommentLikes = (photoId, commentId) => {
-  return async (dispatch) => {
-    try {
-      const url = `/api/v1/photos/${photoId}/comments/${commentId}/likes`;
-      const res = await axios.get(url);
-      dispatch({
-        type: GET_COMMENTLIKES,
-        payload: res.data,
-      });
-    } catch (err) {
-      dispatch(showErrors(err.response.data, err.response.status));
-    }
-  };
-};
-
 export const likeComment = (photoId, commentId, likedComment) => {
   return async (dispatch, getState) => {
     try {
       const url = `/api/v1/photos/${photoId}/comments/${commentId}/like`;
       const res = await axios.post(url, likedComment, tokenConfig(getState));
-      console.log("from actions", res);
       dispatch({
         type: LIKE_COMMENT,
         payload: res.data,
@@ -122,3 +103,15 @@ export const likeComment = (photoId, commentId, likedComment) => {
     }
   };
 };
+
+export const addCommentReply = (photoId, commentId, commentReply) => {
+  return async (dispatch, getState) => {
+    try {
+      const url = `/api/v1/photos/${photoId}/comments/${commentId}`;
+      const res = await axios.post(url, commentReply, tokenConfig(getState));
+      console.log("from actions", res);
+    } catch(err) {
+
+    }
+  }
+}

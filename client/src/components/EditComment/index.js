@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getComments, getComment, editComment } from "../../redux/actions/commentActions";
+import {
+  getComments,
+  getComment,
+  editComment,
+} from "../../redux/actions/commentActions";
 
 import "./style.scss";
 
@@ -10,8 +14,8 @@ const EditComment = ({ photoId, commentId, closeEditComment }, props) => {
   const [comment, setComment] = useState({
     text: "",
   });
-  const foundComment = useSelector((state) => state.comments.comment);
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const foundComment = useSelector((state) => state.comment.comment);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -36,7 +40,7 @@ const EditComment = ({ photoId, commentId, closeEditComment }, props) => {
     dispatch(editComment(photoId, commentId, updatedComment));
     setTimeout(() => {
       closeEditComment();
-      dispatch(getComments(photoId))
+      dispatch(getComments(photoId));
     }, 2000);
   };
 
@@ -51,14 +55,12 @@ const EditComment = ({ photoId, commentId, closeEditComment }, props) => {
         onChange={handleChange}
       ></textarea>
       <div className="edit-comment__edit-delete">
-        <button className="edit-comment__comment-btn">
-          <i className="fas fa-check-circle fa-2x edit-comment__edit-btn"></i>
-        </button>
+        <button className="edit-comment__comment-btn">Save</button>
         <button
           className="edit-comment__comment-btn"
           onClick={closeEditComment}
         >
-          <i className="fas fa-times-circle fa-2x edit-comment__delete-btn"></i>
+          Cancel
         </button>
       </div>
     </form>

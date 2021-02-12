@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { loadUser } from "./redux/actions/authActions";
 import { getPhotos } from "./redux/actions/photoActions";
 import Navbar from "./components/Navbar/index";
 import Home from "./pages/Home";
@@ -26,13 +25,12 @@ import "./App.css";
 
 export const Routes = () => {
   const dispatch = useDispatch();
-  const photos = useSelector((state) => state.photos.photos);
-  const users = useSelector((state) => state.users.users);
+  const photos = useSelector((state) => state.photo.photos);
+  const users = useSelector((state) => state.user.users);
 
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const isLoading = useSelector((state) => state.auth.isLoading);
-  const user = useSelector((state) => state.auth);
-  const loadedUser = useSelector((state) => state.users.user);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const isLoading = useSelector((state) => state.user.isLoading);
+  const user = useSelector((state) => state.user);
 
   const [msg, setMsg] = useState("");
   const [isErrorShowing, setIsErrorShowing] = useState(false);
@@ -45,8 +43,6 @@ export const Routes = () => {
   useEffect(() => {
     dispatch(getPhotos());
     dispatch(getUsers());
-    // dispatch(loadUser());
-
   }, [dispatch]);
 
   const closePopup = () => {

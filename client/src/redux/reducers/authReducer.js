@@ -3,8 +3,6 @@ import {
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  USER_LOADING,
-  USER_LOADED,
   LOGOUT_SUCCESS,
   CLEAR_ALLVALIDATIONS,
 } from "../actions/types";
@@ -46,18 +44,6 @@ export default function (state = initialState, action) {
         user: null,
         isAuthenticated: false,
         isLoading: false,
-      };
-    case USER_LOADING:
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case USER_LOADED:
-      return {
-        ...state,
-        isLoading: false,
-        user: action.payload,
-        isAuthenticated: true,
       };
     case CLEAR_ALLVALIDATIONS:
       return {

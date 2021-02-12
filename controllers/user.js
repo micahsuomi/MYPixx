@@ -77,38 +77,28 @@ const register = (req, res) => {
       email,
       password,
     });
-
+    console.log("new user", newUser);
     //if no user exists, generate salt which is used to hash a password with bcryptjs
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(newUser.password, salt, (err, hash) => {
         if (err) throw err;
         (newUser.password = hash),
           //save the user as new user within mongoose schema
-          console.log('user after saving', user)
 
           newUser.save().then((user) => {
-            //send the token, create object for user with id, name and user email
-            jwt.sign(
-              { id: user.id },
-              process.env.jwtSecret,
-              //we set an expiration for the token
-              { expiresIn: "30d" },
-              (err, token) => {
-                if (err) throw err;
-                //we make a json file for token and user
-                res.json({
-                  token,
-                  user: {
-                    id: user.id,
-                    name: user.name,
-                    email: user.email,
-                    avatar: user.avatar,
-                    photos: user.photos,
-                    medium: user.medium
-                  },
-                });
-              }
-            );
+            console.log("user after saving", user);
+            //we make a json file for token and user
+            res.json({
+              user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                avatar: user.avatar,
+                photos: user.photos,
+                medium: user.medium,
+                bio: user.bio
+              },
+            });
           });
       });
     });

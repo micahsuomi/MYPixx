@@ -6,8 +6,7 @@ import { useSelector } from "react-redux";
 import "./style.scss";
 
 const CommunityHeader = () => {
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  console.log("authenticated", isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   return (
     <div className="community-header">
       <h1>MYPixx Community</h1>
@@ -25,7 +24,7 @@ const CommunityHeader = () => {
           </p>
           {!isAuthenticated && (
             <div className="community-header__btn-container">
-              <NavLink to="/register">
+              <NavLink to="/register" className="community-header__link">
                 <button>Join Today</button>
               </NavLink>
             </div>

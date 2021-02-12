@@ -5,7 +5,10 @@ import NavbarUserPhoto from "./NavbarUserPhoto/index";
 
 import "./style.scss";
 
-const NavbarUser = ({ user, toggle }) => {
+const NavbarUser = ({ 
+  user, 
+  toggle 
+}) => {
   return (
     <ul className="navbar-user">
       <li>
@@ -15,7 +18,7 @@ const NavbarUser = ({ user, toggle }) => {
       </li>
       <li>
         <NavLink
-          to={`/user/${user.id}`}
+          to={`/user/${user._id}`}
           className="user-link"
           activeStyle={{ color: "var(--secondary)" }}
           onClick={toggle}

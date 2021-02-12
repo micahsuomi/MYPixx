@@ -5,10 +5,7 @@ import {
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  USER_LOADING,
-  USER_LOADED,
-  LOGOUT_SUCCESS,
-  AUTH_ERR,
+  LOGOUT_SUCCESS
 } from "./types";
 
 import { showErrors } from "./errorActions";
@@ -24,17 +21,17 @@ export const register = ({ name, email, password, repeatPassword }) => {
       const body = JSON.stringify({ name, email, password, repeatPassword });
       console.log(body)
 
-      const response = await axios.post("/api/v1/user", body, config);
+      const res = await axios.post("/api/v1/user", body, config);
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: response.data,
+        payload: res.data,
       });
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
       });
-      console.log(err.response.data);
-      dispatch(showErrors(err.response.data, err.response.status));
+      console.log(err.res.data);
+      dispatch(showErrors(err.res.data, err.res.status));
     }
   };
 };
@@ -48,46 +45,20 @@ export const login = ({ email, password }) => {
         },
       };
       const body = JSON.stringify({ email, password });
-      const response = await axios.post("/api/v1/auth", body, config);
+      console.log(email, password)
+      const res = await axios.post("/api/v1/auth", body, config);
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: response.data,
+        payload: res.data,
       });
     } catch (err) {
+      console.log(err)
       dispatch({
         type: LOGIN_FAIL,
       });
-      dispatch(showErrors(err.response.data, err.response.status));
+      // dispatch(showErrors(err.res.data, err.res.status));
     }
   };
-};
-
-//this action is causing an error when deployed
-export const loadUser = () => (dispatch, getState) => {
-  console.log("loading user");
-  dispatch({
-    type: USER_LOADING,
-  });
-
-  axios
-    .get("/api/v1/login/user", tokenConfig(getState))
-    .then((response) =>{
-      console.log('from load user', response.data)
-
-
-    }
-   /*   dispatch({
-        type: USER_LOADED,
-        payload: response.data,
-        // console.log('response from loadUser', response.data)
-      })*/
-    )
-    .catch((err) =>
-      dispatch({
-        type: AUTH_ERR,
-        payload: err.response.data,
-      })
-    );
 };
 
 export const logout = () => {
@@ -97,7 +68,7 @@ export const logout = () => {
 };
 
 export const tokenConfig = (getState) => {
-  const token = getState().auth.token;
+  const token = getState().user.token;
   const config = {
     headers: {
       "Content-type": "application/json",

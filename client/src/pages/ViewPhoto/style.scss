@@ -77,7 +77,8 @@
 
   &__edit-photo-link {
     margin-right: 1rem;
-    color: var(--dark);
+    color: var(--blue);
+    font-size: 23px;
   }
 
   &:hover {
@@ -88,6 +89,8 @@
 
   &__delete-photo-link {
     color: var(--primary);
+    font-size: 23px;
+
   }
   &:hover {
     color: var(--red);

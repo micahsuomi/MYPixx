@@ -1,3 +1,5 @@
+@import "../../scss/abstracts/mixins.scss";
+
 .comment-user {
   padding: 0.8rem;
   border-bottom: 1px solid lightgray;
@@ -5,7 +7,9 @@
   &__header {
     display: grid;
     grid-template-columns: 30% 70%;
-    align-items: center;
+    align-items: flex-start;
+    justify-items: center;
+    padding: 0 2rem;
   }
   &__image-container {
     display: inline-block;
@@ -31,12 +35,6 @@
       color: var(--primary-dark);
     }
   }
-  &__delete-btn {
-    color: var(--red);
-    margin-top: 0.7rem;
-    cursor: pointer;
-    margin-left: 1rem;
-  }
   &__date {
     font-size: 14px;
     color: lightgray;
@@ -49,19 +47,31 @@
     padding: 1rem;
     background-color: rgb(241, 235, 235);
     border-radius: 10px;
+    position: relative;
   }
-  &__edit-btn {
-    color: var(--blue);
+  &__like-reply-wrapper {
+    @include flex-property-row-start;
+    width: 25vw;
+  }
+
+  &__like-reply-comment {
+    @include flex-property-column;
+    justify-content: flex-start;
+  }
+  &__reply-btn {
+    background-color: transparent;
+    border: none;
     cursor: pointer;
-    margin-top: 0.7rem;
+    margin-top: .3rem;
+    color: var(--purple);
+    font-weight: 700;
   }
+
 }
 
 .comment-user:nth-child(2) {
   margin-top: 1rem;
 }
-
-
 
 .add-comment__btn__wrapper {
   display: flex;

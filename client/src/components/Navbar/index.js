@@ -12,13 +12,11 @@ import NavbarUserLogout from "./NavbarUser/NavbarUserLogout/index";
 import "./style.scss";
 
 const Navbar = () => {
-  const state = useSelector((state) => state.auth);
-  const userProfile = useSelector((state) => state.users.user);
-
-  const { isAuthenticated, user } = state;
-
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const user = useSelector((state) => state.user.user);
+  const userState = useSelector((state) => state.user);
+  // console.log('user', userState)
   const [isClicked, setState] = useState(false);
-
   const navList = ["nav-list"];
   const navListOpen = ["nav-list open"];
   const lineClassOne = ["line top"];

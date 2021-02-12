@@ -12,8 +12,8 @@ import { NavLink } from "react-router-dom";
 import "./style.scss";
 
 const Register = (props) => {
-  const isValidated = useSelector((state) => state.auth.isValidated);
-  const errorMsg = useSelector((state) => state.errors.msg.msg);
+  const isValidated = useSelector((state) => state.user.isValidated);
+  const errorMsg = useSelector((state) => state.error.msg.msg);
   const [isRegistered, setIsRegistered] = useState(false);
   // console.log(errorMsg)
   const dispatch = useDispatch();

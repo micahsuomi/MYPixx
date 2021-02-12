@@ -10,7 +10,7 @@ import "./style.scss";
 const LikesList = (props) => {
   const dispatch = useDispatch();
   const [likes, setLikes] = useState([]);
-  const photoLikes = useSelector((state) => state.photos.likes);
+  const photoLikes = useSelector((state) => state.photo.likes);
 
   const id = props.match.params.id;
 

@@ -5,7 +5,7 @@ export const ADD_PHOTO = "ADD_PHOTO";
 export const EDIT_PHOTO = "EDIT_PHOTO";
 export const DELETE_PHOTO = "DELETE_PHOTO";
 export const LIKE_PHOTO = "LIKE_PHOTO";
-export const GET_PHOTOLIKES = "GET_PHOTOLIKES";
+export const GET_PHOTO_LIKES = "GET_PHOTO_LIKES";
 
 //comment types
 export const GET_COMMENTS = "GET_COMMENTS";
@@ -13,9 +13,9 @@ export const GET_COMMENT = "GET_COMMENT";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const EDIT_COMMENT = "EDIT_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
-export const GET_COMMENTLIKES = "GET_COMMENTLIKES";
 export const LIKE_COMMENT = "LIKE_COMMENT";
-
+export const ADD_COMMENT_REPLY = "ADD_COMMENT_REPLY";
+    
 //auth types
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";

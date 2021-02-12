@@ -13,13 +13,13 @@ import "./style.scss";
 
 const EditPhoto = (props) => {
   const dispatch = useDispatch();
-  const filteredPhoto = useSelector((state) => state.photos.photo);
+  const filteredPhoto = useSelector((state) => state.photo.photo);
   const [photo, setPhoto] = useState({
     photo: {
       image: "",
       title: "",
       type: "",
-      technique: "",
+      medium: "",
       description: "",
     },
   });
@@ -30,14 +30,14 @@ const EditPhoto = (props) => {
   const [fileInput, setFileInput] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [isImageChanged, setIsImageChanged] = useState(false);
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const [warning, setWarning] = useState("");
 
-  const { title, image, type, technique, description } = photo;
+  const { title, image, type, medium, description } = photo;
 
   const id = props.match.params.id;
 
-  const [techniqueArr, setTechniqueArr] = useState([]);
+  const [mediumArr, setMediumArr] = useState([]);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -54,17 +54,17 @@ const EditPhoto = (props) => {
 
   useEffect(() => {
     setPhoto({ ...filteredPhoto });
-    setTechniqueArr(filteredPhoto.technique);
-    setPhoto({ ...filteredPhoto, technique: "" });
+    setMediumArr(filteredPhoto.medium);
+    setPhoto({ ...filteredPhoto, medium: "" });
     setPhotoLoaded(true);
   }, [filteredPhoto]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    photo.technique = techniqueArr;
+    photo.medium = mediumArr;
 
     if (isImageChanged) {
-      setPhoto({ ...photo, image: previewSource, technique: techniqueArr });
+      setPhoto({ ...photo, image: previewSource, medium: mediumArr });
     }
 
     dispatch(editPhoto(id, photo));
@@ -119,27 +119,27 @@ const EditPhoto = (props) => {
     setIsImageChanged(false);
   };
 
-  const addToTechniques = (e) => {
+  const addToMedium = (e) => {
     e.preventDefault();
 
-    let techniqueIndex = techniqueArr.indexOf(technique);
+    let mediumIndex = mediumArr.indexOf(medium);
 
-    if (technique.length < 1) {
+    if (medium.length < 1) {
       setWarning("Please enter a value");
     }
-    if (techniqueIndex !== -1) {
+    if (mediumIndex !== -1) {
       setWarning("Tag already present");
     } else {
-      setTechniqueArr([...techniqueArr, technique]);
-      setPhoto({ ...photo, technique: "" });
+      setMediumArr([...mediumArr, medium]);
+      setPhoto({ ...photo, medium: "" });
       setWarning("");
     }
   };
 
-  const deleteTechnique = (t) => {
-    const tecniqueIndex = techniqueArr.indexOf(t);
-    techniqueArr.splice(tecniqueIndex, 1);
-    setTechniqueArr([...techniqueArr]);
+  const deleteMedium = (t) => {
+    const tecniqueIndex = mediumArr.indexOf(t);
+    mediumArr.splice(tecniqueIndex, 1);
+    setMediumArr([...mediumArr]);
   };
 
   if (!photoLoaded) {
@@ -148,7 +148,7 @@ const EditPhoto = (props) => {
 
   return (
     <div className="edit-photo">
-      {photoLoaded && techniqueArr !== undefined ? (
+      {photoLoaded && mediumArr !== undefined ? (
         <form
           onSubmit={handleSubmit}
           className="edit-photo__form animate-modal"
@@ -259,42 +259,42 @@ const EditPhoto = (props) => {
             </div>
 
             <div className="input-topics">
-              <label htmlFor="technique">Tags</label>
-              <div className="input-topics-technique">
+              <label htmlFor="medium">Tags</label>
+              <div className="input-topics-medium">
                 <input
                   type="text"
-                  name="technique"
-                  value={technique}
+                  name="medium"
+                  value={medium}
                   placeholder={
                     "eg(oil, acrylics, dripping, analog photography etc)"
                   }
                   onChange={handleChange}
                 />
                 <button
-                  onClick={addToTechniques}
-                  className="input-topics-technique__add-btn"
+                  onClick={addToMedium}
+                  className="input-topics-medium__add-btn"
                 >
                   <i className="fas fa-plus-square fa-2x"></i>
                 </button>
               </div>
-              <div className="edit-photo__techniques-container">
-                <div className="edit-photo__techniques-wrapper">
-                  {techniqueArr.map((t) => (
-                    <div className="edit-photo__technique-item grow animate-modal">
-                      <div className="edit-photo__technique-item-body">
+              <div className="edit-photo__medium-container">
+                <div className="edit-photo__medium-wrapper">
+                  {mediumArr.map((t) => (
+                    <div className="edit-photo__medium-item grow animate-modal">
+                      <div className="edit-photo__medium-item-body">
                         <p>{`${t}`}</p>
                       </div>
-                      <div className="edit-photo__technique-item-delete">
+                      <div className="edit-photo__medium-item-delete">
                         <i
                           className="fas fa-times"
                           title="remove"
-                          onClick={() => deleteTechnique(t)}
+                          onClick={() => deleteMedium(t)}
                         ></i>
                       </div>
                     </div>
                   ))}
                 </div>
-                <p className="edit-photo__technique-warning">{warning}</p>
+                <p className="edit-photo__medium-warning">{warning}</p>
               </div>
             </div>
 
@@ -310,7 +310,7 @@ const EditPhoto = (props) => {
             </div>
 
             <div className="edit-photo__btn-save-wrapper">
-              <button className="edit-photo__btn-save">Submit</button>
+              <button className="edit-photo__btn-save">Save</button>
             </div>
           </div>
         </form>

@@ -1,10 +1,13 @@
 const multer = require("multer");
 const cloudinary = require("cloudinary");
+const moment = require("moment");
 
 const User = require("../models/User");
 const Photo = require("../models/Photo");
+const Comment = require("../models/Comment");
 const PhotoService = require("../services/photos");
 const UserService = require("../services/users");
+const CommentService = require("../services/comments");
 
 //Ckoudinary to upload images
 const storage = multer.diskStorage({
@@ -44,11 +47,11 @@ const findAll = async (req, res) => {
 //ACCESS: private
 const addPhoto =
   (upload.single("image"),
-  async (req, res, next) => {
+  async(req, res, next) => {
     try {
       const userId = req.user.id;
       const user = await UserService.findUserByReq(userId);
-      const { title, type, technique, description } = req.body;
+      const { title, type, medium, description } = req.body;
       const fileImage = req.body.image;
       cloudinary.uploader.upload(fileImage, function (result) {
         const uploadedCloudinaryImage = result.secure_url;
@@ -63,17 +66,20 @@ const addPhoto =
           title,
           image: uploadedCloudinaryImage,
           type,
-          author,
-          technique,
+          medium,
           description,
+          author
         });
         const date = new Date();
-        newPhoto.postedDate = date.toISOString().split("T")[0];
-
+        newPhoto.createdAt = moment(date).format('LL');
+        console.log('photo before saving', newPhoto)
         newPhoto.save();
-        newPhoto.execPopulate().then((photo) => res.json(photo));
         user.photos.push(newPhoto);
+        user.populate("photos").execPopulate()
         user.save();
+        console.log('user here', user)
+        res.json(newPhoto);
+
       });
     } catch (err) {
       next(res.status(500).json({ err: "Something went wrong" }));
@@ -88,16 +94,15 @@ const editPhoto =
   async (req, res) => {
     try {
       const id = req.params.id;
-      let { title, type, technique, description } = req.body;
+      let { title, type, medium, description } = req.body;
       const fileImage = req.body.image;
       cloudinary.uploader.upload(fileImage, function (result) {
         const uploadedCloudinaryImage = result.secure_url;
-
         Photo.findById(id).then((photo) => {
           (photo.title = title),
             (photo.image = uploadedCloudinaryImage),
             (photo.type = type),
-            (photo.technique = technique),
+            (photo.medium = medium),
             (photo.description = description);
           photo.save().then((updatedPhoto) => res.json(updatedPhoto));
         });
@@ -113,9 +118,9 @@ const editPhoto =
 const deletePhoto = async (req, res) => {
   try {
     const id = req.params.id;
-    await Photo.findById(id).then((photo) =>
-      photo.remove().then(() => res.json({ success: true }))
-    );
+    const photo = await Photo.findById(id)
+      photo.remove()
+      res.json({ success: true })
   } catch (err) {
     return res.status(404).json({ success: false });
   }
@@ -149,13 +154,14 @@ const likePhoto = (req, res) => {
 const findPhotoById = async (req, res) => {
   try {
     const id = req.params.id;
-    Photo.findById(id)
-      .populate("comments")
-      .populate("likes")
-      .exec((err, photo) => {
-        if (err) return res.status(404).json({ msg: "Not found" });
-        res.json(photo);
-      });
+    const photo = await PhotoService.findPhotoById(id)
+    // console.log('photo', photo)
+    // photo.comments.forEach((comment) => comment.populate("reply").execPopulate())
+    for(const comment of photo.comments) {
+      comment.populate("likes").execPopulate()
+    }
+    res.json(photo)
+    
   } catch (err) {
     return res.status(404).json({ msg: err });
   }
