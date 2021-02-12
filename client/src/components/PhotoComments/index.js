@@ -18,7 +18,7 @@ const Comments = (props) => {
     text: "",
   });
   //comment likes and replies should come from here via props to the rest of the components
-  console.log('comments from photo comments', comments)
+  // console.log('comments from photo comments', comments)
   const photoId = props.match.params.id;
 
   useEffect(() => {
@@ -67,6 +67,7 @@ const Comments = (props) => {
       name={comment.author.name}
       avatar={comment.author.avatar}
       user={props.user}
+      users={props.users}
       history={props.history}
       match={props.match}
       isAuthenticated={props.isAuthenticated}

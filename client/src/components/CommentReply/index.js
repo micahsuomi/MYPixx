@@ -7,7 +7,6 @@ import {
   deleteComment,
 } from "../../redux/actions/commentActions";
 import EditComment from "../EditComment";
-import AddCommentLike from "../AddCommentLike/index";
 import EditDeleteCommentModal from "../EditDeleteCommentModal";
 
 import "./style.scss";
@@ -140,14 +139,7 @@ const CommentReply = ({
           )}
           {!isEditing && (
             <div className="comment-reply-user__like-reply-comment">
-              <AddCommentLike
-                photoId={photoId}
-                commentId={commentId}
-                likes={likes}
-                user={user}
-                history={history}
-                match={match}
-              />
+           {/* comment like form goes here */}
             </div>
           )}
         </div>

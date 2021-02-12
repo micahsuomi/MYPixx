@@ -3,11 +3,14 @@ import { NavLink } from "react-router-dom";
 
 import "./style.scss";
 
-const CommentLike = (props) => {
-  console.log(props)
-  const { userId, name, avatar } = props;
+const CommentLike = ({
+  userId, 
+  name, 
+  avatar,
+}) => {
+  // console.log('from commentLike', props)
   return (
-    <div className="like-comment">
+      <div className="like-comment">
       <div className="like-comment__image-container">
         {avatar === undefined || avatar === "" ? (
           <img

@@ -8,13 +8,9 @@
   font-weight: 700;
   cursor: pointer;
   padding: 0;
-
-  :active {
-    outline: none;
-  }
 }
 
-.like-comment__btn:active {
+.like-comment__btn i:active {
   outline: none;
 }
 .like-comment__form__container {
@@ -23,6 +19,10 @@
 }
 .like-comments-num {
   font-size: 12px;
+}
+
+.likes-number {
+  cursor: pointer;
 }
 
 .likes-comments-box {

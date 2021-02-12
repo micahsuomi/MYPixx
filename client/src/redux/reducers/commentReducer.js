@@ -5,6 +5,7 @@ import {
   EDIT_COMMENT,
   DELETE_COMMENT,
   LIKE_COMMENT,
+  ADD_COMMENT_REPLY
 } from "../actions/types";
 
 const initialState = {
@@ -30,6 +31,7 @@ export default function (state = initialState, action) {
         comment: action.payload,
       };
     case ADD_COMMENT:
+    case ADD_COMMENT_REPLY:
       return {
         ...state,
         comments: state.comments,

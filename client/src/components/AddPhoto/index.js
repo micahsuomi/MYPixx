@@ -33,7 +33,7 @@ const AddPhoto = (props) => {
     if (!isAuthenticated) {
       props.history.push("/login");
     }
-  }, []);
+  }, [isAuthenticated, props.history]);
 
   const fileSelectedHandler = (e) => {
     const file = e.target.files[0];
@@ -53,7 +53,6 @@ const AddPhoto = (props) => {
       medium: mediumArr,
       description: description,
     };
-    console.log("new photo is here", newPhoto);
 
     dispatch(addPhoto(newPhoto));
     setTimeout(() => {
@@ -68,7 +67,6 @@ const AddPhoto = (props) => {
       ...text,
       [name]: value,
     });
-    console.log(value);
   };
 
   const filePreview = (file) => {

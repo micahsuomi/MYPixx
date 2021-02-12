@@ -17,8 +17,7 @@ export default function useUsers() {
       setErr('Something went wrong')
     }
     setData(users);
-  }, [users, setData]);
+  }, [users, err, setData]);
 
-  console.log(users, );
   return [err, data];
 }
