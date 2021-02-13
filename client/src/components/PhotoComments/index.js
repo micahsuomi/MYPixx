@@ -117,7 +117,8 @@ const Comments = (props) => {
                     className="comments__add-comment-btn"
                     onClick={openCommentField}
                   >
-                    Add Comment
+                    <span>Add Comment</span>
+                    <i class="fas fa-comments"></i>
                   </button>
                 )}
               </div>
