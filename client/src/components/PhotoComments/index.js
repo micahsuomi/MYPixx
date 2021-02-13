@@ -13,12 +13,11 @@ const Comments = (props) => {
   const dispatch = useDispatch();
   const [err, comments] = useComments();
   const [isCommentFieldOpened, setIsCommentFieldOpened] = useState(false);
+  const [isCommentReplyOpen, setIsCommentReplyOpen] = useState(false);
   const [isAddButtonShowing, setIsAddButtonShowing] = useState(true);
   const [comment, setComment] = useState({
     text: "",
   });
-  //comment likes and replies should come from here via props to the rest of the components
-  // console.log('comments from photo comments', comments)
   const photoId = props.match.params.id;
 
   useEffect(() => {
@@ -75,6 +74,7 @@ const Comments = (props) => {
       editingComment={editingComment}
       closeEditingComment={closeEditingComment}
       updateComment={updateComment}
+      setIsAddButtonShowing={setIsAddButtonShowing}
     />
   ));
   return (
