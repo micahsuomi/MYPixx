@@ -8,6 +8,8 @@
     font-family: "Roboto";
     padding: 0.7rem;
     font-size: 16px;
+    border-radius: 5px;
+    border: 1.8px solid rgba(200, 200, 200, 0.5); 
   }
   &__btn-submit,
   &__btn-cancel {

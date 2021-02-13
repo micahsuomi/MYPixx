@@ -52,14 +52,13 @@
   &__like-reply-wrapper {
     @include flex-property-row-start;
     width: 25vw;
-    flex-direction: column;
   }
 
   &__likes-list-container {
     @include flex-property-column;
     justify-content: flex-start;
     padding: 2rem;
-    background-color: rgb(245, 234, 234);
+    background-color: rgb(255, 255, 255);
     position: fixed;
     top: 13%;
     left: 23.4%;
@@ -83,6 +82,11 @@
     margin-top: .3rem;
     color: var(--purple);
     font-weight: 700;
+    @include flex-property-row-center;
+    i {
+      margin-left: .6rem;
+      font-size: 1.4em;
+    }
   }
 
 }

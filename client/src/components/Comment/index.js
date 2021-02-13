@@ -30,15 +30,15 @@ const Comment = ({
   closeEditingComment,
   history,
   match,
+  setIsAddButtonShowing
 }) => {
   const dispatch = useDispatch();
   const [isEditDeleteOpen, setIsEditDeleteOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isCommentReplyOpen, setIsCommentReplyOpen] = useState(false);
   const [isArrowShowing, setIsArrowShowing] = useState(false);
-  const [isLikesShowing, setIsLikeShowing] = useState(true);
-  const { _id, text, likes, commentDate } = comment;
-  // console.log('from comment', comment)
+  const [isLikesShowing, setIsLikeShowing] = useState(false);
+  const { _id, text, commentDate } = comment;
 
   const deleteOnClick = () => {
     dispatch(deleteComment(photoId, _id));
@@ -59,10 +59,12 @@ const Comment = ({
 
   const openCommentReply = () => {
     setIsCommentReplyOpen(true);
+    setIsAddButtonShowing(false);
   };
 
   const closeCommentReply = () => {
     setIsCommentReplyOpen(false);
+    setIsAddButtonShowing(true);
   };
 
   const closeEditComment = () => {
@@ -87,8 +89,6 @@ const Comment = ({
       history.push("/login");
     } else {
       if (isAuthenticated && user) {
-        console.log("photo id", photoId, "comment id", comment._id, comment);
-        // dispatch(getComment(match.params.id, commentId));
         dispatch(likeComment(photoId, comment._id, comment));
         setTimeout(() => {
           dispatch(getComments(photoId));
@@ -104,7 +104,7 @@ const Comment = ({
 
   const hideCommentLike = () => {
     setIsLikeShowing(false);
-  }
+  };
 
   return (
     <div className="comment-user animate-modal">
@@ -172,12 +172,22 @@ const Comment = ({
           )}
           {!isEditing && (
             <div className="comment-user__like-reply-comment">
-              <div className="comment-user__like-reply-wrapper">
-                { isLikesShowing &&
-                  <div className="comment-user__likes-list-container">
-                  <div className="comment-user__likes-header">
-            <i className="fas fa-chevron-left fa comment-user__close-likes-comment grow" onClick={hideCommentLike}></i>
-            </div>
+              <div
+                className="comment-user__like-reply-wrapper"
+                style={
+                  isCommentReplyOpen
+                    ? { flexDirection: "column" }
+                    : { flexDirection: "row" }
+                }
+              >
+                {isLikesShowing && (
+                  <div className="comment-user__likes-list-container animate-modal">
+                    <div className="comment-user__likes-header">
+                      <i
+                        className="fas fa-chevron-left fa comment-user__close-likes-comment grow"
+                        onClick={hideCommentLike}
+                      ></i>
+                    </div>
                     {comment.likes !== undefined &&
                       users.map((user) => {
                         for (let i = 0; i < comment.likes.length; i++) {
@@ -195,11 +205,9 @@ const Comment = ({
                           }
                         }
                       })}
-                      </div>
+                  </div>
+                )}
 
-                }
-              
-                  
                 <AddCommentLikeForm
                   photoId={photoId}
                   commentId={comment._id}
@@ -213,7 +221,8 @@ const Comment = ({
                     className="comment-user__reply-btn grow"
                     onClick={openCommentReply}
                   >
-                    Reply
+                    <span>Reply</span>
+                    <i class="fas fa-reply"></i>
                   </button>
                 ) : (
                   <AddCommentReply

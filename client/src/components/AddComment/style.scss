@@ -9,8 +9,10 @@
     width: 26rem;
     height: 13rem;
     font-family: "Open sans";
-    padding: 0.4rem;
+    padding: 0.6rem;
     font-size: 16px;
+    border-radius: 5px;
+    border: 1.8px solid rgba(200, 200, 200, 0.5); 
   }
   &__btn-wrapper {
     @include flex-property-row-center;
