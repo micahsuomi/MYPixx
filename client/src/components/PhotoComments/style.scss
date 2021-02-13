@@ -45,6 +45,12 @@
     @include standard-button;
     margin-top: 2rem;
     width: 12rem;
+    @include flex-property-row-center;
+    i {
+      color: white;
+      font-size: 1.3em;
+      margin-left: .5rem;
+    }
   }
 }
 
