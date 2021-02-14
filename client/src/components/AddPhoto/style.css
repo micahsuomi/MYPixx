@@ -1,0 +1,307 @@
+@-webkit-keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+.add-photo {
+  padding: 7rem 10rem;
+  background-color: #f3eded;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.add-photo__form {
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  line-height: 1.9;
+  border: 1px solid lightgray;
+  border-radius: 14px;
+  font-weight: 700;
+  background-color: white;
+  width: 40vw;
+  -webkit-box-shadow: 0 2rem 2rem rgba(172, 159, 159, 0.5);
+          box-shadow: 0 2rem 2rem rgba(172, 159, 159, 0.5);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+.add-photo__cancel-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  width: 36vw;
+}
+
+.add-photo i {
+  color: var(--primary);
+}
+
+.add-photo label {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  color: var(--dark);
+}
+
+.add-photo input,
+.add-photo select {
+  width: 25rem;
+  padding: 0.6rem;
+  font-size: 16px;
+  font-family: "Roboto";
+  border-radius: 3px;
+  border: 1px solid lightgray;
+  margin-top: 0.6rem;
+}
+
+.add-photo textarea {
+  height: 15rem;
+}
+
+.add-photo .input-topics-technique {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.add-photo .input-topics-technique input {
+  width: 20rem;
+}
+
+.add-photo .input-topics-technique__add-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-top: 0.6rem;
+  font-size: 1.3rem;
+}
+
+.add-photo__techniques-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.add-photo__techniques-wrapper p {
+  display: block;
+}
+
+.add-photo__technique-item {
+  padding: 0.2rem;
+  background-color: var(--dark);
+  color: var(--dark);
+  font-size: 12px;
+  margin: 0.2rem;
+  border-radius: 3px;
+  min-width: 3rem;
+  color: white;
+}
+
+.add-photo__technique-item-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.add-photo__technique-item-header i {
+  font-size: 10px;
+  cursor: pointer;
+  color: whitesmoke;
+}
+
+.add-photo__technique-item-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-width: 2rem;
+}
+
+.add-photo__btn-save-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.add-photo__btn-save {
+  padding: 0.7rem;
+  background-color: var(--primary);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  margin: 1.5rem;
+  width: 8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 16px;
+  text-transform: uppercase;
+  -webkit-box-shadow: 0 1rem 1rem rgba(136, 136, 153, 0.3);
+          box-shadow: 0 1rem 1rem rgba(136, 136, 153, 0.3);
+  width: 20rem;
+}
+
+.add-photo__btn-save:hover {
+  background-color: var(--primary-dark);
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.add-photo__btn-save:active {
+  outline: none;
+}
+
+.input-topics {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 1rem;
+}
+
+.file-btn {
+  padding: 1.4rem;
+}
+
+@media screen and (max-width: 768px) {
+  .add-photo {
+    width: 100vw;
+  }
+  .add-photo__form {
+    width: 74vw;
+  }
+  .add-photo__cancel-wrapper {
+    width: 63vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .add-photo {
+    padding: 6rem 2rem;
+    min-height: 100vh;
+  }
+  .add-photo__form {
+    width: 98vw;
+  }
+  .add-photo__cancel-wrapper {
+    width: 82vw;
+  }
+  .add-photo input {
+    width: 16rem;
+    padding: 0.7rem;
+  }
+  .add-photo select {
+    width: 16rem;
+    padding: 0.8rem;
+  }
+  .add-photo .input-topics-technique input {
+    width: 12rem;
+  }
+  .add-photo textarea {
+    width: 20rem;
+  }
+  .add-photo__btn-save {
+    width: 7rem;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .add-photo__container {
+    padding: 0rem 2rem;
+  }
+}
+/*# sourceMappingURL=style.css.map */

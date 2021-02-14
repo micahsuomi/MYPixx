@@ -1,0 +1,118 @@
+@-webkit-keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+.community-user {
+  padding: 1rem 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0 1rem 1rem rgba(88, 83, 83, 0.6);
+          box-shadow: 0 1rem 1rem rgba(88, 83, 83, 0.6);
+  width: 16rem;
+  height: 21rem;
+  text-decoration: none;
+  color: var(--primary-dark);
+  border-radius: 3px;
+}
+
+.community-user__image-container {
+  display: inline-block;
+  overflow: hidden;
+  height: 130px;
+  width: 130px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-top: 1rem;
+  border-radius: 50%;
+}
+
+.community-user__image-container img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.community-user__name {
+  text-align: center;
+  margin-top: 1.7rem;
+  text-decoration: none;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.community-user__name:hover {
+  color: var(--primary-dark);
+}
+
+.community-user__body {
+  height: 9rem;
+}
+
+.community-user__details {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.community-user__details li {
+  margin-top: 0.6rem;
+  font-family: "Roboto";
+  color: var(--dark);
+}
+
+.user-link__container {
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .user {
+    width: 20rem;
+    height: 24rem;
+  }
+  .user__image-container {
+    height: 130px;
+    width: 130px;
+  }
+}
+/*# sourceMappingURL=style.css.map */

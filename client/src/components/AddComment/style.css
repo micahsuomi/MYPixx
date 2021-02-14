@@ -1,0 +1,98 @@
+@-webkit-keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+.add-comment-form label {
+  margin-left: 2.4rem;
+}
+
+.add-comment-form textarea {
+  margin-top: 1.5rem;
+  width: 26rem;
+  height: 13rem;
+  font-family: "Open sans";
+  padding: 0.6rem;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1.8px solid rgba(200, 200, 200, 0.5);
+}
+
+.add-comment-form__btn-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 1rem;
+}
+
+.add-comment-form__btn-submit, .add-comment-form__btn-cancel {
+  padding: 0.7rem;
+  background-color: var(--primary);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  margin: 1.5rem;
+  width: 8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 16px;
+  text-transform: uppercase;
+  -webkit-box-shadow: 0 1rem 1rem rgba(136, 136, 153, 0.3);
+          box-shadow: 0 1rem 1rem rgba(136, 136, 153, 0.3);
+  padding: 0.4rem;
+  width: 8rem;
+}
+
+.add-comment-form__btn-submit:hover, .add-comment-form__btn-cancel:hover {
+  background-color: var(--primary-dark);
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.add-comment-form__btn-submit:active, .add-comment-form__btn-cancel:active {
+  outline: none;
+}
+
+.add-comment-form__btn-cancel {
+  background-color: var(--secondary);
+}
+
+@media screen and (max-width: 500px) {
+  .add-comment-form textarea {
+    width: 19rem;
+  }
+}
+/*# sourceMappingURL=style.css.map */

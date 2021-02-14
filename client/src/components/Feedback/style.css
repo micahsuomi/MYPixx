@@ -1,0 +1,16 @@
+.feedback {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 22rem;
+}
+
+.feedback__message {
+  color: var(--primary);
+  font-size: 13px;
+  opacity: .8;
+}
+/*# sourceMappingURL=style.css.map */

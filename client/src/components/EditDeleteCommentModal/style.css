@@ -1,0 +1,66 @@
+@-webkit-keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+.edit-delete-comment {
+  position: absolute;
+  right: 8%;
+  top: 7%;
+  background: white;
+  height: 6rem;
+  padding: .8rem .5rem;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1rem 1.3rem rgba(143, 143, 154, 0.5);
+          box-shadow: 0 1rem 1.3rem rgba(143, 143, 154, 0.5);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.edit-delete-comment span {
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.edit-delete-comment__edit-btn {
+  color: var(--blue);
+  cursor: pointer;
+  margin-top: 0.7rem;
+}
+
+.edit-delete-comment__delete-btn {
+  color: var(--red);
+  margin-top: 0.7rem;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+/*# sourceMappingURL=style.css.map */

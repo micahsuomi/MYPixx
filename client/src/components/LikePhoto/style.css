@@ -1,0 +1,28 @@
+.like-btn {
+  /* border: 1px solid var(--red); */
+  border: none;
+  background-color: transparent;
+  border-radius: 3px;
+  font-family: "Montserrat";
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.like-btn:hover {
+  background-color: #fae9eb;
+}
+
+.like-btn:active,
+.full-heart:active,
+.empty-heart:active {
+  outline: none;
+}
+
+.likes-number {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 700;
+  margin-left: 0.7rem;
+}
+/*# sourceMappingURL=style.css.map */

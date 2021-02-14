@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 import { addComment, getComments } from "../../redux/actions/commentActions";
 
 import "./style.scss";
 
-const AddComment = ({ photoId, closeCommentField, setCommentClose }, props) => {
-  console.log(props);
+const AddComment = ({ photoId, closeCommentField, setCommentClose }) => {
   const dispatch = useDispatch();
   const [comment, setComment] = useState({
     text: "",
@@ -53,6 +53,12 @@ const AddComment = ({ photoId, closeCommentField, setCommentClose }, props) => {
       </div>
     </form>
   );
+};
+
+AddComment.propTypes = {
+  photoId: PropTypes.string,
+  closeCommentField: PropTypes.func,
+  setCommentClose: PropTypes.bool
 };
 
 export default AddComment;

@@ -1,0 +1,39 @@
+.search-form {
+  padding: 1.6rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.search-form input {
+  width: 35vw;
+  padding: 1rem;
+  border-radius: 50px;
+  border: none;
+  font-family: "Roboto";
+}
+
+.search-form input:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .search-form {
+    width: 67vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .search-form input {
+    padding: 1rem;
+    font-size: 8px;
+    width: 77vw;
+  }
+}
+/*# sourceMappingURL=style.css.map */

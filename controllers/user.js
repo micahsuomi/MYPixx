@@ -1,5 +1,4 @@
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const Photo = require("../models/Photo");
 const Comment = require("../models/Comment");
@@ -36,7 +35,7 @@ cloudinary.config({
 //@POST ROUTE /api/user
 //@DESC - registers user
 //@ACCESS Public
-const register = (req, res) => {
+const register = async (req, res) => {
   const { name, email, password, repeatPassword } = req.body;
   //if any of the fields are empty, throw warning with 400 err (bad request)
   if (!name || !email || !password || !repeatPassword) {
@@ -70,7 +69,7 @@ const register = (req, res) => {
   User.findOne({ email }).then((user) => {
     if (user)
       return res
-        .status(400)
+        // .status(400)
         .json({ msg: "A user with this email is already registered" });
     const newUser = new User({
       name,
