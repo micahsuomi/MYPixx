@@ -1,13 +1,11 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import "./style.scss";
 
 const AddCommentLikeForm = ({ 
-    photoId,
-    commentId,
     commentLiked,
-    handleSubmit ,
+    handleSubmit,
     commentLikes,
     showCommentLikes
 }) => {
@@ -37,6 +35,13 @@ const AddCommentLikeForm = ({
       </form>
     </div>
   );
+};
+
+AddCommentLikeForm.propTypes = {
+  commentLiked: PropTypes.bool,
+  handleSubmit: PropTypes.func,
+  commentLikes: PropTypes.array,
+  showCommentLikes: PropTypes.func
 };
 
 export default AddCommentLikeForm;

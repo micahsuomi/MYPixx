@@ -1,0 +1,33 @@
+.nav-user-image {
+  display: inline-block;
+  overflow: hidden;
+  height: 32px;
+  width: 32px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-left: 1rem;
+  border-radius: 50%;
+}
+
+.nav-user-image img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.hide-desktop {
+  display: none;
+}
+
+@media screen and (max-width: 500px) {
+  .nav-user-image {
+    display: none;
+  }
+  .hide-desktop {
+    display: block;
+    margin-left: 1.8rem;
+    font-size: 23px;
+  }
+}
+/*# sourceMappingURL=style.css.map */

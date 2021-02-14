@@ -1,0 +1,106 @@
+@-webkit-keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+.gallery-photo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid rgba(201, 214, 216, 0.5);
+  margin: 0.2rem;
+  width: 24rem;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 2.4rem 1rem;
+  background-color: white;
+}
+
+.gallery-photo__image {
+  width: 100%;
+  margin-top: 1rem;
+  border-radius: 3px;
+}
+
+.gallery-photo__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 20rem;
+}
+
+.gallery-photo__likes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 0.6rem;
+}
+
+.view-photo__link {
+  text-decoration: none;
+  color: var(--primary-dark);
+}
+
+@media screen and (max-width: 1024px) {
+  .gallery-photo {
+    width: 19rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .gallery-photo {
+    width: 22rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .gallery-photo {
+    width: 19.2rem;
+  }
+  .gallery-photo__body {
+    width: 16rem;
+  }
+}
+/*# sourceMappingURL=style.css.map */

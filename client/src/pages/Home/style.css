@@ -1,0 +1,142 @@
+@-webkit-keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+.home {
+  padding: 5rem 4rem;
+  width: 100vw;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(111, 113, 122, 0.8)), to(rgba(46, 43, 49, 0.8))), url("https://images.pexels.com/photos/3025620/pexels-photo-3025620.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-image: linear-gradient(to right, rgba(111, 113, 122, 0.8) 0%, rgba(46, 43, 49, 0.8) 100%), url("https://images.pexels.com/photos/3025620/pexels-photo-3025620.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-size: cover;
+  background-position: top;
+}
+
+.home__wrapper {
+  padding: 4rem;
+  width: 80vw;
+  height: 45vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  line-height: 1.8;
+}
+
+.home__title {
+  color: white;
+  font-size: 45px;
+  letter-spacing: 1.1rem;
+  text-transform: uppercase;
+  font-family: "Sansita Swashed", cursive;
+}
+
+.home .lowercase {
+  text-transform: lowercase;
+}
+
+.home__subtitle {
+  font-size: 23px;
+  font-weight: 400;
+  color: white;
+}
+
+.home__gallery-link {
+  background-color: white;
+  padding: 1.1rem;
+  width: 15rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin-top: 1rem;
+  border-radius: 3px;
+}
+
+.home__gallery-link:hover {
+  background-color: var(--primary);
+  color: white;
+  border: 2px solid white;
+}
+
+@media screen and (max-width: 1024px) {
+  .home {
+    padding: 3rem 2rem;
+    background-image: -webkit-gradient(linear, left top, right top, from(rgba(111, 113, 122, 0.3)), to(rgba(46, 43, 49, 0.4))), url("https://images.pexels.com/photos/2832382/pexels-photo-2832382.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+    background-image: linear-gradient(to right, rgba(111, 113, 122, 0.3) 0%, rgba(46, 43, 49, 0.4) 100%), url("https://images.pexels.com/photos/2832382/pexels-photo-2832382.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+    background-size: cover;
+    background-position: top;
+  }
+  .home__title {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .home__wrapper {
+    padding: 2rem;
+    width: 90vw;
+  }
+  .home__title {
+    font-size: 43px;
+    letter-spacing: 0.5rem;
+  }
+  .home__subtitle {
+    font-size: 14px;
+    text-align: center;
+  }
+  .home__gallery-link {
+    width: 12rem;
+    padding: 1rem;
+  }
+}
+/*# sourceMappingURL=style.css.map */

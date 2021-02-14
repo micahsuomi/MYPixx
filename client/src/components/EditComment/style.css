@@ -1,0 +1,68 @@
+@-webkit-keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+.edit-comment textarea {
+  margin-top: 1.5rem;
+  width: 22rem;
+  font-family: "Open sans";
+  padding: 0.7rem;
+  font-size: 16px;
+  -webkit-animation-name: appear;
+          animation-name: appear;
+  -webkit-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+}
+
+.edit-comment__comment-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--secondary);
+}
+
+.edit-comment__comment-btn:hover {
+  color: skyblue;
+}
+
+.edit-comment__comment-btn:active {
+  outline: none;
+}
+
+.edit-comment__edit-btn, .edit-comment__delete-btn {
+  cursor: pointer;
+  font-family: "Monserrat";
+}
+
+.edit-comment__edit-btn {
+  color: var(--blue);
+}
+
+.edit-comment__delete-btn {
+  color: var(--secondary);
+}
+
+.edit-comment__edit-btn:active, .edit-comment__delete-btn:visited {
+  outline: none;
+}
+/*# sourceMappingURL=style.css.map */

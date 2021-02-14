@@ -5,7 +5,6 @@ async function findAllComments() {
 }
 
 async function findCommentById(id) {
-  console.log('from services', id)
   return Comment.findById(id)
     .populate("likes")
     .populate("replies")
@@ -19,7 +18,6 @@ async function findCommentById(id) {
 }
 
 async function updateComment(id, update) {
-  console.log("here daaaaamn");
   return Comment.findById(id)
     .exec()
     .then((comment) => {

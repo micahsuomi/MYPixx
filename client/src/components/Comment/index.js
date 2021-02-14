@@ -222,7 +222,7 @@ const Comment = ({
                     onClick={openCommentReply}
                   >
                     <span>Reply</span>
-                    <i class="fas fa-reply"></i>
+                    <i className="fas fa-reply"></i>
                   </button>
                 ) : (
                   <AddCommentReply

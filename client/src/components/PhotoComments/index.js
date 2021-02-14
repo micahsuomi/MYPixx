@@ -22,7 +22,7 @@ const Comments = (props) => {
 
   useEffect(() => {
     dispatch(getComments(photoId));
-  }, [dispatch]);
+  }, [dispatch, photoId]);
 
   const openCommentField = () => {
     setIsCommentFieldOpened(!isCommentFieldOpened);
