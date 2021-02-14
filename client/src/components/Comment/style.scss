@@ -9,7 +9,7 @@
     grid-template-columns: 30% 70%;
     align-items: flex-start;
     justify-items: center;
-    padding: 0 2rem;
+    padding: 0 5rem;
   }
   &__image-container {
     display: inline-block;
@@ -24,6 +24,9 @@
       width: 100%;
       height: 100%;
     }
+  }
+  &__image-container:nth-child(1) {
+    margin-top: 2rem;
   }
 
   &__name {

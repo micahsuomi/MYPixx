@@ -100,7 +100,7 @@ const Comments = (props) => {
         )}
 
         {props.user !== null && isAuthenticated ? (
-          <div>
+          <div className="comments__body">
             {isCommentFieldOpened ? (
               <AddComment
                 photoId={photoId}
@@ -118,7 +118,7 @@ const Comments = (props) => {
                     onClick={openCommentField}
                   >
                     <span>Add Comment</span>
-                    <i class="fas fa-comments"></i>
+                    <i className="fas fa-comments"></i>
                   </button>
                 )}
               </div>

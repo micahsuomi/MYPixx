@@ -1,23 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
+import validator from "validator";
 import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
+
 import { register } from "../../redux/actions/authActions";
+import FeedBack from "../../components/Feedback";
 import {
   clearErrors,
   clearAllValidations,
 } from "../../redux/actions/errorActions";
-import { NavLink } from "react-router-dom";
+import {
+  nameValidator,
+  passwordValidator,
+} from '../../validators'
 
 import "./style.scss";
 
-const Register = (props) => {
+const inputStyleErr = {
+  border: '2px solid red'
+}
+const inputStyleValidated = {
+  border: '2px solid lightgrey'
+}
+
+const Register = ({ history }) => {
   const isValidated = useSelector((state) => state.user.isValidated);
   const errorMsg = useSelector((state) => state.error.msg.msg);
   const [isRegistered, setIsRegistered] = useState(false);
-  // console.log(errorMsg)
   const dispatch = useDispatch();
-
   const [state, setState] = useState({
     name: "",
     email: "",
@@ -25,7 +36,43 @@ const Register = (props) => {
     repeatPassword: "",
   });
 
+  const [touched, setTouched] = useState({
+    name: false,
+    email: false,
+    password: false,
+    repeatPassword: false
+  })
+
   const { name, email, password, repeatPassword } = state;
+
+  const validate = () => {
+    const errors = {
+      name: '',
+      email: '',
+      password: '',
+      repeatPassword: ''
+    }
+   
+    if (touched.name && !name.match(nameValidator)) {
+      errors.name = 'Full name should include only letters'
+    }
+    if (touched.name && !validator.isLength(name, { min: 2, max: 30 })) {
+      errors.name = 'Name must be between 1 and 30 characters'
+      console.log(errors.name)
+    }
+    if (touched.email && !validator.isEmail(email)) {
+      errors.email = 'email should be a valid email format'
+    }
+    if (touched.password && !password.match(passwordValidator)) {
+      errors.password = 'Password must be at least 8 characters long, include an uppercase character, a lowercase character, a number and a special character'
+    }
+    if (password !== repeatPassword) {
+      errors.repeatPassword = 'passwords do not match'
+    }
+    return errors
+  }
+
+  const errors = validate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,6 +94,14 @@ const Register = (props) => {
     });
   };
 
+  const handleBlur = (e) => {
+    const { name } = e.target
+    setTouched({
+      ...touched,
+      [name]: true,
+    })
+  }
+
   useEffect(() => {
     if (isValidated) {
       dispatch(clearErrors());
@@ -55,7 +110,7 @@ const Register = (props) => {
   }, [dispatch]);
 
   const redirectLogin = () => {
-    props.history.push("/login");
+    history.push("/login");
     setIsRegistered(false);
     dispatch(clearAllValidations());
   };
@@ -89,9 +144,16 @@ const Register = (props) => {
                 value={name}
                 placeholder="full name"
                 onChange={handleChange}
+                onBlur={handleBlur}
                 required={true}
               />
             </div>
+            {errors.name && (
+            <div>
+              <FeedBack validationErr={errors.name} />
+            </div>
+          )}
+
 
             <div className="input-topics">
               <label htmlFor="image">Email</label>
@@ -101,9 +163,15 @@ const Register = (props) => {
                 value={email}
                 placeholder="email"
                 onChange={handleChange}
+                onBlur={handleBlur}
                 required={true}
               />
             </div>
+            {errors.email && (
+            <div>
+              <FeedBack validationErr={errors.email} />
+            </div>
+          )}
 
             <div className="input-topics">
               <label htmlFor="description">Password</label>
@@ -113,9 +181,15 @@ const Register = (props) => {
                 value={password}
                 placeholder="password"
                 onChange={handleChange}
+                onBlur={handleBlur}
                 required={true}
               />
             </div>
+            {errors.password && (
+            <div>
+              <FeedBack validationErr={errors.password} />
+            </div>
+          )}
 
             <div className="input-topics">
               <label htmlFor="description">Repeat Password</label>
@@ -125,22 +199,43 @@ const Register = (props) => {
                 value={repeatPassword}
                 placeholder="repeat password"
                 onChange={handleChange}
+                onBlur={handleBlur}
                 required={true}
+                style={password !== repeatPassword ? inputStyleErr : inputStyleValidated}
+                className="password-input"
               />
             </div>
+            {errors.repeatPassword && (
+            <div>
+              <FeedBack validationErr={errors.repeatPassword} />
+            </div>
+          )}
             <p className="warning-msg">{errorMsg}</p>
 
             <p>
               Have an account already? <NavLink to="/login">Sign in</NavLink>
             </p>
             <div className="register-form__btn-save__wrapper">
-              <button className="register-form__btn-register">Sign Up</button>
+              {
+                errors.name ||
+                errors.email ||
+                errors.password ||
+                errors.repeatPassword ? 
+                <button className="register-form__btn-register--disabled" disabled>Sign Up</button>
+                :
+                <button className="register-form__btn-register">Sign Up</button>
+
+              }
             </div>
           </form>
         </div>
       )}
     </>
   );
+};
+
+Register.propTypes = {
+  history: PropTypes.object
 };
 
 export default Register;

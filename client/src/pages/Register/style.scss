@@ -52,6 +52,12 @@
     border: 1px solid lightgray;
     margin-top: 0.6rem;
   }
+  .password-input:active {
+    outline: none;
+  }
+  .password-input:focus {
+    outline: none;
+  }
   &__btn-save__wrapper {
     @include flex-property-row-center;
   }
@@ -59,6 +65,11 @@
     @include standard-button;
     padding: 0.6rem;
     width: 22rem;
+    &--disabled {
+      @include standard-button-disabled;
+      padding: 0.6rem;
+      width: 22rem;
+    }
   }
 }
 
@@ -84,6 +95,7 @@
     padding: 0.6rem;
     width: 13rem;
   }
+
 }
 @media screen and (max-width: 500px) {
   .register-form__container {

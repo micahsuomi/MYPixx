@@ -51,7 +51,6 @@ export const Routes = () => {
     dispatch(getUsers());
   };
   const openUserPopup = () => {
-    console.log("calling from here");
     setIsEditPopupOpen(true);
   };
 
@@ -73,13 +72,13 @@ export const Routes = () => {
 
         <Route
           path="/register"
-          component={(props) => <Register user={user} msg={msg} {...props} />}
+          component={(props) => <Register history={props.history} {...props} />}
         />
 
         <Route
           path="/login"
           component={(props) => (
-            <Login isAuthenticated={isAuthenticated} msg={msg} {...props} />
+            <Login isAuthenticated={isAuthenticated} {...props} />
           )}
         />
 

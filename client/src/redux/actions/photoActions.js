@@ -12,10 +12,12 @@ import {
 import { tokenConfig } from "./authActions";
 import { showErrors } from "./errorActions";
 
+const proxyUrl = 'http://localhost:5000'
+
 export const getPhotos = () => {
   return async (dispatch) => {
     try {
-      const url = "http://localhost:5000/api/v1/photos";
+      const url = `${proxyUrl}/api/v1/photos`;
       const res = await axios.get(url);
       dispatch({
         type: GET_PHOTOS,
@@ -30,7 +32,7 @@ export const getPhotos = () => {
 export const addPhoto = (newPhoto) => {
   return async (dispatch, getState) => {
     try {
-      const url = "http://localhost:5000/api/v1/photos";
+      const url = `${proxyUrl}/api/v1/photos`;
       console.log("new photo before req", newPhoto);
       const res = await axios.post(url, newPhoto, tokenConfig(getState));
       console.log(res)
@@ -48,7 +50,7 @@ export const addPhoto = (newPhoto) => {
 export const getPhoto = (id) => {
   return async (dispatch) => {
     try {
-      const url = `/api/v1/photos/${id}`;
+      const url = `${proxyUrl}/api/v1/photos/${id}`;
       const res = await axios.get(url);
       dispatch({
         type: GET_PHOTO,
@@ -63,7 +65,7 @@ export const getPhoto = (id) => {
 export const editPhoto = (id, photo) => {
   return async (dispatch, getState) => {
     try {
-      const url = `/api/v1/photos/${id}`;
+      const url = `${proxyUrl}/api/v1/photos/${id}`;
       const res = await axios.put(url, photo, tokenConfig(getState));
       dispatch({
         type: EDIT_PHOTO,
@@ -78,7 +80,7 @@ export const editPhoto = (id, photo) => {
 export const deletePhoto = (id) => {
   return async (dispatch, getState) => {
     try {
-      const url = `/api/v1/photos/${id}`;
+      const url = `${proxyUrl}/api/v1/photos/${id}`;
       const res = await axios.delete(url, tokenConfig(getState));
       dispatch({
         type: DELETE_PHOTO,
@@ -93,7 +95,7 @@ export const deletePhoto = (id) => {
 export const likePhoto = (likedPhoto, id) => {
   return async (dispatch, getState) => {
     try {
-      const url = `/api/v1/photos/${id}/like`;
+      const url = `${proxyUrl}/api/v1/photos/${id}/like`;
       const res = await axios.post(url, likedPhoto, tokenConfig(getState));
       dispatch({ type: LIKE_PHOTO, payload: res.data });
     } catch (err) {
@@ -105,7 +107,7 @@ export const likePhoto = (likedPhoto, id) => {
 export const getPhotoLikes = (id) => {
   return async (dispatch) => {
     try {
-      const url = `/api/v1/photos/${id}`;
+      const url = `${proxyUrl}/api/v1/photos/${id}`;
       const res = await axios.get(url);
       dispatch({ type: GET_PHOTO_LIKES, payload: res.data });
     } catch (err) {

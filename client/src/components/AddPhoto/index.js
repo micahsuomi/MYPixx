@@ -27,6 +27,7 @@ const AddPhoto = (props) => {
     selectedFile: null,
   });
   const [mediumArr, setMediumArr] = useState([]);
+  const [isMediumDup, setIsMediumDup] = useState(false)
   const [warning, setWarning] = useState("");
 
   useEffect(() => {
@@ -82,17 +83,21 @@ const AddPhoto = (props) => {
 
   const addToTechniques = (e) => {
     e.preventDefault();
-    let mediumIndex = mediumArr.indexOf(medium);
+    const mediumIndex = mediumArr.indexOf(medium);
+    console.log(medium.length)
     if (medium.length < 1) {
       setWarning("Please enter a value");
-    }
+    } else
     if (mediumIndex !== -1) {
       setWarning("Tag already present");
+      prompt('tag already present')
+      setIsMediumDup(true);
     } else {
       setMediumArr([...mediumArr, medium]);
       setText({ ...text, medium: "" });
       console.log(mediumArr);
       setWarning("");
+      setIsMediumDup(false);
     }
   };
 
@@ -190,6 +195,7 @@ const AddPhoto = (props) => {
               </div>
             ))}
           </div>
+          {medium.length < 1 || medium !== '' || isMediumDup && warning}
         </div>
 
         <div className="input-topics">
