@@ -10,6 +10,8 @@ import {
 
 import { showErrors } from "./errorActions";
 
+const proxyUrl = 'http://localhost:5000'
+
 export const register = ({ name, email, password, repeatPassword }) => {
   return async (dispatch) => {
     try {
@@ -19,19 +21,17 @@ export const register = ({ name, email, password, repeatPassword }) => {
         },
       };
       const body = JSON.stringify({ name, email, password, repeatPassword });
-      console.log(body)
-
-      const res = await axios.post("/api/v1/user", body, config);
+      const res = await axios.post(`${proxyUrl}/api/v1/user`, body, config);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
     } catch (err) {
+      console.log(err);
       dispatch({
         type: REGISTER_FAIL,
       });
-      console.log(err.res.data);
-      dispatch(showErrors(err.res.data, err.res.status));
+      // dispatch(showErrors(err.res.data, err.res.status));
     }
   };
 };
@@ -45,8 +45,9 @@ export const login = ({ email, password }) => {
         },
       };
       const body = JSON.stringify({ email, password });
-      console.log(email, password)
-      const res = await axios.post("/api/v1/auth", body, config);
+      console.log(body)
+      const res = await axios.post(`${proxyUrl}/api/v1/auth`, body, config);
+      // console.log(res)
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
@@ -56,6 +57,7 @@ export const login = ({ email, password }) => {
       dispatch({
         type: LOGIN_FAIL,
       });
+      
       // dispatch(showErrors(err.res.data, err.res.status));
     }
   };

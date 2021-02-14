@@ -50,6 +50,7 @@ const EditUser = (props) => {
       setTimeout(() => {
         dispatch(getUsers());
         dispatch(getUser(id));
+        dispatch(getPhotos())
       }, 2000);
     }, 2000);
   };
