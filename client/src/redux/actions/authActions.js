@@ -45,13 +45,12 @@ export const login = ({ email, password }) => {
         },
       };
       const body = JSON.stringify({ email, password });
-      console.log(body)
       const res = await axios.post(`${proxyUrl}/api/v1/auth`, body, config);
-      // console.log(res)
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
+      console.log(res)
     } catch (err) {
       console.log(err)
       dispatch({
@@ -59,7 +58,7 @@ export const login = ({ email, password }) => {
       });
       
       // dispatch(showErrors(err.res.data, err.res.status));
-    }
+    } 
   };
 };
 
