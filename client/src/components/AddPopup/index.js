@@ -23,7 +23,7 @@ const AddPopup = ({ closePopup }) => {
 
 export default AddPopup;
 
-AddPopup.displayName = "EditPopup";
+AddPopup.displayName = "AddPopup";
 AddPopup.propTypes = {
   closePopup: PropTypes.func.isRequired,
 };

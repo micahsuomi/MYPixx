@@ -60,10 +60,10 @@ const AddCommentReply = ({
   );
 };
 
+export default AddCommentReply;
+
 AddCommentReply.propTypes = {
   photoId: PropTypes.string,
   commentId: PropTypes.string,
   closeCommentReply: PropTypes.func,
 };
-
-export default AddCommentReply;

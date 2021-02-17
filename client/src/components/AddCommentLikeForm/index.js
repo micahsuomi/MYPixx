@@ -39,10 +39,10 @@ const AddCommentLikeForm = ({
   );
 };
 
+export default AddCommentLikeForm;
+
 AddCommentLikeForm.propTypes = {
   handleSubmit: PropTypes.func,
   commentLikes: PropTypes.array,
   showCommentLikes: PropTypes.func
 };
-
-export default AddCommentLikeForm;

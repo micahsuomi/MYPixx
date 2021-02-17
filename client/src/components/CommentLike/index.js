@@ -29,10 +29,10 @@ const CommentLike = ({
   );
 };
 
+export default CommentLike;
+
 CommentLike.propTypes = {
   userId: PropTypes.string,
   name: PropTypes.string,
   avatar: PropTypes.string
 };
-
-export default CommentLike;

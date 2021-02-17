@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 import {
   getComments,
@@ -39,10 +40,6 @@ const Comment = ({
   const [isArrowShowing, setIsArrowShowing] = useState(false);
   const [isLikesShowing, setIsLikesShowing] = useState(false);
   const { _id, text, commentDate } = comment;
-
-  // console.log('comment updated', comments)
-  // console.log('user', user.user)
-
 
   const deleteOnClick = () => {
     dispatch(deleteComment(photoId, _id));
@@ -258,3 +255,19 @@ const Comment = ({
 };
 
 export default Comment;
+
+Comment.propTypes = {
+  avatar: PropTypes.string,
+  authorId: PropTypes.string,
+  photoId: PropTypes.string,
+  comment: PropTypes.object,
+  name: PropTypes.string,
+  user: PropTypes.object,
+  users: PropTypes.array,
+  isAuthenticated: PropTypes.bool,
+  editingComment: PropTypes.func,
+  closeEditingComment: PropTypes.func,
+  history: PropTypes.object,
+  match: PropTypes.object,
+  setIsAddButtonShowing: PropTypes.bool,
+};

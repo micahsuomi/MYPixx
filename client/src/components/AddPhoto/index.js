@@ -219,8 +219,8 @@ const AddPhoto = ({ history }) => {
   );
 };
 
+export default AddPhoto;
+
 AddPhoto.propTypes = {
   history: PropTypes.object,
 };
-
-export default AddPhoto;
