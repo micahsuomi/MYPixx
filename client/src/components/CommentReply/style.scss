@@ -62,13 +62,14 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    margin-top: .7rem;
+    padding: 0 0.3rem;
   }
   &__reply-btn {
     background-color: transparent;
     border: none;
     cursor: pointer;
   }
-
 }
 
 .comment-user:nth-child(2) {

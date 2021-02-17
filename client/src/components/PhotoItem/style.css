@@ -87,6 +87,9 @@
   .gallery-photo {
     width: 19rem;
   }
+  .gallery-photo__body {
+    width: 16rem;
+  }
 }
 
 @media screen and (max-width: 500px) {

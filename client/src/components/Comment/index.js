@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import {
   getComments,
@@ -37,13 +37,18 @@ const Comment = ({
   const [isEditing, setIsEditing] = useState(false);
   const [isCommentReplyOpen, setIsCommentReplyOpen] = useState(false);
   const [isArrowShowing, setIsArrowShowing] = useState(false);
-  const [isLikesShowing, setIsLikeShowing] = useState(false);
+  const [isLikesShowing, setIsLikesShowing] = useState(false);
   const { _id, text, commentDate } = comment;
+
+  // console.log('comment updated', comments)
+  // console.log('user', user.user)
+
 
   const deleteOnClick = () => {
     dispatch(deleteComment(photoId, _id));
     setTimeout(() => {
       dispatch(getComments(photoId));
+      dispatch(getComment(photoId, _id))
     }, 2000);
   };
 
@@ -99,16 +104,18 @@ const Comment = ({
   };
 
   const showCommentLikes = () => {
-    setIsLikeShowing(true);
+    console.log('hovering')
+    setIsLikesShowing(true);
   };
 
-  const hideCommentLike = () => {
-    setIsLikeShowing(false);
+  const hideCommentLikes = () => {
+    console.log('mouse out')
+    setIsLikesShowing(false);
   };
 
   return (
     <div className="comment-user animate-modal">
-      <div className="comment-user__header">
+      <div className="comment-user__wrapper">
         <div className="comment-user__image-container">
           {avatar === undefined || avatar === "" ? (
             <img
@@ -185,8 +192,8 @@ const Comment = ({
                     <div className="comment-user__likes-header">
                       <i
                         className="fas fa-chevron-left fa comment-user__close-likes-comment grow"
-                        onClick={hideCommentLike}
-                      ></i>
+                        onClick={hideCommentLikes}
+                      ></i> 
                     </div>
                     {comment.likes !== undefined &&
                       users.map((user) => {
@@ -199,7 +206,7 @@ const Comment = ({
                                 userId={user._id}
                                 avatar={user.avatar}
                                 name={user.name}
-                                hideCommentLike={hideCommentLike}
+                                hideCommentLikes={hideCommentLikes}
                               />
                             );
                           }
@@ -209,12 +216,9 @@ const Comment = ({
                 )}
 
                 <AddCommentLikeForm
-                  photoId={photoId}
-                  commentId={comment._id}
                   handleSubmit={handleSubmit}
                   commentLikes={comment.likes !== undefined && comment.likes}
                   showCommentLikes={showCommentLikes}
-                  users={users}
                 />
                 {!isCommentReplyOpen ? (
                   <button
@@ -239,6 +243,7 @@ const Comment = ({
                   photoId={photoId}
                   comment={comment}
                   user={user}
+                  users={users}
                   isAuthenticated={isAuthenticated}
                   history={history}
                   match={match}

@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import "./style.scss";
 
@@ -20,3 +21,8 @@ const PhotoItemComments = ({ comments, id }) => {
 };
 
 export default PhotoItemComments;
+
+PhotoItemComments.propTypes = {
+  comments: PropTypes.array,
+  id: PropTypes.string,
+};

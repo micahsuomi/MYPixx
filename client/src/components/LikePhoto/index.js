@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import { getPhotos } from "../../redux/actions/photoActions";
 import { likePhoto } from "../../redux/actions/photoActions";
@@ -64,3 +65,9 @@ const LikePhoto = ({
 };
 
 export default LikePhoto;
+
+LikePhoto.propTypes = {
+  filteredPhoto: PropTypes.object,
+  history: PropTypes.object,
+  match: PropTypes.object,
+};

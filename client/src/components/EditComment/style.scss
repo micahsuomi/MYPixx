@@ -10,6 +10,7 @@
     animation-name: appear;
     transition: 1s ease-in-out;
     animation-duration: 1s;
+    border: 1.8px solid rgba(200, 200, 200, 0.5); 
   }
   &__comment-btn {
     background-color: transparent;

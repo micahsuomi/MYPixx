@@ -1,13 +1,18 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 import PhotoItem from "../../components/PhotoItem";
 
 import "./style.scss";
 
-const UserProfile = ({ avatar, name, medium, bio, photos }) => {
-  console.log("props are here", avatar, name, medium, bio, photos);
+const UserProfile = ({ 
+  avatar, 
+  name, 
+  medium, 
+  bio, 
+  photos 
+}) => {
   const [isUserPage, setIsUserPage] = useState(false);
-
   return (
     <>
       <div className="user-details">
@@ -40,30 +45,38 @@ const UserProfile = ({ avatar, name, medium, bio, photos }) => {
       <div className="photo-gallery__container">
         <h1>User Gallery</h1>
         {photos !== undefined && photos.length < 1 ? (
-              <h1>This user has not posted any pictures</h1>
-            ) : (
-              <h4>{photos.length} photos</h4>
-            )}
-              <div className="photo-gallery__wrapper">
-                {photos.map((photo) => (
-                  <PhotoItem
-                    key={photo._id}
-                    id={photo._id}
-                    title={photo.title}
-                    image={photo.image}
-                    description={photo.description}
-                    author={photo.author.name}
-                    authorId={photo.author.id}
-                    authorImg={photo.author.avatar}
-                    likes={photo.likes}
-                    comments={photo.comments}
-                    isUserPage={isUserPage}
-                  />
-                ))} 
-              </div>
+          <h1>This user has not posted any pictures</h1>
+        ) : (
+          <h4>{photos.length} photos</h4>
+        )}
+        <div className="photo-gallery__wrapper">
+          {photos.map((photo) => (
+            <PhotoItem
+              key={photo._id}
+              id={photo._id}
+              title={photo.title}
+              image={photo.image}
+              description={photo.description}
+              author={photo.author.name}
+              authorId={photo.author.id}
+              authorImg={photo.author.avatar}
+              likes={photo.likes}
+              comments={photo.comments}
+              isUserPage={isUserPage}
+            />
+          ))}
+        </div>
       </div>
     </>
   );
 };
 
 export default UserProfile;
+
+UserProfile.propTypes = {
+  avatar: PropTypes.string,
+  name: PropTypes.string,
+  medium: PropTypes.array,
+  bio: PropTypes.string,
+  photos: PropTypes.array,
+};

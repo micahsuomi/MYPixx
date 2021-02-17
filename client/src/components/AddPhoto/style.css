@@ -256,6 +256,18 @@
   padding: 1.4rem;
 }
 
+@media screen and (max-width: 1024px) {
+  .add-photo {
+    width: 100vw;
+  }
+  .add-photo__form {
+    width: 57vw;
+  }
+  .add-photo__cancel-wrapper {
+    width: 53vw;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .add-photo {
     width: 100vw;
@@ -270,7 +282,7 @@
 
 @media screen and (max-width: 500px) {
   .add-photo {
-    padding: 6rem 2rem;
+    padding: 3rem 2rem;
     min-height: 100vh;
   }
   .add-photo__form {
@@ -294,7 +306,7 @@
     width: 20rem;
   }
   .add-photo__btn-save {
-    width: 7rem;
+    width: 13rem;
     font-size: 14px;
   }
 }

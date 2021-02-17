@@ -1,17 +1,17 @@
 @import "../../scss/abstracts/mixins.scss";
 
-.like-comment {
+.comment-likeslist {
   display: grid;
   grid-template-columns: 50% 50%;
   align-items: center;
-  width: 20rem;
+  width: 26rem;
   margin: 0.7rem;
 
   &__image-container {
     display: inline-block;
     overflow: hidden;
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
     border-radius: 50%;
     object-fit: cover;
   }

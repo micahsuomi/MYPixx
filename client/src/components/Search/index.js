@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "./style.scss";
 
@@ -21,3 +22,9 @@ const Search = ({ search, handleSubmit, handleChange }) => {
 };
 
 export default Search;
+
+Search.propTypes = {
+  search: PropTypes.string,
+  handleSubmit: PropTypes.func,
+  handleChange: PropTypes.func,
+};

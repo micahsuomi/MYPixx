@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import {
@@ -8,6 +8,7 @@ import {
   RefreshContent,
 } from "react-js-pull-to-refresh";
 
+import { getPhotos } from "../../redux/actions/photoActions";
 import usePhotos from "../../hooks/usePhotos";
 import Header from "../../components/Header";
 import PhotoItem from "../../components/PhotoItem/index";
@@ -35,63 +36,29 @@ const PhotoList = (props) => {
   const currentPhotos = photos?.slice(indexFirstPhoto, indexLastPhoto);
   const [showPullToRefresh, setShowPullToRefresh] = useState(false);
 
-  let {
+  const {
     closePopup,
     refreshPage,
     isErrorShowing,
     isAuthenticated,
     isPopupOpen,
     isEditPopupOpen,
-    likePhoto,
-    isUserPage,
-    userProfile,
   } = props;
 
-  // const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
-  // console.log(isAuthenticated)
-  //   useEffect(() => {
-  //     dispatch(getPhotos())
-  //     setIsPhotoLoaded(true)
-  //     // props.getPhotos()
-  //   })
 
-  // useEffect(() => {
-  //      dispatch(getPhotos())
+  const checkScreenSize = () => {
+    const maxWidth = 500;
+    if(window.innerWidth < maxWidth) {
+      setShowPullToRefresh(true)
+    }
+  }
 
-  //    }, [dispatch]);
-
-  /*
-      let maxWidth = 500;
-      let slice
-      //if the screen is not a mobile screen
-      if(window.innerWidth > maxWidth) {
-        if(offset === undefined) {
-          slice = photos.slice(offset, offset + perPage);
-          // console.log(this.state.offset, this.state.offset + this.state.perPage)
-          // console.log('here', slice)
-          
-        } else {
-          // console.log(offset)
-          slice = photos.slice(offset, offset + perPage);
-          // console.log(offset, offset + this.state.perPage)
-        }
-         
-        
-          setPageCount(Math.ceil(photos.length / perPage));
-        //   setPhotos(slice)
-          setIsPageLoading(true)
-          setShowPagination(true)
-          setShowPullToRefresh(false)
-      
+  useEffect(() => {
+    checkScreenSize();
+  }, [])
   
-      } else {
-          setShowPagination(false)
-          setShowPullToRefresh(true)
-        
-      }*/
-
   const onRefresh = () => {
-    refreshPage();
+    dispatch(getPhotos());
     return new Promise((resolve) => {
       setTimeout(resolve, 2000);
     });
@@ -107,7 +74,7 @@ const PhotoList = (props) => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const photoList = currentPhotos.map((photo) => (
+  const photoList = !showPullToRefresh ? currentPhotos.map((photo) => (
     <PhotoItem
       key={photo._id}
       id={photo._id}
@@ -121,7 +88,23 @@ const PhotoList = (props) => {
       authorImg={photo.author.avatar}
       likes={photo.likes}
       comments={photo.comments}
-      likePhoto={(props) => likePhoto()}
+      {...props}
+    />
+  )) : 
+  photos.map((photo) => (
+    <PhotoItem
+      key={photo._id}
+      id={photo._id}
+      title={photo.title}
+      image={photo.image}
+      type={photo.type}
+      camera={photo.camera}
+      description={photo.description}
+      author={photo.author.name}
+      authorId={photo.author.id}
+      authorImg={photo.author.avatar}
+      likes={photo.likes}
+      comments={photo.comments}
       {...props}
     />
   ));
@@ -153,7 +136,7 @@ const PhotoList = (props) => {
                     <i class="fas fa-chevron-down"></i>
                   </div>
                 ) : null}
-                {search === "" && (
+                {search === "" && !showPullToRefresh && (
                   <>
                     <Pagination
                       itemsPerPage={photosPerPage}

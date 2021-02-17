@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { getPhotos } from "./redux/actions/photoActions";
+import { getUsers } from "./redux/actions/userActions";
 import Navbar from "./components/Navbar/index";
 import Home from "./pages/Home";
 import Community from "./pages/Community/index";
@@ -15,15 +16,13 @@ import AddPhoto from "./components/AddPhoto/index";
 import ViewPhoto from "./pages/ViewPhoto/index";
 import LikesList from "./components/LikesList/index";
 import PhotoComments from "./components/PhotoComments/index";
-import Comment from "./components/Comment/index";
 import EditPhoto from "./components/EditPhoto/index";
 import DeletePhoto from "./components/DeletePhoto/index";
 import Footer from "./components/Footer/index";
-import { getUsers } from "./redux/actions/userActions";
 
 import "./App.css";
 
-export const Routes = () => {
+const Routes = () => {
   const dispatch = useDispatch();
   const photos = useSelector((state) => state.photo.photos);
   const users = useSelector((state) => state.user.users);
@@ -32,7 +31,6 @@ export const Routes = () => {
   const isLoading = useSelector((state) => state.user.isLoading);
   const user = useSelector((state) => state.user);
 
-  const [msg, setMsg] = useState("");
   const [isErrorShowing, setIsErrorShowing] = useState(false);
   const [isUserPage, setIsUserPage] = useState(false);
   const [userProfile, setUserProfile] = useState({});
@@ -118,7 +116,13 @@ export const Routes = () => {
 
         <Route
           path="/deletephoto/:id"
-          component={(props) => <DeletePhoto {...props} />}
+          component={(props) => (
+            <DeletePhoto
+              id={props.match.params.id}
+              history={props.history}
+              {...props}
+            />
+          )}
         />
 
         <Route
@@ -132,10 +136,11 @@ export const Routes = () => {
           path="/photos/:id/comments"
           component={(props) => (
             <PhotoComments
-              photos={photos}
               user={user}
               users={users}
               isAuthenticated={isAuthenticated}
+              match={props.match}
+              history={props.history}
               {...props}
             />
           )}
@@ -143,14 +148,7 @@ export const Routes = () => {
 
         <Route
           path="/addphoto"
-          component={(props) => (
-            <AddPhoto
-              isAuthenticated={isAuthenticated}
-              user={user}
-              isLoading={isLoading}
-              {...props}
-            />
-          )}
+          component={(props) => <AddPhoto history={props.history} {...props} />}
         />
 
         <Route

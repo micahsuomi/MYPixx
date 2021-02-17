@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import PhotoItemAuthor from "./PhotoItemAuthor";
 import PhotoItemLikes from "./PhotoItemLikes";
@@ -7,19 +8,17 @@ import PhotoItemComments from "./PhotoItemComments";
 
 import "./style.scss";
 
-const PhotoItem = (props) => {
-  let {
-    id,
-    title,
-    image,
-    author,
-    authorId,
-    authorImg,
-    isUserPage,
-    likes,
-    comments,
-  } = props;
-
+const PhotoItem = ({
+  id,
+  title,
+  image,
+  author,
+  authorId,
+  authorImg,
+  isUserPage,
+  likes,
+  comments,
+}) => {
   return (
     <div className="gallery-photo grow">
       <NavLink to={`/photos/${id}`} className="view-photo__link">
@@ -48,3 +47,14 @@ const PhotoItem = (props) => {
 };
 
 export default PhotoItem;
+
+PhotoItem.propTypes = {
+  id: PropTypes.string,
+  title: PropTypes.string,
+  image: PropTypes.string,
+  author: PropTypes.string,
+  authorId: PropTypes.string,
+  authorImg: PropTypes.string,
+  isUserPage: PropTypes.bool,
+};
+

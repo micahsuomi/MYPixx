@@ -4,7 +4,7 @@
   padding: 0.8rem;
   border-bottom: 1px solid lightgray;
 
-  &__header {
+  &__wrapper {
     display: grid;
     grid-template-columns: 30% 70%;
     align-items: flex-start;
@@ -52,6 +52,9 @@
     border-radius: 10px;
     position: relative;
   }
+  &__like-reply-comment {
+    position: relative;
+  }
   &__like-reply-wrapper {
     @include flex-property-row-start;
     width: 25vw;
@@ -63,16 +66,16 @@
     padding: 2rem;
     background-color: rgb(255, 255, 255);
     position: fixed;
-    top: 13%;
-    left: 23.4%;
-    height: 79vh;
-    width: 52.6vw;
+    top: 5.1%;
+    left: 19%;
+    height: 95vh;
+    width: 61.3vw;
     border-radius: 16px 0 0 16px;
     z-index: 4;
   }
 
   &__likes-header {
-    width: 38rem;
+    width: 46rem;
     @include flex-property-row-start;
   }
   &__close-likes-comment {
@@ -122,6 +125,10 @@
 
 @media screen and (max-width: 500px) {
   .comment-user {
+    &__wrapper {
+      padding: 0;
+      grid-template-columns: 13% 123%;
+    }
     padding: 0.6rem 0;
     &__image-container {
       height: 40px;
@@ -133,9 +140,14 @@
     }
     &__text {
       padding: 0.5rem;
+      width: 64%;
+    }
+    &__like-reply-wrapper {
+      width: 50vw;
     }
   }
   .edit-comment__form textarea {
     width: 15rem;
   }
+  
 }

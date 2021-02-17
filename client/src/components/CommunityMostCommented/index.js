@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "./style.scss";
 
@@ -27,6 +28,13 @@ const CommunityMostCommented = ({ image, name, author, comments }) => {
       </div>
     </div>
   );
+};
+
+CommunityMostCommented.propTypes = {
+  image: PropTypes.string,
+  name: PropTypes.string,
+  author: PropTypes.object,
+  comments: PropTypes.array
 };
 
 export default CommunityMostCommented;

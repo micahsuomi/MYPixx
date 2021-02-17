@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import NavbarLogo from "./NavbarLogo/index";
-import NavbarToggler from "./NavbarToggler/index";
 import NavbarUser from "./NavbarUser/index";
 import NavbarUserRegister from "./NavbarUser/NavbarUserRegister/index";
 import NavbarUserLogin from "./NavbarUser/NavbarUserLogin/index";
@@ -14,18 +13,10 @@ import "./style.scss";
 const Navbar = () => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const user = useSelector((state) => state.user.user);
-  const userState = useSelector((state) => state.user);
-  // console.log('user', userState)
   const [isClicked, setState] = useState(false);
-  const navList = ["nav-list"];
-  const navListOpen = ["nav-list open"];
-  const lineClassOne = ["line top"];
-  const lineClassOneActive = ["line top active"];
-  const lineClassTwo = ["line middle"];
-  const lineClassTwoActive = ["line middle active"];
-  const lineClassThree = ["line bottom"];
-  const lineClassThreeActive = ["line bottom active"];
-
+  const navList = "nav-list";
+  const navListOpen = "nav-list open";
+ 
   const toggle = () => {
     setState(!isClicked);
   };
@@ -33,16 +24,6 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <NavbarLogo />
-      <NavbarToggler
-        toggle={toggle}
-        isClicked={isClicked}
-        lineClassOneActive={lineClassOneActive}
-        lineClassOne={lineClassOne}
-        lineClassTwoActive={lineClassTwoActive}
-        lineClassTwo={lineClassTwo}
-        lineClassThreeActive={lineClassThreeActive}
-        lineClassThree={lineClassThree}
-      />
       <ul className={isClicked ? navListOpen : navList}>
         <li>
           <NavLink

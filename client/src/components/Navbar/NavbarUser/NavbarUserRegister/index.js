@@ -1,6 +1,6 @@
 import React from "react";
-
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const NavbarUserRegister = ({ toggle }) => {
   return (
@@ -18,3 +18,7 @@ const NavbarUserRegister = ({ toggle }) => {
 };
 
 export default NavbarUserRegister;
+
+NavbarUserRegister.propTypes = {
+  toggle: PropTypes.func
+};

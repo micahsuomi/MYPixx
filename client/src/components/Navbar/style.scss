@@ -85,50 +85,14 @@
     }
   }
   
-  /*
-  .hide-mobile {
-    display: none;
-  }
-
-  .show-mobile {
-    display: block;
-  }
-
-  .nav-list {
-    -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-  }
-
-  .nav-list.open {
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    flex-direction: column;
-    justify-content: center;
-    height: 102vh;
-    width: 102vw;
-    position: fixed;
-    top: -2%;
-    left: -2%;
-    padding: 0;
-    transition: all ease-in-out 0.1s;
-    opacity: 0.98;
-    background-color: rgb(17, 45, 58);
-    line-height: 2;
-    z-index: 5;
-    text-transform: uppercase;
-    color: white;
-    text-align: center;
-  }
-
-  .register-login {
-    flex-direction: column;
-  }*/
   .navbar-link,
   .user-link {
-    font-size: 26px;
+    font-size: 16px;
     margin: 0;
     color: white;
-
+  }
+  .navbar-link {
+    font-size: 26px;
   }
 
   .logo {

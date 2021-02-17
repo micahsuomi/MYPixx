@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import { addPhoto } from "../../redux/actions/photoActions";
 import { getUsers } from "../../redux/actions/userActions";
 
 import "./style.scss";
 
-const AddPhoto = (props) => {
+const AddPhoto = ({ history }) => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
@@ -32,9 +33,9 @@ const AddPhoto = (props) => {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      props.history.push("/login");
+     history.push("/login");
     }
-  }, [isAuthenticated, props.history]);
+  }, [isAuthenticated, history]);
 
   const fileSelectedHandler = (e) => {
     const file = e.target.files[0];
@@ -58,7 +59,7 @@ const AddPhoto = (props) => {
     dispatch(addPhoto(newPhoto));
     setTimeout(() => {
       dispatch(getUsers());
-      props.history.push("/photos");
+      history.push("/photos");
     }, 2000);
   };
 
@@ -216,6 +217,10 @@ const AddPhoto = (props) => {
       </form>
     </div>
   );
+};
+
+AddPhoto.propTypes = {
+  history: PropTypes.object,
 };
 
 export default AddPhoto;

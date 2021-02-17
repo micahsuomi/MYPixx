@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Search from "../Search";
 
@@ -32,3 +33,10 @@ const Header = ({ handleSubmit, handleChange, search, placeHolder }) => {
 };
 
 export default Header;
+
+Header.propTypes = {
+  handleSubmit: PropTypes.func,
+  handleChange: PropTypes.func,
+  search: PropTypes.string,
+  placeHolder: PropTypes.string
+};

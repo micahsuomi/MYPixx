@@ -107,7 +107,7 @@ const Register = ({ history }) => {
       dispatch(clearErrors());
       setIsRegistered(true);
     }
-  }, [dispatch]);
+  }, [dispatch, isValidated]);
 
   const redirectLogin = () => {
     history.push("/login");

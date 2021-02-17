@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from "prop-types";
 
 import './style.scss'
 
@@ -8,4 +9,8 @@ const FeedBack = ({ validationErr }) => (
   </div>
 )
 
-export default FeedBack
+export default FeedBack;
+
+FeedBack.propTypes = {
+  validationErr: PropTypes.string
+};

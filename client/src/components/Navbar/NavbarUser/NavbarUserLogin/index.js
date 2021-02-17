@@ -1,6 +1,6 @@
 import React from "react";
-
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import './style.scss'
 
@@ -20,3 +20,7 @@ const NavbarUserLogin = ({ toggle }) => {
 };
 
 export default NavbarUserLogin;
+
+NavbarUserLogin.propTypes = {
+  toggle: PropTypes.func
+};

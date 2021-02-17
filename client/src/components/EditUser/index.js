@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 import { getUsers, getUser, updateUser } from "../../redux/actions/userActions";
 import { getPhotos } from "../../redux/actions/photoActions";
@@ -86,37 +87,16 @@ const EditUser = (props) => {
     setIsImageChanged(false);
   };
 
-  /*
-  const loadedEditUser = async () => {
-    try {
-
-    }
-    catch(err) {
-      console.log(err)
-    }
-  } */
-  /*
-  useEffect(() => {
-    const foundUser = props.users.find((user) => {
-      return user._id === props.match.params.id;
-    });
-    setUser(foundUser);
-  }, []);*/
-
   useEffect(() => {
     if (!isAuthenticated) {
       props.history.push("/login")
     } else {
-      // loadedEditUser();
       setUser(loadedEditUser)
       console.log('after setting', user)
     }
-      // dispatch(getUser(id));
   }, [isAuthenticated, props.history, loadedEditUser]);
 
-  // console.log('after setting', user)
   useEffect(() => {
-    // setUser(loadedEditUser);
     setMediumArr(loadedEditUser.medium);
     setUser({ ...loadedEditUser, medium: "" });
   }, []);

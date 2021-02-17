@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 import { getComments, addCommentReply } from "../../redux/actions/commentActions";
 
@@ -9,8 +10,8 @@ const AddCommentReply = ({
     photoId, 
     commentId, 
     closeCommentReply 
-}, props) => {
-  console.log(props);
+}) => {
+
   const dispatch = useDispatch();
   const [comment, setComment] = useState({
     text: "",
@@ -20,7 +21,6 @@ const AddCommentReply = ({
     e.preventDefault();
     let { text } = comment;
     const commentReply = { text };
-    console.log('comment here', commentReply)
     dispatch(addCommentReply(photoId, commentId, commentReply));
     setTimeout(() => {
       dispatch(getComments(photoId));
@@ -58,6 +58,12 @@ const AddCommentReply = ({
       </div>
     </form>
   );
+};
+
+AddCommentReply.propTypes = {
+  photoId: PropTypes.string,
+  commentId: PropTypes.string,
+  closeCommentReply: PropTypes.func,
 };
 
 export default AddCommentReply;

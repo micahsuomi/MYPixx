@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import NavbarUserPhoto from "./NavbarUserPhoto/index";
 
@@ -32,3 +33,8 @@ const NavbarUser = ({
 };
 
 export default NavbarUser;
+
+NavbarUser.propTypes = {
+  user: PropTypes.object,
+  toggle: PropTypes.func
+};

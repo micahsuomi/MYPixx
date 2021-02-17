@@ -35,6 +35,9 @@
 @media screen and (max-width: 1024px) {
   .gallery-photo {
     width: 19rem;
+    &__body {
+      width: 16rem;
+    }
   }
 }
 

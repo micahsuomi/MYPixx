@@ -103,6 +103,8 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-top: .7rem;
+  padding: 0 0.3rem;
 }
 
 .comment-reply-user__reply-btn {

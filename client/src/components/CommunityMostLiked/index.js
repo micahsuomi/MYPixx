@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "./style.scss";
 
@@ -20,6 +21,13 @@ const CommunityMostLiked = ({ image, name, author, likes }) => {
       </p>
     </div>
   );
+};
+
+CommunityMostLiked.propTypes = {
+  image: PropTypes.string,
+  name: PropTypes.string,
+  author: PropTypes.object,
+  likes: PropTypes.array
 };
 
 export default CommunityMostLiked;

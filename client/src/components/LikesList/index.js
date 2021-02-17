@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 import { getPhotoLikes } from "../../redux/actions/photoActions";
 import Like from "./LikeItem";

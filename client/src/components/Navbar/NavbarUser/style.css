@@ -35,8 +35,12 @@
 }
 
 .navbar-user i {
-  color: #3d3636;
+  color: #fcf4f4;
   font-size: 1.1em;
+}
+
+.navbar-user i :active {
+  color: black;
 }
 
 .navbar-user .user-link {
@@ -50,6 +54,9 @@
 @media screen and (max-width: 1024px) {
   .navbar-user {
     margin-left: 0;
+  }
+  .navbar-user i {
+    font-size: 1.3em;
   }
 }
 /*# sourceMappingURL=style.css.map */

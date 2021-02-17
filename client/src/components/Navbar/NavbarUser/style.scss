@@ -5,8 +5,11 @@
   list-style: none;
   margin-left: 28rem;
   i {
-    color: rgb(61, 54, 54);
+    color: rgb(252, 244, 244);
     font-size: 1.1em;
+    :active {
+      color: black;
+    }
   }
   .user-link {
     margin-left: 0.7rem;
@@ -18,5 +21,9 @@
 @media screen and(max-width: 1024px) {
   .navbar-user {
     margin-left: 0;
+    i {
+      font-size: 1.3em;
+    }
+
   }
 }

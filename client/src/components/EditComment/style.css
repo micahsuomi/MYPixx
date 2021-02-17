@@ -32,6 +32,7 @@
   transition: 1s ease-in-out;
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
+  border: 1.8px solid rgba(200, 200, 200, 0.5);
 }
 
 .edit-comment__comment-btn {

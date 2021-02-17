@@ -58,7 +58,7 @@ const AddComment = ({ photoId, closeCommentField, setCommentClose }) => {
 AddComment.propTypes = {
   photoId: PropTypes.string,
   closeCommentField: PropTypes.func,
-  setCommentClose: PropTypes.bool
+  setCommentClose: PropTypes.func
 };
 
 export default AddComment;

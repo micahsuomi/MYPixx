@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 import { getComments } from "../../redux/actions/commentActions";
-import { getPhotoLikes } from "../../redux/actions/photoActions";
-
 import CommentReply from "../CommentReply";
 
 import "./style.scss";
@@ -13,6 +11,7 @@ const CommentReplies = ({
   photoId,
   comment,
   user,
+  users,
   isAuthenticated,
   match,
   history,
@@ -24,31 +23,7 @@ const CommentReplies = ({
   const [commentText, setCommentText] = useState({
     text: "",
   });
-  /*
-  console.log(
-    "props from comment replies",
-    photoId,
-    comment,
-    user,
-    isAuthenticated,
-    match,
-    history
-  );*/
-  //   console.log('comments are here', props)
-
-  //   const id = props.match.params.id;
-
-  /*
-  useEffect(() => {
-    dispatch(getPhotoLikes(props.photoId));
-  }, [dispatch]);
-
-  console.log(likes)
-  useEffect(() => {
-    setLikes(photoLikes);
-  }, [photoLikes]);
-  */
-
+ 
   const openCommentField = () => {
     setIsCommentFieldOpened(!isCommentFieldOpened);
   };
@@ -83,6 +58,7 @@ const CommentReplies = ({
   const formattedCommentsReplies = comment.replies.map((reply) => (
     <CommentReply
       key={reply._id}
+      commentReply={reply}
       commentId={reply._id}
       authorId={reply.author.id}
       name={reply.author.name}
@@ -90,6 +66,7 @@ const CommentReplies = ({
       commentDate={reply.commentDate}
       commentText={reply.text}
       user={user}
+      users={users}
       photoId={photoId}
       history={history}
       match={match}
@@ -111,6 +88,16 @@ const CommentReplies = ({
       <div>{formattedCommentsReplies}</div>
     </div>
   );
+};
+
+CommentReplies.propTypes = {
+  photoId: PropTypes.string,
+  comment: PropTypes.object,
+  user: PropTypes.object,
+  users: PropTypes.array,
+  isAuthenticated: PropTypes.bool,
+  match: PropTypes.object,
+  history: PropTypes.object
 };
 
 export default CommentReplies;
