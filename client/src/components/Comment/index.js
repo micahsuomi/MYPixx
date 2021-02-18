@@ -41,6 +41,7 @@ const Comment = ({
   const [isLikesShowing, setIsLikesShowing] = useState(false);
   const { _id, text, commentDate } = comment;
 
+  console.log('edit delete', isEditDeleteOpen)
   const deleteOnClick = () => {
     dispatch(deleteComment(photoId, _id));
     setTimeout(() => {
@@ -101,12 +102,10 @@ const Comment = ({
   };
 
   const showCommentLikes = () => {
-    console.log('hovering')
     setIsLikesShowing(true);
   };
 
   const hideCommentLikes = () => {
-    console.log('mouse out')
     setIsLikesShowing(false);
   };
 
@@ -266,9 +265,9 @@ Comment.propTypes = {
   user: PropTypes.object,
   users: PropTypes.array,
   isAuthenticated: PropTypes.bool,
-  editingComment: PropTypes.func,
-  closeEditingComment: PropTypes.func,
+  editingComment: PropTypes.bool,
+  closeEditingComment: PropTypes.bool,
   history: PropTypes.object,
   match: PropTypes.object,
-  setIsAddButtonShowing: PropTypes.bool,
+  setIsAddButtonShowing: PropTypes.func,
 };

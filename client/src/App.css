@@ -147,6 +147,12 @@ h3 {
   }
 }
 
+@media screen and (max-width: 1024px) {
+  .hide-tablet-mobile {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 500px) {
   p {
     font-size: 11px;

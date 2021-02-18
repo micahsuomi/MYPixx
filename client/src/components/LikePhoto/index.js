@@ -37,7 +37,7 @@ const LikePhoto = ({
     <div>
       <form className="like-container" onSubmit={handleSubmit}>
         {isAuthenticated &&
-        likes.some((like) => like._id === user.id) ? (
+        likes.some((like) => like._id === user._id) ? (
           <button className="like-btn">
             <i className="fas fa-heart full-heart fa-2x grow2"></i>
           </button>

@@ -35,7 +35,6 @@ const CommentReply = ({
   const dispatch = useDispatch();
   const [isEditDeleteOpen, setIsEditDeleteOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [isCommentReplyOpen, setIsCommentReplyOpen] = useState(false);
   const [isArrowShowing, setIsArrowShowing] = useState(false);
   const [isLikesShowing, setIsLikeShowing] = useState(false);
 
@@ -43,10 +42,6 @@ const CommentReply = ({
   const openEditDeleteOnClick = () => {
     setIsEditDeleteOpen(!isEditDeleteOpen);
   };
-
-  const closeEditDelete = () => {
-    setIsEditDeleteOpen(!isEditDeleteOpen);
-  }
 
   const deleteOnClick = () => {
     dispatch(deleteComment(photoId, commentId));

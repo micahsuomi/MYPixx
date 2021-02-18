@@ -4,22 +4,19 @@ import PropTypes from "prop-types";
 import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
 
-import { getComments, addCommentReply } from "../../redux/actions/commentActions";
+import {
+  getComments,
+  addCommentReply,
+} from "../../redux/actions/commentActions";
 
 import "./style.scss";
 
-const AddCommentReply = ({ 
-    photoId, 
-    commentId, 
-    closeCommentReply 
-}) => {
-
+const AddCommentReply = ({ photoId, commentId, closeCommentReply }) => {
   const dispatch = useDispatch();
   const [comment, setComment] = useState({
     text: "",
   });
   const [openEmoji, setOpenEmoji] = useState(false);
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,9 +50,12 @@ const AddCommentReply = ({
   };
 
   const { text } = comment;
-  
+
   return (
-    <form className="add-commentreply-form animate-modal" onSubmit={handleSubmit}>
+    <form
+      className="add-commentreply-form animate-modal"
+      onSubmit={handleSubmit}
+    >
       <div className="input-topics">
         <textarea
           type="text"
@@ -64,10 +64,10 @@ const AddCommentReply = ({
           placeholder="reply to comment..."
           onChange={handleChange}
         />
-         {openEmoji ? (
+        {openEmoji ? (
           <>
             <span
-              className="add-comment-form__emoji-menu animate-pop"
+              className="add-comment-form__emoji-menu animate-pop hide-tablet-mobile"
               onMouseLeave={closeMenu}
             >
               <Picker onSelect={addEmoji} emojiTooltip={true} />
@@ -77,9 +77,9 @@ const AddCommentReply = ({
           <button
             onClick={openEmojis}
             title="open emojis"
-            className="add-comment-form__emoji-btn grow"
+            className="add-comment-form__emoji-btn grow hide-tablet-mobile"
           >
-            <i class="far fa-smile"></i>
+            <i className="far fa-smile"></i>
           </button>
         )}
         <div className="add-commentreply-form__save-wrapper">

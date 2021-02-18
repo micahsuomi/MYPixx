@@ -76,7 +76,7 @@ const EditComment = ({ photoId, commentId, closeEditComment }, props) => {
       {openEmoji ? (
           <>
             <span
-              className="add-comment-form__emoji-menu animate-pop"
+              className="add-comment-form__emoji-menu animate-pop hide-tablet-mobile"
               onMouseLeave={closeMenu}
             >
               <Picker onSelect={addEmoji} emojiTooltip={true} />
@@ -86,9 +86,9 @@ const EditComment = ({ photoId, commentId, closeEditComment }, props) => {
           <button
             onClick={openEmojis}
             title="open emojis"
-            className="add-comment-form__emoji-btn grow"
+            className="add-comment-form__emoji-btn grow hide-tablet-mobile"
           >
-            <i class="far fa-smile"></i>
+            <i className="far fa-smile"></i>
           </button>
         )}
       <div className="edit-comment__edit-delete">
