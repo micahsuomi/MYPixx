@@ -217,22 +217,14 @@ const Comment = ({
                   commentLikes={comment.likes !== undefined && comment.likes}
                   showCommentLikes={showCommentLikes}
                 />
-                {!isCommentReplyOpen ? (
+                {!isCommentReplyOpen && (
                   <button
                     className="comment-user__reply-btn grow"
                     onClick={openCommentReply}
                   >
                     <span>Reply</span>
                     <i className="fas fa-reply"></i>
-                  </button>
-                ) : (
-                  <AddCommentReply
-                    photoId={photoId}
-                    commentId={_id}
-                    history={history}
-                    match={match}
-                    closeCommentReply={closeCommentReply}
-                  />
+                  </button> 
                 )}
               </div>
               {comment.replies.length > 0 && (
@@ -246,6 +238,15 @@ const Comment = ({
                   match={match}
                 />
               )}
+              {isCommentReplyOpen &&
+              (
+                <AddCommentReply
+                  photoId={photoId}
+                  commentId={_id}
+                  history={history}
+                  match={match}
+                  closeCommentReply={closeCommentReply}
+                />)}
             </div>
           )}
         </div>

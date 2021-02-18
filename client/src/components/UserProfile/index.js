@@ -28,10 +28,9 @@ const UserProfile = ({
           )}
         </div>
         <p>
+          <h4 className="user-details__medium-header">Medium Used:</h4>
           {medium !== undefined && medium.length > 0 ? (
             <p>
-              {" "}
-              Medium used:
               {medium.map((m) => (
                 <span>{m} </span>
               ))}

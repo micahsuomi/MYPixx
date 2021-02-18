@@ -79,7 +79,7 @@
 .comment-user__text {
   display: block;
   width: 100%;
-  margin-top: 1rem;
+  margin-top: .5rem;
   padding: 1rem;
   background-color: #f1ebeb;
   border-radius: 10px;

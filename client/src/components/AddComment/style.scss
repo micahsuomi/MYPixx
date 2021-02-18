@@ -4,15 +4,49 @@
   label {
     margin-left: 2.4rem;
   }
-  textarea {
-    margin-top: 1.5rem;
-    width: 26rem;
-    height: 13rem;
-    font-family: "Open sans";
-    padding: 0.6rem;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1.8px solid rgba(200, 200, 200, 0.5); 
+  .input-topics {
+    position: relative;
+    @include flex-property-row-center;
+    flex-direction: row;
+    textarea {
+      margin-top: 1.5rem;
+      width: 26rem;
+      height: 3.5rem;
+      font-family: "Open sans";
+      padding: 0.6rem;
+      font-size: 16px;
+      border-radius: 15px;
+      border: 1.8px solid rgba(200, 200, 200, 0.5); 
+    }
+    textarea:focus {
+      outline: none;
+    }
+  }
+  &__emoji-menu {
+    position: absolute;
+    top: -336%;
+    left: 10%;
+    .emoji-mart-emoji {
+      span {
+        cursor: pointer;
+      }
+    }
+  }
+  &__emoji-btn,
+  &__emoji-close {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 27%;
+    left: 69%;
+    :active {
+      outline: none;
+    }
+    i {
+      font-size: 1.7em;
+      color: darkgrey;
+    }
   }
   &__btn-wrapper {
     @include flex-property-row-center;
@@ -20,9 +54,18 @@
   }
   &__btn-submit,
   &__btn-cancel {
-    @include standard-button;
-    padding: 0.4rem;
-    width: 8rem;
+    border-radius: 50px;
+    border: none;
+    background-color: skyblue;
+    padding: .5rem;
+    cursor: pointer;
+    margin: .2rem;
+    @include flex-property-column;
+    i {
+      font-size: 1.6em;
+      color: white;
+    }
+    
   }
   &__btn-cancel {
     background-color: var(--secondary);

@@ -105,11 +105,24 @@ h3 {
   font-size: 16px;
 }
 
+.animate-pop {
+  animation: popup 0.25s;
+}
+
 .animate-modal {
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
   animation-duration: 0.4s;
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 @-webkit-keyframes animatetop {

@@ -20,6 +20,10 @@
   }
 }
 
+.edit-comment .input-topics {
+  position: relative;
+}
+
 .edit-comment textarea {
   margin-top: 1.5rem;
   width: 22rem;
@@ -33,6 +37,34 @@
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
   border: 1.8px solid rgba(200, 200, 200, 0.5);
+}
+
+.edit-comment__emoji-menu {
+  position: absolute;
+  top: -336%;
+  left: 10%;
+}
+
+.edit-comment__emoji-menu .emoji-mart-emoji span {
+  cursor: pointer;
+}
+
+.edit-comment__emoji-btn, .edit-comment__emoji-close {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 27%;
+  left: 69%;
+}
+
+.edit-comment__emoji-btn :active, .edit-comment__emoji-close :active {
+  outline: none;
+}
+
+.edit-comment__emoji-btn i, .edit-comment__emoji-close i {
+  font-size: 1.7em;
+  color: darkgrey;
 }
 
 .edit-comment__comment-btn {

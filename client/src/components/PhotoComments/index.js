@@ -34,7 +34,7 @@ const Comments = ({ isAuthenticated, users, user, match, history}, props) => {
   };
 
   const setCommentClose = () => {
-    props.history.push(`/photos/${photoId}/comments`);
+    history.push(`/photos/${photoId}/comments`);
     dispatch(getComments(photoId));
     closeCommentField();
     setComment({ text: "" });

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
+import { Picker } from "emoji-mart";
+import "emoji-mart/css/emoji-mart.css";
 
 import { getComments, addCommentReply } from "../../redux/actions/commentActions";
 
@@ -16,6 +18,8 @@ const AddCommentReply = ({
   const [comment, setComment] = useState({
     text: "",
   });
+  const [openEmoji, setOpenEmoji] = useState(false);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,11 +35,25 @@ const AddCommentReply = ({
   const handleChange = (e) => {
     let { name, value } = e.target;
     setComment({ [name]: value });
-    console.log(name, value);
+  };
+
+  const addEmoji = (e) => {
+    let emoji = e.native;
+    setComment({
+      text: text + emoji,
+    });
+  };
+
+  const openEmojis = () => {
+    setOpenEmoji(true);
+  };
+
+  const closeMenu = () => {
+    setOpenEmoji(false);
   };
 
   const { text } = comment;
-
+  
   return (
     <form className="add-commentreply-form animate-modal" onSubmit={handleSubmit}>
       <div className="input-topics">
@@ -46,7 +64,25 @@ const AddCommentReply = ({
           placeholder="reply to comment..."
           onChange={handleChange}
         />
-        <div className="add-commentreply__save-wrapper">
+         {openEmoji ? (
+          <>
+            <span
+              className="add-comment-form__emoji-menu animate-pop"
+              onMouseLeave={closeMenu}
+            >
+              <Picker onSelect={addEmoji} emojiTooltip={true} />
+            </span>
+          </>
+        ) : (
+          <button
+            onClick={openEmojis}
+            title="open emojis"
+            className="add-comment-form__emoji-btn grow"
+          >
+            <i class="far fa-smile"></i>
+          </button>
+        )}
+        <div className="add-commentreply-form__save-wrapper">
           <button className="add-commentreply-form__btn-submit">Submit</button>
           <button
             className="add-commentreply-form__btn-cancel"

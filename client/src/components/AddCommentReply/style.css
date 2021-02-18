@@ -20,15 +20,66 @@
   }
 }
 
+.add-commentreply-form .input-topics {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  position: relative;
+}
+
 .add-commentreply-form textarea {
   margin-top: 1.5rem;
-  width: 17rem;
-  height: 5rem;
-  font-family: "Roboto";
+  width: 13.5rem;
+  height: 4rem;
+  font-family: "Open sans";
   padding: 0.7rem;
   font-size: 16px;
-  border-radius: 5px;
+  border-radius: 15px;
   border: 1.8px solid rgba(200, 200, 200, 0.5);
+}
+
+.add-commentreply-form textarea :focus {
+  outline: none;
+}
+
+.add-commentreply-form__emoji-menu {
+  position: absolute;
+  top: -166%;
+  left: 87%;
+}
+
+.add-commentreply-form__emoji-menu .emoji-mart-emoji span {
+  cursor: pointer;
+}
+
+.add-commentreply-form__emoji-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 31%;
+  left: 85%;
+}
+
+.add-commentreply-form__emoji-btn :active {
+  outline: none;
+}
+
+.add-commentreply-form__emoji-btn i {
+  font-size: 1.7em;
+  color: darkgrey;
+}
+
+.add-commentreply-form__save-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .add-commentreply-form__btn-submit, .add-commentreply-form__btn-cancel {

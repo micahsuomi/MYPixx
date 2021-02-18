@@ -29,6 +29,9 @@
   p {
     margin-top: 1.7rem;
   }
+  &__medium-header {
+    @include flex-property-column;
+  }
   span {
     padding: 0.4rem;
     background-color: var(--dark);

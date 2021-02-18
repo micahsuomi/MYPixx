@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { getUser } from "../../redux/actions/userActions";
-import useUser from "../../hooks/useUser";
 import CurrentUser from "../../components/CurrentUser";
 import UserProfile from "../../components/UserProfile";
 
@@ -22,7 +20,7 @@ const User = (props) => {
   const currentUser = useSelector((state) => state.user.user);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const [userLoaded, setUserLoaded] = useState(false);
-  console.log('this is the current user', currentState)
+
   const loadUser = async () => {
     try {
       const user = props.users.find((user) => user._id === props.match.params.id);
@@ -32,6 +30,7 @@ const User = (props) => {
       console.log(err);
     }
   };
+  
   useEffect(() => {
     if (!isAuthenticated || currentUser._id !== props.match.params.id) {
       loadUser();

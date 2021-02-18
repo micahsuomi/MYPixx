@@ -17,28 +17,11 @@ const CommentReplies = ({
   history,
 }) => {
   const dispatch = useDispatch();
-  const [isCommentFieldOpened, setIsCommentFieldOpened] = useState(false);
   const [isAddButtonShowing, setIsAddButtonShowing] = useState(true);
-  const [likes, setLikes] = useState([]);
-  const [commentText, setCommentText] = useState({
+  const [setCommentText] = useState({
     text: "",
   });
  
-  const openCommentField = () => {
-    setIsCommentFieldOpened(!isCommentFieldOpened);
-  };
-
-  const closeCommentField = () => {
-    setIsCommentFieldOpened(false);
-  };
-
-  const setCommentClose = () => {
-    history.push(`/photos/${photoId}/comments`);
-    dispatch(getComments(photoId));
-    closeCommentField();
-    setCommentText({ text: "" });
-  };
-
   const deleteComment = () => {
     dispatch(getComments(photoId));
   };
@@ -81,9 +64,9 @@ const CommentReplies = ({
   return (
     <div className="comments-replies">
       {comment.replies.length === 1 ? (
-        <p>{comment.replies.length} Reply</p>
+        <p className="comments-replies__header">{comment.replies.length} Reply</p>
       ) : (
-        <p>{comment.replies.length} Replies</p>
+        <p className="comments-replies__header">{comment.replies.length} Replies</p>
       )}
       <div>{formattedCommentsReplies}</div>
     </div>
