@@ -46,7 +46,7 @@
   width: 26rem;
   height: 3.5rem;
   font-family: "Open sans";
-  padding: 0.6rem;
+  padding: 0.9rem;
   font-size: 16px;
   border-radius: 25px;
   border: 1.8px solid rgba(200, 200, 200, 0.5);
@@ -71,8 +71,8 @@
   border: none;
   cursor: pointer;
   position: absolute;
-  top: 27%;
-  left: 69%;
+  top: 35%;
+  left: 70%;
 }
 
 .add-comment-form__emoji-btn :active, .add-comment-form__emoji-close :active {
