@@ -111,9 +111,9 @@ h3 {
 
 .animate-modal {
   -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
+  -webkit-animation-duration: 0.1s;
   animation-name: animatetop;
-  animation-duration: 0.4s;
+  animation-duration: 0.1s;
 }
 
 @keyframes popup {

@@ -1,7 +1,7 @@
 @import "../../scss/abstracts/mixins.scss";
 
 .comments {
-  padding: 1.5rem 5rem;
+  padding: 1.5rem 1rem;
   background-color: var(--overlay-mask);
   @include flex-property-row-center;
   position: relative;
@@ -9,7 +9,7 @@
   min-height: 100vh;
 
   &__wrapper {
-    width: 49rem;
+    width: 40rem;
     height: 93vh;
     background-color: white;
     padding: 1.4rem 1rem;

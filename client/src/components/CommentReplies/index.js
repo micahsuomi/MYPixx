@@ -18,10 +18,11 @@ const CommentReplies = ({
 }) => {
   const dispatch = useDispatch();
   const [isAddButtonShowing, setIsAddButtonShowing] = useState(true);
+  const [isCommentRepliesShowing, setIsCommentRepliesShowing] = useState(false);
   const [setCommentText] = useState({
     text: "",
   });
- 
+
   const deleteComment = () => {
     dispatch(getComments(photoId));
   };
@@ -36,6 +37,10 @@ const CommentReplies = ({
   const updateComment = (updatedComment) => {
     setCommentText({ text: updatedComment });
     dispatch(getComments(photoId));
+  };
+
+  const showCommentReplies = () => {
+    setIsCommentRepliesShowing(!isCommentRepliesShowing);
   };
 
   const formattedCommentsReplies = comment.replies.map((reply) => (
@@ -64,11 +69,15 @@ const CommentReplies = ({
   return (
     <div className="comments-replies">
       {comment.replies.length === 1 ? (
-        <p className="comments-replies__header">{comment.replies.length} Reply</p>
+        <p className="comments-replies__header" onClick={showCommentReplies}>
+          {isCommentRepliesShowing ? 'Hide' : 'Show'} {comment.replies.length} Reply
+        </p>
       ) : (
-        <p className="comments-replies__header">{comment.replies.length} Replies</p>
+        <p className="comments-replies__header" onClick={showCommentReplies}>
+          {isCommentRepliesShowing ? 'Hide' : 'Show'} {comment.replies.length} Replies
+        </p>
       )}
-      <div>{formattedCommentsReplies}</div>
+      <div>{isCommentRepliesShowing && formattedCommentsReplies}</div>
     </div>
   );
 };
@@ -80,7 +89,7 @@ CommentReplies.propTypes = {
   users: PropTypes.array,
   isAuthenticated: PropTypes.bool,
   match: PropTypes.object,
-  history: PropTypes.object
+  history: PropTypes.object,
 };
 
 export default CommentReplies;

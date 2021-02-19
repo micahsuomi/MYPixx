@@ -1,27 +1,33 @@
 @import "../../scss/abstracts/mixins.scss";
-
 .add-commentreply-form {
+  // margin-top: 1.6rem;
+  // background-color: #ebe5e5;
+  width: 38vw;
+  // position: absolute;
+  left: -100%;
+  top: -30%;
   .input-topics {
-    align-items: flex-end;
+    @include flex-property-row-end;
+    align-items: center;
+    flex-direction: row;
     position: relative;
   }
   textarea {
-    margin-top: 1.5rem;
-    width: 13.5rem;
-    height: 4rem;
+    width: 14.15rem;
+    height: 3rem;
     font-family: "Open sans";
     padding: 0.7rem;
     font-size: 16px;
-    border-radius: 15px;
+    border-radius: 25px;
     border: 1.8px solid rgba(200, 200, 200, 0.5); 
-    :focus {
+    :active {
       outline: none;
     }
   }
   &__emoji-menu {
     position: absolute;
     top: -166%;
-    left: 87%;
+    left: -87%;
     .emoji-mart-emoji {
       span {
         cursor: pointer;
@@ -33,18 +39,22 @@
     border: none;
     cursor: pointer;
     position: absolute;
-    top: 31%;
-    left: 85%;
+    top: -3%;
+    left: 77%;
     :active {
       outline: none;
     }
     i {
-      font-size: 1.7em;
+      font-size: 1.4em;
       color: darkgrey;
     }
   }
   &__save-wrapper {
     @include flex-property-row-center;
+
+    button {
+      padding: .6rem;
+    }
   }
   &__btn-submit,
   &__btn-cancel {

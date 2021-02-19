@@ -58,6 +58,7 @@ const AddComment = ({ photoId, closeCommentField, setCommentClose }, props) => {
           value={text}
           placeholder="write a comment..."
           onChange={handleChange}
+          required={true}
         />
 
         {openEmoji ? (
@@ -81,12 +82,13 @@ const AddComment = ({ photoId, closeCommentField, setCommentClose }, props) => {
 
         <div className="add-comment-form__btn-wrapper">
           <button className="add-comment-form__btn-submit grow">
-            <i class="fas fa-paper-plane"></i></button>
+            <i className="fas fa-paper-plane"></i>
+            </button>
           <button
             className="add-comment-form__btn-cancel grow"
             onClick={closeCommentField}
           >
-            <i class="far fa-times-circle"></i>
+            <i className="far fa-times-circle"></i>
           </button>
         </div>
       </div>
@@ -102,34 +104,3 @@ AddComment.propTypes = {
   setCommentClose: PropTypes.func,
 };
 
-const styles = {
-  container: {
-    padding: 20,
-    borderTop: "1px #4C758F solid",
-    marginBottom: 20,
-  },
-  form: {
-    display: "flex",
-  },
-  input: {
-    color: "inherit",
-    background: "none",
-    outline: "none",
-    border: "none",
-    flex: 1,
-    fontSize: 16,
-  },
-  getEmojiButton: {
-    cssFloat: "right",
-    border: "none",
-    margin: 0,
-    cursor: "pointer",
-  },
-  emojiPicker: {
-    position: "absolute",
-    bottom: 10,
-    right: 0,
-    cssFloat: "right",
-    marginLeft: "200px",
-  },
-};

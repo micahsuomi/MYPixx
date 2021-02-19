@@ -41,8 +41,8 @@
 
 .edit-comment__emoji-menu {
   position: absolute;
-  top: -336%;
-  left: 10%;
+  top: 55%;
+  left: 120%;
 }
 
 .edit-comment__emoji-menu .emoji-mart-emoji span {

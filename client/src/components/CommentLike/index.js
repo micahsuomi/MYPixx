@@ -9,7 +9,6 @@ const CommentLike = ({
   name, 
   avatar,
 }) => {
-  // console.log('from commentLike', props)
   return (
       <div className="comment-likeslist">
       <div className="comment-likeslist__image-container">

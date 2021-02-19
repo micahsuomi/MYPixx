@@ -21,6 +21,9 @@
 }
 
 .comments-replies__header {
-  color: darkgray;
+  color: #ae3bdb;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
 }
 /*# sourceMappingURL=style.css.map */

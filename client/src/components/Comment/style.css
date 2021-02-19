@@ -28,13 +28,13 @@
 .comment-user__wrapper {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 30% 70%;
-      grid-template-columns: 30% 70%;
+  -ms-grid-columns: 18% 82%;
+      grid-template-columns: 18% 82%;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
   justify-items: center;
-  padding: 0 5rem;
+  padding: 0 3rem;
 }
 
 .comment-user__image-container {
@@ -83,7 +83,6 @@
   padding: 1rem;
   background-color: #f1ebeb;
   border-radius: 10px;
-  position: relative;
 }
 
 .comment-user__like-reply-comment {
@@ -123,7 +122,7 @@
   padding: 2rem;
   background-color: white;
   position: fixed;
-  top: 5.1%;
+  top: 4%;
   left: 19%;
   height: 95vh;
   width: 61.3vw;

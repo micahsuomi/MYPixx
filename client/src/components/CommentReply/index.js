@@ -38,7 +38,6 @@ const CommentReply = ({
   const [isArrowShowing, setIsArrowShowing] = useState(false);
   const [isLikesShowing, setIsLikeShowing] = useState(false);
 
-  // console.log('from comment replies', user, isAuthenticated)
   const openEditDeleteOnClick = () => {
     setIsEditDeleteOpen(!isEditDeleteOpen);
   };
@@ -95,7 +94,6 @@ const CommentReply = ({
   const hideCommentLikes = () => {
     setIsLikeShowing(false);
   };
-  // console.log('this is the author id',  user, isAuthenticated, authorId, user.id)
 
   return (
     <div className="comment-reply-user animate-modal">
@@ -140,7 +138,7 @@ const CommentReply = ({
                         style={{
                           position: "absolute",
                           right: "3%",
-                          top: "6%",
+                          top: "9%",
                           cursor: "pointer",
                           color: "rgb(139, 119, 119)",
                         }}

@@ -21,7 +21,7 @@
 }
 
 .comments {
-  padding: 1.5rem 5rem;
+  padding: 1.5rem 1rem;
   background-color: var(--overlay-mask);
   display: -webkit-box;
   display: -ms-flexbox;
@@ -38,7 +38,7 @@
 }
 
 .comments__wrapper {
-  width: 49rem;
+  width: 40rem;
   height: 93vh;
   background-color: white;
   padding: 1.4rem 1rem;

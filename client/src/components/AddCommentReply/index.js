@@ -67,7 +67,7 @@ const AddCommentReply = ({ photoId, commentId, closeCommentReply }) => {
         {openEmoji ? (
           <>
             <span
-              className="add-comment-form__emoji-menu animate-pop hide-tablet-mobile"
+              className="add-commentreply-form__emoji-menu animate-pop hide-tablet-mobile"
               onMouseLeave={closeMenu}
             >
               <Picker onSelect={addEmoji} emojiTooltip={true} />
@@ -77,18 +77,20 @@ const AddCommentReply = ({ photoId, commentId, closeCommentReply }) => {
           <button
             onClick={openEmojis}
             title="open emojis"
-            className="add-comment-form__emoji-btn grow hide-tablet-mobile"
+            className="add-commentreply-form__emoji-btn grow hide-tablet-mobile"
           >
             <i className="far fa-smile"></i>
           </button>
         )}
         <div className="add-commentreply-form__save-wrapper">
-          <button className="add-commentreply-form__btn-submit">Submit</button>
+          <button className="add-commentreply-form__btn-submit">
+            <i className="fas fa-paper-plane"></i>
+          </button>
           <button
             className="add-commentreply-form__btn-cancel"
             onClick={closeCommentReply}
           >
-            Cancel
+            <i className="far fa-times-circle"></i>
           </button>
         </div>
       </div>

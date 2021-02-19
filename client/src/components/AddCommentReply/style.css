@@ -20,32 +20,48 @@
   }
 }
 
+.add-commentreply-form {
+  width: 38vw;
+  left: -100%;
+  top: -30%;
+}
+
 .add-commentreply-form .input-topics {
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   position: relative;
 }
 
 .add-commentreply-form textarea {
-  margin-top: 1.5rem;
-  width: 13.5rem;
-  height: 4rem;
+  width: 14.15rem;
+  height: 3rem;
   font-family: "Open sans";
   padding: 0.7rem;
   font-size: 16px;
-  border-radius: 15px;
+  border-radius: 25px;
   border: 1.8px solid rgba(200, 200, 200, 0.5);
 }
 
-.add-commentreply-form textarea :focus {
+.add-commentreply-form textarea :active {
   outline: none;
 }
 
 .add-commentreply-form__emoji-menu {
   position: absolute;
   top: -166%;
-  left: 87%;
+  left: -87%;
 }
 
 .add-commentreply-form__emoji-menu .emoji-mart-emoji span {
@@ -57,8 +73,8 @@
   border: none;
   cursor: pointer;
   position: absolute;
-  top: 31%;
-  left: 85%;
+  top: -3%;
+  left: 77%;
 }
 
 .add-commentreply-form__emoji-btn :active {
@@ -66,7 +82,7 @@
 }
 
 .add-commentreply-form__emoji-btn i {
-  font-size: 1.7em;
+  font-size: 1.4em;
   color: darkgrey;
 }
 
@@ -80,6 +96,10 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.add-commentreply-form__save-wrapper button {
+  padding: .6rem;
 }
 
 .add-commentreply-form__btn-submit, .add-commentreply-form__btn-cancel {

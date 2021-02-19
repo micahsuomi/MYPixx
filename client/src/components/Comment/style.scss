@@ -6,10 +6,10 @@
 
   &__wrapper {
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 18% 82%;
     align-items: flex-start;
     justify-items: center;
-    padding: 0 5rem;
+    padding: 0 3rem;
   }
   &__image-container {
     display: inline-block;
@@ -50,7 +50,6 @@
     padding: 1rem;
     background-color: rgb(241, 235, 235);
     border-radius: 10px;
-    position: relative;
   }
   &__like-reply-comment {
     position: relative;
@@ -66,7 +65,7 @@
     padding: 2rem;
     background-color: rgb(255, 255, 255);
     position: fixed;
-    top: 5.1%;
+    top: 4%;
     left: 19%;
     height: 95vh;
     width: 61.3vw;

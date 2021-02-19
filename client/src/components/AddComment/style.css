@@ -48,7 +48,7 @@
   font-family: "Open sans";
   padding: 0.6rem;
   font-size: 16px;
-  border-radius: 15px;
+  border-radius: 25px;
   border: 1.8px solid rgba(200, 200, 200, 0.5);
 }
 
@@ -58,7 +58,7 @@
 
 .add-comment-form__emoji-menu {
   position: absolute;
-  top: -336%;
+  top: -508%;
   left: 10%;
 }
 
@@ -100,7 +100,7 @@
 .add-comment-form__btn-submit, .add-comment-form__btn-cancel {
   border-radius: 50px;
   border: none;
-  background-color: skyblue;
+  background-color: #167da5;
   padding: .5rem;
   cursor: pointer;
   margin: .2rem;

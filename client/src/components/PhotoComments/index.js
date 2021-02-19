@@ -19,6 +19,7 @@ const Comments = ({ isAuthenticated, users, user, match, history}, props) => {
   const [comment, setComment] = useState({
     text: "",
   });
+  const [showOverflow, setShowOverflow] = useState(false)
   const photoId = match.params.id;
 
   useEffect(() => {
@@ -57,6 +58,14 @@ const Comments = ({ isAuthenticated, users, user, match, history}, props) => {
     dispatch(getComments(photoId));
   };
 
+  const lockScrolling = () => {
+    setShowOverflow(true);
+  }
+
+  const unlockScrolling = () => {
+    setShowOverflow(false);
+  }
+
   const formattedComments = comments.map((comment) => (
     <Comment
       key={comment._id}
@@ -75,11 +84,13 @@ const Comments = ({ isAuthenticated, users, user, match, history}, props) => {
       closeEditingComment={closeEditingComment}
       updateComment={updateComment}
       setIsAddButtonShowing={setIsAddButtonShowing}
+      lockScrolling={lockScrolling}
+      unlockScrolling={unlockScrolling}
     />
   ));
   return (
     <div className="comments">
-      <div className="comments__wrapper">
+      <div className="comments__wrapper" style={{overflowY: showOverflow && 'hidden'}}>
         <div className="comments__header">
           <NavLink to={`/photos/${match.params.id}`}>
             <i className="fas fa-chevron-left grow"></i>
