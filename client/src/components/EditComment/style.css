@@ -36,6 +36,7 @@
   transition: 1s ease-in-out;
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
+  border-radius: 10px;
   border: 1.8px solid rgba(200, 200, 200, 0.5);
 }
 
@@ -54,8 +55,8 @@
   border: none;
   cursor: pointer;
   position: absolute;
-  top: 27%;
-  left: 69%;
+  top: -146%;
+  left: 85%;
 }
 
 .edit-comment__emoji-btn :active, .edit-comment__emoji-close :active {
@@ -80,6 +81,10 @@
 
 .edit-comment__comment-btn:active {
   outline: none;
+}
+
+.edit-comment__edit-delete {
+  position: relative;
 }
 
 .edit-comment__edit-btn, .edit-comment__delete-btn {

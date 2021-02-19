@@ -50,6 +50,7 @@
     padding: 1rem;
     background-color: rgb(241, 235, 235);
     border-radius: 10px;
+    position: relative;
   }
   &__like-reply-comment {
     position: relative;
@@ -65,16 +66,16 @@
     padding: 2rem;
     background-color: rgb(255, 255, 255);
     position: fixed;
-    top: 4%;
-    left: 19%;
-    height: 95vh;
-    width: 61.3vw;
+    top: 3.1%;
+    left: 24.5%;
+    height: 93vh;
+    width: 50.5vw;
     border-radius: 16px 0 0 16px;
     z-index: 4;
   }
 
   &__likes-header {
-    width: 46rem;
+    width: 36rem;
     @include flex-property-row-start;
   }
   &__close-likes-comment {

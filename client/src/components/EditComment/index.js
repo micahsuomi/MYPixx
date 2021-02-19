@@ -72,7 +72,9 @@ const EditComment = ({ photoId, commentId, closeEditComment }, props) => {
         name="text"
         placeholder="write comment here"
         onChange={handleChange}
-      ></textarea>
+      />
+      
+      <div className="edit-comment__edit-delete">
       {openEmoji ? (
           <>
             <span
@@ -91,7 +93,6 @@ const EditComment = ({ photoId, commentId, closeEditComment }, props) => {
             <i className="far fa-smile"></i>
           </button>
         )}
-      <div className="edit-comment__edit-delete">
         <button className="edit-comment__comment-btn">Save</button>
         <button
           className="edit-comment__comment-btn"

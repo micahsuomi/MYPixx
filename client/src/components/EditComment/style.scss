@@ -13,7 +13,9 @@
     animation-name: appear;
     transition: 1s ease-in-out;
     animation-duration: 1s;
+    border-radius: 10px;
     border: 1.8px solid rgba(200, 200, 200, 0.5); 
+
   }
   &__emoji-menu {
     position: absolute;
@@ -31,8 +33,8 @@
     border: none;
     cursor: pointer;
     position: absolute;
-    top: 27%;
-    left: 69%;
+    top: -146%;
+    left: 85%;
     :active {
       outline: none;
     }
@@ -52,6 +54,9 @@
     &:active {
       outline: none;
     }
+  }
+  &__edit-delete {
+    position: relative;
   }
   &__edit-btn,
   &__delete-btn {

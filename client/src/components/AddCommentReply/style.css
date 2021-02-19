@@ -21,9 +21,16 @@
 }
 
 .add-commentreply-form {
-  width: 38vw;
-  left: -100%;
-  top: -30%;
+  width: 25vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .add-commentreply-form .input-topics {
@@ -60,8 +67,8 @@
 
 .add-commentreply-form__emoji-menu {
   position: absolute;
-  top: -166%;
-  left: -87%;
+  top: -891%;
+  left: -42%;
 }
 
 .add-commentreply-form__emoji-menu .emoji-mart-emoji span {
@@ -74,7 +81,7 @@
   cursor: pointer;
   position: absolute;
   top: -3%;
-  left: 77%;
+  left: 63%;
 }
 
 .add-commentreply-form__emoji-btn :active {
