@@ -75,10 +75,22 @@
     justify-content: flex-end;
   }
 
+  &__header {
+    position: relative;
+  }
+  &__edit-delete-wrapper {
+    @include flex-property-column;
+    position: absolute;
+    top: 77%;
+
+  }
+
   &__edit-photo-link {
-    margin-right: 1rem;
     color: var(--blue);
     font-size: 23px;
+    i {
+      margin-left: 1.8rem;
+    }
   }
 
   &:hover {
@@ -87,10 +99,23 @@
     color: var(--secondary);
   }
 
+  &__edit-photo-link,
+  &__delete-photo-link {
+    font-size: 18px;
+    text-decoration: none;
+    width: 8rem;
+    border: 2px solid rgba(235, 230, 230, 0.6);
+    padding: .3rem 1.2rem;
+    span {
+      font-weight: 700;
+      font-size: 16px;
+    }
+  }
   &__delete-photo-link {
     color: var(--primary);
-    font-size: 23px;
-
+    i {
+      margin-left: .4rem;
+    }
   }
   &:hover {
     color: var(--red);

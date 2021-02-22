@@ -138,7 +138,7 @@ const EditUser = (props) => {
       <form onSubmit={handleSubmit} className="edit-user__form animate-modal">
         <div className="edit-user__cancel-wrapper">
           <NavLink to={`/user/${id}`} className="delete-link">
-            <i className="fas fa-times fa-2x"></i>
+          <i className="fas fa-times-circle fa-2x"></i>
           </NavLink>
         </div>
         <h2>Edit User Profile</h2>

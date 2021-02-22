@@ -39,7 +39,7 @@ const CurrentUser = ({
         <div>
           <h4 className="user-details__medium-header">Medium Used:</h4>
           {medium !== undefined && medium.length > 0 ? (
-            <p>
+            <p className="user-details__medium-item">
               {medium.map((m) => (
                 <span key={m}>{m} </span>
               ))}
@@ -52,7 +52,8 @@ const CurrentUser = ({
         <div>
           <NavLink to={`/edituser/${id}`} className="user-details__edit">
             <button className="user-details__update-btn grow">
-              Update Profile
+              <span>Update Profile</span>
+              <i className="fas fa-user-edit"></i>
             </button>
           </NavLink>
         </div>

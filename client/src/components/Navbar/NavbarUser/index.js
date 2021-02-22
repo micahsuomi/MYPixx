@@ -13,7 +13,11 @@ const NavbarUser = ({
   return (
     <ul className="navbar-user">
       <li>
-        <NavLink to="/addphoto" onClick={toggle}>
+        <NavLink to="/addphoto" 
+          onClick={toggle} 
+          className="user-link grow2"
+          activeStyle={{ color: "black" }}
+          >
           <i className="fas fa-pen grow" title="add to gallery"></i>
         </NavLink>
       </li>

@@ -13,6 +13,7 @@ const ViewPhoto = (props) => {
   const [photoInfo, setPhotoInfo] = useState(false);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const user = useSelector((state) => state.user.user);
+  const [openEditDeleteNav, setOpenEditDeleteNav] = useState(false);
   console.log(props.userProfile, props.isUserPage)
   // console.log(Boolean(props.userProfile))
   // console.log(Boolean(props.userPage))
@@ -54,6 +55,10 @@ const ViewPhoto = (props) => {
     setPhotoInfo(false);
   };
 
+  const openEditDeleteNavClick = () => {
+    setOpenEditDeleteNav(!openEditDeleteNav);
+  }
+
   const {
     author,
     image,
@@ -94,23 +99,40 @@ const ViewPhoto = (props) => {
           </div>
           <div className="viewphoto__container">
             <div className="viewphoto__header">
-              {isAuthenticated && author.id === user._id ? (
-                <div className="viewphoto__edit-delete-wrapper">
-                  <NavLink
-                    to={`/editphoto/${id}`}
-                    className="viewphoto__edit-photo-link"
-                  >
-                    <i className="fas fa-edit"></i>
-                  </NavLink>
-                  <NavLink
-                    to={`/deletephoto/${id}`}
-                    className="viewphoto__delete-photo-link"
-                  >
-                    <i className="fas fa-trash"></i>
-                  </NavLink>
-                </div>
-              ) : (
-                ""
+              {isAuthenticated && author.id === user._id && (
+                   <>
+                   <i
+                     className={
+                       !openEditDeleteNav
+                         ? "fas fa-chevron-down grow2"
+                         : "fas fa-chevron-up grow2"
+                     }
+                     onClick={openEditDeleteNavClick}
+                     style={{
+                       cursor: "pointer",
+                       color: "rgb(139, 119, 119)",
+                       fontSize: "22px"
+                     }}
+                   ></i>
+                   {openEditDeleteNav && (
+                       <div className="viewphoto__edit-delete-wrapper animate-modal">
+                       <NavLink
+                         to={`/editphoto/${id}`}
+                         className="viewphoto__edit-photo-link grow2"
+                       >
+                         <span>Edit</span>
+                         <i className="fas fa-edit"></i>
+                       </NavLink>
+                       <NavLink
+                         to={`/deletephoto/${id}`}
+                         className="viewphoto__delete-photo-link grow2"
+                       >
+                         <span>Delete</span>
+                         <i className="fas fa-trash"></i>
+                       </NavLink>
+                     </div>
+                   )}
+                 </>
               )}
             </div>
             <img src={image} alt={title} className="viewphoto__image" />

@@ -44,7 +44,7 @@
     width: 25rem;
     padding: 0.6rem;
     font-size: 16px;
-    font-family: "Roboto";
+    font-family: "Open sans";
     border-radius: 3px;
     border: 1px solid lightgray;
     margin-top: 0.6rem;
@@ -54,7 +54,7 @@
     height: 15rem;
   }
 
-  .input-topics-technique {
+  .input-topics-medium {
     @include flex-property-row-center;
     input {
       width: 20rem;
@@ -67,7 +67,7 @@
       font-size: 1.3rem;
     }
   }
-  &__techniques-wrapper {
+  &__medium-wrapper {
     @include flex-property-row-start;
     flex-wrap: wrap;
     margin-top: 1rem;
@@ -76,7 +76,7 @@
     }
   }
 
-  &__technique-item {
+  &__medium-item {
     padding: 0.2rem;
     background-color: var(--dark);
     color: var(--dark);
@@ -87,7 +87,7 @@
     color: white;
   }
 
-  &__technique-item-header {
+  &__medium-item-header {
     @include flex-property-row-end;
 
     i {
@@ -97,11 +97,14 @@
     }
   }
 
-  &__technique-item-body {
+  &__medium-item-body {
     @include flex-property-column;
     min-width: 2rem;
   }
 
+  &__warning {
+    color: var(--primary);
+  }
   &__btn-save-wrapper {
     @include flex-property-row-center;
   }
@@ -163,7 +166,7 @@
       width: 16rem;
       padding: 0.8rem;
     }
-    .input-topics-technique {
+    .input-topics-medium {
       input {
         width: 12rem;
       }

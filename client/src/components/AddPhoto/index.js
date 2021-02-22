@@ -162,8 +162,8 @@ const AddPhoto = ({ history }) => {
         </div>
 
         <div className="input-topics">
-          <label htmlFor="technique">Tags</label>
-          <div className="input-topics-technique">
+          <label htmlFor="medium">Tags</label>
+          <div className="input-topics-medium">
             <input
               type="text"
               name="medium"
@@ -175,27 +175,28 @@ const AddPhoto = ({ history }) => {
             />
             <button
               onClick={addToMedium}
-              className="input-topics-technique__add-btn"
+              className="input-topics-medium__add-btn"
             >
-              <i className="fas fa-plus-square fa-2x"></i>
+              <i className="fas fa-plus-square fa-2x grow2"></i>
             </button>
           </div>
-          <div className="add-photo__techniques-wrapper">
+          <div className="add-photo__medium-wrapper">
             {mediumArr.map((m) => (
-              <div className="add-photo__technique-item grow">
-                <div className="add-photo__technique-item-header">
+              <div className="add-photo__medium-item grow">
+                <div className="add-photo__medium-item-header">
                   <i
                     className="fas fa-times"
                     title="remove"
                     onClick={() => deleteMedium(m)}
                   ></i>
                 </div>
-                <div className="add-photo__technique-item-body">
+                <div className="add-photo__medium-item-body">
                   <p>{`${m}`}</p>
                 </div>
               </div>
             ))}
           </div>
+          <span className="add-photo__medium-warning">{warning}</span>
           {medium.length < 1 || medium !== '' || isMediumDup && warning}
         </div>
 

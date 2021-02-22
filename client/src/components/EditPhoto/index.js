@@ -110,10 +110,7 @@ const EditPhoto = (props) => {
     setIsImageEditing(true);
     setPhoto({
       ...photo,
-      // image: updatedImage,
     });
-    console.log('photo editing', photo)
-
   };
 
   const cancelImage = () => {
@@ -226,7 +223,7 @@ const EditPhoto = (props) => {
                 {!isImageChanged && (
                   <div className="buttons-wrapper">
                     <button
-                      className="edit-image__cancel grow"
+                      className="edit-photo__cancel grow"
                       onClick={cancelImage}
                     >
                       Cancel
@@ -275,7 +272,7 @@ const EditPhoto = (props) => {
                   onClick={addToMedium}
                   className="input-topics-medium__add-btn"
                 >
-                  <i className="fas fa-plus-square fa-2x"></i>
+                  <i className="fas fa-plus-square fa-2x grow2"></i>
                 </button>
               </div>
               <div className="edit-photo__medium-container">

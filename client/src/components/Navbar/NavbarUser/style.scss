@@ -5,14 +5,14 @@
   list-style: none;
   margin-left: 28rem;
   i {
-    color: rgb(252, 244, 244);
+    color: #4b4a4a;
     font-size: 1.1em;
-    :active {
-      color: black;
-    }
   }
   .user-link {
     margin-left: 0.7rem;
+    :hover {
+      color: grey;
+    }
   }
   span {
     margin-left: 0.5rem;
