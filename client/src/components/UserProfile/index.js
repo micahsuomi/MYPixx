@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import PhotoItem from "../../components/PhotoItem";
@@ -10,9 +10,9 @@ const UserProfile = ({
   name, 
   medium, 
   bio, 
-  photos 
+  photos,
+  isUserPage 
 }) => {
-  const [isUserPage, setIsUserPage] = useState(false);
   return (
     <>
       <div className="user-details">

@@ -26,12 +26,9 @@ const Routes = () => {
   const dispatch = useDispatch();
   const photos = useSelector((state) => state.photo.photos);
   const users = useSelector((state) => state.user.users);
-
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const isLoading = useSelector((state) => state.user.isLoading);
   const user = useSelector((state) => state.user);
-
-  const [isErrorShowing, setIsErrorShowing] = useState(false);
   const [isUserPage, setIsUserPage] = useState(false);
   const [userProfile, setUserProfile] = useState({});
   const [isPhotoPage, setIsPhotoPage] = useState(true);
@@ -174,7 +171,6 @@ const Routes = () => {
                 key={props.match.params.id}
                 photos={photos}
                 isAuthenticated={isAuthenticated}
-                isErrorShowing={isErrorShowing}
                 isPopupOpen={isPopupOpen}
                 isEditPopupOpen={isEditPopupOpen}
                 closePopup={closePopup}

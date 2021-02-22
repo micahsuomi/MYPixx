@@ -21,7 +21,6 @@ const CurrentUser = ({
   const closePopupOnClick = () => {
     closePopup();
   };
-
   return (
     <>
       <div className="user-details">
@@ -37,18 +36,18 @@ const CurrentUser = ({
             <img src={avatar} alt={name} />
           )}
         </div>
-        <p>
+        <div>
           <h4 className="user-details__medium-header">Medium Used:</h4>
           {medium !== undefined && medium.length > 0 ? (
             <p>
               {medium.map((m) => (
-                <span>{m} </span>
+                <span key={m}>{m} </span>
               ))}
             </p>
           ) : (
             <p>No medium listed</p>
           )}
-        </p>
+        </div>
         <p>{bio}</p>
         <div>
           <NavLink to={`/edituser/${id}`} className="user-details__edit">
@@ -115,5 +114,5 @@ CurrentUser.propTypes = {
   photos: PropTypes.array,
   isEditPopupOpen: PropTypes.bool,
   closePopup: PropTypes.func,
-  isUserPage: PropTypes.func
+  isUserPage: PropTypes.bool
 };

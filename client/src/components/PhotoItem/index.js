@@ -19,6 +19,7 @@ const PhotoItem = ({
   likes,
   comments,
 }) => {
+  console.log('user page', isUserPage)
   return (
     <div className="gallery-photo grow">
       <NavLink to={`/photos/${id}`} className="view-photo__link">

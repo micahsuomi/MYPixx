@@ -110,8 +110,10 @@ const EditPhoto = (props) => {
     setIsImageEditing(true);
     setPhoto({
       ...photo,
-      image: updatedImage,
+      // image: updatedImage,
     });
+    console.log('photo editing', photo)
+
   };
 
   const cancelImage = () => {
@@ -122,9 +124,7 @@ const EditPhoto = (props) => {
 
   const addToMedium = (e) => {
     e.preventDefault();
-
     let mediumIndex = mediumArr.indexOf(medium);
-
     if (medium.length < 1) {
       setWarning("Please enter a value");
     }

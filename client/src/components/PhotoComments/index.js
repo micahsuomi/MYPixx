@@ -10,7 +10,7 @@ import AddComment from "../AddComment";
 
 import "./style.scss";
 
-const Comments = ({ isAuthenticated, users, user, match, history}, props) => {
+const Comments = ({ isAuthenticated, users, user, match, history }, props) => {
   const dispatch = useDispatch();
   const [err, comments] = useComments();
   const [isCommentFieldOpened, setIsCommentFieldOpened] = useState(false);
@@ -19,7 +19,7 @@ const Comments = ({ isAuthenticated, users, user, match, history}, props) => {
   const [comment, setComment] = useState({
     text: "",
   });
-  const [showOverflow, setShowOverflow] = useState(false)
+  const [showOverflow, setShowOverflow] = useState(false);
   const photoId = match.params.id;
 
   useEffect(() => {
@@ -60,11 +60,11 @@ const Comments = ({ isAuthenticated, users, user, match, history}, props) => {
 
   const lockScrolling = () => {
     setShowOverflow(true);
-  }
+  };
 
   const unlockScrolling = () => {
     setShowOverflow(false);
-  }
+  };
 
   const formattedComments = comments.map((comment) => (
     <Comment
@@ -90,7 +90,10 @@ const Comments = ({ isAuthenticated, users, user, match, history}, props) => {
   ));
   return (
     <div className="comments">
-      <div className="comments__wrapper" style={{overflowY: showOverflow && 'hidden'}}>
+      <div
+        className="comments__wrapper"
+        style={{ overflowY: showOverflow && "hidden" }}
+      >
         <div className="comments__header">
           <NavLink to={`/photos/${match.params.id}`}>
             <i className="fas fa-chevron-left grow"></i>
@@ -110,7 +113,7 @@ const Comments = ({ isAuthenticated, users, user, match, history}, props) => {
           </div>
         )}
 
-        { user !== null && isAuthenticated ? (
+        {user !== null && isAuthenticated ? (
           <div className="comments__body">
             {isCommentFieldOpened ? (
               <AddComment
@@ -156,6 +159,5 @@ Comments.propTypes = {
   users: PropTypes.array,
   user: PropTypes.object,
   match: PropTypes.object,
-  history: PropTypes.object
-
+  history: PropTypes.object,
 };

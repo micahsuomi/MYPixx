@@ -82,7 +82,7 @@ const AddPhoto = ({ history }) => {
     };
   };
 
-  const addToTechniques = (e) => {
+  const addToMedium = (e) => {
     e.preventDefault();
     const mediumIndex = mediumArr.indexOf(medium);
     console.log(medium.length)
@@ -169,12 +169,12 @@ const AddPhoto = ({ history }) => {
               name="medium"
               value={medium}
               placeholder={
-                "eg(oil, acrylics, dripping, analog photography etc)"
+                "eg(oil, acrylics, dripping, photography etc)"
               }
               onChange={handleChange}
             />
             <button
-              onClick={addToTechniques}
+              onClick={addToMedium}
               className="input-topics-technique__add-btn"
             >
               <i className="fas fa-plus-square fa-2x"></i>

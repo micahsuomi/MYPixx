@@ -13,10 +13,10 @@ const ViewPhoto = (props) => {
   const [photoInfo, setPhotoInfo] = useState(false);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const user = useSelector((state) => state.user.user);
-  // console.log(props.userProfile, props.isUserPage)
+  console.log(props.userProfile, props.isUserPage)
   // console.log(Boolean(props.userProfile))
   // console.log(Boolean(props.userPage))
-  console.log(user)
+
   const slider = {
     index: "",
     prev: "",
@@ -53,7 +53,6 @@ const ViewPhoto = (props) => {
   const hidePhotoInfo = () => {
     setPhotoInfo(false);
   };
-  console.log("from viewphoto", filteredPhoto);
 
   const {
     author,
@@ -65,7 +64,7 @@ const ViewPhoto = (props) => {
     createdAt,
     comments,
   } = filteredPhoto;
-  console.log(comments)
+
   return (
     <div className="viewphoto">
       <div className="viewphoto__nested-container">

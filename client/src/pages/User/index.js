@@ -8,15 +8,10 @@ import UserProfile from "../../components/UserProfile";
 import "./style.scss";
 
 const User = (props) => {
-  // console.log('props are here', props)
   const [isUserPage, setIsUserPage] = useState(false);
   const dispatch = useDispatch();
   const [userProfile, setUserProfile] = useState({});
   const [currentUserProfile, setCurrentUserProfile] = useState({});
-
-  // const [err, userTest] = useUser(props.user._id);
-  // console.log('from hooks', userTest)
-  const currentState = useSelector((state) => state);
   const currentUser = useSelector((state) => state.user.user);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const [userLoaded, setUserLoaded] = useState(false);
@@ -34,10 +29,12 @@ const User = (props) => {
   useEffect(() => {
     if (!isAuthenticated || currentUser._id !== props.match.params.id) {
       loadUser();
+      setIsUserPage(true);
     } else {
       setCurrentUserProfile(currentUser);
+      console.log(currentUser)
+      setIsUserPage(true);
       setUserLoaded(true);
-      console.log("current user", currentUserProfile);
     }
   }, [isAuthenticated, dispatch, getUser, props.match.params.id]);
 
@@ -46,12 +43,12 @@ const User = (props) => {
   };
 
   const { avatar, name, medium, bio, photos } = userProfile;
-  console.log('current user', currentUserProfile)
+
   if (!userProfile || !currentUserProfile) {
     return (
       <div>
         <h3>Not Found</h3>
-        <h3>Loading...</h3>
+        <h3>Please refresh the page</h3>
       </div>
     );
   }
@@ -70,6 +67,8 @@ const User = (props) => {
               photos={currentUserProfile.photos}
               isEditPopupOpen={props.isEditPopupOpen}
               closePopup={closePopup}
+              user={currentUserProfile}
+              isUserPage={isUserPage}
             />
           ) : (
             <UserProfile
@@ -78,6 +77,8 @@ const User = (props) => {
               medium={medium}
               bio={bio}
               photos={photos}
+              user={currentUser}
+              isUserPage={isUserPage}
             />
           )}
         </>

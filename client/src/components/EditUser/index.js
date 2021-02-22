@@ -21,7 +21,6 @@ const EditUser = (props) => {
   const dispatch = useDispatch();
   const loadedEditUser = useSelector((state) => state.user.user);
   // const [err, loadedUser] = useUser();
-  const isUserLoaded = useSelector((state) => state.user.isUserLoaded);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const [isImageEditing, setIsImageEditing] = useState(false);
   const [updatedImage, setUpdatedImage] = useState(null);
@@ -35,16 +34,13 @@ const EditUser = (props) => {
   const id = props.match.params.id;
 
   const handleSubmit = (e) => {
+    console.log('calling', user)
     e.preventDefault();
     user.medium = mediumArr;
     if (isImageChanged) {
-      console.log(previewSource);
       setUser(previewSource);
     }
-    console.log('usr after setting', user)
-    dispatch(updateUser(id, user));
-
-    
+    dispatch(updateUser(id, user));    
     setTimeout(() => {
       props.history.push(`/user/${id}`);
       props.openUserPopup();
@@ -56,8 +52,17 @@ const EditUser = (props) => {
     }, 2000);
   };
 
+  const loadUser = async () => {
+    try {
+      setMediumArr(loadedEditUser.medium);
+      setUser({ ...loadedEditUser, medium: '' });
+    }
+    catch(err) {
+      return 'something went wrong'
+    }
+  }
+
   const fileSelectedHandler = (e) => {
-    console.log(e.target.files[0]);
     const file = e.target.files[0];
     setUpdatedImage(file);
     setUpdatedImage(file);
@@ -78,7 +83,7 @@ const EditUser = (props) => {
 
   const openImageEditing = () => {
     setIsImageEditing(true);
-    setUser({ ...user, avatar: updatedImage, medium: mediumArr });
+    setUser({ ...user, medium: mediumArr });
   };
 
   const cancelImage = () => {
@@ -91,15 +96,9 @@ const EditUser = (props) => {
     if (!isAuthenticated) {
       props.history.push("/login")
     } else {
-      setUser(loadedEditUser)
-      console.log('after setting', user)
+      loadUser();
     }
-  }, [isAuthenticated, props.history, loadedEditUser]);
-
-  useEffect(() => {
-    setMediumArr(loadedEditUser.medium);
-    setUser({ ...loadedEditUser, medium: "" });
-  }, []);
+  }, [isAuthenticated, props.history]);
 
   const handleChange = (e) => {
     let { name, value } = e.target;
@@ -126,6 +125,7 @@ const EditUser = (props) => {
     mediumArr.splice(mediumIndex, 1);
     setMediumArr([...mediumArr]);
   };
+
   let { name, email, avatar, medium, bio } = user;
   if (avatar === undefined || avatar === "") {
     avatar =
@@ -133,6 +133,7 @@ const EditUser = (props) => {
   }
 
   return (
+
     <div className="edit-user">
       <form onSubmit={handleSubmit} className="edit-user__form animate-modal">
         <div className="edit-user__cancel-wrapper">
@@ -163,7 +164,7 @@ const EditUser = (props) => {
             onChange={handleChange}
           />
         </div>
-        {!isImageChanged ? (
+        {/* {!isImageChanged ? ( */}
           <div className="input-topics">
             <label htmlFor="image" className="edit-user__image-label">
               Image
@@ -184,7 +185,7 @@ const EditUser = (props) => {
               />
             </div>
           </div>
-        ) : null}
+        {/* ) : null} */}
 
         {!isImageEditing ? (
           <button
@@ -247,6 +248,7 @@ const EditUser = (props) => {
                 "painting, photography, street art... etc)"
               }
               onChange={handleChange}
+              onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }}
             />
             <button
               onClick={addToMedium}
@@ -260,7 +262,7 @@ const EditUser = (props) => {
               {mediumArr.length > 0 && mediumArr.map((m) => (
                 <div className="edit-user__medium-item grow animate-modal">
                   <div className="edit-user__medium-item-body">
-                    <p>{`${m}`}</p>
+                    <p key={m}>{`${m}`}</p>
                   </div>
                   <div className="edit-user__medium-item-delete">
                     <i

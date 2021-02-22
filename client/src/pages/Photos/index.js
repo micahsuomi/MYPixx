@@ -7,6 +7,7 @@ import {
   ReleaseContent,
   RefreshContent,
 } from "react-js-pull-to-refresh";
+import PropTypes from "prop-types";
 
 import { getPhotos } from "../../redux/actions/photoActions";
 import usePhotos from "../../hooks/usePhotos";
@@ -21,7 +22,13 @@ import Pagination from "../../components/Pagination";
 
 import "./style.scss";
 
-const PhotoList = (props) => {
+const PhotoList = ({
+  closePopup,
+  refreshPage,
+  isAuthenticated,
+  isPopupOpen,
+  isEditPopupOpen,
+}, props) => {
   const [search, setSearch] = useState("");
   // console.log('coming from photos', props.isAuthenticated)
   const isLoading = useSelector((state) => state.photo.isLoading);
@@ -35,16 +42,6 @@ const PhotoList = (props) => {
   const indexFirstPhoto = indexLastPhoto - photosPerPage;
   const currentPhotos = photos?.slice(indexFirstPhoto, indexLastPhoto);
   const [showPullToRefresh, setShowPullToRefresh] = useState(false);
-
-  const {
-    closePopup,
-    refreshPage,
-    isErrorShowing,
-    isAuthenticated,
-    isPopupOpen,
-    isEditPopupOpen,
-  } = props;
-
 
   const checkScreenSize = () => {
     const maxWidth = 500;
@@ -117,7 +114,7 @@ const PhotoList = (props) => {
         handleSubmit={handleSubmit}
       />
       <div className="photo-gallery__container">
-        {isLoading && !isErrorShowing ? (
+        {isLoading ? (
           <div>
             <PullToRefresh
               pullDownContent={<PullDownContent />}
@@ -168,7 +165,7 @@ const PhotoList = (props) => {
           </div>
         ) : (
           <div>
-            {isLoading && isErrorShowing ? (
+            {isLoading ? (
               <ErrorLoading refreshPage={refreshPage} />
             ) : (
               <PhotosLoading />
@@ -181,3 +178,13 @@ const PhotoList = (props) => {
 };
 
 export default PhotoList;
+
+PhotoList.propTypes = {
+  closePopup: PropTypes.func,
+  refreshPage: PropTypes.func,
+  isAuthenticated: PropTypes.bool,
+  isPopupOpen: PropTypes.bool,
+  isEditPopupOpen: PropTypes.bool
+};
+
+

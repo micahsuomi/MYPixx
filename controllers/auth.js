@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const isAuthorized = require('../middleware/authorized')
+
 const User = require('../models/User')
 
 //GET request to API api/auth
@@ -40,7 +40,14 @@ const login =
             if (err) throw err
             //we make a json file for token and user
             console.log('user is here', user)
-            await user.populate('photos').execPopulate()
+            await user.populate('photos')
+            .populate({
+              path: "photos",
+              populate: ({
+                path: "comments"
+              })
+            }) 
+            .execPopulate()
             res.json({
               token,
               user: {
@@ -53,7 +60,6 @@ const login =
                 bio: user.bio
               },
             })
-            console.log('this is coming from login route', user)
           }
         )
       })
@@ -66,14 +72,13 @@ const login =
 
 //this will validate the user with the token
 const findUser =
-  (isAuthorized,
   (req, res) => {
     User.findById(req.user.id)
       .select('-password')
       .populate('photos')
       .populate('medium')
       .then((user) => res.json(user))
-  })
+  }
 
 module.exports = {
   login: login,

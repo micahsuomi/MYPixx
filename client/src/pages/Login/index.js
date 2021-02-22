@@ -12,19 +12,15 @@ const Login = (props) => {
   const errorMsg = useSelector((state) => state.error.msg.msg);
   const dispatch = useDispatch();
 
-  const [state, setState] = useState({
+  const [user, setUser] = useState({
     email: "",
     password: "",
   });
 
-  const { email, password } = state;
+  const { email, password } = user;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const user = {
-      email,
-      password,
-    };
     dispatch(login(user));
 
     setTimeout(() => {
@@ -34,8 +30,8 @@ const Login = (props) => {
 
   const handleChange = (e) => {
     let { name, value } = e.target;
-    setState({
-      ...state,
+    setUser({
+      ...user,
       [name]: value,
     });
   };

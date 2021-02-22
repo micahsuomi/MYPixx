@@ -8,10 +8,6 @@ const Pagination = ({ itemsPerPage, totalItems, currentPage, paginate }) => {
   for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
-  console.log(typeof(itemsPerPage))
-  console.log(typeof(totalItems))
-  console.log(typeof(currentPage))
-  console.log(typeof(paginate))
 
   return (
     <div className="pagination">
