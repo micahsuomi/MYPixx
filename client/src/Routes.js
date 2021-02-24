@@ -32,7 +32,7 @@ const Routes = () => {
   const user = useSelector((state) => state.user);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
-  console.log(users)
+
   useEffect(() => {
     dispatch(getPhotos());
     dispatch(getUsers());

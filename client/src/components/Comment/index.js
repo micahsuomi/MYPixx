@@ -42,7 +42,7 @@ const Comment = ({
   const [isArrowShowing, setIsArrowShowing] = useState(false);
   const [isLikesShowing, setIsLikesShowing] = useState(false);
   const { _id, text, commentDate } = comment;
-  console.log(comment)
+
   const deleteOnClick = () => {
     dispatch(deleteComment(photoId, _id));
     setTimeout(() => {

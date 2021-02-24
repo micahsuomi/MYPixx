@@ -28,18 +28,19 @@ const PhotoItem = ({
     setDetailsShowing(false);
   };
   const checkWindowSize = () => {
-    if(window.innerWidth < 1024) {
+    if (window.innerWidth < 1024) {
       setDetailsShowing(true);
     }
-  }
+  };
   useEffect(() => {
-   checkWindowSize();
-  }, [checkWindowSize])
+    checkWindowSize();
+  }, [checkWindowSize]);
+
   return (
     <div
       className="gallery-photo grow"
-      onMouseEnter={window.innerWidth > 1024 && showDetails}
-      onMouseLeave={window.innerWidth > 1024 && hideDetails}
+      onMouseEnter={window.innerWidth > 1024 ? showDetails : showDetails}
+      onMouseLeave={window.innerWidth > 1024 ? hideDetails : showDetails}
     >
       {isUserPage ? (
         <NavLink
@@ -54,24 +55,24 @@ const PhotoItem = ({
         </NavLink>
       )}
 
-        {detailsShowing && (
-          <div className="gallery-photo__body animate-appear">
-            {!isUserPage && (
-              <PhotoItemAuthor
-                authorId={authorId}
-                author={author}
-                authorImg={authorImg}
-              />
-            )}
+      {detailsShowing && (
+        <div className="gallery-photo__body animate-appear">
+          {!isUserPage && (
+            <PhotoItemAuthor
+              authorId={authorId}
+              author={author}
+              authorImg={authorImg}
+            />
+          )}
 
-            {likes !== undefined && comments !== undefined && (
-              <div className="gallery-photo__likes">
-                <PhotoItemLikes id={id} likes={likes} />
-                <PhotoItemComments id={id} comments={comments} />
-              </div>
-            )}
-          </div>
-        )}
+          {likes !== undefined && comments !== undefined && (
+            <div className="gallery-photo__likes">
+              <PhotoItemLikes id={id} likes={likes} />
+              <PhotoItemComments id={id} comments={comments} />
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

@@ -30,13 +30,6 @@ const ViewUserPhoto = (props) => {
     }
   };
   
-  /*
-  const slider = {
-    index: "",
-    prev: "",
-    next: "",
-  };*/
-//   console.log(userProfile);
   const loadSlider = async () => {
     try {
        await userProfile.photos.find((photo, index) => {
@@ -46,24 +39,13 @@ const ViewUserPhoto = (props) => {
             prev: index === 0 ? "" : photos[index - 1]._id,
             next: index === photos.length - 1 ? "" : photos[index + 1]._id
         })
-        /*
-        slider.index = index;
-        slider.prev = index === 0 ? "" : userProfile.photos[index - 1]._id;
-        slider.next =
-          index === userProfile.photos.length - 1
-            ? ""
-            : userProfile.photos[index + 1]._id;*/
         setPhotoLoaded(true);
-
-        console.log(slider)
         return photo._id === id;
       });
     } catch (err) {
-      console.log(err)
+      return err
     }
   };
-
-console.log(slider);
 
   useEffect(() => {
     loadPhoto();
@@ -72,7 +54,6 @@ console.log(slider);
   useEffect(() => {
     if (userProfile) {
       loadSlider();
-      console.log('slider here', slider)
     }
   }, [userProfile]);
 

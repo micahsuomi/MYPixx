@@ -8,8 +8,6 @@ import "./style.scss";
 const PhotoItemLikes = ({ likes, id }) => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const user = useSelector((state) => state.user.user);
-  console.log("likes from photo item likes", likes);
-  console.log(user);
   return (
     <div>
       {likes.length > 0 ? (
