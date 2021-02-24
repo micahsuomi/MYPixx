@@ -18,7 +18,6 @@ const login =
     //check for existing user, if it doesn't exist we throw a 400 bad request message
     User.findOne({ email }).then((user) => {
       console.log(' here is the user', user)
-
       if (!user)
         return res
           .status(400)
@@ -28,9 +27,7 @@ const login =
         //this call back isMatch returns true or false value
         if (!isMatch)
           return res.status(400).json({ msg: 'invalid username or password' })
-          
         //if they match we sign the user and get the token
-
         jwt.sign(
           { id: user._id },
           process.env.jwtSecret,

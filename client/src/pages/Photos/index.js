@@ -17,7 +17,7 @@ import AddPhotoButton from "../../components/AddPhotoButton/index";
 import AddPopup from "../../components/AddPopup/index";
 import EditPopup from "../../components/EditPopup/index";
 import ErrorLoading from "../../components/ErrorLoading/index";
-import Loader from "../../components/Loader/index";
+import Loader from "../../components/PhotosLoading/index";
 import Pagination from "../../components/Pagination";
 
 import "./style.scss";

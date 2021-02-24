@@ -21,20 +21,21 @@ const User = (props) => {
       const user = props.users.find((user) => user._id === props.match.params.id);
       setUserProfile(user);
       setUserLoaded(true);
+      console.log(userProfile)
     } catch (err) {
       console.log(err);
     }
   };
   
   useEffect(() => {
-    if (!isAuthenticated || currentUser._id !== props.match.params.id) {
-      loadUser();
-      setIsUserPage(true);
-    } else {
+    if (isAuthenticated && currentUser._id === props.match.params.id) {
       setCurrentUserProfile(currentUser);
       console.log(currentUser)
       setIsUserPage(true);
       setUserLoaded(true);
+    } else {
+      loadUser();
+      setIsUserPage(true);
     }
   }, [isAuthenticated, dispatch, getUser, props.match.params.id]);
 

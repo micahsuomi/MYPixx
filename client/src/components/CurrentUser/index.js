@@ -22,7 +22,7 @@ const CurrentUser = ({
     closePopup();
   };
   console.log('is user page', isUserPage)
-
+  
   return (
     <>
       <div className="user-details">

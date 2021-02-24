@@ -1,31 +1,26 @@
 .footer {
-  padding: 1rem 3rem;
+  padding: 2rem 4rem;
   background-color: rgb(17, 45, 58);
   display: flex;
   justify-content: space-between;
   width: 100vw;
-  position: fixed;
-  margin-bottom: 2rem;
-}
-
-.app-author,
-.app-pexels__link {
-  color: whitesmoke;
-}
-
-.app-pexels__link a {
-  text-decoration: none;
-  color: skyblue;
+  &__logo {
+    font-family: "Sansita Swashed", cursive;
+    color: white;
+  }
+  &__app-author,
+  &__link {
+    color: white;
+    font-size: 15px;
+  }
+  &__link a {
+    text-decoration: none;
+    color: skyblue;
+  }
 }
 
 @media screen and (max-width: 500px) {
-  .footer {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .app-author,
-  .app-pexels__link {
-    margin: 0.5rem;
+  .hide-mobile {
+    display: none;
   }
 }

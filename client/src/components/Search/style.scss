@@ -3,17 +3,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  position: relative;
   input {
-    width: 35vw;
+    width: 44vw;
     padding: 1rem;
-    border-radius: 50px;
+    border-radius: 8px;
     border: none;
-    font-family: "Roboto";
+    font-family: "open sans";
   }
 
   input:focus {
     outline: none;
+  }
+
+  i {
+    position: absolute;
+    top: 39%;
+    right: 9%;
+    color: darkgray;
+    font-size: 1.5em;
+    font-size: 1.5em;
   }
 }
 

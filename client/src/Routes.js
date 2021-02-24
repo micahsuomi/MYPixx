@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getPhotos } from "./redux/actions/photoActions";
 import { getUsers } from "./redux/actions/userActions";
 import Navbar from "./components/Navbar/index";
-import Home from "./pages/Home";
+import Home from "./pages/Photos";
 import Community from "./pages/Community/index";
 import Register from "./pages/Register/index";
 import Login from "./pages/Login/index";
@@ -96,7 +96,6 @@ const Routes = () => {
               user={user}
               users={users}
               photos={photos}
-              isPopupOpen={isPopupOpen}
               isEditPopupOpen={isEditPopupOpen}
               closePopup={closePopup}
               {...props}
@@ -188,7 +187,6 @@ const Routes = () => {
             </div>
           )}
         />
-
         <Route exact path="/" component={Home} />
       </Switch>
       <Footer />

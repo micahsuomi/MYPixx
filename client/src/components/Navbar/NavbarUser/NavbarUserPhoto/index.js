@@ -16,9 +16,6 @@ const NavbarUserPhoto = ({ user }) => {
         <img src={user.avatar} alt={user.name} />
       )}
     </div>
-    <div>
-    <i className="fas fa-user-circle hide-desktop"></i>
-    </div>
     </>
   );
 };

@@ -12,16 +12,11 @@
     height: 100%;
   }
 }
-.hide-desktop {
-  display: none;
-}
+
 @media screen and (max-width: 500px) {
   .nav-user-image {
-    display: none;
-  }
-  .hide-desktop {
-    display: block;
+    height: 22px;
+    width: 22px;  
     margin-left: 1.8rem;
-    font-size: 23px;
   }
 }
