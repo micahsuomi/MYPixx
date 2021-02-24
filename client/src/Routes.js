@@ -14,6 +14,7 @@ import EditUser from "./components/EditUser/index";
 import PhotoList from "./pages/Photos/index";
 import AddPhoto from "./components/AddPhoto/index";
 import ViewPhoto from "./pages/ViewPhoto/index";
+import ViewUserPhoto from "./pages/ViewUserPhoto/index";
 import LikesList from "./components/LikesList/index";
 import PhotoComments from "./components/PhotoComments/index";
 import EditPhoto from "./components/EditPhoto/index";
@@ -29,12 +30,9 @@ const Routes = () => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const isLoading = useSelector((state) => state.user.isLoading);
   const user = useSelector((state) => state.user);
-  const [isUserPage, setIsUserPage] = useState(false);
-  const [userProfile, setUserProfile] = useState({});
-  const [isPhotoPage, setIsPhotoPage] = useState(true);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
-
+  console.log(users)
   useEffect(() => {
     dispatch(getPhotos());
     dispatch(getUsers());
@@ -107,6 +105,19 @@ const Routes = () => {
         />
 
         <Route
+          path="/view-user/:id/user-photos/:id"
+          component={(props) => (
+            <ViewUserPhoto
+              photos={photos}
+              user={user}
+              users={users}
+              isAuthenticated={isAuthenticated}
+              {...props}
+            />
+          )}
+        />
+
+        <Route
           path="/editphoto/:id"
           component={(props) => <EditPhoto photos={photos} {...props} />}
         />
@@ -156,8 +167,6 @@ const Routes = () => {
               user={user}
               users={users}
               isAuthenticated={isAuthenticated}
-              isUserPage={isUserPage}
-              userProfile={userProfile}
               {...props}
             />
           )}
@@ -180,7 +189,7 @@ const Routes = () => {
           )}
         />
 
-        <Route path="/" component={Home} />
+        <Route exact path="/" component={Home} />
       </Switch>
       <Footer />
     </div>

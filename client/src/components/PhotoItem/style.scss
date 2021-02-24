@@ -2,24 +2,25 @@
 
 .gallery-photo {
   @include flex-property-column;
-  border: 1px solid rgba(201, 214, 216, 0.5);
+  justify-content: flex-end;
   margin: 0.2rem;
-  width: 24rem;
+  width: 100%;
   border-radius: 3px;
   cursor: pointer;
-  padding: 2.4rem 1rem;
-  background-color: white;
+  position: relative;
 
   &__image {
     width: 100%;
-    margin-top: 1rem;
-    border-radius: 3px;
   }
-
   &__body {
     @include flex-property-row-center;
+    padding: 1.2rem .7rem;
+    background-color: rgba(40, 44, 44, 0.4);
     justify-content: space-between;
-    width: 20rem;
+    width: 100%;
+    position: absolute;
+    bottom: 1%;
+
   }
   &__likes {
     @include flex-property-row-center;
@@ -32,15 +33,16 @@
   color: var(--primary-dark);
 }
 
+
+
 @media screen and (max-width: 1024px) {
   .gallery-photo {
-    width: 19rem;
     &__body {
-      width: 16rem;
+    padding: .9rem .7rem;
     }
   }
 }
-
+/*
 @media screen and (max-width: 500px) {
   .gallery-photo {
     width: 22rem;
@@ -54,4 +56,4 @@
       width: 16rem;
     }
   }
-}
+}*/

@@ -13,6 +13,7 @@ const UserProfile = ({
   photos,
   isUserPage 
 }) => {
+  console.log('is user page', isUserPage)
   return (
     <>
       <div className="user-details">
@@ -27,28 +28,28 @@ const UserProfile = ({
             <img src={avatar} alt={name} />
           )}
         </div>
-        <p>
+        <div>
           <h4 className="user-details__medium-header">Medium Used:</h4>
           {medium !== undefined && medium.length > 0 ? (
             <p>
               {medium.map((m) => (
-                <span>{m} </span>
+                <span key={m}>{m} </span>
               ))}
             </p>
           ) : (
             <p>No medium listed</p>
           )}
-        </p>
+        </div>
         <p>{bio}</p>
       </div>
-      <div className="photo-gallery__container">
+      <div className="user-details__gallery">
         <h1>User Gallery</h1>
         {photos !== undefined && photos.length < 1 ? (
           <h1>This user has not posted any pictures</h1>
         ) : (
           <h4>{photos.length} photos</h4>
         )}
-        <div className="photo-gallery__wrapper">
+        <div className="user-details__photos">
           {photos.map((photo) => (
             <PhotoItem
               key={photo._id}

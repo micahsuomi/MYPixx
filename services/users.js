@@ -7,7 +7,13 @@ function findAllUsers() {
   .populate({
     path: "photos",
     populate: ({
-      path: "comments",
+      path: "comments"
+    })
+  }) 
+  .populate({
+    path: "photos",
+    populate: ({
+      path: "likes"
     })
   }) 
   .exec();
@@ -22,7 +28,13 @@ async function findUserById(userId) {
     .populate({
       path: "photos",
       populate: ({
-        path: "comments",
+        path: "comments"
+      })
+    }) 
+    .populate({
+      path: "photos",
+      populate: ({
+        path: "likes"
       })
     }) 
     .exec()

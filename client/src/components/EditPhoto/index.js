@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import PropTypes from "prop-types";
 
 import {
   getPhotos,
@@ -270,6 +269,7 @@ const EditPhoto = (props) => {
                 />
                 <button
                   onClick={addToMedium}
+                  onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }}
                   className="input-topics-medium__add-btn"
                 >
                   <i className="fas fa-plus-square fa-2x grow2"></i>

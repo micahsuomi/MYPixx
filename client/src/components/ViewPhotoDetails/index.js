@@ -4,33 +4,31 @@ import { useSelector } from "react-redux";
 import moment from "moment";
 
 import LikePhoto from "../../components/LikePhoto/index";
-import ViewPhotoDetails from "../../components/ViewPhotoDetails";
 
 import "./style.scss";
 
-const ViewPhoto = (props) => {
-  const id = props.match.params.id;
+const ViewPhotoDetails = (
+  {
+    id,
+    author,
+    image,
+    title,
+    type,
+    description,
+    medium,
+    createdAt,
+    comments,
+    filteredPhoto,
+    history,
+    match,
+  },
+  props
+) => {
   const [photoInfo, setPhotoInfo] = useState(false);
+  const [openEditDeleteNav, setOpenEditDeleteNav] = useState(false);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const user = useSelector((state) => state.user.user);
-  const [openEditDeleteNav, setOpenEditDeleteNav] = useState(false);
-  console.log('is user page', props.isUserPage)
- 
-  const slider = {
-    index: "",
-    prev: "",
-    next: "",
-  };
 
-  const filteredPhoto = props.photos.find((photo, index) => {
-      slider.index = index;
-      slider.prev = index === 0 ? "" : props.photos[index - 1]._id;
-      slider.next =
-        index === props.photos.length - 1 ? "" : props.photos[index + 1]._id;
-      return photo._id === id;
-    });
-  
-  console.log(slider)
   const showPhotoInfo = () => {
     setPhotoInfo(true);
   };
@@ -40,85 +38,45 @@ const ViewPhoto = (props) => {
 
   const openEditDeleteNavClick = () => {
     setOpenEditDeleteNav(!openEditDeleteNav);
-  }
-
-  const {
-    author,
-    image,
-    title,
-    type,
-    description,
-    medium,
-    createdAt,
-    comments,
-  } = filteredPhoto;
+  };
 
   return (
-    <div className="viewphoto">
-      <div className="viewphoto__nested-container">
-        <div className="viewphoto__exit-header">
-            <NavLink to="/photos" className="viewphoto__back-to-photos grow">
-              <i className="fas fa-times fa-2x"></i>
-            </NavLink>
-        </div>
-        <div className="viewphoto__wrapper">
-          <div>
-            {slider.prev !== "" && (
-              <NavLink to={slider.prev}>
-                <i className="fas fa-chevron-left fa-2x slider-arrow__left grow"></i>
-              </NavLink>
-            )}
-          </div>
-          <ViewPhotoDetails
-              id={id}
-              author={author}
-              image={image}
-              title={title}
-              type={type}
-              description={description}
-              medium={medium}
-              createdAt={createdAt}
-              comments={comments}
-              filteredPhoto={filteredPhoto}
-              history={props.history}
-              match={props.match}
-            />
-          {/* <div className="viewphoto__container">
+          <div className="viewphoto__container">
             <div className="viewphoto__header">
               {isAuthenticated && author.id === user._id && (
-                   <>
-                   <i
-                     className={
-                       !openEditDeleteNav
-                         ? "fas fa-chevron-down grow2"
-                         : "fas fa-chevron-up grow2"
-                     }
-                     onClick={openEditDeleteNavClick}
-                     style={{
-                       cursor: "pointer",
-                       color: "rgb(139, 119, 119)",
-                       fontSize: "22px"
-                     }}
-                   ></i>
-                   {openEditDeleteNav && (
-                       <div className="viewphoto__edit-delete-wrapper animate-modal">
-                       <NavLink
-                         to={`/editphoto/${id}`}
-                         className="viewphoto__edit-photo-link grow2"
-                       >
-                         <span>Edit</span>
-                         <i className="fas fa-edit"></i>
-                       </NavLink>
-                       <NavLink
-                         to={`/deletephoto/${id}`}
-                         className="viewphoto__delete-photo-link grow2"
-                       >
-                         <span>Delete</span>
-                         <i className="fas fa-trash"></i>
-                       </NavLink>
-                     </div>
-                   )}
-                 </>
+                <>
+                  <i
+                    className={
+                      !openEditDeleteNav
+                        ? "fas fa-chevron-down grow2"
+                        : "fas fa-chevron-up grow2"
+                    }
+                    onClick={openEditDeleteNavClick}
+                    style={{
+                      cursor: "pointer",
+                      color: "rgb(139, 119, 119)",
+                      fontSize: "22px",
+                    }}
+                  ></i>
+                  {openEditDeleteNav && (
+                    <div className="viewphoto__edit-delete-wrapper animate-modal">
+                      <NavLink
+                        to={`/editphoto/${id}`}
+                        className="viewphoto__edit-photo-link grow2"
+                      >
+                        <span>Edit</span>
+                        <i className="fas fa-edit"></i>
+                      </NavLink>
+                      <NavLink
+                        to={`/deletephoto/${id}`}
+                        className="viewphoto__delete-photo-link grow2"
+                      >
+                        <span>Delete</span>
+                        <i className="fas fa-trash"></i>
+                      </NavLink>
+                    </div>
+                  )}
+                </>
               )}
             </div>
             <img src={image} alt={title} className="viewphoto__image" />
@@ -175,7 +133,8 @@ const ViewPhoto = (props) => {
                 <LikePhoto
                   filteredPhoto={filteredPhoto}
                   user={user}
-                  {...props}
+                  history={history}
+                  match={match}
                 />
               </div>
 
@@ -200,18 +159,8 @@ const ViewPhoto = (props) => {
                 </NavLink>
               </div>
             </div>
-          </div>*/}
-          <div> 
-            {slider.next !== "" && (
-              <NavLink to={slider.next}>
-                <i className="fas fa-chevron-right fa-2x slider-arrow__right grow"></i>
-              </NavLink>
-           )}
           </div>
-        </div>
-      </div>
-    </div>
   );
 };
 
-export default ViewPhoto;
+export default ViewPhotoDetails;

@@ -42,7 +42,7 @@ const Comment = ({
   const [isArrowShowing, setIsArrowShowing] = useState(false);
   const [isLikesShowing, setIsLikesShowing] = useState(false);
   const { _id, text, commentDate } = comment;
-
+  console.log(comment)
   const deleteOnClick = () => {
     dispatch(deleteComment(photoId, _id));
     setTimeout(() => {
@@ -198,12 +198,13 @@ const Comment = ({
                     </div>
                     {comment.likes !== undefined &&
                       users.map((user) => {
+                        console.log('comment likes', comment.likes)
                         for (let i = 0; i < comment.likes.length; i++) {
                           const like = comment.likes[i];
                           if (user._id === like) {
                             return (
                               <CommentLike
-                                key={like}
+                                key={like._id}
                                 userId={user._id}
                                 avatar={user.avatar}
                                 name={user.name}
@@ -268,8 +269,8 @@ Comment.propTypes = {
   user: PropTypes.object,
   users: PropTypes.array,
   isAuthenticated: PropTypes.bool,
-  editingComment: PropTypes.bool,
-  closeEditingComment: PropTypes.bool,
+  editingComment: PropTypes.func,
+  closeEditingComment: PropTypes.func,
   history: PropTypes.object,
   match: PropTypes.object,
   setIsAddButtonShowing: PropTypes.func,

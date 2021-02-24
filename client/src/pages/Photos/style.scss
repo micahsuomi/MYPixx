@@ -9,7 +9,7 @@
 
 .photo-gallery__container {
   padding: 2rem 3rem;
-  background-color: rgb(247, 239, 239);
+  background-color: #fcfafa;
   @include flex-property-column;
   min-height: 100vh;
   position: relative;
@@ -94,8 +94,9 @@
 
 .photo-gallery__wrapper {
   margin-top: 3rem;
+  padding: 0 2rem;
   @include three-col-grid;
-  grid-gap: 1rem;
+  grid-gap: 2rem;
 }
 
 .pagination {

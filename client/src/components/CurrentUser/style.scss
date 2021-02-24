@@ -4,7 +4,7 @@
   @include section-padding;
   @include flex-property-column;
   line-height: 1.5;
-  min-height: 100vh;
+  min-height: 60vh;
 
   h1 {
     text-align: center;
@@ -52,10 +52,31 @@
       }
       
     }
+  } 
+  &__gallery {
+    h1 {
+      text-align: center;
+    }
+    h4 {
+      margin: 2rem 0 0 2rem;
+    }
   }
+  &__photos {
+    margin-top: 3rem;
+    @include three-col-grid;
+    grid-gap: 1rem;
+    padding: 0 2rem;
+  }
+}
 
 
- 
+@media screen and (max-width: 1024px) {
+  .user-details {
+    min-height: 64vh;
+    &__gallery {
+      min-height: 58vh;
+    }
+  }
 }
 
 @media screen and (max-width: 500px) {

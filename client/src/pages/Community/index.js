@@ -33,6 +33,7 @@ const Community = ({ users, photos }) => {
         <div className="community__most-commented-wrapper">
           {sortedByLikes.map((photo) => (
             <NavLink
+              key={photo._id}
               to={`/photos/${photo._id}`}
               className="community__most-commented-link"
             >
@@ -53,6 +54,7 @@ const Community = ({ users, photos }) => {
         <div className="community__most-liked-wrapper">
           {sortedByComments.map((photo) => (
             <NavLink
+              key={photo._id}
               to={`/photos/${photo._id}`}
               className="community__most-liked-link"
             >
@@ -73,6 +75,7 @@ const Community = ({ users, photos }) => {
         <div className="community__users-wrapper">
           {users.map((user) => (
             <NavLink
+              key={user._id}
               to={`/user/${user._id}`}
               className="community__users-link-container grow"
             >

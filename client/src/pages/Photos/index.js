@@ -17,7 +17,7 @@ import AddPhotoButton from "../../components/AddPhotoButton/index";
 import AddPopup from "../../components/AddPopup/index";
 import EditPopup from "../../components/EditPopup/index";
 import ErrorLoading from "../../components/ErrorLoading/index";
-import PhotosLoading from "../../components/PhotosLoading/index";
+import Loader from "../../components/Loader/index";
 import Pagination from "../../components/Pagination";
 
 import "./style.scss";
@@ -32,7 +32,6 @@ const PhotoList = ({
   const [search, setSearch] = useState("");
   // console.log('coming from photos', props.isAuthenticated)
   const isLoading = useSelector((state) => state.photo.isLoading);
-  const errMessage = useSelector((state) => state.photo.err);
   const dispatch = useDispatch();
   const [err, photos] = usePhotos(search);
   const [currentPage, setCurrentPage] = useState(1);
@@ -42,6 +41,7 @@ const PhotoList = ({
   const indexFirstPhoto = indexLastPhoto - photosPerPage;
   const currentPhotos = photos?.slice(indexFirstPhoto, indexLastPhoto);
   const [showPullToRefresh, setShowPullToRefresh] = useState(false);
+  const [isUserPage, setIsUserPage] = useState(false);
 
   const checkScreenSize = () => {
     const maxWidth = 500;
@@ -85,6 +85,7 @@ const PhotoList = ({
       authorImg={photo.author.avatar}
       likes={photo.likes}
       comments={photo.comments}
+      isUserPage={isUserPage}
       {...props}
     />
   )) : 
@@ -102,6 +103,7 @@ const PhotoList = ({
       authorImg={photo.author.avatar}
       likes={photo.likes}
       comments={photo.comments}
+      isUserPage={isUserPage}
       {...props}
     />
   ));
@@ -168,7 +170,7 @@ const PhotoList = ({
             {isLoading ? (
               <ErrorLoading refreshPage={refreshPage} />
             ) : (
-              <PhotosLoading />
+              <Loader />
             )}
           </div>
         )}

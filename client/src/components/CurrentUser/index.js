@@ -21,6 +21,8 @@ const CurrentUser = ({
   const closePopupOnClick = () => {
     closePopup();
   };
+  console.log('is user page', isUserPage)
+
   return (
     <>
       <div className="user-details">
@@ -74,14 +76,14 @@ const CurrentUser = ({
           </div>
         </div>
       )}
-      <div className="photo-gallery__container">
+      <div className="user-details__gallery">
         <h1>User Gallery</h1>
         {photos !== undefined && photos.length < 1 ? (
           <h1>This user has not posted any pictures</h1>
         ) : (
           <h4>{photos.length} photos</h4>
         )}
-        <div className="photo-gallery__wrapper">
+        <div className="user-details__photos">
           {photos.map((photo) => (
             <PhotoItem
               key={photo._id}

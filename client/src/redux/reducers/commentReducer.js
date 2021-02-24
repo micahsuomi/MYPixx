@@ -20,6 +20,7 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case GET_COMMENTS:
       const { comments } = action.payload;
+      console.log('from reducer', comments)
       return {
         ...state,
         comments: comments,

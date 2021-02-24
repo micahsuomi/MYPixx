@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -7,6 +7,7 @@ import PhotoItemLikes from "./PhotoItemLikes";
 import PhotoItemComments from "./PhotoItemComments";
 
 import "./style.scss";
+import { useEffect } from "react";
 
 const PhotoItem = ({
   id,
@@ -15,34 +16,62 @@ const PhotoItem = ({
   author,
   authorId,
   authorImg,
-  isUserPage,
   likes,
   comments,
+  isUserPage,
 }) => {
-  console.log('user page', isUserPage)
+  const [detailsShowing, setDetailsShowing] = useState(false);
+  const showDetails = () => {
+    setDetailsShowing(true);
+  };
+  const hideDetails = () => {
+    setDetailsShowing(false);
+  };
+  const checkWindowSize = () => {
+    if(window.innerWidth < 1024) {
+      setDetailsShowing(true);
+    }
+  }
+  useEffect(() => {
+   checkWindowSize();
+  }, [checkWindowSize])
   return (
-    <div className="gallery-photo grow">
-      <NavLink to={`/photos/${id}`} className="view-photo__link">
-        <img src={image} alt={title} className="gallery-photo__image" />
-      </NavLink>
-      <div className="gallery-photo__body">
-        {isUserPage ? (
-          ""
-        ) : (
-          <PhotoItemAuthor
-            authorId={authorId}
-            author={author}
-            authorImg={authorImg}
-          />
-        )}
+    <div
+      className="gallery-photo grow"
+      onMouseEnter={window.innerWidth > 1024 && showDetails}
+      onMouseLeave={window.innerWidth > 1024 && hideDetails}
+    >
+      {isUserPage ? (
+        <NavLink
+          to={`/view-user/${authorId}/user-photos/${id}`}
+          className="view-photo__link"
+        >
+          <img src={image} alt={title} className="gallery-photo__image" />
+        </NavLink>
+      ) : (
+        <NavLink to={`/photos/${id}`} className="view-photo__link">
+          <img src={image} alt={title} className="gallery-photo__image" />
+        </NavLink>
+      )}
 
-        {likes !== undefined && comments !== undefined ? (
-          <div className="gallery-photo__likes">
-            <PhotoItemLikes id={id} likes={likes} />
-            <PhotoItemComments id={id} comments={comments} />
+        {detailsShowing && (
+          <div className="gallery-photo__body animate-appear">
+            {!isUserPage && (
+              <PhotoItemAuthor
+                authorId={authorId}
+                author={author}
+                authorImg={authorImg}
+              />
+            )}
+
+            {likes !== undefined && comments !== undefined && (
+              <div className="gallery-photo__likes">
+                <PhotoItemLikes id={id} likes={likes} />
+                <PhotoItemComments id={id} comments={comments} />
+              </div>
+            )}
           </div>
-        ) : null}
-      </div>
+        )}
     </div>
   );
 };
@@ -58,4 +87,3 @@ PhotoItem.propTypes = {
   authorImg: PropTypes.string,
   isUserPage: PropTypes.bool,
 };
-
