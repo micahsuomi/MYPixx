@@ -4,22 +4,22 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { getPhotos } from "./redux/actions/photoActions";
 import { getUsers } from "./redux/actions/userActions";
-import Navbar from "./components/Navbar/index";
-import Home from "./pages/Photos";
-import Community from "./pages/Community/index";
-import Register from "./pages/Register/index";
-import Login from "./pages/Login/index";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Community from "./pages/Community";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 import User from "./pages/User";
-import EditUser from "./components/EditUser/index";
-import PhotoList from "./pages/Photos/index";
-import AddPhoto from "./components/AddPhoto/index";
-import ViewPhoto from "./pages/ViewPhoto/index";
-import ViewUserPhoto from "./pages/ViewUserPhoto/index";
-import LikesList from "./components/LikesList/index";
-import PhotoComments from "./components/PhotoComments/index";
-import EditPhoto from "./components/EditPhoto/index";
-import DeletePhoto from "./components/DeletePhoto/index";
-import Footer from "./components/Footer/index";
+import EditUser from "./components/EditUser";
+import PhotoList from "./pages/Photos";
+import AddPhoto from "./components/AddPhoto";
+import ViewPhoto from "./pages/ViewPhoto";
+import ViewUserPhoto from "./pages/ViewUserPhoto";
+import LikesList from "./components/LikesList";
+import PhotoComments from "./components/PhotoComments";
+import EditPhoto from "./components/EditPhoto";
+import DeletePhoto from "./components/DeletePhoto";
+import Footer from "./components/Footer";
 
 import "./App.css";
 
@@ -187,7 +187,7 @@ const Routes = () => {
             </div>
           )}
         />
-        <Route exact path="/" component={Home} />
+        <Route path="/" component={Home} />
       </Switch>
       <Footer />
     </div>
