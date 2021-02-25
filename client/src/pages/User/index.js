@@ -19,19 +19,21 @@ const User = (props) => {
 
   const loadUser = async () => {
     try {
-      const user = props.users.find((user) => user._id === props.match.params.id);
+      const user = props.users.find(
+        (user) => user._id === props.match.params.id
+      );
       setUserProfile(user);
       setUserLoaded(true);
-      console.log(userProfile)
+      console.log(userProfile);
     } catch (err) {
       console.log(err);
     }
   };
-  
+
   useEffect(() => {
     if (isAuthenticated && currentUser._id === props.match.params.id) {
       setCurrentUserProfile(currentUser);
-      console.log(currentUser)
+      console.log(currentUser);
       setIsUserPage(true);
       setUserLoaded(true);
     } else {
@@ -46,7 +48,7 @@ const User = (props) => {
 
   const switchViewOnClick = () => {
     setSwitchView(!switchView);
-  }
+  };
   const { avatar, name, medium, bio, photos } = userProfile;
 
   if (!userProfile || !currentUserProfile) {
@@ -61,8 +63,13 @@ const User = (props) => {
     <>
       {userLoaded ? (
         <>
-        <button className="switch-view-btn" onClick={switchViewOnClick}>Switch View</button>
-          {isAuthenticated && currentUserProfile._id === props.match.params.id ? (
+          {window.innerWidth > 1024 && (
+            <button className="switch-view-btn" onClick={switchViewOnClick}>
+              Switch View
+            </button>
+          )}
+          {isAuthenticated &&
+          currentUserProfile._id === props.match.params.id ? (
             <CurrentUser
               id={currentUserProfile._id}
               avatar={currentUserProfile.avatar}
