@@ -8,14 +8,15 @@ import "./style.scss";
 
 const NavbarUser = ({ 
   user, 
-  toggle 
+  toggle,
+  scrolled
 }) => {
   return (
     <ul className="navbar-user">
       <li>
         <NavLink to="/addphoto" 
           onClick={toggle} 
-          className="user-link grow2"
+          className={scrolled ? "navbar-link scrolled" : "navbar-link"}
           activeStyle={{ color: "black" }}
           >
           <i className="fas fa-pen grow" title="add to gallery"></i>
@@ -24,7 +25,7 @@ const NavbarUser = ({
       <li>
         <NavLink
           to={`/user/${user._id}`}
-          className="user-link"
+          className={scrolled ? "navbar-link scrolled " : "navbar-link"}
           activeStyle={{ color: "var(--secondary)" }}
           onClick={toggle}
         >
@@ -40,5 +41,6 @@ export default NavbarUser;
 
 NavbarUser.propTypes = {
   user: PropTypes.object,
-  toggle: PropTypes.func
+  toggle: PropTypes.func,
+  scrolled: PropTypes.bool
 };

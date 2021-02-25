@@ -1,7 +1,7 @@
 @import "../../scss/abstracts/mixins.scss";
 
 .navbar {
-  background-color: rgb(208, 219, 224);
+  background-color: transparent;
   display: flex;
   justify-content: space-between;
   position: fixed;
@@ -10,6 +10,10 @@
   width: 100%;
   padding: 0 1rem;
   z-index: 2;
+}
+
+.navbar.active {
+  background-color: rgb(208, 219, 224);
 }
 
 .nav-list {
@@ -22,24 +26,29 @@
 
 .navbar-link {
   text-decoration: none;
-  margin-left: 2rem;
-  color: rgb(75, 74, 74);
   font-weight: 700;
+  margin-left: 1.4rem;
+  padding: .4rem 0 .4rem 0;
+  i {
+    color: var(--primary);
+  }
+  span {
+    color: var(--primary);
+    margin-left: .3rem;
+  }
+  :link {
+    color: white;
+  }
+}
+
+.navbar-link.scrolled {
+  i, span {
+    color: rgb(75, 74, 74);
+  }
 }
 
 .navbar-link:hover {
   color: grey;
-}
-
-.nav-list__icon {
-  @include flex-property-row-center;
-  font-size: 1.2em;
-  margin-top: 0.1rem;
-  span {
-    font-family: "Montserrat";
-    font-size: var(--font-size-small);
-    margin-left: 0.4rem;
-  }
 }
 
 .register-login {

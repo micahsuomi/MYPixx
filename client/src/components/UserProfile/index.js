@@ -11,11 +11,12 @@ const UserProfile = ({
   medium, 
   bio, 
   photos,
-  isUserPage 
+  isUserPage,
+  switchView
 }) => {
   console.log('is user page', isUserPage)
   return (
-    <>
+    <div className={switchView ? "user-test-switched" : "user-test-unswitched"}>
       <div className="user-details">
         <h1>{name}</h1>
         <div className="user-details__image-container">
@@ -67,7 +68,7 @@ const UserProfile = ({
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

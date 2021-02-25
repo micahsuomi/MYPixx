@@ -11,11 +11,11 @@ const CommunityMostCommented = ({ image, name, author, comments }) => {
       </div>
       <h4>{name}</h4>
       <h5>{author.name}</h5>
-      <div className="photo-sorted__likes">
+      <div className="photo-sorted__comments">
         {comments.length < 1 ? (
           <i className="far fa-comments comments-icon"></i>
         ) : (
-          <div className="comments-num__container">
+          <div className="photo-sorted__comments">
             <i className="far fa-comments comments-icon"></i>
             <div className="comments-length">{comments.length}</div>
             {comments.length === 1 ? (

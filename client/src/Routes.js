@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { getPhotos } from "./redux/actions/photoActions";
 import { getUsers } from "./redux/actions/userActions";
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
 import Community from "./pages/Community";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -104,7 +103,7 @@ const Routes = () => {
         />
 
         <Route
-          path="/view-user/:id/user-photos/:id"
+          path="/view-user/:id/user-photo/:id"
           component={(props) => (
             <ViewUserPhoto
               photos={photos}
@@ -133,14 +132,14 @@ const Routes = () => {
         />
 
         <Route
-          path="/photos/:id/likes"
+          path="/photo/:id/likes"
           component={(props) => (
             <LikesList photos={photos} user={user} {...props} />
           )}
         />
 
         <Route
-          path="/photos/:id/comments"
+          path="/photo/:id/comments"
           component={(props) => (
             <PhotoComments
               user={user}
@@ -159,7 +158,7 @@ const Routes = () => {
         />
 
         <Route
-          path="/photos/:id"
+          path="/photo/:id"
           component={(props) => (
             <ViewPhoto
               photos={photos}
@@ -172,7 +171,7 @@ const Routes = () => {
         />
 
         <Route
-          path="/photos"
+          path="/"
           component={(props) => (
             <div>
               <PhotoList
@@ -187,7 +186,6 @@ const Routes = () => {
             </div>
           )}
         />
-        <Route path="/" component={Home} />
       </Switch>
       <Footer />
     </div>

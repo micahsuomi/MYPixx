@@ -26,6 +26,7 @@
   }
 }
 
+
 @media screen and (max-width: 1024px) {
   .search-form {
     width: 67vw;
@@ -38,6 +39,9 @@
       padding: 1rem;
       font-size: 8px;
       width: 77vw;
+    }
+    i {
+      right: 12%;
     }
   }
 }

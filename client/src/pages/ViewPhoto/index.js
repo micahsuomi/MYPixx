@@ -37,7 +37,7 @@ const ViewPhoto = (props) => {
     <div className="viewphoto">
       <div className="viewphoto__nested-container">
         <div className="viewphoto__exit-header">
-          <NavLink to="/photos" className="viewphoto__back-to-photos grow">
+          <NavLink to="/" className="viewphoto__back-to-photos grow">
             <i className="fas fa-times fa-2x"></i>
           </NavLink>
         </div>

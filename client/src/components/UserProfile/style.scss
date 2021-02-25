@@ -1,8 +1,16 @@
 @import "../../scss/abstracts/mixins.scss";
+.user-test-switched {
+  padding: 0 2rem 5rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.user-test-unswitched {
+  @include flex-property-column;
+}
 
 .user-details {
-  @include section-padding;
   @include flex-property-column;
+  padding: 0 2rem;
   line-height: 1.5;
   min-height: 60vh;
 
@@ -60,6 +68,10 @@
     margin-top: 3rem;
     @include three-col-grid;
     grid-gap: 1rem;
+  }
+  &__photos.switched {
+    overflow-y: scroll;
+    height: 40rem;
   }
   
 }

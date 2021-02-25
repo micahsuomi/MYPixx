@@ -17,7 +17,17 @@
       width: 100%;
     }
   }
-  &__likes {
-    font-family: "Roboto";
+  &__comments {
+    @include flex-property-row-center;
+    i {
+      color: rgba(88, 83, 83, 0.6);
+    }
+    span {
+      font-family: "Montserrat";
+      font-size: 14px;
+      font-weight: 700;
+      margin-left: .3rem;
+    }
+
   }
 }

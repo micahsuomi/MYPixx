@@ -19,6 +19,7 @@ import EditPopup from "../../components/EditPopup/index";
 import ErrorLoading from "../../components/ErrorLoading/index";
 import Loader from "../../components/PhotosLoading/index";
 import Pagination from "../../components/Pagination";
+import Home from "../Home"
 
 import "./style.scss";
 
@@ -41,7 +42,7 @@ const PhotoList = ({
   const indexFirstPhoto = indexLastPhoto - photosPerPage;
   const currentPhotos = photos?.slice(indexFirstPhoto, indexLastPhoto);
   const [showPullToRefresh, setShowPullToRefresh] = useState(false);
-  const [isUserPage, setIsUserPage] = useState(false);
+  const [isUserPage] = useState(false);
 
   const checkScreenSize = () => {
     const maxWidth = 500;
@@ -129,21 +130,13 @@ const PhotoList = ({
               className="pull-to-refresh"
             >
               <div>
-                {showPullToRefresh ? (
+                {showPullToRefresh && (
                   <div className="pull-to-refresh__wrapper">
                     <p>Pull To Refresh</p>
                     <i class="fas fa-chevron-down"></i>
                   </div>
-                ) : null}
-                {search === "" && !showPullToRefresh && (
-                  <>
-                    <Pagination
-                      itemsPerPage={photosPerPage}
-                      totalItems={photos?.length}
-                      currentPage={currentPage}
-                      paginate={paginate}
-                    />
-                    <div className="add-photo-link__container">
+                )}
+                 <div className="add-photo-link__container">
                       {isAuthenticated ? (
                         <AddPhotoButton />
                       ) : (
@@ -153,15 +146,25 @@ const PhotoList = ({
                         </h3>
                       )}
                     </div>
+                    <div>
+                  <div className="photo-gallery__wrapper">{photoList}</div>
+                </div>
+                {search === "" && !showPullToRefresh && (
+                  <>
+                    <Pagination
+                      itemsPerPage={photosPerPage}
+                      totalItems={photos?.length}
+                      currentPage={currentPage}
+                      paginate={paginate}
+                    />
+                   
                   </>
                 )}
 
                 {isPopupOpen && <AddPopup closePopup={closePopup} />}
                 {isEditPopupOpen && <EditPopup closePopup={closePopup} />}
 
-                <div>
-                  <div className="photo-gallery__wrapper">{photoList}</div>
-                </div>
+               
               </div>
             </PullToRefresh>
           </div>

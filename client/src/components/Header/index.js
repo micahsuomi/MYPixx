@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import Search from "../Search";
@@ -6,11 +6,26 @@ import Search from "../Search";
 import "./style.scss";
 
 const Header = ({ handleSubmit, handleChange, search, placeHolder }) => {
+  const [scrolled, setScrolled] = useState(false);
+
+  const changeHeader = () => {
+    if (window.scrollY >= 50 || window.innerWidth <= 800) {
+      setScrolled(true)
+    } else {
+      setScrolled(false)
+    }
+  };
+    
+  useEffect(() => {
+    changeHeader()
+    window.addEventListener('scroll', changeHeader)
+  });
+  
   return (
     <div
-      className="header"
+      className={scrolled ? "header scrolled" : "header"}
       style={{
-        height: `${search === "" ? "65vh" : "27vh"}`,
+        height: `${search === "" ? "81vh" : "23vh"}`,
         padding: `${search === "" ? "9rem 2rem" : "3rem 2rem"}`,
       }}
     >
@@ -26,6 +41,7 @@ const Header = ({ handleSubmit, handleChange, search, placeHolder }) => {
           handleChange={handleChange}
           search={search}
           placeHolder={placeHolder}
+          scrolled={scrolled}
         />
       </div>
     </div>

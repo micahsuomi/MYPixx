@@ -44,13 +44,13 @@ const PhotoItem = ({
     >
       {isUserPage ? (
         <NavLink
-          to={`/view-user/${authorId}/user-photos/${id}`}
+          to={`/view-user/${authorId}/user-photo/${id}`}
           className="view-photo__link"
         >
           <img src={image} alt={title} className="gallery-photo__image" />
         </NavLink>
       ) : (
-        <NavLink to={`/photos/${id}`} className="view-photo__link">
+        <NavLink to={`/photo/${id}`} className="view-photo__link">
           <img src={image} alt={title} className="gallery-photo__image" />
         </NavLink>
       )}

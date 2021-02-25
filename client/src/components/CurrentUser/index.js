@@ -17,15 +17,15 @@ const CurrentUser = ({
   isEditPopupOpen,
   closePopup,
   isUserPage,
+  switchView
 }) => {
   const closePopupOnClick = () => {
     closePopup();
   };
-  console.log('is user page', isUserPage)
-  
+
   return (
-    <>
-      <div className="user-details">
+    <div className={switchView ? "user-test-switched" : "user-test-unswitched"}>
+      <div className="user-details animate-modal">
         <h1>{name} Dashboard</h1>
         <p>{email}</p>
         <div className="user-details__image-container">
@@ -83,7 +83,7 @@ const CurrentUser = ({
         ) : (
           <h4>{photos.length} photos</h4>
         )}
-        <div className="user-details__photos">
+      <div className={switchView ? "user-details__photos switched" : "user-details__photos"}>
           {photos.map((photo) => (
             <PhotoItem
               key={photo._id}
@@ -101,7 +101,7 @@ const CurrentUser = ({
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

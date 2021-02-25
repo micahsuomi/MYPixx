@@ -1,7 +1,14 @@
 @import "../../scss/abstracts/mixins.scss";
 
+.switch-view-btn {
+  @include standard-button;
+  margin-top: 5rem;
+  width: 10rem;
+}
+.switch-view-btn:active {
+  outline: none;
+}
 .user-details {
-  @include section-padding;
   @include flex-property-column;
   line-height: 1.5;
   min-height: 100vh;

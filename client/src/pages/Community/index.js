@@ -34,7 +34,7 @@ const Community = ({ users, photos }) => {
           {sortedByLikes.map((photo) => (
             <NavLink
               key={photo._id}
-              to={`/photos/${photo._id}`}
+              to={`/photo/${photo._id}`}
               className="community__most-commented-link"
             >
               <CommunityMostCommented
@@ -55,7 +55,7 @@ const Community = ({ users, photos }) => {
           {sortedByComments.map((photo) => (
             <NavLink
               key={photo._id}
-              to={`/photos/${photo._id}`}
+              to={`/photo/${photo._id}`}
               className="community__most-liked-link"
             >
               <CommunityMostLiked

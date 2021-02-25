@@ -59,7 +59,7 @@ const AddPhoto = ({ history }) => {
     dispatch(addPhoto(newPhoto));
     setTimeout(() => {
       dispatch(getUsers());
-      history.push("/photos");
+      history.push("/");
     }, 2000);
   };
 
@@ -112,7 +112,7 @@ const AddPhoto = ({ history }) => {
     <div className="add-photo">
       <form onSubmit={handleSubmit} className="add-photo__form animate-modal">
         <div className="add-photo__cancel-wrapper">
-          <NavLink to="/photos" className="delete-link">
+          <NavLink to="/" className="delete-link">
             <i className="fas fa-times-circle fa-2x grow"></i>
           </NavLink>
         </div>

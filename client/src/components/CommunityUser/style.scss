@@ -45,8 +45,9 @@
     @include flex-property-column;
     li {
       margin-top: 0.6rem;
-      font-family: "Roboto";
+      font-family: "Open sans";
       color: var(--dark);
+      font-size: 15px;
     }
   }
 }

@@ -2,7 +2,17 @@
 
 .navbar-link {
   @include flex-property-row-center;
+  i {
+    color: white;
+  }
   span {
     font-size: var(--font-size-small);
+    color: white;
+    font-family: "Montserrat";
+  }
+  .navbar-link.scrolled {
+    span, i {
+      color: rgb(75, 74, 74);
+    }
   }
 }

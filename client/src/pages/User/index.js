@@ -15,6 +15,7 @@ const User = (props) => {
   const currentUser = useSelector((state) => state.user.user);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const [userLoaded, setUserLoaded] = useState(false);
+  const [switchView, setSwitchView] = useState(false);
 
   const loadUser = async () => {
     try {
@@ -43,6 +44,9 @@ const User = (props) => {
     props.closePopup();
   };
 
+  const switchViewOnClick = () => {
+    setSwitchView(!switchView);
+  }
   const { avatar, name, medium, bio, photos } = userProfile;
 
   if (!userProfile || !currentUserProfile) {
@@ -57,6 +61,7 @@ const User = (props) => {
     <>
       {userLoaded ? (
         <>
+        <button className="switch-view-btn" onClick={switchViewOnClick}>Switch View</button>
           {isAuthenticated && currentUserProfile._id === props.match.params.id ? (
             <CurrentUser
               id={currentUserProfile._id}
@@ -70,6 +75,7 @@ const User = (props) => {
               closePopup={closePopup}
               user={currentUserProfile}
               isUserPage={isUserPage}
+              switchView={switchView}
             />
           ) : (
             <UserProfile
@@ -80,6 +86,7 @@ const User = (props) => {
               photos={photos}
               user={currentUser}
               isUserPage={isUserPage}
+              switchView={switchView}
             />
           )}
         </>
