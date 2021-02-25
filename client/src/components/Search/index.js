@@ -15,7 +15,6 @@ const Search = ({ search, handleSubmit, handleChange, scrolled }) => {
           value={search}
           onChange={handleChange}
         />
-        <i className="fas fa-search"></i>
       </form>
   );
 };

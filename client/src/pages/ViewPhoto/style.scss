@@ -348,13 +348,17 @@ button {
       margin-top: 2rem;
     }
     &__container {
-      width: 100vw;
+      width: 97vw;
       color: var(--dark);
       background-color: #f7f3f3;
-      padding: 2rem 0rem;    
+      padding: 2rem 1rem;    
     }
     &__header {
       width: 96vw;
+  }
+  &__image {
+    width: 100%;
+    align-self: center;
   }
   &__edit-delete-wrapper i {
       height: 2rem;

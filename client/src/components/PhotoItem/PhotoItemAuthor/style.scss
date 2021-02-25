@@ -23,3 +23,12 @@
     margin-left: 0.6rem;
   }
 }
+@media screen and (max-width: 500px) {
+  .author {
+    &__image-container {
+      height: 30px;
+      width: 30px;
+    }
+  }
+
+}

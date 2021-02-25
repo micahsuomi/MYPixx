@@ -95,5 +95,8 @@
     span {
       line-height: 2.9;
     }
+    &__photos {
+      grid-template-columns: 1fr;
+    }
   }
 }

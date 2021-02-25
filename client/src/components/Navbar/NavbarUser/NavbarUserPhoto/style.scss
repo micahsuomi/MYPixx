@@ -12,7 +12,18 @@
     height: 100%;
   }
 }
+@media screen and (max-width: 1024px) {
+  .nav-user-image {
+    margin-left: 7rem;
 
+  }
+}
+@media screen and (max-width: 768px) {
+  .nav-user-image {
+    margin-left: 5rem;
+
+  }
+}
 @media screen and (max-width: 500px) {
   .nav-user-image {
     height: 22px;

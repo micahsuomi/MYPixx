@@ -13,7 +13,7 @@ const NavbarUserLogin = ({ toggle, scrolled }) => {
   return (
     <NavLink
       to="/login"
-      className={scrolled ? "navbar-link scrolled " : "navbar-link"}
+      className={scrolled ? "navbar__link scrolled " : "navbar-link"}
       activeStyle={scrolled ? activeStyleScrolled : activeStyle}
       onClick={toggle}
     >

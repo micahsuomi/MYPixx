@@ -39,13 +39,9 @@
 }
 
 
-@media screen and (max-width: 1024px) {
-  .header {
-    height: 35vh;
-  }
-}
 @media screen and (max-width: 500px) {
   .header {
-    height: 43vh;
-  }
+    &__title {
+      display: none;
+    }  }
 }

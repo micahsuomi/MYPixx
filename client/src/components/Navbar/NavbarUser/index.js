@@ -16,7 +16,7 @@ const NavbarUser = ({
       <li>
         <NavLink to="/addphoto" 
           onClick={toggle} 
-          className={scrolled ? "navbar-link scrolled" : "navbar-link"}
+          className={scrolled ? "navbar__link scrolled" : "navbar__link"}
           activeStyle={{ color: "black" }}
           >
           <i className="fas fa-pen grow" title="add to gallery"></i>
@@ -25,7 +25,7 @@ const NavbarUser = ({
       <li>
         <NavLink
           to={`/user/${user._id}`}
-          className={scrolled ? "navbar-link scrolled " : "navbar-link"}
+          className={scrolled ? "navbar__link nav-user-link scrolled " : "navbar__link nav-user-link"}
           activeStyle={{ color: "var(--secondary)" }}
           onClick={toggle}
         >

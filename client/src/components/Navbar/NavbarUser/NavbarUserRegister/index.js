@@ -8,7 +8,7 @@ const NavbarUserRegister = ({ toggle, scrolled }) => {
   return (
     <NavLink
       to="/register"
-      className={scrolled ? "navbar-link scrolled " : "navbar-link"}
+      className={scrolled ? "navbar__link scrolled " : "navbar-link"}
       activeStyle={scrolled ? activeStyleScrolled : activeStyle}
       onClick={toggle}
     >

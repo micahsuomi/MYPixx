@@ -16,10 +16,10 @@ const NavbarUserLogout = ({ scrolled }) => {
   return (
     <NavLink
       to="/"
-      className={scrolled ? "navbar-link scrolled " : "navbar-link"}
+      className={scrolled ? "navbar__link scrolled " : "navbar__link"}
       onClick={logoutOnClick}
     >
-      <i className="fas fa-sign-out-alt nav-list__icon" title="logout"></i>
+      <i className="fas fa-sign-out-alt" title="logout"></i>
       <span> Logout</span>
     </NavLink>
   );

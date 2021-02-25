@@ -20,13 +20,13 @@ const Header = ({ handleSubmit, handleChange, search, placeHolder }) => {
     changeHeader()
     window.addEventListener('scroll', changeHeader)
   });
-  
+
   return (
     <div
       className={scrolled ? "header scrolled" : "header"}
       style={{
-        height: `${search === "" ? "81vh" : "23vh"}`,
-        padding: `${search === "" ? "9rem 2rem" : "3rem 2rem"}`,
+        height: `${search === "" && window.innerWidth > 1024 ? "81vh" : "23vh"}`,
+        padding: `${search === "" && window.innerWidth > 1024 ? "9rem 2rem" : "5rem 2rem"}`,
       }}
     >
       <div className="header__wrapper">

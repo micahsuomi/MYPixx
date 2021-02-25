@@ -7,10 +7,7 @@ import NavbarUser from "./NavbarUser/index";
 import NavbarUserRegister from "./NavbarUser/NavbarUserRegister/index";
 import NavbarUserLogin from "./NavbarUser/NavbarUserLogin/index";
 import NavbarUserLogout from "./NavbarUser/NavbarUserLogout/index";
-import {
-  activeStyle,
-  activeStyleScrolled
-} from "../../utils/navStyles"
+import { activeStyle, activeStyleScrolled } from "../../utils/navStyles";
 
 import "./style.scss";
 
@@ -21,75 +18,73 @@ const Navbar = () => {
   const navList = "nav-list";
   const navListOpen = "nav-list open";
   const [scrolled, setScrolled] = useState(false);
- 
+
   const toggle = () => {
     setState(!isClicked);
   };
 
   const changeBackground = () => {
     if (window.scrollY >= 50 || window.innerWidth <= 800) {
-      setScrolled(true)
+      setScrolled(true);
     } else {
-      setScrolled(false)
+      setScrolled(false);
     }
   };
 
   useEffect(() => {
-    changeBackground()
-    window.addEventListener('scroll', changeBackground)
+    changeBackground();
+    window.addEventListener("scroll", changeBackground);
   });
 
   return (
-    <div className={scrolled ? "navbar active" : "navbar"}>
+    <nav className={scrolled ? "navbar active" : "navbar"}>
       <NavbarLogo />
-      <ul className={isClicked ? navListOpen : navList}>
+      <ul className="navbar__list-left">
         <li>
           <NavLink
             to="/"
-            className={scrolled ? "navbar-link scrolled" : "navbar-link"}
+            className={scrolled ? "navbar__link scrolled" : "navbar__link"}
             activeStyle={scrolled ? activeStyleScrolled : activeStyle}
             onClick={toggle}
           >
-            <i className="fas fa-home grow" title="home">
-            </i>
+            <i className="fas fa-home grow" title="home"></i>
             <span>Home</span>
           </NavLink>
         </li>
         <li>
           <NavLink
             to="/community"
-            className={scrolled ? "navbar-link scrolled" : "navbar-link"}
+            className={scrolled ? "navbar__link scrolled" : "navbar__link"}
             activeStyle={scrolled ? activeStyleScrolled : activeStyle}
             onClick={toggle}
           >
-            <i className="fas fa-users grow" title="community">
-            </i>
+            <i className="fas fa-users grow" title="community"></i>
             <span> Community</span>
           </NavLink>
         </li>
-        {isAuthenticated && user && (
-          <NavbarUser user={user} toggle={toggle}
-           scrolled={scrolled} />
+        </ul>
+        <ul className="navbar__list-right">
+        {isAuthenticated && user ? (
+          <>
+            <li>
+              <NavbarUser user={user} toggle={toggle} scrolled={scrolled} />
+            </li>
+            <li>
+              <NavbarUserLogout toggle={toggle} scrolled={scrolled} />
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <NavbarUserRegister toggle={toggle} scrolled={scrolled} />
+            </li>
+            <li>
+              <NavbarUserLogin toggle={toggle} scrolled={scrolled} />
+            </li>
+          </>
         )}
-        <li>
-          {isAuthenticated && user ? (
-            <NavbarUserLogout toggle={toggle}
-             scrolled={scrolled} />
-          ) : (
-            <ul className="register-login">
-              <li>
-                <NavbarUserRegister toggle={toggle}
-                 scrolled={scrolled} />
-              </li>
-              <li className="login">
-                <NavbarUserLogin toggle={toggle}
-                 scrolled={scrolled} />
-              </li>
-            </ul>
-          )}
-        </li>
       </ul>
-    </div>
+    </nav>
   );
 };
 

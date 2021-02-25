@@ -53,7 +53,7 @@ const PhotoList = ({
 
   useEffect(() => {
     checkScreenSize();
-  }, [])
+  })
   
   const onRefresh = () => {
     dispatch(getPhotos());
@@ -133,7 +133,7 @@ const PhotoList = ({
                 {showPullToRefresh && (
                   <div className="pull-to-refresh__wrapper">
                     <p>Pull To Refresh</p>
-                    <i class="fas fa-chevron-down"></i>
+                    <i className="fas fa-chevron-down"></i>
                   </div>
                 )}
                  <div className="add-photo-link__container">
@@ -160,11 +160,8 @@ const PhotoList = ({
                    
                   </>
                 )}
-
                 {isPopupOpen && <AddPopup closePopup={closePopup} />}
                 {isEditPopupOpen && <EditPopup closePopup={closePopup} />}
-
-               
               </div>
             </PullToRefresh>
           </div>
