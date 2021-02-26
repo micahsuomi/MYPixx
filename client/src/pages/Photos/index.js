@@ -116,7 +116,7 @@ const PhotoList = ({
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
-      <div className="photo-gallery__container">
+      <div className="photo-gallery">
         {isLoading ? (
           <div>
             <PullToRefresh
@@ -137,13 +137,8 @@ const PhotoList = ({
                   </div>
                 )}
                  <div className="add-photo-link__container">
-                      {isAuthenticated ? (
+                      {isAuthenticated && (
                         <AddPhotoButton />
-                      ) : (
-                        <h3 className="login-msg">
-                          <NavLink to="/login">Login</NavLink> to Upload Your
-                          Pictures
-                        </h3>
                       )}
                     </div>
                     <div>

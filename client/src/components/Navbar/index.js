@@ -15,8 +15,6 @@ const Navbar = () => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const user = useSelector((state) => state.user.user);
   const [isClicked, setState] = useState(false);
-  const navList = "nav-list";
-  const navListOpen = "nav-list open";
   const [scrolled, setScrolled] = useState(false);
 
   const toggle = () => {

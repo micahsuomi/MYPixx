@@ -132,8 +132,8 @@ const Register = ({ history }) => {
           </div>
         </div>
       ) : (
-        <div className="registration-container">
-          <form onSubmit={handleSubmit} className="register-form">
+        <div className="registration">
+          <form onSubmit={handleSubmit} className="registration__form">
             <h2>Sign up to MyPixx</h2>
 
             <div className="input-topics">
@@ -215,15 +215,15 @@ const Register = ({ history }) => {
             <p>
               Have an account already? <NavLink to="/login">Sign in</NavLink>
             </p>
-            <div className="register-form__btn-save__wrapper">
+            <div className="registration__btn-wrapper">
               {
                 errors.name ||
                 errors.email ||
                 errors.password ||
                 errors.repeatPassword ? 
-                <button className="register-form__btn-register--disabled" disabled>Sign Up</button>
+                <button className="registration__btn-register--disabled" disabled>Sign Up</button>
                 :
-                <button className="register-form__btn-register">Sign Up</button>
+                <button className="registration__btn-register">Sign Up</button>
 
               }
             </div>

@@ -44,8 +44,8 @@ const Login = (props) => {
   });
 
   return (
-    <div className="login-container">
-      <form onSubmit={handleSubmit} className="login-form">
+    <div className="login">
+      <form onSubmit={handleSubmit} className="login__form">
         <h2>Sign in to MyPixx</h2>
 
         <p className="warning-msg">{errorMsg}</p>
@@ -73,8 +73,8 @@ const Login = (props) => {
           />
         </div>
 
-        <div className="btn-save__wrapper">
-          <button className="btn-login">Sign In</button>
+        <div className="login__btn-wrapper">
+          <button className="login__btn-login">Sign In</button>
         </div>
         <p>
           Don't have an account yet? <NavLink to="/register">Sign up</NavLink>{" "}

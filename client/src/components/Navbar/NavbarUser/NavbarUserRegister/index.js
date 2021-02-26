@@ -8,13 +8,13 @@ const NavbarUserRegister = ({ toggle, scrolled }) => {
   return (
     <NavLink
       to="/register"
-      className={scrolled ? "navbar__link scrolled " : "navbar-link"}
+      className={scrolled ? "navbar__link scrolled " : "navbar__link"}
       activeStyle={scrolled ? activeStyleScrolled : activeStyle}
       onClick={toggle}
     >
       <i className="fas fa-user-plus grow" title="register">
-        <span> Register</span>
       </i>
+      <span>Register</span>
     </NavLink>
   );
 };

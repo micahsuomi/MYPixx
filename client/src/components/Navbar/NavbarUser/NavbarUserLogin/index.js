@@ -7,13 +7,11 @@ import {
   activeStyleScrolled
 } from "../../../../utils/navStyles";
 
-import './style.scss'
-
 const NavbarUserLogin = ({ toggle, scrolled }) => {
   return (
     <NavLink
       to="/login"
-      className={scrolled ? "navbar__link scrolled " : "navbar-link"}
+      className={scrolled ? "navbar__link scrolled " : "navbar__link"}
       activeStyle={scrolled ? activeStyleScrolled : activeStyle}
       onClick={toggle}
     >
