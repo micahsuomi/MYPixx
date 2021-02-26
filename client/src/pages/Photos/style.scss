@@ -5,12 +5,7 @@
   display: flex;
   justify-content: flex-start;
   width: 100vw;
-  &__wrapper {
-    margin-top: 3rem;
-    padding: 0 2rem;
-    @include three-col-grid;
-    grid-gap: 2rem;
-  }
+ 
 }
 
 .photo-gallery {
@@ -19,6 +14,12 @@
   @include flex-property-column;
   min-height: 100vh;
   position: relative;
+  &__wrapper {
+    margin-top: 3rem;
+    padding: 0 2rem;
+    @include three-col-grid;
+    grid-gap: 2rem;
+  }
 }
 
 .pull-to-refresh {
@@ -135,13 +136,14 @@
 }
 
 @media screen and (max-width: 768px) {
-  .photo-gallery__container {
+  .photo-gallery {
     padding: 3rem 2rem;
+    &__wrapper {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
-  .photo-gallery__wrapper {
-    grid-template-columns: repeat(2, 1fr);
-  }
+ 
 }
 
 @media screen and (max-width: 500px) {
