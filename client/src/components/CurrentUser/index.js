@@ -24,7 +24,7 @@ const CurrentUser = ({
   };
 
   return (
-    <div className={switchView ? "user-test-switched" : "user-test-unswitched"}>
+    <div className={switchView ? "user-switched" : "user-unswitched"}>
       <div className="user-details animate-modal">
         <h1>{name} Dashboard</h1>
         <p>{email}</p>

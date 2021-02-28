@@ -22,7 +22,7 @@
     text-decoration: none;
   }
   &__users-wrapper {
-    @include three-col-grid;
+    @include four-col-grid;
     grid-gap: 1rem;
     margin-top: 3rem;
   }

@@ -1,10 +1,10 @@
 @import "../../scss/abstracts/mixins.scss";
 
 .community-user {
-  padding: 1rem 2rem;
+  padding: 1rem 1rem;
   @include flex-property-column;
   box-shadow: 0 1rem 1rem rgba(88, 83, 83, 0.6);
-  width: 16rem;
+  width: 15rem;
   height: 21rem;
   text-decoration: none;
   color: var(--primary-dark);
@@ -13,8 +13,8 @@
   &__image-container {
     display: inline-block;
     overflow: hidden;
-    height: 130px;
-    width: 130px;
+    height: 110px;
+    width: 110px;
     object-fit: cover;
     margin-top: 1rem;
     border-radius: 50%;

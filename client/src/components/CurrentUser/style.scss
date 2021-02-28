@@ -1,10 +1,10 @@
 @import "../../scss/abstracts/mixins.scss";
-.user-test-switched {
+.user-switched {
   padding: 0 2rem 5rem 2rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
-.user-test-unswitched {
+.user-unswitched {
   @include flex-property-column;
 }
 
@@ -13,6 +13,7 @@
   padding: 0 2rem;
   line-height: 1.5;
   min-height: 60vh;
+  justify-content: flex-start;
 
   h1 {
     text-align: center;

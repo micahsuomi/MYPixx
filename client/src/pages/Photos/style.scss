@@ -1,19 +1,19 @@
 @import "../../scss/abstracts/mixins.scss";
 
-.add-photo-link__container {
-  padding: 1rem;
-  display: flex;
-  justify-content: flex-start;
-  width: 100vw;
- 
-}
-
 .photo-gallery {
   padding: 2rem 3rem;
   background-color: #fcfafa;
   @include flex-property-column;
   min-height: 100vh;
   position: relative;
+  &__add-photo-sort {
+    @include flex-property-row-space-between;
+    width: 93vw;
+  }
+  &__result-msg {
+    @include flex-property-column;
+    min-height: 82vh;
+  }
   &__wrapper {
     margin-top: 3rem;
     padding: 0 2rem;

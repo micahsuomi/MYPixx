@@ -26,7 +26,7 @@ const Header = ({ handleSubmit, handleChange, search, placeHolder }) => {
       className={scrolled ? "header scrolled" : "header"}
       style={{
         height: `${search === "" && window.innerWidth > 1024 ? "81vh" : "23vh"}`,
-        padding: `${search === "" && window.innerWidth > 1024 ? "9rem 2rem" : "5rem 2rem"}`,
+        padding: `${search === "" && window.innerWidth > 1024 ? "9rem 2rem" : "1rem 2rem"}`,
       }}
     >
       <div className="header__wrapper">
