@@ -49,6 +49,26 @@
       border: 1px solid lightgray;
       margin-top: 0.6rem;
     }
+    input[type="text"] {
+      background: url("../../imgs/user-solid.svg");
+      background-repeat: no-repeat;
+      background-size: 6% auto;
+      background-position: 96.5% 50%;
+    }
+
+    input[type="email"] {
+      background: url("../../imgs/envelope-solid.svg");
+      background-repeat: no-repeat;
+      background-size: 6% auto;
+      background-position: 96.5% 50%;
+    }
+
+    input[type="password"] {
+      background: url("../../imgs/lock-solid.svg");
+      background-repeat: no-repeat;
+      background-size: 6% auto;
+      background-position: 96.5% 50%;
+    }
     .password-input:active {
       outline: none;
     }

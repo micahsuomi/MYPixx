@@ -29,15 +29,6 @@
     background-color: white;
     width: 27rem;
 
-    input {
-      width: 20rem;
-      padding: 0.6rem;
-      font-size: 16px;
-      border-radius: 3px;
-      border: 1px solid lightgray;
-      margin-top: 0.6rem;
-    }
-
     .input-topics {
       display: flex;
       justify-content: center;
@@ -48,6 +39,29 @@
 
     label {
       align-self: flex-start;
+    }
+
+    input {
+      width: 20rem;
+      padding: 0.6rem;
+      font-size: 16px;
+      border-radius: 3px;
+      border: 1px solid lightgray;
+      margin-top: 0.6rem;
+    }
+
+    input[type="email"] {
+      background: url("../../imgs/envelope-solid.svg");
+      background-repeat: no-repeat;
+      background-size: 6% auto;
+      background-position: 96.5% 50%;
+    }
+
+    input[type="password"] {
+      background: url("../../imgs/lock-solid.svg");
+      background-repeat: no-repeat;
+      background-size: 6% auto;
+      background-position: 96.5% 50%;
     }
 
     textarea {

@@ -13,7 +13,7 @@ import usePhotos from "../../hooks/usePhotos";
 import Header from "../../components/Header";
 import PhotoItem from "../../components/PhotoItem/index";
 import AddPhotoButton from "../../components/AddPhotoButton/index";
-import SortPhotoButton from "../../components/SortPhotosButton";
+import SelectCategoryForm from "../../components/SelectCategoryForm";
 import AddPopup from "../../components/AddPopup/index";
 import EditPopup from "../../components/EditPopup/index";
 import ErrorLoading from "../../components/ErrorLoading/index";
@@ -143,7 +143,7 @@ const PhotoList = (
                 )}
                 <div className="photo-gallery__add-photo-sort">
                   {isAuthenticated && <AddPhotoButton />}
-                  <SortPhotoButton selectCategory={selectCategoryOnClick} />
+                  <SelectCategoryForm selectCategory={selectCategoryOnClick} />
                 </div>
                 <div>
                   {resultMsg ? (

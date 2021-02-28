@@ -19,6 +19,7 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case REGISTER_SUCCESS:
+      console.log(isValidated)
       return {
         ...state,
         ...action.payload,
@@ -38,6 +39,7 @@ export default function (state = initialState, action) {
     case LOGIN_FAIL:
     case LOGOUT_SUCCESS:
       localStorage.removeItem("token");
+      console.log(isValidated)
       return {
         ...state,
         token: null,

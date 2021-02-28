@@ -26,6 +26,7 @@ const inputStyleValidated = {
 
 const Register = ({ history }) => {
   const isValidated = useSelector((state) => state.user.isValidated);
+  console.log(isValidated)
   const errorMsg = useSelector((state) => state.error.msg.msg);
   const [isRegistered, setIsRegistered] = useState(false);
   const dispatch = useDispatch();

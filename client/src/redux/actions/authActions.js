@@ -22,15 +22,16 @@ export const register = ({ name, email, password, repeatPassword }) => {
       };
       const body = JSON.stringify({ name, email, password, repeatPassword });
       const res = await axios.post(`${proxyUrl}/api/v1/user`, body, config);
+      console.log(res)
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
     } catch (err) {
-      console.log(err);
       dispatch({
         type: REGISTER_FAIL,
       });
+      console.log(err);
       // dispatch(showErrors(err.res.data, err.res.status));
     }
   };
@@ -45,12 +46,11 @@ export const login = ({ email, password }) => {
         },
       };
       const body = JSON.stringify({ email, password });
-      const res = await axios.post(`${proxyUrl}/api/v1/auth`, body, config);
+      const res = await axios.post(`api/v1/auth`, body, config);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
-      console.log(res)
     } catch (err) {
       console.log(err)
       dispatch({

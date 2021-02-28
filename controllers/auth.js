@@ -10,7 +10,6 @@ const login =
   (req, res) => {
     //we destructure email and password from req.body
     const { email, password } = req.body
-    console.log('req body', email, password)
     //simple validation not to leave the fields empty, else we throw a 400 bad request message
     if (!email || !password) {
       return res.status(400).json({ msg: 'please enter all fields' })

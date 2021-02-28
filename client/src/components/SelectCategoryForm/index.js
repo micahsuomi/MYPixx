@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import "./style.scss";
 
-const SortPhotoButton = ({ selectCategory }) => {
+const SelectCategoryForm = ({ selectCategory }) => {
    
     const handleChange = (e) => {
         const { value } = e.target;
@@ -24,9 +24,9 @@ const SortPhotoButton = ({ selectCategory }) => {
     )
 }
 
-export default SortPhotoButton;
+export default SelectCategoryForm;
 
-SortPhotoButton.propTypes = {
+SelectCategoryForm.propTypes = {
     openCategories: PropTypes.bool,
   };
 
