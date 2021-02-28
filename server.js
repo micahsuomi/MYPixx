@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable semi */
-/* eslint-disable quotes */
 require("dotenv").config();
 
 const express = require("express");

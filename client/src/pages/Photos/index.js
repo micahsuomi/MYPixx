@@ -156,7 +156,6 @@ const PhotoList = (
                 </div>
                 {!search &&
                   !showPullToRefresh &&
-                  !category &&
                   category === "all" && (
                     <>
                       <Pagination

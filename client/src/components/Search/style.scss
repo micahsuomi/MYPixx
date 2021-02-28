@@ -10,6 +10,15 @@
     border-radius: 8px;
     border: none;
     font-family: "open sans";
+    border: 1px solid white;
+    color: white;
+  }
+
+  input[type="text"] {
+    background: url("../../imgs/search-solid.svg");
+    background-repeat: no-repeat;
+    background-size: 6% auto;
+    background-position: 96.5% 50%;
   }
 
   input:focus {
