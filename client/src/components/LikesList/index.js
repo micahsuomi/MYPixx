@@ -36,7 +36,7 @@ const LikesList = (props) => {
     <div className="likes">
       <div className="likes__wrapper">
         <div className="likes__header">
-          <NavLink to={`/photos/${props.match.params.id}`}>
+          <NavLink to={`/photo/${props.match.params.id}`}>
             <i className="fas fa-chevron-left fa-2x grow"></i>
           </NavLink>
         </div>

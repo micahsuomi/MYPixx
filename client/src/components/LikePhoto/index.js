@@ -48,7 +48,7 @@ const LikePhoto = ({
         )}
         {likes.length > 0 ? (
           <NavLink
-            to={`/photos/${match.params.id}/likes`}
+            to={`/photo/${match.params.id}/likes`}
             className="likes-number grow"
           >
             {likes.length}
