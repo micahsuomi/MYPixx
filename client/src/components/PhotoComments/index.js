@@ -35,7 +35,7 @@ const Comments = ({ isAuthenticated, users, user, match, history }, props) => {
   };
 
   const setCommentClose = () => {
-    history.push(`/photos/${photoId}/comments`);
+    history.push(`/photo/${photoId}/comments`);
     dispatch(getComments(photoId));
     closeCommentField();
     setComment({ text: "" });
@@ -95,7 +95,7 @@ const Comments = ({ isAuthenticated, users, user, match, history }, props) => {
         style={{ overflowY: showOverflow && "hidden" }}
       >
         <div className="comments__header">
-          <NavLink to={`/photos/${match.params.id}`}>
+          <NavLink to={`/photo/${match.params.id}`}>
             <i className="fas fa-chevron-left grow"></i>
           </NavLink>
         </div>

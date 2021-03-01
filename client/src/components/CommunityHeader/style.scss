@@ -3,7 +3,7 @@
 .community-header {
   h1 {
   text-align: center;
-  color: rgb(150, 132, 132);
+  color: var(--overlay-mask);
   font-family: "Sansita Swashed", cursive;
 }
 &__paragraph {

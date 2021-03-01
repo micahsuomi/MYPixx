@@ -6,9 +6,14 @@
   padding: 13rem 8rem;
   background-color: #fcfafa;
   &__most-commented,
-  &__most-liked {
-    padding: 4rem 5rem;
-    margin-top: 3rem;
+  &__most-liked,
+  &__users {
+    padding: 3rem 5rem;
+    margin-top: .5rem;
+    h4 {
+      font-family: "Sansita Swashed", cursive;
+      color: var(--overlay-mask);
+    }
   }
   &__most-commented-wrapper,
   &__most-liked-wrapper {

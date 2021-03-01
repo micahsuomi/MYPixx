@@ -69,7 +69,7 @@ const EditPhoto = (props) => {
 
     dispatch(editPhoto(id, photo));
     setTimeout(() => {
-      props.history.push("/photos");
+      props.history.push("/");
       setTimeout(() => {
         dispatch(getPhotos());
       }, 2000);

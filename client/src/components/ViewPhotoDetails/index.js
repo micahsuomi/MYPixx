@@ -140,7 +140,7 @@ const ViewPhotoDetails = (
 
               <div className="viewphoto__comments-link-container">
                 <NavLink
-                  to={`/photos/${id}/comments`}
+                  to={`/photo/${id}/comments`}
                   className="comments-link"
                 >
                   {comments.length < 1 ? (

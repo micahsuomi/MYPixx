@@ -14,7 +14,7 @@ const DeletePhoto = ({ id, history }) => {
   const deleteOnClick = () => {
     dispatch(deletePhoto(id));
     setTimeout(() => {
-      history.push("/photos");
+      history.push("/");
       dispatch(getUsers());
     }, 1000);
   };
@@ -23,7 +23,7 @@ const DeletePhoto = ({ id, history }) => {
     <div className="delete-photo animate-modal">
       <div className="delete-photo__wrapper">
         <div className="delete-photo__cancel-wrapper">
-          <NavLink to={`/photos/${id}`} className="delete-link">
+          <NavLink to={`/photo/${id}`} className="delete-link">
             <i className="fas fa-times-circle fa-2x"></i>
           </NavLink>
         </div>
