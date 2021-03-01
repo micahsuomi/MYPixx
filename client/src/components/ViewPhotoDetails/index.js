@@ -106,7 +106,7 @@ const ViewPhotoDetails = (
                   <p>
                     Tags:{" "}
                     {medium.map((t) => (
-                      <span>{`${t}`} </span>
+                      <span key={t}>{`${t}`} </span>
                     ))}
                   </p>
                   <p>Description: {description}</p>

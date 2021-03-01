@@ -278,7 +278,7 @@ const EditPhoto = (props) => {
               <div className="edit-photo__medium-container">
                 <div className="edit-photo__medium-wrapper">
                   {mediumArr.map((t) => (
-                    <div className="edit-photo__medium-item grow animate-modal">
+                    <div className="edit-photo__medium-item grow animate-modal" key={t}>
                       <div className="edit-photo__medium-item-body">
                         <p>{`${t}`}</p>
                       </div>

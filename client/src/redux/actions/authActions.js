@@ -31,8 +31,7 @@ export const register = ({ name, email, password, repeatPassword }) => {
       dispatch({
         type: REGISTER_FAIL,
       });
-      console.log(err);
-      // dispatch(showErrors(err.res.data, err.res.status));
+      dispatch(showErrors(err.response.data, err.response.status));
     }
   };
 };
@@ -52,12 +51,10 @@ export const login = ({ email, password }) => {
         payload: res.data,
       });
     } catch (err) {
-      console.log(err)
       dispatch({
         type: LOGIN_FAIL,
       });
-      
-      // dispatch(showErrors(err.res.data, err.res.status));
+      dispatch(showErrors(err.response.data, err.response.status));
     } 
   };
 };

@@ -40,7 +40,7 @@ const User = (props) => {
       loadUser();
       setIsUserPage(true);
     }
-  }, [isAuthenticated, dispatch, getUser, props.match.params.id]);
+  }, [isAuthenticated, dispatch, currentUser, props.match.params.id]);
 
   const closePopup = () => {
     props.closePopup();
