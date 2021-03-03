@@ -118,7 +118,7 @@ const AddPhoto = ({ history }) => {
         </div>
 
         <h2>Add gallery item</h2>
-        <div className="input-topics">
+        <div className="add-photo__input-topics">
           <label htmlFor="image">Image </label>
           <input
             type="file"
@@ -136,7 +136,7 @@ const AddPhoto = ({ history }) => {
             style={{ height: "200px" }}
           />
         )}
-        <div className="input-topics">
+        <div className="add-photo__input-topics">
           <label htmlFor="name">Title</label>
           <input
             type="text"
@@ -148,7 +148,7 @@ const AddPhoto = ({ history }) => {
           />
         </div>
 
-        <div className="input-topics">
+        <div className="add-photo__input-topics">
           <label htmlFor="type">Type</label>
           <select name="type" value={type} onChange={handleChange}>
             <option value="">---select type</option>
@@ -161,7 +161,7 @@ const AddPhoto = ({ history }) => {
           </select>
         </div>
 
-        <div className="input-topics">
+        <div className="add-photo__input-topics">
           <label htmlFor="medium">Tags</label>
           <div className="input-topics-medium">
             <input
@@ -200,7 +200,7 @@ const AddPhoto = ({ history }) => {
           {medium.length < 1 || medium !== '' || isMediumDup && warning}
         </div>
 
-        <div className="input-topics">
+        <div className="add-photo__input-topics">
           <label htmlFor="description">Description</label>
           <input
             type="text"

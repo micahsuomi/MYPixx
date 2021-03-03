@@ -48,7 +48,8 @@
   &__add-comment-btn {
     @include standard-button;
     margin-top: 2rem;
-    width: 12rem;
+    width: 20rem;
+    padding: .6rem;
     @include flex-property-row-center;
     i {
       color: white;

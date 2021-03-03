@@ -10,11 +10,11 @@
     flex-direction: row;
     textarea {
       margin-top: 1.5rem;
-      width: 26rem;
-      height: 3.5rem;
+      width: 20rem;
+      height: 3rem;
       font-family: "Open sans";
-      padding: 0.9rem;
-      font-size: 16px;
+      padding: 0.8rem;
+      font-size: 14px;
       border-radius: 25px;
       border: 1.8px solid rgba(200, 200, 200, 0.5); 
     }
@@ -38,31 +38,32 @@
     border: none;
     cursor: pointer;
     position: absolute;
-    top: 35%;
-    left: 70%;
+    top: 31%;
+    left: 65%;
     :active {
       outline: none;
     }
     i {
-      font-size: 1.7em;
+      font-size: 1.5em;
       color: darkgrey;
     }
   }
   &__btn-wrapper {
     @include flex-property-row-center;
-    margin-top: 1rem;
+    margin-top: 1.4rem;
   }
   &__btn-submit,
   &__btn-cancel {
     border-radius: 50px;
     border: none;
-    background-color: rgb(22, 125, 165);
+    background-color: rgb(52, 110, 219);
     padding: .5rem;
     cursor: pointer;
     margin: .2rem;
+    width: 2.2rem;
     @include flex-property-column;
     i {
-      font-size: 1.6em;
+      font-size: 1.4em;
       color: white;
     }
     

@@ -16,7 +16,7 @@
     border-radius: 14px;
     font-weight: 700;
     background-color: white;
-    width: 40vw;
+    width: 43vw;
     box-shadow: 0 2rem 2rem rgba(172, 159, 159, 0.5);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -27,9 +27,14 @@
   &__cancel-wrapper {
     display: flex;
     justify-content: flex-end;
-    width: 36vw;
+    width: 39vw;
   }
 
+  &__input-topics {
+    @include flex-property-column;
+    margin: 0.5rem;
+    align-items: center;
+  }
   i {
     color: var(--primary);
   }
@@ -38,7 +43,7 @@
     align-self: flex-start;
     color: var(--dark);
   }
-
+  
   input,
   select {
     width: 25rem;

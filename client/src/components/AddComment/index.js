@@ -88,7 +88,7 @@ const AddComment = ({ photoId, closeCommentField, setCommentClose }, props) => {
             className="add-comment-form__btn-cancel grow"
             onClick={closeCommentField}
           >
-            <i className="far fa-times-circle"></i>
+            <i className="fas fa-times"></i>
           </button>
         </div>
       </div>
