@@ -1,7 +1,7 @@
 @import "../../scss/abstracts/mixins.scss";
 
 .add-photo {
-  padding: 7rem 10rem;
+  padding: 4rem 10rem;
   background-color: rgb(243, 237, 237);
   width: 100vw;
   display: flex;
@@ -111,7 +111,7 @@
 
   &__btn-save {
     @include standard-button;
-    width: 20rem;
+    width: 25rem;
   }
 }
 

@@ -1,6 +1,6 @@
 @import "../../scss/abstracts/mixins.scss";
 
-.login {
+.forgot-password {
   @include auth-padding;
   @include full-sizing;
   @include flex-property-row-center;
@@ -27,9 +27,10 @@
     border-radius: 14px;
     font-weight: 700;
     background-color: white;
-    width: 27rem;
-    h2 {
-      color: rgb(75, 74, 74);
+    width: 35rem;
+    p {
+      padding: 0 1.6rem;
+      margin-top: 1rem;
     }
     .input-topics {
       display: flex;
@@ -44,7 +45,7 @@
     }
 
     input {
-      width: 20rem;
+      width: 28rem;
       padding: 0.6rem;
       font-size: 16px;
       border-radius: 3px;
@@ -58,17 +59,6 @@
       background-size: 6% auto;
       background-position: 96.5% 50%;
     }
-
-    input[type="password"] {
-      background: url("../../imgs/lock-solid.svg");
-      background-repeat: no-repeat;
-      background-size: 6% auto;
-      background-position: 96.5% 50%;
-    }
-
-    textarea {
-      height: 15rem;
-    }
   }
 
   &__btn-wrapper {
@@ -77,15 +67,15 @@
     align-items: center;
   }
 
-  &__btn-login {
+  &__btn-submit-email {
     @include standard-button;
     padding: 0.6rem;
-    width: 20rem;
+    width: 28rem;
   }
 }
 
 @media screen and (max-width: 1024px) {
-  .login {
+  .forgot-password {
     padding: 4rem 4rem;
     min-height: 69vh;
     &__form {
@@ -95,7 +85,7 @@
 }
 
 @media screen and (max-width: 500px) {
-  .login {
+  .forgot-password {
     padding: 1rem 0;
     min-height: 100vh;
     &__form {
@@ -115,14 +105,14 @@
       }
     
     }
-    &__btn-login {
+    &__btn-submit-password {
       width: 15rem;
     }
   }
 }
 
 @media screen and (max-width: 320px) {
-  .login {
+  .forgot-password {
     padding: 5rem 0;
 
     &__form {
@@ -135,7 +125,7 @@
       padding: 0.7rem;
     }
 
-    &__btn-login {
+    &__btn-submit-email {
       padding: 0.5rem;
       margin: 0.5rem;
       width: 5rem;

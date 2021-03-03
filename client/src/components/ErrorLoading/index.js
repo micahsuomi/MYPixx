@@ -13,3 +13,6 @@ const ErrorLoading = ({ refreshPage }) => {
 };
 
 export default ErrorLoading;
+ErrorLoading.propTypes = {
+  refreshPage: PropTypes.func
+};

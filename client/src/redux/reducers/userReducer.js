@@ -1,19 +1,24 @@
-import { 
+import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
+  FORGOT_PASSWORD,
+  RESET_PASSWORD,
+  CLEAR_RESET_CONFIRMATION,
   CLEAR_ALLVALIDATIONS,
-  GET_USERS, 
-  GET_USER, 
-  EDIT_USER, 
-  LOAD_ERR } from "../actions/types";
+  GET_USERS,
+  GET_USER,
+  EDIT_USER,
+  LOAD_ERR,
+} from "../actions/types";
 
 const initialState = {
   token: null,
   isValidated: false,
   isAuthenticated: false,
+  forgotPasswordConfirmation: "",
   isLoading: false,
   user: {},
   errorMsg: "",
@@ -34,7 +39,7 @@ export default function (state = initialState, action) {
       };
     case LOGIN_SUCCESS:
       localStorage.setItem("token", action.payload.token);
-      const { user, token } = action.payload
+      const { user, token } = action.payload;
       return {
         ...state,
         ...action.payload,
@@ -54,6 +59,19 @@ export default function (state = initialState, action) {
         user: null,
         isAuthenticated: false,
         isLoading: false,
+      };
+    case FORGOT_PASSWORD:
+    case RESET_PASSWORD:
+      console.log(action.payload);
+      const { msg } = action.payload;
+      return {
+        ...state,
+        forgotPasswordConfirmation: msg,
+      };
+    case CLEAR_RESET_CONFIRMATION:
+      return {
+        ...state,
+        forgotPasswordConfirmation: '',
       };
     case CLEAR_ALLVALIDATIONS:
       return {
@@ -81,7 +99,6 @@ export default function (state = initialState, action) {
         ...state,
         user: action.payload,
       };
-
     default:
       return state;
   }

@@ -9,6 +9,8 @@ import Community from "./pages/Community";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import User from "./pages/User";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import EditUser from "./components/EditUser";
 import PhotoList from "./pages/Photos";
 import AddPhoto from "./components/AddPhoto";
@@ -71,6 +73,20 @@ const Routes = () => {
           path="/login"
           component={(props) => (
             <Login isAuthenticated={isAuthenticated} {...props} />
+          )}
+        />
+
+        <Route
+          path="/forgot-password"
+          component={(props) => (
+            <ForgotPassword isAuthenticated={isAuthenticated} {...props} />
+          )}
+        />
+
+        <Route
+          path="/reset-password/:token"
+          component={(props) => (
+            <ResetPassword {...props} />
           )}
         />
 

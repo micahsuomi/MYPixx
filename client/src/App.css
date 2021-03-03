@@ -8,8 +8,8 @@
   /* color palette */
   --primary: #764ba2;
   --primary-dark: #57327c;
-  --primary: rgb(236, 8, 103);
-  --primary-dark: rgb(163, 20, 80);
+  --primary: rgb(255, 27, 122);
+  --primary-dark: rgb(236, 8, 103);
   --primary-disabled: rgb(211, 134, 166);
   --secondary: #f09819;
   --secondary-dark: #d68719;
@@ -50,6 +50,7 @@ h4 {
 p,
 a {
   font-family: "Open Sans", sans-serif;
+  font-size: 14px;
 }
 
 label {

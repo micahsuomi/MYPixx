@@ -39,7 +39,7 @@ const Login = (props) => {
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(clearErrors());
-      props.history.push("/photos");
+      props.history.push("/");
     }
   });
 
@@ -76,6 +76,7 @@ const Login = (props) => {
         <div className="login__btn-wrapper">
           <button className="login__btn-login">Sign In</button>
         </div>
+        <NavLink to="/forgot-password">Forgot Password?</NavLink>
         <p>
           Don't have an account yet? <NavLink to="/register">Sign up</NavLink>{" "}
           here

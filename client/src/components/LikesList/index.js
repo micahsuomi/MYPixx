@@ -16,13 +16,11 @@ const LikesList = (props) => {
 
   useEffect(() => {
     dispatch(getPhotoLikes(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   useEffect(() => {
     setLikes(photoLikes);
   }, [photoLikes]);
-
-  console.log(likes);
 
   const formattedLikes = likes.map((like) => (
     <Like

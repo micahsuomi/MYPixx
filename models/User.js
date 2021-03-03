@@ -14,10 +14,13 @@ const userSchema = Schema({
     type: String,
     required: true,
   },
-
   registeredAt: {
     type: Date,
     default: Date.now,
+  },
+  resetToken: {
+    type: String,
+    default: ''
   },
   bio: String,
   avatar: String,

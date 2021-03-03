@@ -1,6 +1,5 @@
 import {
   GET_PHOTOS,
-  AUTH_ERR,
   ADD_PHOTO,
   DELETE_PHOTO,
   GET_PHOTO,
@@ -14,7 +13,6 @@ const initialState = {
   photo: {},
   likes: [],
   isLoading: false,
-  err: null,
 };
 
 export default function (state = initialState, action) {
@@ -24,12 +22,6 @@ export default function (state = initialState, action) {
         ...state,
         photos: action.payload,
         isLoading: true,
-      };
-    case AUTH_ERR:
-      return {
-        ...state,
-        isLoading: false,
-        err: action.payload,
       };
     case ADD_PHOTO:
       return {

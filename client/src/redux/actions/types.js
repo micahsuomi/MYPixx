@@ -17,16 +17,16 @@ export const LIKE_COMMENT = "LIKE_COMMENT";
 export const ADD_COMMENT_REPLY = "ADD_COMMENT_REPLY";
     
 //auth types
-export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
-export const REGISTER_FAIL = "REGISTER_FAIL";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
-export const USER_LOADING = "USER_LOADING";
-export const USER_LOADED = "USER_LOADED";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const FORGOT_PASSWORD = "FORGOT_PASSWORD";
+export const RESET_PASSWORD = "RESET_PASSWORD";
+export const CLEAR_RESET_CONFIRMATION = "CLEAR_RESET_CONFIRMATION";
 
 //user types
-export const AUTH_ERR = "AUTH_ERR";
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAIL = "REGISTER_FAIL";
 export const GET_USERS = "GET_USERS";
 export const GET_USER = "GET_USER";
 export const EDIT_USER = "EDIT_USER";
