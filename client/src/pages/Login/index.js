@@ -58,7 +58,6 @@ const Login = (props) => {
             placeholder="email"
             onChange={handleChange}
             required={true}
-            autoComplete={email}
           />
         </div>
 

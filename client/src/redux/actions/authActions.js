@@ -48,7 +48,7 @@ export const login = ({ email, password }) => {
         },
       };
       const body = JSON.stringify({ email, password });
-      const res = await axios.post(`api/v1/auth`, body, config);
+      const res = await axios.post(`${proxyUrl}/api/v1/auth`, body, config);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
@@ -65,7 +65,7 @@ export const login = ({ email, password }) => {
 export const forgotPassword = (email) => {
   return async (dispatch) => {
     try {
-      const url = `api/v1/auth/forgot-password`;
+      const url = `${proxyUrl}/api/v1/auth/forgot-password`;
       const res = await axios.put(url, email);
       console.log(res);
       dispatch({
