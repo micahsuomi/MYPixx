@@ -6,7 +6,7 @@
 
   &__header {
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns: 20% 80%;
     align-items: center;
     width: 20rem;
   }
@@ -62,13 +62,14 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    margin-top: 0.7rem;
+    padding: 0 0.3rem;
   }
   &__reply-btn {
     background-color: transparent;
     border: none;
     cursor: pointer;
   }
-
 }
 
 .comment-user:nth-child(2) {

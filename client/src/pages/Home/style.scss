@@ -58,12 +58,18 @@
       border: 2px solid white;
     }
   }
+  
 }
 
 @media screen and (max-width: 1024px) {
   .home {
     padding: 3rem 2rem;
-  background-image: linear-gradient(
+ 
+}
+
+@media screen and (max-width: 500px) {
+  .home {
+    background-image: linear-gradient(
       to right,
       rgba(111, 113, 122, 0.3) 0%,
       rgba(46, 43, 49, 0.4) 100%
@@ -75,10 +81,6 @@
       font-size: 30px;
     }
   }
-}
-
-@media screen and (max-width: 500px) {
-  .home {
     &__wrapper {
       padding: 2rem;
       width: 90vw;

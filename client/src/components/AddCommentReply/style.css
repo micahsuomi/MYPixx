@@ -20,15 +20,93 @@
   }
 }
 
+.add-commentreply-form {
+  width: 25vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.add-commentreply-form .input-topics {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+}
+
 .add-commentreply-form textarea {
-  margin-top: 1.5rem;
-  width: 17rem;
-  height: 5rem;
-  font-family: "Roboto";
+  width: 14.15rem;
+  height: 3rem;
+  font-family: "Open sans";
   padding: 0.7rem;
   font-size: 16px;
-  border-radius: 5px;
+  border-radius: 25px;
   border: 1.8px solid rgba(200, 200, 200, 0.5);
+}
+
+.add-commentreply-form textarea :active {
+  outline: none;
+}
+
+.add-commentreply-form__emoji-menu {
+  position: absolute;
+  top: -891%;
+  left: -42%;
+}
+
+.add-commentreply-form__emoji-menu .emoji-mart-emoji span {
+  cursor: pointer;
+}
+
+.add-commentreply-form__emoji-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: -3%;
+  left: 63%;
+}
+
+.add-commentreply-form__emoji-btn :active {
+  outline: none;
+}
+
+.add-commentreply-form__emoji-btn i {
+  font-size: 1.4em;
+  color: darkgrey;
+}
+
+.add-commentreply-form__save-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.add-commentreply-form__save-wrapper button {
+  padding: .6rem;
 }
 
 .add-commentreply-form__btn-submit, .add-commentreply-form__btn-cancel {

@@ -23,17 +23,19 @@
     display: flex;
     justify-content: flex-end;
     width: 38vw;
+    a {
+      i {
+        color: var(--primary);
+      }
+    }
   }
 
   label {
     align-self: flex-start;
   }
   .input-topics {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin: 1rem;
-    align-items: center;
+    @include flex-property-row-center;
+    margin: .4rem;
   }
 
   input,
@@ -45,6 +47,9 @@
     border-radius: 3px;
     border: 1px solid lightgray;
     margin-top: 0.6rem;
+  }
+  textarea {
+    height: 9rem;
   }
   &__image-label {
     align-self: center;
@@ -58,7 +63,7 @@
   &__remove-photo,
   &__cancel-photo {
     @include standard-button;
-    width: 7rem;
+    width: 25rem;
   }
   &__remove-photo,
   &__cancel-photo {
@@ -68,7 +73,7 @@
   .input-topics-medium {
     @include flex-property-row-center;
     input {
-      width: 20rem;
+      width: 20.5rem;
     }
     &__add-btn {
       border: none;
@@ -76,6 +81,9 @@
       cursor: pointer;
       margin-top: 0.6rem;
       font-size: 1.3rem;
+      i {
+        color: var(--primary);
+      }
     }
   }
 
@@ -87,6 +95,7 @@
     @include flex-property-row-start;
     flex-wrap: wrap;
     margin-top: 1rem;
+    width: 25rem;
     p {
       display: block;
     }
@@ -133,7 +142,7 @@
 
   &__btn-save {
     @include standard-button;
-    width: 13rem;
+    width: 25rem;
   }
 }
 

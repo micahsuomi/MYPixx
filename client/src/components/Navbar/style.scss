@@ -1,7 +1,7 @@
 @import "../../scss/abstracts/mixins.scss";
 
 .navbar {
-  background-color: rgb(208, 219, 224);
+  background-color: transparent;
   display: flex;
   justify-content: space-between;
   position: fixed;
@@ -10,52 +10,49 @@
   width: 100%;
   padding: 0 1rem;
   z-index: 2;
-}
-
-.nav-list {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  list-style: none;
-  width: 100vw;
-}
-
-.navbar-link {
-  text-decoration: none;
-  margin-left: 2rem;
-  color: rgb(75, 74, 74);
-  font-weight: 700;
-}
-
-.navbar-link:hover {
-  color: grey;
-}
-
-.nav-list__icon {
-  @include flex-property-row-center;
-  font-size: 1.2em;
-  margin-top: 0.1rem;
-  span {
-    font-family: "Montserrat";
-    font-size: var(--font-size-small);
-    margin-left: 0.4rem;
+  &__list-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    width: 100vw;
+  }
+  &__list-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+    width: 100vw; 
+  }
+  &__link {
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 1.4rem;
+    padding: .4rem 0 .4rem 0;
+    i {
+      color: var(--primary);
+      font-size: 1.1em;
+    }
+    span {
+      color: var(--primary);
+      margin-left: .3rem;
+    }
+    :link {
+      color: white;
+    }
+  }
+  &__link.scrolled {
+    i, span {
+      color: rgb(75, 74, 74);
+    }
+  }
+  &__link:hover {
+    color: grey;
   }
 }
 
-.register-login {
-  list-style: none;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-left: 34rem;
-
-  li {
-    @include flex-property-row-center;
-  }
-}
-
-.login-link span {
-  margin-top: -0.2rem;
+.navbar.active {
+  background-color: rgb(208, 219, 224);
 }
 
 .user-link {
@@ -77,60 +74,24 @@
     padding: 1rem;
     height: 5rem;
     grid-template-columns: 13% 87%;
-    .nav-list {
-      justify-content: space-around;
+    &__list-left {
+      justify-content: space-evenly;
+    }
+    &__list-right {
+      justify-content: space-evenly;
+      margin-left: -9rem;
     }
     span {
       display: none;
     }
   }
   
-  /*
-  .hide-mobile {
-    display: none;
-  }
-
-  .show-mobile {
-    display: block;
-  }
-
-  .nav-list {
-    -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-  }
-
-  .nav-list.open {
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    flex-direction: column;
-    justify-content: center;
-    height: 102vh;
-    width: 102vw;
-    position: fixed;
-    top: -2%;
-    left: -2%;
-    padding: 0;
-    transition: all ease-in-out 0.1s;
-    opacity: 0.98;
-    background-color: rgb(17, 45, 58);
-    line-height: 2;
-    z-index: 5;
-    text-transform: uppercase;
-    color: white;
-    text-align: center;
-  }
-
-  .register-login {
-    flex-direction: column;
-  }*/
   .navbar-link,
   .user-link {
-    font-size: 26px;
+    font-size: 18px;
     margin: 0;
     color: white;
-
   }
-
   .logo {
     font-size: 20px;
   }
@@ -138,27 +99,34 @@
 
 @media screen and (max-width: 500px) {
   .navbar {
-    padding: 1rem .5rem;
     height: 3.3rem;
     grid-template-columns: 25% 75%;
     bottom: -.1rem;
+    background-color: black;
+    padding: .2rem 0;
+
+    &__list-right {
+      justify-content: space-evenly;
+      margin-left: -3rem;
+    }
+    &__link {
+      margin-left: .3rem;
+      i {
+        font-size: 1em;
+        color: white;
+      }
+    }
+    &__link.scrolled {
+      i, span {
+        color: white;
+      }
+    }
    
   }
-  .navbar-links {
-    flex-direction: column;
+  .navbar.active {
+    background-color: black;
   }
-  .nav-list__icon {
-    font-size: .7em;
-    
-  }
-  .register-login {
-    margin-left: 0;
-    display: flex;
-    justify-content: space-around;
-  }
-  .login {
-    margin-left: 2.2rem;
-  }
+ 
 }
 
 @media screen and (max-width: 320px) {
@@ -172,3 +140,4 @@
     margin: 0;
   }
 }
+

@@ -10,12 +10,15 @@ const authorized = (req, res, next) => {
 
   try {
     //verify token
+    console.log('verify', process.env.jwtSecret)
     const decoded = jwt.verify(token, process.env.jwtSecret);
+    console.log(decoded)
     //Add user from payload
     req.user = decoded;
     console.log("this is req.user from middleware", req.user);
     next();
   } catch (e) {
+    console.log(e)
     res.status(400).json({ msg: "token is not valid" });
   }
 };

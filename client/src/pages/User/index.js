@@ -1,58 +1,61 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { getUser } from "../../redux/actions/userActions";
-import useUser from "../../hooks/useUser";
 import CurrentUser from "../../components/CurrentUser";
 import UserProfile from "../../components/UserProfile";
 
 import "./style.scss";
 
 const User = (props) => {
-  // console.log('props are here', props)
   const [isUserPage, setIsUserPage] = useState(false);
   const dispatch = useDispatch();
   const [userProfile, setUserProfile] = useState({});
   const [currentUserProfile, setCurrentUserProfile] = useState({});
-
-  // const [err, userTest] = useUser(props.user._id);
-  // console.log('from hooks', userTest)
-  const currentState = useSelector((state) => state);
   const currentUser = useSelector((state) => state.user.user);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const [userLoaded, setUserLoaded] = useState(false);
-  console.log('this is the current user', currentState)
+  const [switchView, setSwitchView] = useState(false);
+
   const loadUser = async () => {
     try {
-      const user = props.users.find((user) => user._id === props.match.params.id);
+      const user = props.users.find(
+        (user) => user._id === props.match.params.id
+      );
       setUserProfile(user);
       setUserLoaded(true);
+      console.log(userProfile);
     } catch (err) {
       console.log(err);
     }
   };
+
   useEffect(() => {
-    if (!isAuthenticated || currentUser._id !== props.match.params.id) {
-      loadUser();
-    } else {
+    if (isAuthenticated && currentUser._id === props.match.params.id) {
       setCurrentUserProfile(currentUser);
+      console.log(currentUser);
+      setIsUserPage(true);
       setUserLoaded(true);
-      console.log("current user", currentUserProfile);
+    } else {
+      loadUser();
+      setIsUserPage(true);
     }
-  }, [isAuthenticated, dispatch, getUser, props.match.params.id]);
+  }, [isAuthenticated, dispatch, currentUser, props.match.params.id]);
 
   const closePopup = () => {
     props.closePopup();
   };
 
+  const switchViewOnClick = () => {
+    setSwitchView(!switchView);
+  };
   const { avatar, name, medium, bio, photos } = userProfile;
-  console.log('current user', currentUserProfile)
+
   if (!userProfile || !currentUserProfile) {
     return (
       <div>
         <h3>Not Found</h3>
-        <h3>Loading...</h3>
+        <h3>Please refresh the page</h3>
       </div>
     );
   }
@@ -60,7 +63,13 @@ const User = (props) => {
     <>
       {userLoaded ? (
         <>
-          {isAuthenticated && currentUserProfile._id === props.match.params.id ? (
+          {window.innerWidth > 1024 && (
+            <button className="switch-view-btn" onClick={switchViewOnClick}>
+              Switch View
+            </button>
+          )}
+          {isAuthenticated &&
+          currentUserProfile._id === props.match.params.id ? (
             <CurrentUser
               id={currentUserProfile._id}
               avatar={currentUserProfile.avatar}
@@ -71,6 +80,9 @@ const User = (props) => {
               photos={currentUserProfile.photos}
               isEditPopupOpen={props.isEditPopupOpen}
               closePopup={closePopup}
+              user={currentUserProfile}
+              isUserPage={isUserPage}
+              switchView={switchView}
             />
           ) : (
             <UserProfile
@@ -79,6 +91,9 @@ const User = (props) => {
               medium={medium}
               bio={bio}
               photos={photos}
+              user={currentUser}
+              isUserPage={isUserPage}
+              switchView={switchView}
             />
           )}
         </>

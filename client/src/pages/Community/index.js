@@ -9,7 +9,7 @@ import CommunityUser from "../../components/CommunityUser/index";
 import "./style.scss";
 
 const Community = ({ users, photos }) => {
-  console.log(users);
+
   const sortedByLikes = photos.sort((a, b) => {
     if (a.likes.length > b.likes.length) return -1;
     if (b.likes.length < a.likes.length) return 1;
@@ -24,7 +24,7 @@ const Community = ({ users, photos }) => {
 
   sortedByLikes.length = 8;
   sortedByComments.length = 8;
-  console.log(users);
+
   return (
     <div className="community">
       <CommunityHeader />
@@ -33,7 +33,8 @@ const Community = ({ users, photos }) => {
         <div className="community__most-commented-wrapper">
           {sortedByLikes.map((photo) => (
             <NavLink
-              to={`/photos/${photo._id}`}
+              key={photo._id}
+              to={`/photo/${photo._id}`}
               className="community__most-commented-link"
             >
               <CommunityMostCommented
@@ -53,7 +54,8 @@ const Community = ({ users, photos }) => {
         <div className="community__most-liked-wrapper">
           {sortedByComments.map((photo) => (
             <NavLink
-              to={`/photos/${photo._id}`}
+              key={photo._id}
+              to={`/photo/${photo._id}`}
               className="community__most-liked-link"
             >
               <CommunityMostLiked
@@ -73,6 +75,7 @@ const Community = ({ users, photos }) => {
         <div className="community__users-wrapper">
           {users.map((user) => (
             <NavLink
+              key={user._id}
               to={`/user/${user._id}`}
               className="community__users-link-container grow"
             >

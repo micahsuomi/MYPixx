@@ -1,20 +1,27 @@
 import React from "react";
-
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const NavbarUserRegister = ({ toggle }) => {
+import { activeStyle, activeStyleScrolled } from "../../../../utils/navStyles";
+
+const NavbarUserRegister = ({ toggle, scrolled }) => {
   return (
     <NavLink
       to="/register"
-      className="navbar-link user-link"
-      activeStyle={{ color: "black" }}
+      className={scrolled ? "navbar__link scrolled " : "navbar__link"}
+      activeStyle={scrolled ? activeStyleScrolled : activeStyle}
       onClick={toggle}
     >
-      <i className="fas fa-user-plus nav-list__icon grow" title="register">
-        <span> Register</span>
+      <i className="fas fa-user-plus grow" title="register">
       </i>
+      <span>Register</span>
     </NavLink>
   );
 };
 
 export default NavbarUserRegister;
+
+NavbarUserRegister.propTypes = {
+  toggle: PropTypes.func,
+  scrolled: PropTypes.bool,
+};

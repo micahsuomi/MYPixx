@@ -12,19 +12,15 @@ const Login = (props) => {
   const errorMsg = useSelector((state) => state.error.msg.msg);
   const dispatch = useDispatch();
 
-  const [state, setState] = useState({
+  const [user, setUser] = useState({
     email: "",
     password: "",
   });
 
-  const { email, password } = state;
+  const { email, password } = user;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const user = {
-      email,
-      password,
-    };
     dispatch(login(user));
 
     setTimeout(() => {
@@ -34,8 +30,8 @@ const Login = (props) => {
 
   const handleChange = (e) => {
     let { name, value } = e.target;
-    setState({
-      ...state,
+    setUser({
+      ...user,
       [name]: value,
     });
   };
@@ -43,13 +39,13 @@ const Login = (props) => {
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(clearErrors());
-      props.history.push("/photos");
+      props.history.push("/");
     }
   });
 
   return (
-    <div className="login-container">
-      <form onSubmit={handleSubmit} className="login-form">
+    <div className="login">
+      <form onSubmit={handleSubmit} className="login__form">
         <h2>Sign in to MyPixx</h2>
 
         <p className="warning-msg">{errorMsg}</p>
@@ -77,9 +73,10 @@ const Login = (props) => {
           />
         </div>
 
-        <div className="btn-save__wrapper">
-          <button className="btn-login">Sign In</button>
+        <div className="login__btn-wrapper">
+          <button className="login__btn-login">Sign In</button>
         </div>
+        <NavLink to="/forgot-password">Forgot Password?</NavLink>
         <p>
           Don't have an account yet? <NavLink to="/register">Sign up</NavLink>{" "}
           here

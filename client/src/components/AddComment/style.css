@@ -24,15 +24,64 @@
   margin-left: 2.4rem;
 }
 
-.add-comment-form textarea {
+.add-comment-form .input-topics {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.add-comment-form .input-topics textarea {
   margin-top: 1.5rem;
   width: 26rem;
-  height: 13rem;
+  height: 3.5rem;
   font-family: "Open sans";
-  padding: 0.6rem;
+  padding: 0.9rem;
   font-size: 16px;
-  border-radius: 5px;
+  border-radius: 25px;
   border: 1.8px solid rgba(200, 200, 200, 0.5);
+}
+
+.add-comment-form .input-topics textarea:focus {
+  outline: none;
+}
+
+.add-comment-form__emoji-menu {
+  position: absolute;
+  top: -508%;
+  left: 10%;
+}
+
+.add-comment-form__emoji-menu .emoji-mart-emoji span {
+  cursor: pointer;
+}
+
+.add-comment-form__emoji-btn, .add-comment-form__emoji-close {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 35%;
+  left: 70%;
+}
+
+.add-comment-form__emoji-btn :active, .add-comment-form__emoji-close :active {
+  outline: none;
+}
+
+.add-comment-form__emoji-btn i, .add-comment-form__emoji-close i {
+  font-size: 1.7em;
+  color: darkgrey;
 }
 
 .add-comment-form__btn-wrapper {
@@ -49,41 +98,30 @@
 }
 
 .add-comment-form__btn-submit, .add-comment-form__btn-cancel {
-  padding: 0.7rem;
-  background-color: var(--primary);
-  border: none;
   border-radius: 50px;
-  color: white;
+  border: none;
+  background-color: #167da5;
+  padding: .5rem;
   cursor: pointer;
-  margin: 1.5rem;
-  width: 8rem;
+  margin: .2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 16px;
-  text-transform: uppercase;
-  -webkit-box-shadow: 0 1rem 1rem rgba(136, 136, 153, 0.3);
-          box-shadow: 0 1rem 1rem rgba(136, 136, 153, 0.3);
-  padding: 0.4rem;
-  width: 8rem;
 }
 
-.add-comment-form__btn-submit:hover, .add-comment-form__btn-cancel:hover {
-  background-color: var(--primary-dark);
-  -webkit-transform: scale(1.03);
-          transform: scale(1.03);
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
-
-.add-comment-form__btn-submit:active, .add-comment-form__btn-cancel:active {
-  outline: none;
+.add-comment-form__btn-submit i, .add-comment-form__btn-cancel i {
+  font-size: 1.6em;
+  color: white;
 }
 
 .add-comment-form__btn-cancel {

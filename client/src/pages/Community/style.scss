@@ -4,11 +4,16 @@
   @include flex-property-column;
   align-items: center;
   padding: 13rem 8rem;
-  background-color: rgb(247, 239, 239);
+  background-color: #fcfafa;
   &__most-commented,
-  &__most-liked {
-    padding: 4rem 5rem;
-    margin-top: 3rem;
+  &__most-liked,
+  &__users {
+    padding: 3rem 5rem;
+    margin-top: .5rem;
+    h4 {
+      font-family: "Sansita Swashed", cursive;
+      color: var(--overlay-mask);
+    }
   }
   &__most-commented-wrapper,
   &__most-liked-wrapper {
@@ -22,7 +27,7 @@
     text-decoration: none;
   }
   &__users-wrapper {
-    @include three-col-grid;
+    @include four-col-grid;
     grid-gap: 1rem;
     margin-top: 3rem;
   }

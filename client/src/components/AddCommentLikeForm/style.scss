@@ -1,60 +1,62 @@
 @import "../../scss/abstracts/mixins.scss";
 
-.like-comment__btn {
-  border: none;
-  background-color: transparent;
-  border-radius: 3px;
-  font-family: "Montserrat";
-  font-weight: 700;
-  cursor: pointer;
-  padding: 0;
-  i {
-    font-size: 1.3em;
+.like-comment {
+  &__form {
+    @include flex-property-row-center;
   }
-}
-
-.like-comment__btn i:active {
-  outline: none;
-}
-.like-comment__form__container {
-  @include flex-property-row-center;
-  
-}
-.like-comments-num {
-  font-size: 12px;
-}
-
-.likes-number {
-  cursor: pointer;
-  font-size: 13px;
-}
-
-.likes-comments-box {
-  width: 18rem;
-  background-color: rgb(242, 247, 248);
-  border: none;
-  border-radius: 5px;
-  position: absolute;
-  top: 42%;
-  left: 40%;
-  transition: ease-in-out 0.5s;
-  padding: 0.5rem;
-  animation: fadein 0.3s ease-in;
-  box-shadow: 0 1rem 1rem rgba(88, 83, 83, 0.6);
-  &__header {
-    display: flex;
-    justify-content: flex-end;
+  &__btn {
+    border: none;
+    background-color: transparent;
+    border-radius: 3px;
+    font-family: "Montserrat";
+    font-weight: 700;
+    cursor: pointer;
+    padding: 0;
     i {
-      color: var(--primary);
+      font-size: 1.3em;
     }
   }
-
-  &__body {
-    @include flex-property-column;
-    justify-content: space-between;
-    line-height: 1.8;
+  
+  .like-comments-num {
+    font-size: 12px;
   }
+  
+  &__nums {
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--primary);
+    font-weight: 700;
+    margin-left: .5rem;
+  }
+  
+  .likes-comments-box {
+    width: 18rem;
+    background-color: rgb(242, 247, 248);
+    border: none;
+    border-radius: 5px;
+    position: absolute;
+    top: 42%;
+    left: 40%;
+    transition: ease-in-out 0.5s;
+    padding: 0.5rem;
+    animation: fadein 0.3s ease-in;
+    box-shadow: 0 1rem 1rem rgba(88, 83, 83, 0.6);
+    &__header {
+      display: flex;
+      justify-content: flex-end;
+      i {
+        color: var(--primary);
+      }
+    }
+  
+    &__body {
+      @include flex-property-column;
+      justify-content: space-between;
+      line-height: 1.8;
+    }
 }
+}
+
 
 @keyframes fadein {
   from {

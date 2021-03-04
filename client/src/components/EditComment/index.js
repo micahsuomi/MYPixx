@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import PropTypes from "prop-types";
+import { Picker } from "emoji-mart";
+import "emoji-mart/css/emoji-mart.css";
 
 import {
   getComments,
@@ -14,6 +17,7 @@ const EditComment = ({ photoId, commentId, closeEditComment }, props) => {
   const [comment, setComment] = useState({
     text: "",
   });
+  const [openEmoji, setOpenEmoji] = useState(false);
   const foundComment = useSelector((state) => state.comment.comment);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
@@ -44,6 +48,21 @@ const EditComment = ({ photoId, commentId, closeEditComment }, props) => {
     }, 2000);
   };
 
+  const addEmoji = (e) => {
+    let emoji = e.native;
+    setComment({
+      text: text + emoji,
+    });
+  };
+
+  const openEmojis = () => {
+    setOpenEmoji(true);
+  };
+
+  const closeMenu = () => {
+    setOpenEmoji(false);
+  };
+
   const { text } = comment;
   return (
     <form className="edit-comment animate-modal" onSubmit={handleSubmit}>
@@ -53,8 +72,27 @@ const EditComment = ({ photoId, commentId, closeEditComment }, props) => {
         name="text"
         placeholder="write comment here"
         onChange={handleChange}
-      ></textarea>
+      />
+      
       <div className="edit-comment__edit-delete">
+      {openEmoji ? (
+          <>
+            <span
+              className="edit-comment__emoji-menu animate-pop hide-tablet-mobile"
+              onMouseLeave={closeMenu}
+            >
+              <Picker onSelect={addEmoji} emojiTooltip={true} />
+            </span>
+          </>
+        ) : (
+          <button
+            onClick={openEmojis}
+            title="open emojis"
+            className="edit-comment__emoji-btn grow hide-tablet-mobile"
+          >
+            <i className="far fa-smile"></i>
+          </button>
+        )}
         <button className="edit-comment__comment-btn">Save</button>
         <button
           className="edit-comment__comment-btn"

@@ -14,6 +14,7 @@ const initialState = {
   isLoading: false,
   user: null,
   errorMsg: "",
+  forgotPasswordConfirmation: ""
 };
 
 export default function (state = initialState, action) {
@@ -45,6 +46,14 @@ export default function (state = initialState, action) {
         isAuthenticated: false,
         isLoading: false,
       };
+    case FORGOT_PASSWORD:
+    case RESET_PASSWORD:
+    console.log(action.payload)
+    const { msg } = action.payload
+      return {
+        ...state,
+        forgotPasswordConfirmation: msg
+      }
     case CLEAR_ALLVALIDATIONS:
       return {
         ...state,

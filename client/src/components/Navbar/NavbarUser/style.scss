@@ -3,20 +3,22 @@
 .navbar-user {
   @include flex-property-row-center;
   list-style: none;
-  margin-left: 28rem;
-  i {
-    color: rgb(61, 54, 54);
-    font-size: 1.1em;
+  &__link {
+    @include flex-property-row-center;
   }
-  .user-link {
-    margin-left: 0.7rem;
-  }
+}
+.nav-user-link {
+  @include flex-property-row-center;
   span {
-    margin-left: 0.5rem;
+    margin-left: .3rem;
   }
 }
 @media screen and(max-width: 1024px) {
   .navbar-user {
     margin-left: 0;
+    i {
+      font-size: 1em;
+    }
+
   }
 }

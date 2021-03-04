@@ -5,24 +5,22 @@
     right: 8%;
     top: 7%;
     background: white;
-    height: 6rem;
-    padding: .8rem .5rem;
+    height: 2.8rem;
+    padding: .2rem .5rem;
     border-radius: 3px;
     box-shadow: 0 1rem 1.3rem rgba(143, 143, 154, 0.5);
-    @include flex-property-column;
+    @include flex-property-row-center;
     span {
       font-family: 'Montserrat';
       font-weight: 500;
-      font-size: 14px;
+      font-size: 12px;
     }
     &__edit-btn {
         color: var(--blue);
         cursor: pointer;
-        margin-top: 0.7rem;
     }
     &__delete-btn {
         color: var(--red);
-        margin-top: 0.7rem;
         cursor: pointer;
         margin-left: 1rem;
     }

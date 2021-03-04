@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getComments } from "../redux/actions/photoActions";
+import { useSelector } from "react-redux";
 
 export default function useComments() {
   const comments = useSelector((state) => state.comment.comments);
-  // const dispatch = useDispatch()
 
   const [data, setData] = useState([]);
   const [err, setErr] = useState(null);
 
   useEffect(() => {
+    if(err) {
+      setErr("There was a problem loading the page")
+    }
     setData(comments);
   }, [comments, err]);
 

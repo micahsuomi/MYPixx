@@ -1,10 +1,19 @@
 @import "../../scss/abstracts/mixins.scss";
+.user-switched {
+  padding: 0 2rem 5rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.user-unswitched {
+  @include flex-property-column;
+}
 
 .user-details {
-  @include section-padding;
   @include flex-property-column;
+  justify-content: flex-start;
+  padding: 0 2rem;
   line-height: 1.5;
-  min-height: 100vh;
+  min-height: 60vh;
 
   h1 {
     text-align: center;
@@ -29,6 +38,9 @@
   p {
     margin-top: 1.7rem;
   }
+  &__medium-header {
+    @include flex-property-column;
+  }
   span {
     padding: 0.4rem;
     background-color: var(--dark);
@@ -45,6 +57,33 @@
   &__edit {
     text-decoration: none;
   }
+  &__gallery {
+    h1 {
+      text-align: center;
+    }
+    h4 {
+      margin: 2rem 0 0 2rem;
+    }
+  }
+  &__photos {
+    margin-top: 3rem;
+    @include three-col-grid;
+    grid-gap: 1rem;
+  }
+  &__photos.switched {
+    overflow-y: scroll;
+    height: 40rem;
+  }
+  
+}
+
+@media screen and (max-width: 1024px) {
+  .user-details {
+    min-height: 64vh;
+    &__gallery {
+      min-height: 58vh;
+    }
+  }
 }
 
 @media screen and (max-width: 500px) {
@@ -56,6 +95,9 @@
     }
     span {
       line-height: 2.9;
+    }
+    &__photos {
+      grid-template-columns: 1fr;
     }
   }
 }

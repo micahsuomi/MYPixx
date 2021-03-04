@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 import useComments from "../../hooks/useComments";
 import { getComments } from "../../redux/actions/commentActions";
@@ -9,7 +10,7 @@ import AddComment from "../AddComment";
 
 import "./style.scss";
 
-const Comments = (props) => {
+const Comments = ({ isAuthenticated, users, user, match, history }, props) => {
   const dispatch = useDispatch();
   const [err, comments] = useComments();
   const [isCommentFieldOpened, setIsCommentFieldOpened] = useState(false);
@@ -18,7 +19,8 @@ const Comments = (props) => {
   const [comment, setComment] = useState({
     text: "",
   });
-  const photoId = props.match.params.id;
+  const [showOverflow, setShowOverflow] = useState(false);
+  const photoId = match.params.id;
 
   useEffect(() => {
     dispatch(getComments(photoId));
@@ -33,7 +35,7 @@ const Comments = (props) => {
   };
 
   const setCommentClose = () => {
-    props.history.push(`/photos/${photoId}/comments`);
+    history.push(`/photo/${photoId}/comments`);
     dispatch(getComments(photoId));
     closeCommentField();
     setComment({ text: "" });
@@ -56,33 +58,45 @@ const Comments = (props) => {
     dispatch(getComments(photoId));
   };
 
-  const { isAuthenticated } = props;
+  const lockScrolling = () => {
+    setShowOverflow(true);
+  };
+
+  const unlockScrolling = () => {
+    setShowOverflow(false);
+  };
+
   const formattedComments = comments.map((comment) => (
     <Comment
       key={comment._id}
-      photoId={props.match.params.id}
+      photoId={match.params.id}
       comment={comment}
       authorId={comment.author.id}
       name={comment.author.name}
       avatar={comment.author.avatar}
-      user={props.user}
-      users={props.users}
-      history={props.history}
-      match={props.match}
-      isAuthenticated={props.isAuthenticated}
+      user={user}
+      users={users}
+      history={history}
+      match={match}
+      isAuthenticated={isAuthenticated}
       deleteComment={deleteComment}
       editingComment={editingComment}
       closeEditingComment={closeEditingComment}
       updateComment={updateComment}
       setIsAddButtonShowing={setIsAddButtonShowing}
+      lockScrolling={lockScrolling}
+      unlockScrolling={unlockScrolling}
     />
   ));
   return (
     <div className="comments">
-      <div className="comments__wrapper">
+      <div
+        className="comments__wrapper"
+        style={{ overflowY: showOverflow && "hidden" }}
+      >
         <div className="comments__header">
-          <NavLink to={`/photos/${props.match.params.id}`}>
-            <i className="fas fa-chevron-left fa-2x grow"></i>
+          <NavLink to={`/photo/${match.params.id}`}>
+            <i className="fas fa-chevron-left grow"></i>
           </NavLink>
         </div>
         {comments.length < 1 ? (
@@ -99,7 +113,7 @@ const Comments = (props) => {
           </div>
         )}
 
-        {props.user !== null && isAuthenticated ? (
+        {user !== null && isAuthenticated ? (
           <div className="comments__body">
             {isCommentFieldOpened ? (
               <AddComment
@@ -139,3 +153,11 @@ const Comments = (props) => {
 };
 
 export default Comments;
+
+Comments.propTypes = {
+  isAuthenticated: PropTypes.bool,
+  users: PropTypes.array,
+  user: PropTypes.object,
+  match: PropTypes.object,
+  history: PropTypes.object,
+};

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
 
 import {
   getComments,
@@ -30,20 +31,23 @@ const Comment = ({
   closeEditingComment,
   history,
   match,
-  setIsAddButtonShowing
+  setIsAddButtonShowing,
+  lockScrolling,
+  unlockScrolling,
 }) => {
   const dispatch = useDispatch();
   const [isEditDeleteOpen, setIsEditDeleteOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [isCommentReplyOpen, setIsCommentReplyOpen] = useState(false);
   const [isArrowShowing, setIsArrowShowing] = useState(false);
-  const [isLikesShowing, setIsLikeShowing] = useState(false);
+  const [isLikesShowing, setIsLikesShowing] = useState(false);
   const { _id, text, commentDate } = comment;
 
   const deleteOnClick = () => {
     dispatch(deleteComment(photoId, _id));
     setTimeout(() => {
       dispatch(getComments(photoId));
+      dispatch(getComment(photoId, _id));
     }, 2000);
   };
 
@@ -53,6 +57,7 @@ const Comment = ({
 
   const openEditComment = () => {
     setIsEditing(true);
+    setIsEditDeleteOpen(false);
     editingComment(isEditing);
     setIsCommentReplyOpen(false);
   };
@@ -60,11 +65,13 @@ const Comment = ({
   const openCommentReply = () => {
     setIsCommentReplyOpen(true);
     setIsAddButtonShowing(false);
+    // lockScrolling();
   };
 
   const closeCommentReply = () => {
     setIsCommentReplyOpen(false);
     setIsAddButtonShowing(true);
+    unlockScrolling();
   };
 
   const closeEditComment = () => {
@@ -81,6 +88,7 @@ const Comment = ({
 
   const hideEditingArrow = () => {
     setIsArrowShowing(false);
+    setIsEditDeleteOpen(false);
   };
 
   const handleSubmit = (e) => {
@@ -99,16 +107,16 @@ const Comment = ({
   };
 
   const showCommentLikes = () => {
-    setIsLikeShowing(true);
+    setIsLikesShowing(true);
   };
 
-  const hideCommentLike = () => {
-    setIsLikeShowing(false);
+  const hideCommentLikes = () => {
+    setIsLikesShowing(false);
   };
 
   return (
     <div className="comment-user animate-modal">
-      <div className="comment-user__header">
+      <div className="comment-user__wrapper">
         <div className="comment-user__image-container">
           {avatar === undefined || avatar === "" ? (
             <img
@@ -185,21 +193,22 @@ const Comment = ({
                     <div className="comment-user__likes-header">
                       <i
                         className="fas fa-chevron-left fa comment-user__close-likes-comment grow"
-                        onClick={hideCommentLike}
+                        onClick={hideCommentLikes}
                       ></i>
                     </div>
                     {comment.likes !== undefined &&
                       users.map((user) => {
+                        console.log('comment likes', comment.likes)
                         for (let i = 0; i < comment.likes.length; i++) {
                           const like = comment.likes[i];
                           if (user._id === like) {
                             return (
                               <CommentLike
-                                key={like}
+                                key={like._id}
                                 userId={user._id}
                                 avatar={user.avatar}
                                 name={user.name}
-                                hideCommentLike={hideCommentLike}
+                                hideCommentLikes={hideCommentLikes}
                               />
                             );
                           }
@@ -209,14 +218,11 @@ const Comment = ({
                 )}
 
                 <AddCommentLikeForm
-                  photoId={photoId}
-                  commentId={comment._id}
                   handleSubmit={handleSubmit}
                   commentLikes={comment.likes !== undefined && comment.likes}
                   showCommentLikes={showCommentLikes}
-                  users={users}
                 />
-                {!isCommentReplyOpen ? (
+                {!isCommentReplyOpen && (
                   <button
                     className="comment-user__reply-btn grow"
                     onClick={openCommentReply}
@@ -224,26 +230,26 @@ const Comment = ({
                     <span>Reply</span>
                     <i className="fas fa-reply"></i>
                   </button>
-                ) : (
-                  <AddCommentReply
-                    photoId={photoId}
-                    commentId={_id}
-                    history={history}
-                    match={match}
-                    closeCommentReply={closeCommentReply}
-                  />
-                )}
+                )} 
               </div>
               {comment.replies.length > 0 && (
                 <CommentReplies
                   photoId={photoId}
                   comment={comment}
                   user={user}
+                  users={users}
                   isAuthenticated={isAuthenticated}
                   history={history}
                   match={match}
                 />
               )}
+              {isCommentReplyOpen && <AddCommentReply
+                  photoId={photoId}
+                  commentId={_id}
+                  history={history}
+                  match={match}
+                  closeCommentReply={closeCommentReply}
+                /> }
             </div>
           )}
         </div>
@@ -253,3 +259,20 @@ const Comment = ({
 };
 
 export default Comment;
+
+Comment.propTypes = {
+  avatar: PropTypes.string,
+  authorId: PropTypes.string,
+  photoId: PropTypes.string,
+  comment: PropTypes.object,
+  name: PropTypes.string,
+  user: PropTypes.object,
+  users: PropTypes.array,
+  isAuthenticated: PropTypes.bool,
+  editingComment: PropTypes.func,
+  closeEditingComment: PropTypes.func,
+  history: PropTypes.object,
+  match: PropTypes.object,
+  setIsAddButtonShowing: PropTypes.func,
+  lockScrolling: PropTypes.func,
+};

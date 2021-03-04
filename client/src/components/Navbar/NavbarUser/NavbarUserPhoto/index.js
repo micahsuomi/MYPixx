@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "./style.scss";
 
@@ -15,11 +16,12 @@ const NavbarUserPhoto = ({ user }) => {
         <img src={user.avatar} alt={user.name} />
       )}
     </div>
-    <div>
-    <i className="fas fa-user-circle hide-desktop"></i>
-    </div>
     </>
   );
 };
 
 export default NavbarUserPhoto;
+
+NavbarUserPhoto.propTypes = {
+  user: PropTypes.object
+};

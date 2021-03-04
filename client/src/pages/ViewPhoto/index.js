@@ -1,59 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
-import moment from "moment";
 
-import LikePhoto from "../../components/LikePhoto/index";
+import ViewPhotoDetails from "../../components/ViewPhotoDetails";
 
 import "./style.scss";
 
 const ViewPhoto = (props) => {
   const id = props.match.params.id;
-  const { isUserPage, userProfile } = props
-  const [photoInfo, setPhotoInfo] = useState(false);
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-  const user = useSelector((state) => state.user.user);
-  // console.log(props.userProfile, props.isUserPage)
-  // console.log(Boolean(props.userProfile))
-  // console.log(Boolean(props.userPage))
-  console.log(user)
+
   const slider = {
     index: "",
     prev: "",
     next: "",
   };
 
-  let filteredPhoto;
-  if (props.isUserPage && props.userProfile) {
-    console.log("it is user page");
-    filteredPhoto = props.userProfile.photos.find((photo, index) => {
-      slider.index = index;
-      slider.prev = index === 0 ? "" : props.userProfile.photos[index - 1]._id;
-      slider.next =
-        index === props.userProfile.photos.length - 1
-          ? ""
-          : props.userProfile.photos[index + 1]._id;
-
-      return photo._id === id;
-    });
-  } else {
-    console.log("not user page");
-    filteredPhoto = props.photos.find((photo, index) => {
-      slider.index = index;
-      slider.prev = index === 0 ? "" : props.photos[index - 1]._id;
-      slider.next =
-        index === props.photos.length - 1 ? "" : props.photos[index + 1]._id;
-      return photo._id === id;
-    });
-  }
-
-  const showPhotoInfo = () => {
-    setPhotoInfo(true);
-  };
-  const hidePhotoInfo = () => {
-    setPhotoInfo(false);
-  };
-  console.log("from viewphoto", filteredPhoto);
+  const filteredPhoto = props.photos.find((photo, index) => {
+    slider.index = index;
+    slider.prev = index === 0 ? "" : props.photos[index - 1]._id;
+    slider.next =
+      index === props.photos.length - 1 ? "" : props.photos[index + 1]._id;
+    return photo._id === id;
+  });
 
   const {
     author,
@@ -65,53 +32,73 @@ const ViewPhoto = (props) => {
     createdAt,
     comments,
   } = filteredPhoto;
-  console.log(comments)
+
   return (
     <div className="viewphoto">
       <div className="viewphoto__nested-container">
         <div className="viewphoto__exit-header">
-          {!isUserPage ? (
-            <NavLink to="/photos" className="viewphoto__back-to-photos grow">
-              <i className="fas fa-times fa-2x"></i>
-            </NavLink>
-          ) : (
-            <NavLink
-              to={`/user/${userProfile._id}`}
-              className="viewphoto__back-to-photos grow"
-            >
-              <i className="fas fa-times fa-2x"></i>
-            </NavLink>
-          )}
+          <NavLink to="/" className="viewphoto__back-to-photos grow">
+            <i className="fas fa-times fa-2x"></i>
+          </NavLink>
         </div>
         <div className="viewphoto__wrapper">
           <div>
-            {slider.prev !== "" ? (
+            {slider.prev !== "" && (
               <NavLink to={slider.prev}>
                 <i className="fas fa-chevron-left fa-2x slider-arrow__left grow"></i>
               </NavLink>
-            ) : (
-              ""
             )}
           </div>
-          <div className="viewphoto__container">
+          <ViewPhotoDetails
+            id={id}
+            author={author}
+            image={image}
+            title={title}
+            type={type}
+            description={description}
+            medium={medium}
+            createdAt={createdAt}
+            comments={comments}
+            filteredPhoto={filteredPhoto}
+            history={props.history}
+            match={props.match}
+          />
+          {/* <div className="viewphoto__container">
             <div className="viewphoto__header">
-              {isAuthenticated && author.id === user._id ? (
-                <div className="viewphoto__edit-delete-wrapper">
-                  <NavLink
-                    to={`/editphoto/${id}`}
-                    className="viewphoto__edit-photo-link"
-                  >
-                    <i className="fas fa-edit"></i>
-                  </NavLink>
-                  <NavLink
-                    to={`/deletephoto/${id}`}
-                    className="viewphoto__delete-photo-link"
-                  >
-                    <i className="fas fa-trash"></i>
-                  </NavLink>
-                </div>
-              ) : (
-                ""
+              {isAuthenticated && author.id === user._id && (
+                   <>
+                   <i
+                     className={
+                       !openEditDeleteNav
+                         ? "fas fa-chevron-down grow2"
+                         : "fas fa-chevron-up grow2"
+                     }
+                     onClick={openEditDeleteNavClick}
+                     style={{
+                       cursor: "pointer",
+                       color: "rgb(139, 119, 119)",
+                       fontSize: "22px"
+                     }}
+                   ></i>
+                   {openEditDeleteNav && (
+                       <div className="viewphoto__edit-delete-wrapper animate-modal">
+                       <NavLink
+                         to={`/editphoto/${id}`}
+                         className="viewphoto__edit-photo-link grow2"
+                       >
+                         <span>Edit</span>
+                         <i className="fas fa-edit"></i>
+                       </NavLink>
+                       <NavLink
+                         to={`/deletephoto/${id}`}
+                         className="viewphoto__delete-photo-link grow2"
+                       >
+                         <span>Delete</span>
+                         <i className="fas fa-trash"></i>
+                       </NavLink>
+                     </div>
+                   )}
+                 </>
               )}
             </div>
             <img src={image} alt={title} className="viewphoto__image" />
@@ -193,14 +180,12 @@ const ViewPhoto = (props) => {
                 </NavLink>
               </div>
             </div>
-          </div>
+          </div>*/}
           <div>
-            {slider.next !== "" ? (
+            {slider.next !== "" && (
               <NavLink to={slider.next}>
                 <i className="fas fa-chevron-right fa-2x slider-arrow__right grow"></i>
               </NavLink>
-            ) : (
-              ""
             )}
           </div>
         </div>

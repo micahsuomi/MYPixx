@@ -1,17 +1,18 @@
 const express = require("express");
 const router = express.Router();
 
-const { login, findUser } = require("../../controllers/auth");
+const isAuthorized = require("../../middleware/authorized");
 
-//GET request to API api/auth
-//DESCRIPTION - authenticates user
-//ACCESS Public
+const {
+  login,
+  forgotPassword,
+  resetPassword,
+  findUser,
+} = require("../../controllers/auth");
+
 router.post("/", login);
-
-//GET request GET API api/auth/user
-//DESCRIPTION - get user data
-//ACCESS Private
-//this will validate the user with the token
-router.get("/user", findUser);
+router.put("/forgot-password", forgotPassword);
+router.put("/reset-password", resetPassword);
+router.get("/user", isAuthorized, findUser);
 
 module.exports = router;

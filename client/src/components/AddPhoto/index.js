@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import { addPhoto } from "../../redux/actions/photoActions";
 import { getUsers } from "../../redux/actions/userActions";
 
 import "./style.scss";
 
-const AddPhoto = (props) => {
+const AddPhoto = ({ history }) => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
@@ -32,9 +33,9 @@ const AddPhoto = (props) => {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      props.history.push("/login");
+     history.push("/login");
     }
-  }, [isAuthenticated, props.history]);
+  }, [isAuthenticated, history]);
 
   const fileSelectedHandler = (e) => {
     const file = e.target.files[0];
@@ -58,7 +59,7 @@ const AddPhoto = (props) => {
     dispatch(addPhoto(newPhoto));
     setTimeout(() => {
       dispatch(getUsers());
-      props.history.push("/photos");
+      history.push("/");
     }, 2000);
   };
 
@@ -81,7 +82,7 @@ const AddPhoto = (props) => {
     };
   };
 
-  const addToTechniques = (e) => {
+  const addToMedium = (e) => {
     e.preventDefault();
     const mediumIndex = mediumArr.indexOf(medium);
     console.log(medium.length)
@@ -111,13 +112,13 @@ const AddPhoto = (props) => {
     <div className="add-photo">
       <form onSubmit={handleSubmit} className="add-photo__form animate-modal">
         <div className="add-photo__cancel-wrapper">
-          <NavLink to="/photos" className="delete-link">
+          <NavLink to="/" className="delete-link">
             <i className="fas fa-times-circle fa-2x grow"></i>
           </NavLink>
         </div>
 
         <h2>Add gallery item</h2>
-        <div className="input-topics">
+        <div className="add-photo__input-topics">
           <label htmlFor="image">Image </label>
           <input
             type="file"
@@ -135,7 +136,7 @@ const AddPhoto = (props) => {
             style={{ height: "200px" }}
           />
         )}
-        <div className="input-topics">
+        <div className="add-photo__input-topics">
           <label htmlFor="name">Title</label>
           <input
             type="text"
@@ -147,7 +148,7 @@ const AddPhoto = (props) => {
           />
         </div>
 
-        <div className="input-topics">
+        <div className="add-photo__input-topics">
           <label htmlFor="type">Type</label>
           <select name="type" value={type} onChange={handleChange}>
             <option value="">---select type</option>
@@ -160,45 +161,46 @@ const AddPhoto = (props) => {
           </select>
         </div>
 
-        <div className="input-topics">
-          <label htmlFor="technique">Tags</label>
-          <div className="input-topics-technique">
+        <div className="add-photo__input-topics">
+          <label htmlFor="medium">Tags</label>
+          <div className="input-topics-medium">
             <input
               type="text"
               name="medium"
               value={medium}
               placeholder={
-                "eg(oil, acrylics, dripping, analog photography etc)"
+                "eg(oil, acrylics, dripping, photography etc)"
               }
               onChange={handleChange}
             />
             <button
-              onClick={addToTechniques}
-              className="input-topics-technique__add-btn"
+              onClick={addToMedium}
+              className="input-topics-medium__add-btn"
             >
-              <i className="fas fa-plus-square fa-2x"></i>
+              <i className="fas fa-plus-square fa-2x grow2"></i>
             </button>
           </div>
-          <div className="add-photo__techniques-wrapper">
+          <div className="add-photo__medium-wrapper">
             {mediumArr.map((m) => (
-              <div className="add-photo__technique-item grow">
-                <div className="add-photo__technique-item-header">
+              <div className="add-photo__medium-item grow">
+                <div className="add-photo__medium-item-header">
                   <i
                     className="fas fa-times"
                     title="remove"
                     onClick={() => deleteMedium(m)}
                   ></i>
                 </div>
-                <div className="add-photo__technique-item-body">
+                <div className="add-photo__medium-item-body">
                   <p>{`${m}`}</p>
                 </div>
               </div>
             ))}
           </div>
+          <span className="add-photo__medium-warning">{warning}</span>
           {medium.length < 1 || medium !== '' || isMediumDup && warning}
         </div>
 
-        <div className="input-topics">
+        <div className="add-photo__input-topics">
           <label htmlFor="description">Description</label>
           <input
             type="text"
@@ -219,3 +221,7 @@ const AddPhoto = (props) => {
 };
 
 export default AddPhoto;
+
+AddPhoto.propTypes = {
+  history: PropTypes.object,
+};

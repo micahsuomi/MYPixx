@@ -23,13 +23,12 @@ async function findPhotoById(id) {
         path: "replies",
         model: Comment
       })
-    }) 
+    })  
     .exec()
     .then((photo) => {
       if (!photo) {
         throw new Error(`Photo ${id} not found`);
       }
-      // console.log('comments replies', photo.comments.replies)
       return photo;
     });
 }

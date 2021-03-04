@@ -41,6 +41,11 @@
   justify-content: flex-end;
 }
 
+@mixin flex-property-row-space-between {
+  @include flex-property-row;
+  justify-content: space-between;
+}
+
 @mixin grid {
   display: grid;
   justify-items: center;
@@ -102,7 +107,7 @@
   padding: 0.7rem;
   background-color: var(--primary);
   border: none;
-  border-radius: 50px;
+  border-radius: 5px;
   color: white;
   cursor: pointer;
   margin: 1.5rem;

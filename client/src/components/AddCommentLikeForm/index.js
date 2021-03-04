@@ -1,19 +1,21 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 
 import "./style.scss";
 
 const AddCommentLikeForm = ({ 
-    commentLiked,
     handleSubmit,
     commentLikes,
-    showCommentLikes
+    showCommentLikes,
 }) => {
+  const user = useSelector((state) => state.user.user);
+
   return (
-    <div className="like-comment__form__container">
-      <form className="like-container" onSubmit={handleSubmit}>
+    <div className="like-comment">
+      <form className="like-comment__form" onSubmit={handleSubmit}>
         <button className="like-comment__btn grow">
-          {commentLiked ? (
+          {commentLikes !== undefined && commentLikes.some((like) => like === user._id)  ? ( 
             <i className="fas fa-heart full-heart"></i>
           ) : (
             <i className="far fa-heart empty-heart"></i>
@@ -21,12 +23,12 @@ const AddCommentLikeForm = ({
         </button>
         {commentLikes !== undefined && commentLikes.length > 0 ? (
           <p
-            className="likes-number grow"
+            className="like-comment__nums grow"
             onClick={showCommentLikes}
           >
             {commentLikes.length}
             {commentLikes.length === 1 ? (
-              <span className="like-comments-num"> Like</span>
+              <span className="like-comment__nums-like"> Like</span>
             ) : (
               <span> Likes</span>
             )}
@@ -37,11 +39,10 @@ const AddCommentLikeForm = ({
   );
 };
 
+export default AddCommentLikeForm;
+
 AddCommentLikeForm.propTypes = {
-  commentLiked: PropTypes.bool,
   handleSubmit: PropTypes.func,
   commentLikes: PropTypes.array,
   showCommentLikes: PropTypes.func
 };
-
-export default AddCommentLikeForm;

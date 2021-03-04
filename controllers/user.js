@@ -1,10 +1,11 @@
 const bcrypt = require("bcryptjs");
+const multer = require("multer");
+const cloudinary = require("cloudinary");
+
 const User = require("../models/User");
 const Photo = require("../models/Photo");
 const Comment = require("../models/Comment");
 const UserService = require("../services/users");
-const multer = require("multer");
-const cloudinary = require("cloudinary");
 
 const {
   nameValidator,
@@ -68,9 +69,11 @@ const register = async (req, res) => {
   //check for existing user using the email, throw 400 err
   User.findOne({ email }).then((user) => {
     if (user)
-      return res
-        // .status(400)
-        .json({ msg: "A user with this email is already registered" });
+      return (
+        res
+          .status(400)
+          .json({ msg: "A user with this email is already registered" })
+      );
     const newUser = new User({
       name,
       email,
@@ -95,7 +98,7 @@ const register = async (req, res) => {
                 avatar: user.avatar,
                 photos: user.photos,
                 medium: user.medium,
-                bio: user.bio
+                bio: user.bio,
               },
             });
           });
@@ -110,7 +113,6 @@ const register = async (req, res) => {
 const findAll = async (req, res) => {
   try {
     const user = await UserService.findAllUsers();
-
     res.json(user);
   } catch (err) {
     return res.status(404).json({ msg: "Not Found" });
@@ -130,6 +132,7 @@ const findOne = async (req, res) => {
       .populate("comments")
       .exec();
     user.photos = userPhotos;
+    console.log("calling this controller", user);
     res.json(user);
   } catch (err) {
     return res.status(404).json({ msg: "Not Found" });
@@ -147,7 +150,6 @@ const updateUser =
     const { name, email, medium, bio } = req.body;
     const fileImage = req.body.avatar;
     cloudinary.uploader.upload(fileImage, function (result) {
-      console.log("result is here", result);
       const uploadedCloudinaryImage = result.secure_url;
 
       User.findById(id)
@@ -166,7 +168,7 @@ const updateUser =
             .populate("comments")
             .exec((err, foundGallery) => {
               if (err) {
-                console.log(err);
+                return res.status(404).json({ msg: "Not found" });
               } else {
                 for (const gallery of foundGallery) {
                   gallery.author.name = user.name;
@@ -179,10 +181,10 @@ const updateUser =
               //to save all the multiple updated mongoose documents
 
               let total = foundGallery.length;
-              let result = [];
+              const result = [];
               if (total > 0) {
                 const saveAll = () => {
-                  let doc = foundGallery.pop();
+                  const doc = foundGallery.pop();
 
                   doc.save((err, saved) => {
                     if (err) throw err; //handle error
@@ -211,15 +213,14 @@ const updateUser =
                     //to save all the multiple updated mongoose documents
 
                     let total = foundComments.length;
-                    let result = [];
+                    const result = [];
                     if (total > 0) {
                       const saveAll = () => {
-                        let doc = foundComments.pop();
+                        const doc = foundComments.pop();
 
                         doc.save((err, saved) => {
                           if (err) throw err; //handle error
                           result.push(saved[0]);
-                          console.log(result);
                           if (--total) saveAll();
                           else console.log("saved here"); // all saved here
                         });

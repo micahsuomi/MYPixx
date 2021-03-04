@@ -69,7 +69,7 @@ const EditPhoto = (props) => {
 
     dispatch(editPhoto(id, photo));
     setTimeout(() => {
-      props.history.push("/photos");
+      props.history.push("/");
       setTimeout(() => {
         dispatch(getPhotos());
       }, 2000);
@@ -109,7 +109,6 @@ const EditPhoto = (props) => {
     setIsImageEditing(true);
     setPhoto({
       ...photo,
-      image: updatedImage,
     });
   };
 
@@ -121,9 +120,7 @@ const EditPhoto = (props) => {
 
   const addToMedium = (e) => {
     e.preventDefault();
-
     let mediumIndex = mediumArr.indexOf(medium);
-
     if (medium.length < 1) {
       setWarning("Please enter a value");
     }
@@ -225,7 +222,7 @@ const EditPhoto = (props) => {
                 {!isImageChanged && (
                   <div className="buttons-wrapper">
                     <button
-                      className="edit-image__cancel grow"
+                      className="edit-photo__cancel grow"
                       onClick={cancelImage}
                     >
                       Cancel
@@ -272,15 +269,16 @@ const EditPhoto = (props) => {
                 />
                 <button
                   onClick={addToMedium}
+                  onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }}
                   className="input-topics-medium__add-btn"
                 >
-                  <i className="fas fa-plus-square fa-2x"></i>
+                  <i className="fas fa-plus-square fa-2x grow2"></i>
                 </button>
               </div>
               <div className="edit-photo__medium-container">
                 <div className="edit-photo__medium-wrapper">
                   {mediumArr.map((t) => (
-                    <div className="edit-photo__medium-item grow animate-modal">
+                    <div className="edit-photo__medium-item grow animate-modal" key={t}>
                       <div className="edit-photo__medium-item-body">
                         <p>{`${t}`}</p>
                       </div>

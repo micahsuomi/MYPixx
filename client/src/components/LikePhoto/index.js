@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import { getPhotos } from "../../redux/actions/photoActions";
 import { likePhoto } from "../../redux/actions/photoActions";
@@ -36,7 +37,7 @@ const LikePhoto = ({
     <div>
       <form className="like-container" onSubmit={handleSubmit}>
         {isAuthenticated &&
-        likes.some((like) => like._id === user.id) ? (
+        likes.some((like) => like._id === user._id) ? (
           <button className="like-btn">
             <i className="fas fa-heart full-heart fa-2x grow2"></i>
           </button>
@@ -47,7 +48,7 @@ const LikePhoto = ({
         )}
         {likes.length > 0 ? (
           <NavLink
-            to={`/photos/${match.params.id}/likes`}
+            to={`/photo/${match.params.id}/likes`}
             className="likes-number grow"
           >
             {likes.length}
@@ -64,3 +65,9 @@ const LikePhoto = ({
 };
 
 export default LikePhoto;
+
+LikePhoto.propTypes = {
+  filteredPhoto: PropTypes.object,
+  history: PropTypes.object,
+  match: PropTypes.object,
+};

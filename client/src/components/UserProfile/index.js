@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
 import PhotoItem from "../../components/PhotoItem";
 
 import "./style.scss";
 
-const UserProfile = ({ avatar, name, medium, bio, photos }) => {
-  console.log("props are here", avatar, name, medium, bio, photos);
-  const [isUserPage, setIsUserPage] = useState(false);
-
+const UserProfile = ({ 
+  avatar, 
+  name, 
+  medium, 
+  bio, 
+  photos,
+  isUserPage,
+  switchView
+}) => {
+  console.log('is user page', isUserPage)
   return (
-    <>
+    <div className={switchView ? "user-switched" : "user-unswitched"}>
       <div className="user-details">
         <h1>{name}</h1>
         <div className="user-details__image-container">
@@ -22,48 +29,55 @@ const UserProfile = ({ avatar, name, medium, bio, photos }) => {
             <img src={avatar} alt={name} />
           )}
         </div>
-        <p>
+        <div>
+          <h4 className="user-details__medium-header">Medium Used:</h4>
           {medium !== undefined && medium.length > 0 ? (
             <p>
-              {" "}
-              Medium used:
               {medium.map((m) => (
-                <span>{m} </span>
+                <span key={m}>{m} </span>
               ))}
             </p>
           ) : (
             <p>No medium listed</p>
           )}
-        </p>
+        </div>
         <p>{bio}</p>
       </div>
-      <div className="photo-gallery__container">
+      <div className="user-details__gallery">
         <h1>User Gallery</h1>
         {photos !== undefined && photos.length < 1 ? (
-              <h1>This user has not posted any pictures</h1>
-            ) : (
-              <h4>{photos.length} photos</h4>
-            )}
-              <div className="photo-gallery__wrapper">
-                {photos.map((photo) => (
-                  <PhotoItem
-                    key={photo._id}
-                    id={photo._id}
-                    title={photo.title}
-                    image={photo.image}
-                    description={photo.description}
-                    author={photo.author.name}
-                    authorId={photo.author.id}
-                    authorImg={photo.author.avatar}
-                    likes={photo.likes}
-                    comments={photo.comments}
-                    isUserPage={isUserPage}
-                  />
-                ))} 
-              </div>
+          <h1>This user has not posted any pictures</h1>
+        ) : (
+          <h4>{photos.length} photos</h4>
+        )}
+        <div className="user-details__photos">
+          {photos.map((photo) => (
+            <PhotoItem
+              key={photo._id}
+              id={photo._id}
+              title={photo.title}
+              image={photo.image}
+              description={photo.description}
+              author={photo.author.name}
+              authorId={photo.author.id}
+              authorImg={photo.author.avatar}
+              likes={photo.likes}
+              comments={photo.comments}
+              isUserPage={isUserPage}
+            />
+          ))}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
 export default UserProfile;
+
+UserProfile.propTypes = {
+  avatar: PropTypes.string,
+  name: PropTypes.string,
+  medium: PropTypes.array,
+  bio: PropTypes.string,
+  photos: PropTypes.array,
+};

@@ -3,7 +3,7 @@
 .add-photo-link {
   @include flex-property-row-center;
   color: var(--primary);
-  padding: 1rem;
+  padding: .8rem;
   text-decoration: none;
   font-family: "Montserrat";
   cursor: pointer;
@@ -11,6 +11,9 @@
   border-radius: 50px;
   box-shadow: 0 1rem 2rem rgba(179, 170, 170, 0.5);
   margin-left: 1rem;
+  i {
+    font-size: 1em;
+  }
 }
 
 .add {

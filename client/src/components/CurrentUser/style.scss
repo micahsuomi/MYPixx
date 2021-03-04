@@ -1,10 +1,19 @@
 @import "../../scss/abstracts/mixins.scss";
+.user-switched {
+  padding: 0 2rem 5rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.user-unswitched {
+  @include flex-property-column;
+}
 
 .user-details {
-  @include section-padding;
   @include flex-property-column;
+  padding: 0 2rem;
   line-height: 1.5;
-  min-height: 100vh;
+  min-height: 60vh;
+  justify-content: flex-start;
 
   h1 {
     text-align: center;
@@ -25,25 +34,61 @@
     width: 100%;
     height: 100%;
   }
-
-  p {
+  &__medium-item {
     margin-top: 1.7rem;
+    span {
+      background-color: var(--dark);
+      color: white;
+      margin: 0.3rem;
+      border-radius: 3px;
+      font-size: 12px;
+      padding: 0.4rem;
+    }
   }
-  span {
-    padding: 0.4rem;
-    background-color: var(--dark);
-    color: white;
-    margin: 0.3rem;
-    border-radius: 3px;
-    font-size: 12px;
-  }
-  &__update-btn {
-    @include standard-button;
-    width: 15rem;
-  }
-
   &__edit {
     text-decoration: none;
+    button {
+      @include standard-button;
+      @include flex-property-row-center;
+      width: 15rem;
+      padding: 0;
+      i {
+        color: white;
+      }
+      span {
+        background: none;
+        font-size: 15px;
+      }
+      
+    }
+  } 
+  &__gallery {
+    h1 {
+      text-align: center;
+    }
+    h4 {
+      margin: 2rem 0 0 2rem;
+    }
+  }
+  &__photos {
+    margin-top: 3rem;
+    @include three-col-grid;
+    grid-gap: 1rem;
+    padding: 0 2rem;
+  }
+  &__photos.switched {
+    overflow-y: scroll;
+    height: 40rem;
+  }
+}
+
+
+@media screen and (max-width: 1024px) {
+  .user-details {
+    min-height: 64vh;
+    &__gallery {
+      min-height: 58vh;
+    }
   }
 }
 
@@ -56,6 +101,9 @@
     }
     span {
       line-height: 2.9;
+    }
+    &__photos {
+      grid-template-columns: 1fr;
     }
   }
 }

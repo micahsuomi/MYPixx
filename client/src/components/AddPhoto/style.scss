@@ -1,7 +1,7 @@
 @import "../../scss/abstracts/mixins.scss";
 
 .add-photo {
-  padding: 7rem 10rem;
+  padding: 4rem 10rem;
   background-color: rgb(243, 237, 237);
   width: 100vw;
   display: flex;
@@ -16,7 +16,7 @@
     border-radius: 14px;
     font-weight: 700;
     background-color: white;
-    width: 40vw;
+    width: 43vw;
     box-shadow: 0 2rem 2rem rgba(172, 159, 159, 0.5);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -27,9 +27,14 @@
   &__cancel-wrapper {
     display: flex;
     justify-content: flex-end;
-    width: 36vw;
+    width: 39vw;
   }
 
+  &__input-topics {
+    @include flex-property-column;
+    margin: 0.5rem;
+    align-items: center;
+  }
   i {
     color: var(--primary);
   }
@@ -38,13 +43,13 @@
     align-self: flex-start;
     color: var(--dark);
   }
-
+  
   input,
   select {
     width: 25rem;
     padding: 0.6rem;
     font-size: 16px;
-    font-family: "Roboto";
+    font-family: "Open sans";
     border-radius: 3px;
     border: 1px solid lightgray;
     margin-top: 0.6rem;
@@ -54,7 +59,7 @@
     height: 15rem;
   }
 
-  .input-topics-technique {
+  .input-topics-medium {
     @include flex-property-row-center;
     input {
       width: 20rem;
@@ -67,7 +72,7 @@
       font-size: 1.3rem;
     }
   }
-  &__techniques-wrapper {
+  &__medium-wrapper {
     @include flex-property-row-start;
     flex-wrap: wrap;
     margin-top: 1rem;
@@ -76,7 +81,7 @@
     }
   }
 
-  &__technique-item {
+  &__medium-item {
     padding: 0.2rem;
     background-color: var(--dark);
     color: var(--dark);
@@ -87,7 +92,7 @@
     color: white;
   }
 
-  &__technique-item-header {
+  &__medium-item-header {
     @include flex-property-row-end;
 
     i {
@@ -97,18 +102,21 @@
     }
   }
 
-  &__technique-item-body {
+  &__medium-item-body {
     @include flex-property-column;
     min-width: 2rem;
   }
 
+  &__warning {
+    color: var(--primary);
+  }
   &__btn-save-wrapper {
     @include flex-property-row-center;
   }
 
   &__btn-save {
     @include standard-button;
-    width: 20rem;
+    width: 25rem;
   }
 }
 
@@ -119,6 +127,18 @@
 
 .file-btn {
   padding: 1.4rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .add-photo {
+    width: 100vw;
+    &__form {
+      width: 57vw;
+    }
+    &__cancel-wrapper {
+      width: 53vw;
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -135,7 +155,7 @@
 
 @media screen and (max-width: 500px) {
   .add-photo {
-    padding: 6rem 2rem;
+    padding: 3rem 2rem;
     min-height: 100vh;
     &__form {
       width: 98vw;
@@ -151,7 +171,7 @@
       width: 16rem;
       padding: 0.8rem;
     }
-    .input-topics-technique {
+    .input-topics-medium {
       input {
         width: 12rem;
       }
@@ -160,7 +180,7 @@
       width: 20rem;
     }
     &__btn-save {
-      width: 7rem;
+      width: 13rem;
       font-size: 14px;
     }
   }

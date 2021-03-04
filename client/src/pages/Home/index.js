@@ -5,7 +5,7 @@ import "./style.scss";
 
 const Home = () => {
   return (
-    <div className="home">
+    <div className="home animate-modal">
       <div className="home__wrapper">
         <h1 className="home__title">
           MYP<span className="lowercase">ixx</span>

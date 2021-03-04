@@ -1,15 +1,47 @@
 @import "../../scss/abstracts/mixins.scss";
 
 .edit-comment {
+  .input-topics {
+    position: relative;
+  }
   textarea {
-    margin-top: 1.5rem;
-    width: 22rem;
+    margin-top: .5rem;
+    width: 16rem;
     font-family: "Open sans";
-    padding: 0.7rem;
+    padding: 0.9rem;
     font-size: 16px;
     animation-name: appear;
     transition: 1s ease-in-out;
     animation-duration: 1s;
+    border-radius: 10px;
+    border: 1.8px solid rgba(200, 200, 200, 0.5); 
+
+  }
+  &__emoji-menu {
+    position: absolute;
+    top: 55%;
+    left: 120%;
+    .emoji-mart-emoji {
+      span {
+        cursor: pointer;
+      }
+    }
+  }
+  &__emoji-btn,
+  &__emoji-close {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: -146%;
+    left: 81%;
+    :active {
+      outline: none;
+    }
+    i {
+      font-size: 1.7em;
+      color: darkgrey;
+    }
   }
   &__comment-btn {
     background-color: transparent;
@@ -22,6 +54,9 @@
     &:active {
       outline: none;
     }
+  }
+  &__edit-delete {
+    position: relative;
   }
   &__edit-btn,
   &__delete-btn {

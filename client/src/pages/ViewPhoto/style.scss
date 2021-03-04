@@ -75,10 +75,22 @@
     justify-content: flex-end;
   }
 
+  &__header {
+    position: relative;
+  }
+  &__edit-delete-wrapper {
+    @include flex-property-column;
+    position: absolute;
+    top: 77%;
+
+  }
+
   &__edit-photo-link {
-    margin-right: 1rem;
     color: var(--blue);
     font-size: 23px;
+    i {
+      margin-left: 1.8rem;
+    }
   }
 
   &:hover {
@@ -87,10 +99,23 @@
     color: var(--secondary);
   }
 
+  &__edit-photo-link,
+  &__delete-photo-link {
+    font-size: 18px;
+    text-decoration: none;
+    width: 8rem;
+    border: 2px solid rgba(235, 230, 230, 0.6);
+    padding: .3rem 1.2rem;
+    span {
+      font-weight: 700;
+      font-size: 16px;
+    }
+  }
   &__delete-photo-link {
     color: var(--primary);
-    font-size: 23px;
-
+    i {
+      margin-left: .4rem;
+    }
   }
   &:hover {
     color: var(--red);
@@ -168,7 +193,7 @@
   }
   &__hide-info {
     @include standard-button;
-    width: 11rem;
+    width: 21rem;
     padding: 0.5rem;
   }
   &__comments-link-container {
@@ -296,7 +321,7 @@ button {
       width: 101vw;
     }
     &__container {
-      width: 98vw;
+      width: 80vw;
     }
     &__header {
       width: 83vw;
@@ -323,13 +348,17 @@ button {
       margin-top: 2rem;
     }
     &__container {
-      width: 100vw;
+      width: 97vw;
       color: var(--dark);
       background-color: #f7f3f3;
-      padding: 2rem 0rem;    
+      padding: 2rem 1rem;    
     }
     &__header {
       width: 96vw;
+  }
+  &__image {
+    width: 100%;
+    align-self: center;
   }
   &__edit-delete-wrapper i {
       height: 2rem;

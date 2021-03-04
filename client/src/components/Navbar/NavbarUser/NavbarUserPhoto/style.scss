@@ -4,7 +4,7 @@
   height: 32px;
   width: 32px;
   object-fit: cover;
-  margin-left: 1rem;
+  margin-left: .4rem;
   border-radius: 50%;
   img {
     object-fit: cover;
@@ -12,16 +12,22 @@
     height: 100%;
   }
 }
-.hide-desktop {
-  display: none;
+@media screen and (max-width: 1024px) {
+  .nav-user-image {
+    margin-left: 7rem;
+
+  }
+}
+@media screen and (max-width: 768px) {
+  .nav-user-image {
+    margin-left: 5rem;
+
+  }
 }
 @media screen and (max-width: 500px) {
   .nav-user-image {
-    display: none;
-  }
-  .hide-desktop {
-    display: block;
+    height: 22px;
+    width: 22px;  
     margin-left: 1.8rem;
-    font-size: 23px;
   }
 }

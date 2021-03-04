@@ -1,0 +1,115 @@
+@import "../../scss/abstracts/mixins.scss";
+
+.forgot-password-dialog {
+  @include auth-padding;
+  @include full-sizing;
+  @include flex-property-row-center;
+  background-image: linear-gradient(
+      to right,
+      rgba(111, 113, 122, 0.9) 0%,
+      rgba(46, 43, 49, 0.9) 100%
+    ),
+    url("https://images.pexels.com/photos/3025620/pexels-photo-3025620.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-size: cover;
+  background-position: top;
+  z-index: 4;
+  margin: -4rem;
+ 
+  &__container {
+    padding: 2rem 2rem;
+    margin: 2rem 0;
+    @include flex-property-column;
+    line-height: 1.9;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    font-weight: 700;
+    background-color: white;
+    width: 28rem;
+    h2 {
+        color: rgb(75, 74, 74);
+      }
+    p {
+        margin-top: 1rem;
+    }
+    .input-topics {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      margin: 1rem;
+      align-items: center;
+    }
+
+  }
+
+  &__btn-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__btn-close {
+    @include standard-button;
+    padding: 0.6rem;
+    width: 17rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .forgot-password {
+    padding: 4rem 4rem;
+    min-height: 69vh;
+    &__form {
+      height: 27rem;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .forgot-password {
+    padding: 1rem 0;
+    min-height: 100vh;
+    &__form {
+      width: 21rem;
+      height: 30rem;
+      input {
+        width: 16rem;
+        padding: 0.7rem;
+      }
+      select {
+        width: 8rem;
+        padding: 0.8rem;
+      }
+
+      textarea {
+        width: 20rem;
+      }
+    
+    }
+    &__btn-submit-password {
+      width: 15rem;
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .forgot-password {
+    padding: 5rem 0;
+
+    &__form {
+      width: 19rem;
+      height: 27rem;
+    }
+
+    input {
+      width: 15rem;
+      padding: 0.7rem;
+    }
+
+    &__btn-submit-email {
+      padding: 0.5rem;
+      margin: 0.5rem;
+      width: 5rem;
+      font-size: 13px;
+    }
+  }
+}

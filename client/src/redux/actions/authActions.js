@@ -5,12 +5,15 @@ import {
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGOUT_SUCCESS
+  LOGOUT_SUCCESS,
+  FORGOT_PASSWORD,
+  RESET_PASSWORD,
+  CLEAR_RESET_CONFIRMATION
 } from "./types";
 
 import { showErrors } from "./errorActions";
 
-const proxyUrl = 'http://localhost:5000'
+const proxyUrl = "http://localhost:5000";
 
 export const register = ({ name, email, password, repeatPassword }) => {
   return async (dispatch) => {
@@ -22,16 +25,16 @@ export const register = ({ name, email, password, repeatPassword }) => {
       };
       const body = JSON.stringify({ name, email, password, repeatPassword });
       const res = await axios.post(`${proxyUrl}/api/v1/user`, body, config);
+      console.log(res);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
     } catch (err) {
-      console.log(err);
       dispatch({
         type: REGISTER_FAIL,
       });
-      // dispatch(showErrors(err.res.data, err.res.status));
+      dispatch(showErrors(err.response.data, err.response.status));
     }
   };
 };
@@ -45,23 +48,66 @@ export const login = ({ email, password }) => {
         },
       };
       const body = JSON.stringify({ email, password });
-      console.log(body)
-      const res = await axios.post(`${proxyUrl}/api/v1/auth`, body, config);
-      // console.log(res)
+      const res = await axios.post(`api/v1/auth`, body, config);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
     } catch (err) {
-      console.log(err)
       dispatch({
         type: LOGIN_FAIL,
       });
-      
-      // dispatch(showErrors(err.res.data, err.res.status));
+      dispatch(showErrors(err.response.data, err.response.status));
     }
   };
 };
+
+export const forgotPassword = (email) => {
+  return async (dispatch) => {
+    try {
+      const url = `api/v1/auth/forgot-password`;
+      const res = await axios.put(url, email);
+      console.log(res);
+      dispatch({
+        type: FORGOT_PASSWORD,
+        payload: res.data
+      })
+    } catch (err) {
+      console.log(err.response)
+      dispatch(showErrors(err.response.data, err.response.status));
+    }
+  };
+};
+
+export const resetPassword = ({
+  newPassword,
+  repeatNewPassword,
+  resetToken,
+}) => {
+  return async (dispatch) => {
+    try {
+      const body = { newPassword, repeatNewPassword, resetToken };
+      const url = `http://localhost:5000/api/v1/auth/reset-password`;
+      console.log(url, body)
+      const res = await axios.put(url, body);
+      console.log(res);
+      dispatch({
+        type: RESET_PASSWORD,
+        payload: res.data
+      })
+    } catch (err) {
+      dispatch(showErrors(err.response.data, err.response.status));
+    }
+  };
+};
+
+export const clearResetConfirmation = () => {
+  return (dispatch) => {
+    dispatch({
+      type: CLEAR_RESET_CONFIRMATION
+    })
+  }
+}
 
 export const logout = () => {
   return {

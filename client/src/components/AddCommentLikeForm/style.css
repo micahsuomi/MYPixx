@@ -20,6 +20,18 @@
   }
 }
 
+.like-comment__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .like-comment__btn {
   border: none;
   background-color: transparent;
@@ -34,32 +46,19 @@
   font-size: 1.3em;
 }
 
-.like-comment__btn i:active {
-  outline: none;
-}
-
-.like-comment__form__container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.like-comments-num {
+.like-comment .like-comments-num {
   font-size: 12px;
 }
 
-.likes-number {
+.like-comment__nums {
   cursor: pointer;
   font-size: 13px;
+  color: var(--primary);
+  font-weight: 700;
+  margin-left: .5rem;
 }
 
-.likes-comments-box {
+.like-comment .likes-comments-box {
   width: 18rem;
   background-color: #f2f7f8;
   border: none;
@@ -76,7 +75,7 @@
           box-shadow: 0 1rem 1rem rgba(88, 83, 83, 0.6);
 }
 
-.likes-comments-box__header {
+.like-comment .likes-comments-box__header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -85,11 +84,11 @@
           justify-content: flex-end;
 }
 
-.likes-comments-box__header i {
+.like-comment .likes-comments-box__header i {
   color: var(--primary);
 }
 
-.likes-comments-box__body {
+.like-comment .likes-comments-box__body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
