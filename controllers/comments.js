@@ -25,7 +25,6 @@ const addComment = async (req, res, next) => {
       text: req.body.text,
       author: author,
     });
-    console.log('new comment here', newComment)
     const date = new Date();
     newComment.commentDate = moment(date).format('LL');
     newComment.save();
