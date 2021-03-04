@@ -1,11 +1,13 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const mailgun = require("mailgun-js");
+// const mailgun = require("mailgun-js");
 const _ = require("lodash");
-const DOMAIN = 'sandbox002f25d103de422bb365d88e97eea950.mailgun.org'
-const mg = mailgun({ apiKey: process.env.MAILGUN_API_KEY, domain: DOMAIN })
+// const DOMAIN = 'sandbox002f25d103de422bb365d88e97eea950.mailgun.org';
+// const mg = mailgun({ apiKey: process.env.MAILGUN_API_KEY, domain: DOMAIN });
+const sgMail = require('@sendgrid/mail');
 
-const User = require('../models/User')
+const User = require('../models/User');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 //GET request to API api/auth
 //DESCRIPTION - authenticates user
@@ -101,7 +103,8 @@ const forgotPassword = async (
           expiresIn: 3700,
         })
         const emailData = {
-          from: 'noreply@MYPixx.com',
+          // from: 'noreply@MYPixx.com',
+          from: 'michele.zucca@integrify.io',
           to: email,
           subject: 'Password Reset Request',
           html: `
@@ -116,7 +119,7 @@ const forgotPassword = async (
         return user.updateOne({ resetToken: token }, (err) => {
           if (err) {
             return res.status(404).json({ msg: 'User not found' })
-          } else {
+          } else /*{
             mg.messages().send(emailData, (err) => {
               if (err) {
                 return res.json({ msg: err.message })
@@ -125,6 +128,19 @@ const forgotPassword = async (
                 msg: `An email has been sent to ${email} with instructions to reset your password`,
               })
             })
+          }*/
+          {
+            sgMail.send(emailData)
+            .then(() => {
+              console.log('email here', emailData)
+              return res.json({
+                msg: `An email has been sent to ${email} with instructions to reset your password`,
+              })
+            })
+            .catch((err) => {
+              console.log('error here', err)
+              return res.json({ msg: err.message })
+            })  
           }
         })
       }
