@@ -25,7 +25,6 @@ export const register = ({ name, email, password, repeatPassword }) => {
       };
       const body = JSON.stringify({ name, email, password, repeatPassword });
       const res = await axios.post(`${proxyUrl}/api/v1/user`, body, config);
-      console.log(res);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
@@ -67,13 +66,11 @@ export const forgotPassword = (email) => {
     try {
       const url = `${proxyUrl}/api/v1/auth/forgot-password`;
       const res = await axios.put(url, email);
-      console.log(res);
       dispatch({
         type: FORGOT_PASSWORD,
         payload: res.data
       })
     } catch (err) {
-      console.log(err.response)
       dispatch(showErrors(err.response.data, err.response.status));
     }
   };
@@ -88,9 +85,7 @@ export const resetPassword = ({
     try {
       const body = { newPassword, repeatNewPassword, resetToken };
       const url = `http://localhost:5000/api/v1/auth/reset-password`;
-      console.log(url, body)
       const res = await axios.put(url, body);
-      console.log(res);
       dispatch({
         type: RESET_PASSWORD,
         payload: res.data
