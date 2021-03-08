@@ -132,7 +132,6 @@ const findOne = async (req, res) => {
       .populate("comments")
       .exec();
     user.photos = userPhotos;
-    console.log("calling this controller", user);
     res.json(user);
   } catch (err) {
     return res.status(404).json({ msg: "Not Found" });

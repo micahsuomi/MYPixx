@@ -6,9 +6,10 @@ const _ = require("lodash");
 // const mg = mailgun({ apiKey: process.env.MAILGUN_API_KEY, domain: DOMAIN });
 const sgMail = require('@sendgrid/mail');
 
+console.log('api key here', process.env.SENDGRID_API_KEY)
 const User = require('../models/User');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-
+console.log('sg mail here', sgMail)
 //GET request to API api/auth
 //DESCRIPTION - authenticates user
 //ACCESS Public
@@ -99,9 +100,11 @@ const forgotPassword = async (
           .status(400)
           .json({ msg: 'There is no user registered with this email' })
       } else {
+        console.log('user here', user)
         const token = jwt.sign({ id: user._id }, process.env.RESET_PASSWORD_KEY, {
           expiresIn: 3700,
         })
+        console.log('token here', token)
         const emailData = {
           // from: 'noreply@MYPixx.com',
           from: 'michele.zucca@integrify.io',
