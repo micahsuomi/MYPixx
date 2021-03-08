@@ -2,22 +2,22 @@ import { GET_USERS, GET_USER, EDIT_USER, LOAD_ERR } from "./types";
 
 import axios from "axios";
 import { tokenConfig } from "./authActions";
+import { showErrors } from "./errorActions";
 
-export const getUsers = () => (dispatch) => {
-  axios
-    .get(`http://localhost:5000/api/v1/user`)
-    .then((res) =>
+export const getUsers = () => {
+  return async (dispatch) => {
+    try {
+      const url = `http://localhost:5000/api/v1/user`;
+      const res = await axios.get(url);
       dispatch({
         type: GET_USERS,
         payload: res.data,
-      })
-    )
-    .catch((err) =>
-      dispatch({
-        type: LOAD_ERR,
-        payload: err.response,
-      })
-    );
+      });
+    } catch (err) {
+      console.log(err)
+      // dispatch(showErrors(err.response.data, err.response.status));
+    }
+  };
 };
 
 export const getUser = (userId) => {
@@ -30,10 +30,8 @@ export const getUser = (userId) => {
         payload: res.data,
       });
     } catch (err) {
-      dispatch({
-        type: LOAD_ERR,
-        payload: err.response,
-      });
+      console.log(err)
+      // dispatch(showErrors(err.response.data, err.response.status));
     }
   };
 };
@@ -48,10 +46,8 @@ export const updateUser = (id, user) => {
         payload: res.data,
       });
     } catch (err) {
-      dispatch({
-        type: LOAD_ERR,
-        payload: err.response,
-      });
+      console.log(err)
+      // dispatch(showErrors(err.response.data, err.response.status));
     }
   };
 };

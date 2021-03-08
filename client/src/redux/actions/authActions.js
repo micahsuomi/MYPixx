@@ -71,7 +71,8 @@ export const forgotPassword = (email) => {
         payload: res.data
       })
     } catch (err) {
-      dispatch(showErrors(err.response.data, err.response.status));
+      console.log(err.response)
+      // dispatch(showErrors(err.response.data, err.response.status));
     }
   };
 };
