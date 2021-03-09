@@ -46,6 +46,11 @@
   justify-content: space-between;
 }
 
+@mixin flex-property-row-space-evenly {
+  @include flex-property-row;
+  justify-content: space-evenly;
+}
+
 @mixin grid {
   display: grid;
   justify-items: center;

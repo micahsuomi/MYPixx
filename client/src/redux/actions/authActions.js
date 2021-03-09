@@ -5,13 +5,17 @@ import {
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  GOOGLE_LOGIN,
   LOGOUT_SUCCESS,
   FORGOT_PASSWORD,
   RESET_PASSWORD,
-  CLEAR_RESET_CONFIRMATION
+  CLEAR_RESET_CONFIRMATION,
 } from "./types";
 
-import { showErrors } from "./errorActions";
+import { 
+  showErrors,
+  clearErrors
+ } from "./errorActions";
 
 const proxyUrl = "http://localhost:5000";
 
@@ -29,6 +33,7 @@ export const register = ({ name, email, password, repeatPassword }) => {
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
+      dispatch(clearErrors());
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
@@ -52,6 +57,34 @@ export const login = ({ email, password }) => {
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
+      console.log(res.data);
+    } catch (err) {
+      dispatch({
+        type: LOGIN_FAIL,
+      });
+      dispatch(showErrors(err.response.data, err.response.status));
+    }
+  };
+};
+
+export const googleLogin = (response) => {
+  return async (dispatch) => {
+    try {
+      const url = `${proxyUrl}/api/v1/auth/google-auth`;
+      axios({
+        method: "POST",
+        url,
+        data: { tokenId: response.tokenId },
+      }).then((res) => {
+        console.log(res.data);
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: res.data,
+        })
+        dispatch({
+          type: GOOGLE_LOGIN
+        })
+      });
     } catch (err) {
       dispatch({
         type: LOGIN_FAIL,
@@ -68,10 +101,10 @@ export const forgotPassword = (email) => {
       const res = await axios.put(url, email);
       dispatch({
         type: FORGOT_PASSWORD,
-        payload: res.data
-      })
+        payload: res.data,
+      });
     } catch (err) {
-      console.log(err.response)
+      console.log(err.response);
       // dispatch(showErrors(err.response.data, err.response.status));
     }
   };
@@ -89,8 +122,8 @@ export const resetPassword = ({
       const res = await axios.put(url, body);
       dispatch({
         type: RESET_PASSWORD,
-        payload: res.data
-      })
+        payload: res.data,
+      });
     } catch (err) {
       dispatch(showErrors(err.response.data, err.response.status));
     }
@@ -100,10 +133,10 @@ export const resetPassword = ({
 export const clearResetConfirmation = () => {
   return (dispatch) => {
     dispatch({
-      type: CLEAR_RESET_CONFIRMATION
-    })
-  }
-}
+      type: CLEAR_RESET_CONFIRMATION,
+    });
+  };
+};
 
 export const logout = () => {
   return {

@@ -30,7 +30,7 @@ const Register = ({ history }) => {
   const errorMsg = useSelector((state) => state.error.msg.msg);
   const [isRegistered, setIsRegistered] = useState(false);
   const dispatch = useDispatch();
-  const [state, setState] = useState({
+  const [newUser, setNewUser] = useState({
     name: "",
     email: "",
     password: "",
@@ -44,7 +44,7 @@ const Register = ({ history }) => {
     repeatPassword: false
   })
 
-  const { name, email, password, repeatPassword } = state;
+  const { name, email, password, repeatPassword } = newUser;
 
   const validate = () => {
     const errors = {
@@ -77,20 +77,16 @@ const Register = ({ history }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const newUser = {
-      name,
-      email,
-      password,
-      repeatPassword,
-    };
     dispatch(register(newUser));
+    setTimeout(() => {
+      dispatch(clearErrors());
+    }, 4000);
   };
 
   const handleChange = (e) => {
     let { name, value } = e.target;
-    setState({
-      ...state,
+    setNewUser({
+      ...newUser,
       [name]: value,
     });
   };
@@ -105,7 +101,6 @@ const Register = ({ history }) => {
 
   useEffect(() => {
     if (isValidated) {
-      dispatch(clearErrors());
       setIsRegistered(true);
     }
   }, [dispatch, isValidated]);
