@@ -21,6 +21,8 @@ const EditUser = (props) => {
   const loadedEditUser = useSelector((state) => state.user.user);
   // const [err, loadedUser] = useUser();
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const isGoogleUser = useSelector((state) => state.user.isGoogleUser);
+  console.log(isGoogleUser)
   const [isImageEditing, setIsImageEditing] = useState(false);
   const [updatedImage, setUpdatedImage] = useState(null);
   const [previewSource, setPreviewSource] = useState(null);
@@ -150,6 +152,7 @@ const EditUser = (props) => {
             value={name}
             placeholder="Full Name"
             onChange={handleChange}
+            disabled={isGoogleUser ? true : false}
           />
         </div>
 
@@ -161,6 +164,7 @@ const EditUser = (props) => {
             value={email}
             placeholder="email"
             onChange={handleChange}
+            disabled={isGoogleUser ? true : false}
           />
         </div>
         {/* {!isImageChanged ? ( */}
@@ -184,9 +188,8 @@ const EditUser = (props) => {
               />
             </div>
           </div>
-        {/* ) : null} */}
 
-        {!isImageEditing ? (
+        {!isImageEditing && !isGoogleUser ? (
           <button
             onClick={openImageEditing}
             className="edit-user__change-photo grow"

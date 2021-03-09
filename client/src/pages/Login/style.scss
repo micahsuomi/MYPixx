@@ -18,7 +18,7 @@
     url("https://images.pexels.com/photos/3025620/pexels-photo-3025620.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
   background-size: cover;
   background-position: top;
-  &__form {
+  &__form-container {
     padding: 2rem 2rem;
     margin: 2rem 0;
     @include flex-property-column;
@@ -38,6 +38,8 @@
       margin: 1rem;
       align-items: center;
     }
+
+    
 
     label {
       align-self: flex-start;
@@ -65,10 +67,62 @@
       background-size: 6% auto;
       background-position: 96.5% 50%;
     }
-
-    textarea {
-      height: 15rem;
+  }
+  &__divider {
+    margin-top: 1.6rem;
+    @include flex-property-row-center;
+    hr {
+      width: 20px;
+      height: 3px;
+      width: 20rem;
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      color: #6e6d7a;
+      position: relative;
     }
+    p {
+      font-weight: 700;
+      position:absolute;
+      margin-top: -5px;
+      background: white;
+      padding: .1rem .7rem;
+      color: rgb(75, 74, 74);
+    }
+  }
+
+  .google-auth-btn {
+    margin-top: 1rem;
+    width: 20rem;
+    border-radius: 5px;
+    background-color: #4285f4;
+    cursor: pointer;
+    font-weight: 700;
+    color: white;
+    padding: .7rem;
+    border: none;
+    @include flex-property-row-center;
+    i {
+      font-size: 1.4em;
+    }
+    span {
+      margin-left: 1rem;
+    }
+    :active,
+    :focus {
+      outline: none;
+    }
+  }
+  .google-auth-btn:hover {
+    background-color: #2e70db;
+  }
+
+  &__forgot-password {
+    text-decoration: none;
+    @include flex-property-row-center;
+  }
+
+  &__sign-in {
+    text-align: center;
   }
 
   &__btn-wrapper {

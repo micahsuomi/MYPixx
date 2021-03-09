@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-
-import { login } from "../../redux/actions/authActions";
+import GoogleLogin from "react-google-login";
+import { login, googleLogin } from "../../redux/actions/authActions";
 import { clearErrors } from "../../redux/actions/errorActions";
 
 import "./style.scss";
@@ -43,11 +43,36 @@ const Login = (props) => {
     }
   });
 
+  const responseSuccessGoogle = (response) => {
+    dispatch(googleLogin(response))
+  }
+
+  const responseFailureGoogle = () => {
+
+  }
   return (
     <div className="login">
-      <form onSubmit={handleSubmit} className="login__form">
-        <h2>Sign in to MyPixx</h2>
-
+      <div className="login__form-container">
+      <h2>Sign in to MyPixx</h2>
+      <GoogleLogin
+          clientId="917092315724-7rg232f22vkqflmabjcb3rrrah6u364u.apps.googleusercontent.com"
+          buttonText="Sign in with Google"
+          onSuccess={responseSuccessGoogle}
+          onFailure={responseFailureGoogle}
+          cookiePolicy={'single_host_origin'}
+          render={renderProps => (
+            <button onClick={renderProps.onClick} disabled={renderProps.disabled}
+            className="google-auth-btn"
+            >
+              <i className="fab fa-google"></i><span>Sign In with Google</span></button>
+          )}
+        />
+        <div className="login__divider">
+          <hr className="login__divider-line-before">        
+        </hr>
+        <p>Or</p>
+        </div>
+      <form onSubmit={handleSubmit}>
         <p className="warning-msg">{errorMsg}</p>
         <div className="input-topics">
           <label htmlFor="image">Email</label>
@@ -76,12 +101,13 @@ const Login = (props) => {
         <div className="login__btn-wrapper">
           <button className="login__btn-login">Sign In</button>
         </div>
-        <NavLink to="/forgot-password">Forgot Password?</NavLink>
-        <p>
+        <NavLink to="/forgot-password" className="login__forgot-password">Forgot Password?</NavLink>
+        <p className="login__sign-in">
           Don't have an account yet? <NavLink to="/register">Sign up</NavLink>{" "}
           here
         </p>
       </form>
+      </div>
     </div>
   );
 };

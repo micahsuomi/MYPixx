@@ -18,6 +18,7 @@ export const ADD_COMMENT_REPLY = "ADD_COMMENT_REPLY";
     
 //auth types
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const GOOGLE_LOGIN = "GOOGLE_LOGIN";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const FORGOT_PASSWORD = "FORGOT_PASSWORD";

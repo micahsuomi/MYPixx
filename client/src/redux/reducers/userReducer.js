@@ -3,6 +3,7 @@ import {
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  GOOGLE_LOGIN,
   LOGOUT_SUCCESS,
   FORGOT_PASSWORD,
   RESET_PASSWORD,
@@ -18,6 +19,7 @@ const initialState = {
   token: null,
   isValidated: false,
   isAuthenticated: false,
+  isGoogleUser: false,
   forgotPasswordConfirmation: "",
   isLoading: false,
   user: {},
@@ -47,7 +49,11 @@ export default function (state = initialState, action) {
         isLoading: true,
         user: user,
         token: token,
-        errorMsg: "",
+      };
+    case GOOGLE_LOGIN:
+      return {
+        ...state,
+        isGoogleUser: true,
       };
     case REGISTER_FAIL:
     case LOGIN_FAIL:
@@ -59,10 +65,10 @@ export default function (state = initialState, action) {
         user: null,
         isAuthenticated: false,
         isLoading: false,
+        isGoogleUser: false,
       };
     case FORGOT_PASSWORD:
     case RESET_PASSWORD:
-      console.log(action.payload);
       const { msg } = action.payload;
       return {
         ...state,
@@ -71,7 +77,7 @@ export default function (state = initialState, action) {
     case CLEAR_RESET_CONFIRMATION:
       return {
         ...state,
-        forgotPasswordConfirmation: '',
+        forgotPasswordConfirmation: "",
       };
     case CLEAR_ALLVALIDATIONS:
       return {
