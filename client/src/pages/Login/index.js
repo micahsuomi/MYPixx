@@ -48,8 +48,8 @@ const Login = (props) => {
   }
 
   const responseFailureGoogle = () => {
-
   }
+  
   return (
     <div className="login">
       <div className="login__form-container">
