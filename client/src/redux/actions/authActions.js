@@ -70,7 +70,7 @@ export const login = ({ email, password }) => {
 export const googleLogin = (response) => {
   return async (dispatch) => {
     try {
-      const url = `${proxyUrl}/api/v1/auth/google-auth`;
+      const url = `api/v1/auth/google-auth`;
       axios({
         method: "POST",
         url,

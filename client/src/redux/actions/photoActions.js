@@ -17,7 +17,7 @@ const proxyUrl = 'http://localhost:5000'
 export const getPhotos = () => {
   return async (dispatch) => {
     try {
-      const url = `${proxyUrl}/api/v1/photos`;
+      const url = `api/v1/photos`;
       const res = await axios.get(url);
       dispatch({
         type: GET_PHOTOS,
