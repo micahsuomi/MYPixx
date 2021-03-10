@@ -17,8 +17,6 @@ import {
   clearErrors
  } from "./errorActions";
 
-const proxyUrl = "http://localhost:5000";
-
 export const register = ({ name, email, password, repeatPassword }) => {
   return async (dispatch) => {
     try {
@@ -28,7 +26,7 @@ export const register = ({ name, email, password, repeatPassword }) => {
         },
       };
       const body = JSON.stringify({ name, email, password, repeatPassword });
-      const res = await axios.post(`${proxyUrl}/api/v1/user`, body, config);
+      const res = await axios.post(`api/v1/user`, body, config);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
@@ -52,7 +50,7 @@ export const login = ({ email, password }) => {
         },
       };
       const body = JSON.stringify({ email, password });
-      const res = await axios.post(`${proxyUrl}/api/v1/auth`, body, config);
+      const res = await axios.post(`api/v1/auth`, body, config);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
@@ -97,7 +95,7 @@ export const googleLogin = (response) => {
 export const forgotPassword = (email) => {
   return async (dispatch) => {
     try {
-      const url = `${proxyUrl}/api/v1/auth/forgot-password`;
+      const url = `api/v1/auth/forgot-password`;
       const res = await axios.put(url, email);
       dispatch({
         type: FORGOT_PASSWORD,
@@ -118,7 +116,7 @@ export const resetPassword = ({
   return async (dispatch) => {
     try {
       const body = { newPassword, repeatNewPassword, resetToken };
-      const url = `http://localhost:5000/api/v1/auth/reset-password`;
+      const url = `api/v1/auth/reset-password`;
       const res = await axios.put(url, body);
       dispatch({
         type: RESET_PASSWORD,
