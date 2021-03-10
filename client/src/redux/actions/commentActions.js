@@ -16,7 +16,7 @@ import { showErrors } from "./errorActions";
 export const getComments = (id) => {
   return async (dispatch) => {
     try {
-      const url = `api/v1/photos/${id}`;
+      const url = `http://localhost:5000/api/v1/photos/${id}`;
       const res = await axios.get(url);
       dispatch({
         type: GET_COMMENTS,
@@ -47,7 +47,7 @@ export const getComment = (photoId, commentId) => {
 export const addComment = (photoId, newComment) => {
   return async (dispatch, getState) => {
     try {
-      const url = `api/v1/photos/${photoId}/comments`;
+      const url = `http://localhost:5000/api/v1/photos/${photoId}/comments`;
       const res = await axios.post(url, newComment, tokenConfig(getState));
       dispatch({
         type: ADD_COMMENT,
@@ -62,7 +62,7 @@ export const addComment = (photoId, newComment) => {
 export const editComment = (photoId, commentId, updatedComment) => {
   return async (dispatch, getState) => {
     try {
-      const url = `api/v1/photos/${photoId}/comments/${commentId}`;
+      const url = `http://localhost:5000/api/v1/photos/${photoId}/comments/${commentId}`;
       const res = await axios.put(url, updatedComment, tokenConfig(getState));
       dispatch({
         type: EDIT_COMMENT,
@@ -77,7 +77,7 @@ export const editComment = (photoId, commentId, updatedComment) => {
 export const deleteComment = (photoId, commentId) => {
   return async (dispatch, getState) => {
     try {
-      const url = `api/v1/photos/${photoId}/comments/${commentId}`;
+      const url = `http://localhost:5000/api/v1/photos/${photoId}/comments/${commentId}`;
       const res = await axios.delete(url, tokenConfig(getState));
       dispatch({
         type: DELETE_COMMENT,
@@ -92,7 +92,7 @@ export const deleteComment = (photoId, commentId) => {
 export const likeComment = (photoId, commentId, likedComment) => {
   return async (dispatch, getState) => {
     try {
-      const url = `api/v1/photos/${photoId}/comments/${commentId}/like`;
+      const url = `http://localhost:5000/api/v1/photos/${photoId}/comments/${commentId}/like`;
       const res = await axios.post(url, likedComment, tokenConfig(getState));
       dispatch({
         type: LIKE_COMMENT,
@@ -107,7 +107,7 @@ export const likeComment = (photoId, commentId, likedComment) => {
 export const addCommentReply = (photoId, commentId, commentReply) => {
   return async (dispatch, getState) => {
     try {
-      const url = `api/v1/photos/${photoId}/comments/${commentId}`;
+      const url = `http://localhost:5000/api/v1/photos/${photoId}/comments/${commentId}`;
       const res = await axios.post(url, commentReply, tokenConfig(getState));
       console.log("from actions", res);
       dispatch({
