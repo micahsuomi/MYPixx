@@ -41,7 +41,7 @@ MYPixx is a social media art sharing app for art fanatics. Users can register an
 ![Sign In](./readme-imgs/mypixx_3.png)
 
 # User Profile
-![User Profile](./readme-imgs/mypixx_4.png)
+![User Profile](./readme-imgs/mypixx_5.png)
 
 # Add, edit, delete pictures
 # Community
