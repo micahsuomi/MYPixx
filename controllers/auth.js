@@ -8,13 +8,12 @@ const User = require("../models/User");
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const client = new OAuth2Client(
-  "917092315724-7rg232f22vkqflmabjcb3rrrah6u364u.apps.googleusercontent.com"
+  process.env.GOOGLE_CLIENT_ID
 );
 
 //POST request to API api/auth/google-auth
 //DESCRIPTION - authenticates user with google login
 //ACCESS Public
-
 const googleLogin = (req, res) => {
   const { tokenId } = req.body;
   console.log("token id here", tokenId);
@@ -22,7 +21,7 @@ const googleLogin = (req, res) => {
     .verifyIdToken({
       idToken: tokenId,
       audience:
-        "917092315724-7rg232f22vkqflmabjcb3rrrah6u364u.apps.googleusercontent.com",
+      process.env.GOOGLE_CLIENT_ID
     })
     .then((response) => {
       const { email_verified, name, email, picture } = response.payload;
@@ -314,5 +313,5 @@ module.exports = {
   googleLogin,
   forgotPassword,
   resetPassword,
-  findUser,
+  findUser
 };

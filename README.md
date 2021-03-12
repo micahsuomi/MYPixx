@@ -1,9 +1,5 @@
-# TypeScript MEN (MongoDB, ExpressJS, NodeJS) boilerplate
-This boilerplate is based on the [TypeScript Node Starter](https://github.com/microsoft/TypeScript-Node-Starter) whose documentation is below, with some modifications
-
-# TypeScript Node Starter
-The main purpose of this repository is to show a good end-to-end project setup and workflow for writing Node code in TypeScript.
-We will try to keep this as up-to-date as possible, but community contributions and recommendations for improvements are encouraged and will be most welcome.
+# MYPixx MERN APP (React Js, Redux, Sass, MongoDB, ExpressJS, NodeJS, JWT, Google Auth) boilerplate
+MYPixx is a social media art gallery where users can register and share their artwork
 
 # Table of contents:
 

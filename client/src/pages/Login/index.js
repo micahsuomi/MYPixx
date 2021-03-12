@@ -10,6 +10,8 @@ import "./style.scss";
 const Login = (props) => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const errorMsg = useSelector((state) => state.error.msg.msg);
+  const clientID = `917092315724-7rg232f22vkqflmabjcb3rrrah6u364u.apps.googleusercontent.com`
+
   const dispatch = useDispatch();
 
   const [user, setUser] = useState({
@@ -55,7 +57,7 @@ const Login = (props) => {
       <div className="login__form-container">
       <h2>Sign in to MyPixx</h2>
       <GoogleLogin
-          clientId="917092315724-7rg232f22vkqflmabjcb3rrrah6u364u.apps.googleusercontent.com"
+          clientId={clientID}
           buttonText="Sign in with Google"
           onSuccess={responseSuccessGoogle}
           onFailure={responseFailureGoogle}
