@@ -9,7 +9,6 @@ import CommunityUser from "../../components/CommunityUser/index";
 import "./style.scss";
 
 const Community = ({ users, photos }) => {
-
   const sortedByLikes = photos.sort((a, b) => {
     if (a.likes.length > b.likes.length) return -1;
     if (b.likes.length < a.likes.length) return 1;

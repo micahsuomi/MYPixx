@@ -1,10 +1,17 @@
 .nav-user-image {
   display: inline-block;
   overflow: hidden;
+<<<<<<< HEAD
   height: 32px;
   width: 32px;
   object-fit: cover;
   margin-left: .4rem;
+=======
+  height: 35px;
+  width: 35px;
+  object-fit: cover;
+  margin-left: 1rem;
+>>>>>>> develop
   border-radius: 50%;
   img {
     object-fit: cover;
@@ -12,6 +19,7 @@
     height: 100%;
   }
 }
+<<<<<<< HEAD
 @media screen and (max-width: 1024px) {
   .nav-user-image {
     margin-left: 7rem;
@@ -31,3 +39,5 @@
     margin-left: 1.8rem;
   }
 }
+=======
+>>>>>>> develop

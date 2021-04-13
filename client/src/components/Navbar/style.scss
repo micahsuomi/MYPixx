@@ -1,7 +1,11 @@
 @import "../../scss/abstracts/mixins.scss";
 
 .navbar {
+<<<<<<< HEAD
   background-color: transparent;
+=======
+  background-color: rgb(208, 219, 224);
+>>>>>>> develop
   display: flex;
   justify-content: space-between;
   position: fixed;
@@ -10,6 +14,7 @@
   width: 100%;
   padding: 0 1rem;
   z-index: 2;
+<<<<<<< HEAD
   &__list-left {
     display: flex;
     justify-content: flex-start;
@@ -53,6 +58,54 @@
 
 .navbar.active {
   background-color: rgb(208, 219, 224);
+=======
+}
+
+.nav-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  width: 100vw;
+}
+
+.navbar-link {
+  text-decoration: none;
+  margin-left: 2rem;
+  color: rgb(75, 74, 74);
+  font-weight: 700;
+}
+
+.navbar-link:hover {
+  color: grey;
+}
+
+.nav-list__icon {
+  @include flex-property-row-center;
+  font-size: 1.2em;
+  margin-top: 0.1rem;
+  span {
+    font-family: "Montserrat";
+    font-size: var(--font-size-small);
+    margin-left: 0.4rem;
+  }
+}
+
+.register-login {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 34rem;
+
+  li {
+    @include flex-property-row-center;
+  }
+}
+
+.login-link span {
+  margin-top: -0.2rem;
+>>>>>>> develop
 }
 
 .user-link {
@@ -69,11 +122,16 @@
   transform: scale(1.03);
 }
 
+<<<<<<< HEAD
 @media screen and (max-width: 1024px) {
+=======
+@media screen and (max-width: 1000px) {
+>>>>>>> develop
   .navbar {
     padding: 1rem;
     height: 5rem;
     grid-template-columns: 13% 87%;
+<<<<<<< HEAD
     &__list-left {
       justify-content: space-evenly;
     }
@@ -92,6 +150,53 @@
     margin: 0;
     color: white;
   }
+=======
+  }
+
+  .hide-mobile {
+    display: none;
+  }
+
+  .show-mobile {
+    display: block;
+  }
+
+  .nav-list {
+    -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  }
+
+  .nav-list.open {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    flex-direction: column;
+    justify-content: center;
+    height: 102vh;
+    width: 102vw;
+    position: fixed;
+    top: -2%;
+    left: -2%;
+    padding: 0;
+    transition: all ease-in-out 0.1s;
+    opacity: 0.98;
+    background-color: rgb(17, 45, 58);
+    line-height: 2;
+    z-index: 5;
+    text-transform: uppercase;
+    color: white;
+    text-align: center;
+  }
+
+  .register-login {
+    flex-direction: column;
+  }
+  .navbar-link,
+  .user-link {
+    font-size: 26px;
+    margin: 0;
+  }
+
+>>>>>>> develop
   .logo {
     font-size: 20px;
   }
@@ -99,6 +204,7 @@
 
 @media screen and (max-width: 500px) {
   .navbar {
+<<<<<<< HEAD
     height: 3.3rem;
     grid-template-columns: 25% 75%;
     bottom: -.1rem;
@@ -127,6 +233,16 @@
     background-color: black;
   }
  
+=======
+    padding: 1rem;
+    height: 5rem;
+    grid-template-columns: 25% 75%;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+  }
+>>>>>>> develop
 }
 
 @media screen and (max-width: 320px) {
@@ -140,4 +256,7 @@
     margin: 0;
   }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop

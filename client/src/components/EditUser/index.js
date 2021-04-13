@@ -126,7 +126,6 @@ const EditUser = (props) => {
     mediumArr.splice(mediumIndex, 1);
     setMediumArr([...mediumArr]);
   };
-
   let { name, email, avatar, medium, bio } = user;
   if (avatar === undefined || avatar === "") {
     avatar =
@@ -134,7 +133,6 @@ const EditUser = (props) => {
   }
 
   return (
-
     <div className="edit-user">
       <form onSubmit={handleSubmit} className="edit-user__form animate-modal">
         <div className="edit-user__cancel-wrapper">

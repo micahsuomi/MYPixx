@@ -2,6 +2,7 @@
 
 .navbar-link {
   @include flex-property-row-center;
+<<<<<<< HEAD
   i {
     color: white;
   }
@@ -14,5 +15,9 @@
     span, i {
       color: rgb(75, 74, 74);
     }
+=======
+  span {
+    font-size: var(--font-size-small);
+>>>>>>> develop
   }
 }

@@ -12,10 +12,7 @@ import {
   CLEAR_RESET_CONFIRMATION,
 } from "./types";
 
-import { 
-  showErrors,
-  clearErrors
- } from "./errorActions";
+import { showErrors, clearErrors } from "./errorActions";
 
 export const register = ({ name, email, password, repeatPassword }) => {
   return async (dispatch) => {
@@ -25,7 +22,7 @@ export const register = ({ name, email, password, repeatPassword }) => {
           "Content-Type": "application/json",
         },
       };
-      const url = `/api/v1/user`
+      const url = `/api/v1/user`;
       const body = JSON.stringify({ name, email, password, repeatPassword });
       const res = await axios.post(url, body, config);
       dispatch({
@@ -50,7 +47,7 @@ export const login = ({ email, password }) => {
           "Content-Type": "application/json",
         },
       };
-      const url = `/api/v1/auth`
+      const url = `/api/v1/auth`;
       const body = JSON.stringify({ email, password });
       const res = await axios.post(url, body, config);
       dispatch({
@@ -80,10 +77,10 @@ export const googleLogin = (response) => {
         dispatch({
           type: LOGIN_SUCCESS,
           payload: res.data,
-        })
+        });
         dispatch({
-          type: GOOGLE_LOGIN
-        })
+          type: GOOGLE_LOGIN,
+        });
       });
     } catch (err) {
       dispatch({

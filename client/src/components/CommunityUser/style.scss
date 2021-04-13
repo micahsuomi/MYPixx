@@ -1,10 +1,17 @@
 @import "../../scss/abstracts/mixins.scss";
 
 .community-user {
+<<<<<<< HEAD
   padding: 1rem 1rem;
   @include flex-property-column;
   box-shadow: 0 1rem 1rem rgba(88, 83, 83, 0.6);
   width: 15rem;
+=======
+  padding: 1rem 2rem;
+  @include flex-property-column;
+  box-shadow: 0 1rem 1rem rgba(88, 83, 83, 0.6);
+  width: 16rem;
+>>>>>>> develop
   height: 21rem;
   text-decoration: none;
   color: var(--primary-dark);
@@ -13,8 +20,13 @@
   &__image-container {
     display: inline-block;
     overflow: hidden;
+<<<<<<< HEAD
     height: 110px;
     width: 110px;
+=======
+    height: 130px;
+    width: 130px;
+>>>>>>> develop
     object-fit: cover;
     margin-top: 1rem;
     border-radius: 50%;
@@ -45,9 +57,13 @@
     @include flex-property-column;
     li {
       margin-top: 0.6rem;
+<<<<<<< HEAD
       font-family: "Open sans";
       color: var(--dark);
       font-size: 15px;
+=======
+      font-family: "Roboto";
+>>>>>>> develop
     }
   }
 }
