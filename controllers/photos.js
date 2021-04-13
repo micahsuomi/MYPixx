@@ -37,6 +37,7 @@ cloudinary.config({
 const findAll = async (req, res) => {
   try {
     res.json(await PhotoService.findAll());
+    console.log(res)
   } catch (err) {
     res.status(404).json({ msg: "Not Found" });
   }
