@@ -1,27 +1,32 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+
+import { useSelector } from "react-redux";
 
 import "./style.scss";
 
 const CommunityHeader = () => {
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   return (
     <div className="community-header">
-      <h1>MYPixx</h1>
-      <div className="community-paragraph">
+      <h1>MYPixx Community</h1>
+      <div className="community-header__paragraph">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Porta
-          lorem mollis aliquam ut porttitor leo a. In pellentesque massa
-          placerat duis ultricies lacus sed turpis tincidunt. Pellentesque id
-          nibh tortor id. At augue eget arcu dictum varius duis at. Non nisi est
-          sit amet. Nisl nunc mi ipsum faucibus. Mauris sit amet massa vitae
-          tortor condimentum lacinia quis vel. Eu lobortis elementum nibh tellus
-          molestie nunc non blandit massa. Nisl tincidunt eget nullam non nisi.
-          Id venenatis a condimentum vitae sapien pellentesque habitant. Sed
-          viverra ipsum nunc aliquet bibendum enim. Odio facilisis mauris sit
-          amet massa. Amet nisl purus in mollis. Praesent tristique magna sit
-          amet purus gravida quis blandit turpis. Amet venenatis urna cursus
-          eget nunc scelerisque viverra mauris in. Duis ut diam quam nulla
-          porttitor. Donec enim diam vulputate ut pharetra sit amet.
+          MyPixx is a social community for artists and inspiring artists. If you
+          love art and want to share it with your peers, you found the right
+          place! <br></br>
+            Join a community of talented artits. Each of us is unique and has
+            his or her own talents. Are you into photography or prints? Great,
+            join us. Are you a painter, whether is portraits, or abstracts?
+            Awesome! Are you into digital art or street art? Join us! Are you a
+            sculpturist? Join us!{" "}
+          {!isAuthenticated && (
+            <div className="community-header__btn-container">
+              <NavLink to="/register" className="community-header__link">
+                <button>Join Today</button>
+              </NavLink>
+            </div>
+          )}
         </p>
       </div>
     </div>

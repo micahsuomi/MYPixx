@@ -1,0 +1,106 @@
+@-webkit-keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+.edit-comment .input-topics {
+  position: relative;
+}
+
+.edit-comment textarea {
+  margin-top: .5rem;
+  width: 16rem;
+  font-family: "Open sans";
+  padding: 0.9rem;
+  font-size: 16px;
+  -webkit-animation-name: appear;
+          animation-name: appear;
+  -webkit-transition: 1s ease-in-out;
+  transition: 1s ease-in-out;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  border-radius: 10px;
+  border: 1.8px solid rgba(200, 200, 200, 0.5);
+}
+
+.edit-comment__emoji-menu {
+  position: absolute;
+  top: 55%;
+  left: 120%;
+}
+
+.edit-comment__emoji-menu .emoji-mart-emoji span {
+  cursor: pointer;
+}
+
+.edit-comment__emoji-btn, .edit-comment__emoji-close {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: -146%;
+  left: 81%;
+}
+
+.edit-comment__emoji-btn :active, .edit-comment__emoji-close :active {
+  outline: none;
+}
+
+.edit-comment__emoji-btn i, .edit-comment__emoji-close i {
+  font-size: 1.7em;
+  color: darkgrey;
+}
+
+.edit-comment__comment-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--secondary);
+}
+
+.edit-comment__comment-btn:hover {
+  color: skyblue;
+}
+
+.edit-comment__comment-btn:active {
+  outline: none;
+}
+
+.edit-comment__edit-delete {
+  position: relative;
+}
+
+.edit-comment__edit-btn, .edit-comment__delete-btn {
+  cursor: pointer;
+  font-family: "Monserrat";
+}
+
+.edit-comment__edit-btn {
+  color: var(--blue);
+}
+
+.edit-comment__delete-btn {
+  color: var(--secondary);
+}
+
+.edit-comment__edit-btn:active, .edit-comment__delete-btn:visited {
+  outline: none;
+}
+/*# sourceMappingURL=style.css.map */

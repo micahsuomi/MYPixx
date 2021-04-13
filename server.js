@@ -21,7 +21,7 @@ app.use(cors());
 
 //connect to MongoDB
 mongoose
-  .connect(process.env.mongoDBURL, {
+  .connect(process.env.mongoDBURLDEV, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

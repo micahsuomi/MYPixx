@@ -1,20 +1,20 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import { deletePhoto } from "../../redux/actions/photoActions";
 import { getUsers } from "../../redux/actions/userActions";
 
 import "./style.scss";
 
-const DeletePhoto = (props) => {
+const DeletePhoto = ({ id, history }) => {
   const dispatch = useDispatch();
-  let id = props.match.params.id;
 
   const deleteOnClick = () => {
     dispatch(deletePhoto(id));
     setTimeout(() => {
-      props.history.push("/photos");
+      history.push("/");
       dispatch(getUsers());
     }, 1000);
   };
@@ -23,7 +23,7 @@ const DeletePhoto = (props) => {
     <div className="delete-photo animate-modal">
       <div className="delete-photo__wrapper">
         <div className="delete-photo__cancel-wrapper">
-          <NavLink to={`/photos/${id}`} className="delete-link">
+          <NavLink to={`/photo/${id}`} className="delete-link">
             <i className="fas fa-times-circle fa-2x"></i>
           </NavLink>
         </div>
@@ -41,3 +41,8 @@ const DeletePhoto = (props) => {
 };
 
 export default DeletePhoto;
+
+DeletePhoto.propTypes = {
+  id: PropTypes.string,
+  history: PropTypes.object,
+};

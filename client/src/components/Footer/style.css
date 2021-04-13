@@ -1,9 +1,15 @@
 .footer {
   padding: 1rem 3rem;
-  background-color: rgb(17, 45, 58);
+  background-color: #112d3a;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   width: 100vw;
+  position: fixed;
+  margin-bottom: 2rem;
 }
 
 .app-author,
@@ -18,12 +24,20 @@
 
 @media screen and (max-width: 500px) {
   .footer {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .app-author,
   .app-pexels__link {
     margin: 0.5rem;
   }
 }
+/*# sourceMappingURL=style.css.map */

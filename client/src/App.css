@@ -8,8 +8,9 @@
   /* color palette */
   --primary: #764ba2;
   --primary-dark: #57327c;
-  --primary: rgb(236, 8, 103);
-  --primary-dark: rgb(163, 20, 80);
+  --primary: rgb(255, 27, 122);
+  --primary-dark: rgb(236, 8, 103);
+  --primary-disabled: rgb(211, 134, 166);
   --secondary: #f09819;
   --secondary-dark: #d68719;
   --nav-hover: #f5d8af;
@@ -38,7 +39,10 @@ body {
 }
 
 h1,
-h2,
+h2 {
+  font-family: "Sansita Swashed", cursive;
+
+}
 h3,
 h4 {
   font-family: "Montserrat", sans-serif;
@@ -46,6 +50,7 @@ h4 {
 p,
 a {
   font-family: "Open Sans", sans-serif;
+  font-size: 14px;
 }
 
 label {
@@ -101,16 +106,36 @@ h3 {
   font-size: 16px;
 }
 
+.animate-pop {
+  animation: popup 0.25s;
+}
+
 .animate-modal {
   -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
+  -webkit-animation-duration: 0.2s;
   animation-name: animatetop;
-  animation-duration: 0.4s;
+  animation-duration: 0.2s;
+}
+
+.animate-appear {
+  -webkit-animation-name: animateAppear;
+  -webkit-animation-duration: 0.1s;
+  animation-name: animateAppear;
+  animation-duration: 0.1s;
+}
+
+@keyframes popup {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 @-webkit-keyframes animatetop {
   from {
-    top: -300px;
+    top: -5px;
     opacity: 0;
   }
   to {
@@ -121,12 +146,27 @@ h3 {
 
 @keyframes animatetop {
   from {
-    top: -300px;
+    top: -5px;
     opacity: 0;
   }
   to {
     top: 0;
     opacity: 1;
+  }
+}
+
+@keyframes animateAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .hide-tablet-mobile {
+    display: none;
   }
 }
 

@@ -1,20 +1,28 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 
-export default function usePhotos(search) {
-  const photos = useSelector((state) => state.photos.photos);
-  // const dispatch = useDispatch()
+export default function usePhotos(search, category) {
+  const photos = useSelector((state) => state.photo.photos);
   const [data, setData] = useState([]);
   const [err, setErr] = useState(null);
-  const [searchMsg, setSearchMsg] = useState("");
+  const [resultMsg, setResultMsg] = useState(null);
+
 
   useEffect(() => {
+    const errMessage = 'Not Found'
+    if (err) {
+      setErr(errMessage)
+    }
     setData(photos);
   }, [photos, err]);
 
   useEffect(() => {
     searchPhotosResults();
   }, [search]);
+
+  useEffect(() => {
+    selectCategory(category)
+  }, [category])
 
   const searchPhotosResults = useCallback(() => {
     const results = photos.filter((photo) => {
@@ -31,13 +39,36 @@ export default function usePhotos(search) {
     });
 
     if (results.length < 1) {
-      let resultsMsg = "No results match this search";
-      setSearchMsg(resultsMsg);
+      setResultMsg("No results");
     } else {
-      setSearchMsg("");
+      setData(results);
+      setResultMsg(null);
     }
-    setData(results);
   }, [photos, search]);
 
-  return [err, data];
+  const selectCategory = useCallback(
+    (category) => {
+      console.log(category)
+      const selectedPhotos = photos.filter((photo) => {
+        const { type } = photo;
+        if(type.includes(category)) {
+           return photo
+        }
+        if(category.includes('all')) {
+          return photo
+        }
+      })
+      if(selectedPhotos.length < 1) {
+        setResultMsg('No results')
+      } else {
+        setData(selectedPhotos);
+        setResultMsg(null);
+      }
+       
+      
+    },
+    [category],
+  )
+
+  return [err, data, resultMsg];
 }

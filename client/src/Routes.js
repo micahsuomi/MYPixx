@@ -2,43 +2,35 @@ import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { loadUser } from "./redux/actions/authActions";
 import { getPhotos } from "./redux/actions/photoActions";
-import Navbar from "./components/Navbar/index";
-import Home from "./pages/Home";
-import Community from "./pages/Community/index";
-import Register from "./pages/Register/index";
-import Login from "./pages/Login/index";
-import User from "./pages/User";
-import EditUser from "./components/EditUser/index";
-import PhotoList from "./pages/Photos/index";
-import AddPhoto from "./components/AddPhoto/index";
-import ViewPhoto from "./pages/ViewPhoto/index";
-import LikesList from "./components/LikesList/index";
-import PhotoComments from "./components/PhotoComments/index";
-import Comment from "./components/Comment/index";
-import EditPhoto from "./components/EditPhoto/index";
-import DeletePhoto from "./components/DeletePhoto/index";
-import Footer from "./components/Footer/index";
 import { getUsers } from "./redux/actions/userActions";
+import Navbar from "./components/Navbar";
+import Community from "./pages/Community";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import User from "./pages/User";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import EditUser from "./components/EditUser";
+import PhotoList from "./pages/Photos";
+import AddPhoto from "./components/AddPhoto";
+import ViewPhoto from "./pages/ViewPhoto";
+import ViewUserPhoto from "./pages/ViewUserPhoto";
+import LikesList from "./components/LikesList";
+import PhotoComments from "./components/PhotoComments";
+import EditPhoto from "./components/EditPhoto";
+import DeletePhoto from "./components/DeletePhoto";
+import Footer from "./components/Footer";
 
 import "./App.css";
 
-export const Routes = () => {
+const Routes = () => {
   const dispatch = useDispatch();
-  const photos = useSelector((state) => state.photos.photos);
-  const users = useSelector((state) => state.users.users);
-
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const isLoading = useSelector((state) => state.auth.isLoading);
-  const user = useSelector((state) => state.auth);
-  const loadedUser = useSelector((state) => state.users.user);
-
-  const [msg, setMsg] = useState("");
-  const [isErrorShowing, setIsErrorShowing] = useState(false);
-  const [isUserPage, setIsUserPage] = useState(false);
-  const [userProfile, setUserProfile] = useState({});
-  const [isPhotoPage, setIsPhotoPage] = useState(true);
+  const photos = useSelector((state) => state.photo.photos);
+  const users = useSelector((state) => state.user.users);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const isLoading = useSelector((state) => state.user.isLoading);
+  const user = useSelector((state) => state.user);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
 
@@ -74,13 +66,27 @@ export const Routes = () => {
 
         <Route
           path="/register"
-          component={(props) => <Register user={user} msg={msg} {...props} />}
+          component={(props) => <Register history={props.history} {...props} />}
         />
 
         <Route
           path="/login"
           component={(props) => (
-            <Login isAuthenticated={isAuthenticated} msg={msg} {...props} />
+            <Login isAuthenticated={isAuthenticated} {...props} />
+          )}
+        />
+
+        <Route
+          path="/forgot-password"
+          component={(props) => (
+            <ForgotPassword isAuthenticated={isAuthenticated} {...props} />
+          )}
+        />
+
+        <Route
+          path="/reset-password/:token"
+          component={(props) => (
+            <ResetPassword {...props} />
           )}
         />
 
@@ -105,9 +111,21 @@ export const Routes = () => {
               user={user}
               users={users}
               photos={photos}
-              isPopupOpen={isPopupOpen}
               isEditPopupOpen={isEditPopupOpen}
               closePopup={closePopup}
+              {...props}
+            />
+          )}
+        />
+
+        <Route
+          path="/view-user/:id/user-photo/:id"
+          component={(props) => (
+            <ViewUserPhoto
+              photos={photos}
+              user={user}
+              users={users}
+              isAuthenticated={isAuthenticated}
               {...props}
             />
           )}
@@ -120,23 +138,31 @@ export const Routes = () => {
 
         <Route
           path="/deletephoto/:id"
-          component={(props) => <DeletePhoto {...props} />}
+          component={(props) => (
+            <DeletePhoto
+              id={props.match.params.id}
+              history={props.history}
+              {...props}
+            />
+          )}
         />
 
         <Route
-          path="/photos/:id/likes"
+          path="/photo/:id/likes"
           component={(props) => (
             <LikesList photos={photos} user={user} {...props} />
           )}
         />
 
         <Route
-          path="/photos/:id/comments"
+          path="/photo/:id/comments"
           component={(props) => (
             <PhotoComments
-              photos={photos}
               user={user}
+              users={users}
               isAuthenticated={isAuthenticated}
+              match={props.match}
+              history={props.history}
               {...props}
             />
           )}
@@ -144,45 +170,30 @@ export const Routes = () => {
 
         <Route
           path="/addphoto"
-          component={(props) => (
-            <AddPhoto
-              isAuthenticated={isAuthenticated}
-              user={user}
-              isLoading={isLoading}
-              {...props}
-            />
-          )}
+          component={(props) => <AddPhoto history={props.history} {...props} />}
         />
 
         <Route
-          path="/photos/:id"
+          path="/photo/:id"
           component={(props) => (
             <ViewPhoto
               photos={photos}
               user={user}
               users={users}
               isAuthenticated={isAuthenticated}
-              isUserPage={isUserPage}
-              userProfile={userProfile}
               {...props}
             />
           )}
         />
 
         <Route
-          path="/photos/:id/comments/:id"
-          component={(props) => <Comment {...props} />}
-        />
-
-        <Route
-          path="/photos"
+          path="/"
           component={(props) => (
             <div>
               <PhotoList
                 key={props.match.params.id}
                 photos={photos}
                 isAuthenticated={isAuthenticated}
-                isErrorShowing={isErrorShowing}
                 isPopupOpen={isPopupOpen}
                 isEditPopupOpen={isEditPopupOpen}
                 closePopup={closePopup}
@@ -191,8 +202,6 @@ export const Routes = () => {
             </div>
           )}
         />
-
-        <Route path="/" component={Home} />
       </Switch>
       <Footer />
     </div>

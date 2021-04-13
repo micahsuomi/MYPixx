@@ -23,16 +23,18 @@ const Community = ({ users, photos }) => {
 
   sortedByLikes.length = 8;
   sortedByComments.length = 8;
+
   return (
-    <div className="about-container">
+    <div className="community">
       <CommunityHeader />
-      <div className="most-liked-photos__container">
+      <div className="community__most-commented">
         <h4>Most Commented</h4>
-        <div className="most-liked-photos__wrapper">
+        <div className="community__most-commented-wrapper">
           {sortedByLikes.map((photo) => (
             <NavLink
-              to={`/photos/${photo._id}`}
-              className="most-liked-photos__link"
+              key={photo._id}
+              to={`/photo/${photo._id}`}
+              className="community__most-commented-link"
             >
               <CommunityMostCommented
                 key={photo._id}
@@ -46,13 +48,14 @@ const Community = ({ users, photos }) => {
         </div>
       </div>
 
-      <div className="most-liked-photos__container">
+      <div className="community__most-liked">
         <h4>Most Liked</h4>
-        <div className="most-liked-photos__wrapper">
+        <div className="community__most-liked-wrapper">
           {sortedByComments.map((photo) => (
             <NavLink
-              to={`/photos/${photo._id}`}
-              className="most-liked-photos__link"
+              key={photo._id}
+              to={`/photo/${photo._id}`}
+              className="community__most-liked-link"
             >
               <CommunityMostLiked
                 key={photo._id}
@@ -66,13 +69,14 @@ const Community = ({ users, photos }) => {
         </div>
       </div>
 
-      <div className="users-container">
+      <div className="community__users">
         <h4>Active Users</h4>
-        <div className="users-wrapper">
+        <div className="community__users-wrapper">
           {users.map((user) => (
             <NavLink
+              key={user._id}
               to={`/user/${user._id}`}
-              className="user-link__container grow"
+              className="community__users-link-container grow"
             >
               <CommunityUser
                 key={user._id}

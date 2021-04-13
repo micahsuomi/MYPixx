@@ -1,14 +1,17 @@
-.like-comment {
+@import "../../scss/abstracts/mixins.scss";
+
+.comment-likeslist {
   display: grid;
   grid-template-columns: 50% 50%;
   align-items: center;
-  margin: 1rem;
-  width: 14rem;
+  width: 26rem;
+  margin: 0.7rem;
+
   &__image-container {
     display: inline-block;
     overflow: hidden;
-    height: 38px;
-    width: 38px;
+    height: 60px;
+    width: 60px;
     border-radius: 50%;
     object-fit: cover;
   }

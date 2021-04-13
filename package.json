@@ -24,6 +24,7 @@
   "author": "Michele Zucca",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.4.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cloudinary": "^1.23.0",
@@ -31,10 +32,15 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "google-auth-library": "^7.0.2",
     "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.20",
+    "mailgun-js": "^0.22.0",
+    "moment": "^2.29.1",
     "mongoose": "^5.10.7",
     "multer": "^1.4.2",
     "node-sass": "^4.14.1",
-    "prettier": "^2.1.2"
+    "prettier": "^2.1.2",
+    "pug": "^3.0.1"
   }
 }

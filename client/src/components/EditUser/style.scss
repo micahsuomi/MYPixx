@@ -23,17 +23,30 @@
     display: flex;
     justify-content: flex-end;
     width: 38vw;
+<<<<<<< HEAD
+    a {
+      i {
+        color: var(--primary);
+      }
+    }
+=======
+>>>>>>> develop
   }
 
   label {
     align-self: flex-start;
   }
   .input-topics {
+<<<<<<< HEAD
+    @include flex-property-row-center;
+    margin: .4rem;
+=======
     display: flex;
     justify-content: center;
     flex-direction: column;
     margin: 1rem;
     align-items: center;
+>>>>>>> develop
   }
 
   input,
@@ -46,6 +59,12 @@
     border: 1px solid lightgray;
     margin-top: 0.6rem;
   }
+<<<<<<< HEAD
+  textarea {
+    height: 9rem;
+  }
+=======
+>>>>>>> develop
   &__image-label {
     align-self: center;
   }
@@ -58,7 +77,11 @@
   &__remove-photo,
   &__cancel-photo {
     @include standard-button;
+<<<<<<< HEAD
+    width: 25rem;
+=======
     width: 7rem;
+>>>>>>> develop
   }
   &__remove-photo,
   &__cancel-photo {
@@ -68,7 +91,11 @@
   .input-topics-medium {
     @include flex-property-row-center;
     input {
+<<<<<<< HEAD
+      width: 20.5rem;
+=======
       width: 20rem;
+>>>>>>> develop
     }
     &__add-btn {
       border: none;
@@ -76,6 +103,12 @@
       cursor: pointer;
       margin-top: 0.6rem;
       font-size: 1.3rem;
+<<<<<<< HEAD
+      i {
+        color: var(--primary);
+      }
+=======
+>>>>>>> develop
     }
   }
 
@@ -87,6 +120,10 @@
     @include flex-property-row-start;
     flex-wrap: wrap;
     margin-top: 1rem;
+<<<<<<< HEAD
+    width: 25rem;
+=======
+>>>>>>> develop
     p {
       display: block;
     }
@@ -133,7 +170,11 @@
 
   &__btn-save {
     @include standard-button;
+<<<<<<< HEAD
+    width: 25rem;
+=======
     width: 13rem;
+>>>>>>> develop
   }
 }
 
@@ -171,6 +212,31 @@
     &__cancel-wrapper {
       width: 81vw;
     }
+<<<<<<< HEAD
+    input,
+    textarea {
+      width: 18rem;
+      padding: 0.7rem;
+    }
+    .input-topics-medium {
+      input {
+        width: 14rem;
+      }
+      &__add-btn {
+        border: none;
+        background: none;
+        cursor: pointer;
+        margin-top: 0.6rem;
+        font-size: 1.3rem;
+      }
+    }
+    &__medium-item {
+      min-width: 4rem;
+    }
+    textarea {
+      width: 20rem;
+      height: 14rem;
+=======
 
     input,
     textarea {
@@ -184,12 +250,17 @@
 
     textarea {
       width: 20rem;
+>>>>>>> develop
     }
     &__btn-save,
     &__btn-cancel {
       padding: 0.6rem;
       margin: 0.6rem;
+<<<<<<< HEAD
+      width: 10rem;
+=======
       width: 4rem;
+>>>>>>> develop
       font-size: 14px;
     }
   }

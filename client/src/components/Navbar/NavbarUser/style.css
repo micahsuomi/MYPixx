@@ -1,0 +1,62 @@
+@-webkit-keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+.navbar-user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  list-style: none;
+  margin-left: 28rem;
+}
+
+.navbar-user i {
+  color: #fcf4f4;
+  font-size: 1.1em;
+}
+
+.navbar-user i :active {
+  color: black;
+}
+
+.navbar-user .user-link {
+  margin-left: 0.7rem;
+}
+
+.navbar-user span {
+  margin-left: 0.5rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .navbar-user {
+    margin-left: 0;
+  }
+  .navbar-user i {
+    font-size: 1.3em;
+  }
+}
+/*# sourceMappingURL=style.css.map */

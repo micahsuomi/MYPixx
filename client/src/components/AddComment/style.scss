@@ -1,0 +1,81 @@
+@import "../../scss/abstracts/mixins.scss";
+
+.add-comment-form {
+  label {
+    margin-left: 2.4rem;
+  }
+  .input-topics {
+    position: relative;
+    @include flex-property-row-center;
+    flex-direction: row;
+    textarea {
+      margin-top: 1.5rem;
+      width: 20rem;
+      height: 3rem;
+      font-family: "Open sans";
+      padding: 0.8rem;
+      font-size: 14px;
+      border-radius: 25px;
+      border: 1.8px solid rgba(200, 200, 200, 0.5); 
+    }
+    textarea:focus {
+      outline: none;
+    }
+  }
+  &__emoji-menu {
+    position: absolute;
+    top: -508%;
+    left: 10%;
+    .emoji-mart-emoji {
+      span {
+        cursor: pointer;
+      }
+    }
+  }
+  &__emoji-btn,
+  &__emoji-close {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 31%;
+    left: 65%;
+    :active {
+      outline: none;
+    }
+    i {
+      font-size: 1.5em;
+      color: darkgrey;
+    }
+  }
+  &__btn-wrapper {
+    @include flex-property-row-center;
+    margin-top: 1.4rem;
+  }
+  &__btn-submit,
+  &__btn-cancel {
+    border-radius: 50px;
+    border: none;
+    background-color: rgb(52, 110, 219);
+    padding: .5rem;
+    cursor: pointer;
+    margin: .2rem;
+    width: 2.2rem;
+    @include flex-property-column;
+    i {
+      font-size: 1.4em;
+      color: white;
+    }
+    
+  }
+  &__btn-cancel {
+    background-color: var(--secondary);
+  }
+}
+@media screen and (max-width: 500px) {
+  .add-comment-form {
+    textarea {
+      width: 19rem;
+    }
+  }
+}

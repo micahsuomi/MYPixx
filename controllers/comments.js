@@ -1,3 +1,5 @@
+const moment = require("moment");
+
 const Comment = require("../models/Comment");
 const User = require("../models/User");
 const Photo = require("../models/Photo");
@@ -12,9 +14,8 @@ const addComment = async (req, res, next) => {
   try {
     const id = req.params.id;
     const userId = req.user.id;
-    const photo = await PhotoService.findById(id);
-    const user = await UserService.findUserByReq(userId);
-
+    const photo = await PhotoService.findPhotoById(id);
+    const user = await UserService.findUserById(userId);
     const author = {
       id: req.user.id,
       name: user.name,
@@ -24,11 +25,9 @@ const addComment = async (req, res, next) => {
       text: req.body.text,
       author: author,
     });
-
     const date = new Date();
-    newComment.commentDate = date.toISOString().split("T")[0];
+    newComment.commentDate = moment(date).format('LL');
     newComment.save();
-
     photo.comments.push(newComment);
     photo.save().then((photo) => res.json(photo));
   } catch (err) {
@@ -42,10 +41,9 @@ const addComment = async (req, res, next) => {
 const editComment = async (req, res, next) => {
   try {
     const id = req.params.id;
-    Comment.findById(id).then((comment) => {
-      comment.text = req.body.text;
-      comment.save().then((comment) => res.json(comment));
-    });
+    const update = req.body;
+    const updatedComment = await CommentService.updateComment(id, update)
+    res.json(updatedComment)
   } catch (err) {
     next(res.status(500).json({ msg: "Internal Server Error" }));
   }
@@ -66,9 +64,10 @@ const deleteComment = (req, res) => {
 //@ACCESS: private
 const likeComment = (req, res) => {
   const id = req.params.id;
-
+  console.log('req prams id', id)
   Comment.findById(id)
     .populate("likes")
+    .populate("replies")
     .exec((err, comment) => {
       if (err) {
         return res.status(404).json({ msg: "Not found" });
@@ -86,23 +85,57 @@ const likeComment = (req, res) => {
     });
 };
 
+const replyToComment = async(req, res, next) => {
+  try {
+    const id = req.params.id
+    const foundComment = await CommentService.findCommentById(id);
+    console.log('found comment here', foundComment)
+    const userId = req.user.id
+    const user = await UserService.findUserByReq(userId);
+    console.log('user here', user)
+  
+      const author = {
+        id: req.user.id,
+        name: user.name,
+        avatar: user.avatar,
+      };
+      const newReply = new Comment({
+        text: req.body.text,
+        author: author,
+      });
+      newReply.save()
+      console.log('new reply', newReply)
+      foundComment.replies.push(newReply)
+      // foundComment.populate("replies").execPopulate()
+      console.log('found comment', foundComment)
+      foundComment.save().then((comment) => res.json(comment))
+  }
+  catch(err) {
+    next(res.status(500).json({ msg: "Internal Server Error" }));
+    console.log(err)
+  }
+ 
+
+}
+
 //GET Route /api/photos/:id/comments:id
-//GET all likes for a comment
+//GETs a single comment
 //Access: public
-const findAllCommentLikes = async (req, res) => {
+const findComment = async (req, res) => {
   try {
     const id = req.params.id;
-    const comment = await Comment.findById(id).populate("likes").exec();
-    res.json(comment.likes);
+    const foundComment = await CommentService.findCommentById(id)
+    res.json(foundComment);
   } catch (err) {
-    return res.status(404).json({ msg: "Not found" });
+    return res.status(404).json({ msg: err });
   }
-};
+}
 
 module.exports = {
-  addComment: addComment,
-  editComment: editComment,
-  deleteComment: deleteComment,
-  likeComment: likeComment,
-  findAllCommentLikes: findAllCommentLikes,
+  addComment,
+  editComment,
+  deleteComment,
+  findComment,
+  likeComment,
+  replyToComment,
 };

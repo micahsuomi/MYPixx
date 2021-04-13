@@ -1,0 +1,88 @@
+@-webkit-keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+.header {
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(65, 62, 59, 0.63)), to(rgba(18, 11, 29, 0.9))), url("https://images.pexels.com/photos/4343180/pexels-photo-4343180.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-image: linear-gradient(to right, rgba(65, 62, 59, 0.63), rgba(18, 11, 29, 0.9)), url("https://images.pexels.com/photos/4343180/pexels-photo-4343180.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-position: center;
+  background-size: cover;
+  -webkit-box-shadow: 0 1rem 1rem rgba(140, 153, 153, 0.5);
+          box-shadow: 0 1rem 1rem rgba(140, 153, 153, 0.5);
+  background-color: #cac2c2;
+  padding: 9rem 2rem;
+  z-index: 0;
+  -webkit-transition: ease-in-out 0.6s;
+  transition: ease-in-out 0.6s;
+  position: -webkit-sticky;
+  position: sticky;
+  padding-bottom: 20rem;
+  display: block;
+  width: 100vw;
+}
+
+.header__wrapper,
+.header .header-search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header__title {
+  text-align: center;
+}
+
+.header__wrapper h1,
+.header h3 {
+  font-size: 33px;
+  color: white;
+}
+
+.header h3 {
+  font-size: 25px;
+}
+
+.header__wrapper {
+  padding: 0.8rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .header {
+    height: 35vh;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header {
+    height: 43vh;
+  }
+}
+/*# sourceMappingURL=style.css.map */

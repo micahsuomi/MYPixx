@@ -1,9 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import "./style.scss";
 
-const PhotoItemAuthor = ({ authorId, author, authorImg }) => {
+const PhotoItemAuthor = ({ 
+  authorId, 
+  author, 
+  authorImg 
+}) => {
   return (
     <div className="author">
       <div className="author__image-container">
@@ -26,3 +31,9 @@ const PhotoItemAuthor = ({ authorId, author, authorImg }) => {
 };
 
 export default PhotoItemAuthor;
+
+PhotoItemAuthor.propTypes = {
+  authorId: PropTypes.string,
+  author: PropTypes.string,
+  authorImg: PropTypes.string
+};

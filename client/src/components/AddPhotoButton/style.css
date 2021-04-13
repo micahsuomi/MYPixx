@@ -1,0 +1,62 @@
+@-webkit-keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+.add-photo-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: var(--primary);
+  padding: 1rem;
+  text-decoration: none;
+  font-family: "Montserrat";
+  cursor: pointer;
+  border: 2px solid var(--primary);
+  border-radius: 50px;
+  -webkit-box-shadow: 0 1rem 2rem rgba(179, 170, 170, 0.5);
+          box-shadow: 0 1rem 2rem rgba(179, 170, 170, 0.5);
+  margin-left: 1rem;
+}
+
+.add {
+  margin-left: 1rem;
+}
+
+.add-photo-link:hover {
+  color: var(--primary-dark);
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+@media screen and (max-width: 500px) {
+  .add-photo-link {
+    display: none;
+  }
+}
+/*# sourceMappingURL=style.css.map */

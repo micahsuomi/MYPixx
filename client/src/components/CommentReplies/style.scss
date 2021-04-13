@@ -1,0 +1,10 @@
+@import "../../scss/abstracts/mixins.scss";
+
+.comments-replies {
+  &__header {
+    color: rgb(174, 59, 219);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+  }
+}
