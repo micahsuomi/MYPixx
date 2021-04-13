@@ -7,7 +7,7 @@ import {
   EDIT_COMMENT,
   DELETE_COMMENT,
   LIKE_COMMENT,
-  ADD_COMMENT_REPLY
+  ADD_COMMENT_REPLY,
 } from "./types";
 
 import { tokenConfig } from "./authActions";
@@ -112,11 +112,8 @@ export const addCommentReply = (photoId, commentId, commentReply) => {
       console.log("from actions", res);
       dispatch({
         type: ADD_COMMENT_REPLY,
-        payload: res.data
-      })
-    } catch(err) {
-      
-
-    }
-  }
-}
+        payload: res.data,
+      });
+    } catch (err) {}
+  };
+};
