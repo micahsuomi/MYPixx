@@ -77,7 +77,6 @@ const likeComment = (req, res) => {
           like.equals(req.user.id)
         );
         foundUser ? comment.likes.pull(newLike) : comment.likes.push(newLike);
-        console.log("updating comment", comment);
         comment
           .save()
           .then((comment) => res.json(comment))

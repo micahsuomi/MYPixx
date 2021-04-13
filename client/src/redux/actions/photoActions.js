@@ -34,6 +34,7 @@ export const addPhoto = (newPhoto) => {
     try {
       const url = `/api/v1/photos`;
       console.log("new photo before req", newPhoto);
+
       const res = await axios.post(url, newPhoto, tokenConfig(getState));
       console.log(res)
       dispatch({

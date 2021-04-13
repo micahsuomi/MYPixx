@@ -44,7 +44,6 @@ const register = async (req, res) => {
   }
   //check all validators
   if (!name.match(nameValidator)) {
-    console.log("here first last name");
     return res
       .status(400)
       .json({ msg: "Full Name must include 3-16 characters" });
@@ -155,7 +154,6 @@ const updateUser =
         .populate("photos")
         .exec()
         .then((user) => {
-          console.log(user);
           (user.name = name),
             (user.email = email),
             (user.avatar = uploadedCloudinaryImage),

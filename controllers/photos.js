@@ -73,9 +73,11 @@ const addPhoto =
         const date = new Date();
         newPhoto.createdAt = moment(date).format('LL');
         console.log('photo before saving', newPhoto)
+
         newPhoto.save();
         user.photos.push(newPhoto);
         user.populate("photos").execPopulate()
+
         user.save();
         console.log('user here', user)
         res.json(newPhoto);

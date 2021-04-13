@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 const { OAuth2Client } = require("google-auth-library");
 const _ = require("lodash");
 const sgMail = require("@sendgrid/mail");
-
 const User = require("../models/User");
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
