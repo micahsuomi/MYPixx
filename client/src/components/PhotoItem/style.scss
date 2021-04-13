@@ -2,7 +2,6 @@
 
 .gallery-photo {
   @include flex-property-column;
-<<<<<<< HEAD
   justify-content: flex-end;
   margin: 0.2rem;
   width: 100%;
@@ -22,26 +21,6 @@
     position: absolute;
     bottom: 1%;
 
-=======
-  border: 1px solid rgba(201, 214, 216, 0.5);
-  margin: 0.2rem;
-  width: 24rem;
-  border-radius: 3px;
-  cursor: pointer;
-  padding: 2.4rem 1rem;
-  background-color: white;
-
-  &__image {
-    width: 100%;
-    margin-top: 1rem;
-    border-radius: 3px;
-  }
-
-  &__body {
-    @include flex-property-row-center;
-    justify-content: space-between;
-    width: 20rem;
->>>>>>> develop
   }
   &__likes {
     @include flex-property-row-center;
@@ -54,7 +33,6 @@
   color: var(--primary-dark);
 }
 
-<<<<<<< HEAD
 
 
 @media screen and (max-width: 1024px) {
@@ -67,22 +45,11 @@
 /*
 @media screen and (max-width: 500px) {
   .gallery-photo {
-=======
-@media screen and (max-width: 1024px) {
-  .gallery-photo__container {
-    width: 19rem;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .gallery-photo__container {
->>>>>>> develop
     width: 22rem;
   }
 }
 
 @media screen and (max-width: 320px) {
-<<<<<<< HEAD
   .gallery-photo {
     width: 19.2rem;
     &__body {
@@ -90,9 +57,3 @@
     }
   }
 }*/
-=======
-  .gallery-photo__container {
-    width: 19.2rem;
-  }
-}
->>>>>>> develop
