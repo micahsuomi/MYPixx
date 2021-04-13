@@ -41,8 +41,6 @@ const LikeComment = ({ photoId, commentId, likes, history, match }, props) => {
     }
   };
 
-  // console.log('likes', likes.lenght)
-
   useEffect(() => {
     dispatch(getCommentLikes(photoId, commentId));
   }, [dispatch]);
@@ -54,7 +52,6 @@ const LikeComment = ({ photoId, commentId, likes, history, match }, props) => {
     setIsLikeShowing(false);
   };
 
-  // console.log('like here', likes)
   const formattedLikes = commentLikes.map((like) => (
     <CommentLike
       key={like._id}
@@ -63,19 +60,6 @@ const LikeComment = ({ photoId, commentId, likes, history, match }, props) => {
       name={like.name}
     />
   ));
-
-  // console.log('this should update', likedComment)
-
-  /*
-  let likedPhotoComment;
-  useEffect(() => {
-    if (isAuthenticated) {
-      likedPhotoComment = likedComment.likes.some(
-        (like) => like._id === user._id
-      );
-    }
-  }, [likedPhotoComment]);
-  console.log(likedPhotoComment);*/
 
   if (!likedComment) {
     return <p>loading...</p>;

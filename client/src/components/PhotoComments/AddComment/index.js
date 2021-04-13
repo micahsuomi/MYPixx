@@ -6,7 +6,6 @@ import { addComment, getComments } from "../../../redux/actions/commentActions";
 import "./style.scss";
 
 const AddComment = ({ photoId, closeCommentField, setCommentClose }, props) => {
-  console.log(props);
   const dispatch = useDispatch();
   const [comment, setComment] = useState({
     text: "",
@@ -26,7 +25,6 @@ const AddComment = ({ photoId, closeCommentField, setCommentClose }, props) => {
   const handleChange = (e) => {
     let { name, value } = e.target;
     setComment({ [name]: value });
-    console.log(name, value);
   };
 
   const { text } = comment;

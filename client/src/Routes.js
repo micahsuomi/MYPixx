@@ -53,7 +53,6 @@ export const Routes = () => {
     dispatch(getUsers());
   };
   const openUserPopup = () => {
-    console.log("calling from here");
     setIsEditPopupOpen(true);
   };
 
