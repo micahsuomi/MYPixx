@@ -77,7 +77,6 @@ const EditPhoto = (props) => {
   };
 
   const fileSelectedHandler = (e) => {
-    console.log(e.target.files[0]);
     const file = e.target.files[0];
     setUpdatedImage(file);
     setFileInput(e.target.value);
@@ -96,7 +95,6 @@ const EditPhoto = (props) => {
       const result = reader.result;
       setPreviewSource(result);
       setIsImageChanged(true);
-      console.log("before file preview", photo);
       photo.image = result;
       setPhoto({
         ...photo,

@@ -9,7 +9,6 @@ import CommunityUser from "../../components/CommunityUser/index";
 import "./style.scss";
 
 const Community = ({ users, photos }) => {
-  console.log(users);
   const sortedByLikes = photos.sort((a, b) => {
     if (a.likes.length > b.likes.length) return -1;
     if (b.likes.length < a.likes.length) return 1;
@@ -24,7 +23,6 @@ const Community = ({ users, photos }) => {
 
   sortedByLikes.length = 8;
   sortedByComments.length = 8;
-  console.log(users);
   return (
     <div className="about-container">
       <CommunityHeader />

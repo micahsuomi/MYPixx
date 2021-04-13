@@ -69,15 +69,12 @@ const addPhoto =
           description,
         });
 
-        console.log("photo here", newPhoto);
         const date = new Date();
         newPhoto.postedDate = date.toISOString().split("T")[0];
 
-        console.log("photo here", newPhoto);
         newPhoto.save();
         newPhoto.execPopulate().then((photo) => res.json(photo));
         user.photos.push(newPhoto);
-        console.log("user here", user);
         user.save();
       });
     } catch (err) {

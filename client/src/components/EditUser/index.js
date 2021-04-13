@@ -41,7 +41,6 @@ const EditUser = (props) => {
     e.preventDefault();
     user.medium = mediumArr;
     if (isImageChanged) {
-      console.log(previewSource);
       setUser(previewSource);
     }
     dispatch(updateUser(id, user));
@@ -57,7 +56,6 @@ const EditUser = (props) => {
   };
 
   const fileSelectedHandler = (e) => {
-    console.log(e.target.files[0]);
     const file = e.target.files[0];
     setUpdatedImage(file);
     setUpdatedImage(file);

@@ -27,7 +27,6 @@ const login =
         //this call back isMatch returns true or false value
         if (!isMatch)
           return res.status(400).json({ msg: "invalid username or password" });
-        console.log(isMatch);
         //if they match we sign the user and get the token
 
         jwt.sign(
@@ -40,7 +39,6 @@ const login =
             if (err) throw err;
 
             //we make a json file for token and user
-            console.log("user is here", user);
             await user.populate("photos").execPopulate();
             res.json({
               token,
@@ -51,7 +49,6 @@ const login =
                 avatar: user.avatar,
               },
             });
-            console.log("this is coming from login route", token, user);
           }
         );
       });
