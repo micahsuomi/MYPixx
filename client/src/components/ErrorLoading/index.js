@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const ErrorLoading = ({ refreshPage }) => {
   return (
@@ -12,3 +13,6 @@ const ErrorLoading = ({ refreshPage }) => {
 };
 
 export default ErrorLoading;
+ErrorLoading.propTypes = {
+  refreshPage: PropTypes.func
+};

@@ -1,0 +1,71 @@
+@-webkit-keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+.photo-sorted {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+  -webkit-box-shadow: 0 1rem 2rem rgba(88, 83, 83, 0.6);
+          box-shadow: 0 1rem 2rem rgba(88, 83, 83, 0.6);
+  line-height: 1.9;
+  width: 15rem;
+  height: 16rem;
+}
+
+.photo-sorted__image-container {
+  display: inline-block;
+  overflow: hidden;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-top: 1rem;
+}
+
+.photo-sorted__image-container img {
+  width: 100%;
+}
+
+.photo-sorted__likes {
+  font-family: "Roboto";
+}
+
+.photo-sorted__likes span {
+  margin-left: 0.3rem;
+}
+
+@media screen and (max-width: 500px) {
+  .photo-sorted {
+    width: 18rem;
+    height: 18rem;
+  }
+}
+/*# sourceMappingURL=style.css.map */

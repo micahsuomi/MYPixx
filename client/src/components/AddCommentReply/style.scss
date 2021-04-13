@@ -1,0 +1,76 @@
+@import "../../scss/abstracts/mixins.scss";
+.add-commentreply-form {
+  width: 25vw;
+  @include flex-property-row-end;
+
+  .input-topics {
+    @include flex-property-row-end;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+  }
+  textarea {
+    width: 14.15rem;
+    height: 2.8rem;
+    font-family: "Open sans";
+    padding: 0.6rem;
+    font-size: 14px;
+    border-radius: 25px;
+    border: 1.8px solid rgba(200, 200, 200, 0.5); 
+    :active {
+      outline: none;
+    }
+  }
+  &__emoji-menu {
+    position: absolute;
+    top: -891%;
+    left: -42%;
+    .emoji-mart-emoji {
+      span {
+        cursor: pointer;
+      }
+    }
+  }
+  &__emoji-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: -6%;
+    left: 63%;
+    :active {
+      outline: none;
+    }
+    i {
+      font-size: 1.4em;
+      color: darkgrey;
+    }
+  }
+  &__save-wrapper {
+    @include flex-property-row-center;
+
+    button {
+      padding: .6rem;
+    }
+  }
+  &__btn-submit,
+  &__btn-cancel {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--primary);
+    &:hover {
+      color: var(--secondary);
+    }
+    &:active {
+      outline: none;
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .add-comment-form {
+    textarea {
+      width: 19rem;
+    }
+  }
+}

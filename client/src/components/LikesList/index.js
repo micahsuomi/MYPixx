@@ -10,13 +10,13 @@ import "./style.scss";
 const LikesList = (props) => {
   const dispatch = useDispatch();
   const [likes, setLikes] = useState([]);
-  const photoLikes = useSelector((state) => state.photos.likes);
+  const photoLikes = useSelector((state) => state.photo.likes);
 
   const id = props.match.params.id;
 
   useEffect(() => {
     dispatch(getPhotoLikes(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   useEffect(() => {
     setLikes(photoLikes);
@@ -34,7 +34,7 @@ const LikesList = (props) => {
     <div className="likes">
       <div className="likes__wrapper">
         <div className="likes__header">
-          <NavLink to={`/photos/${props.match.params.id}`}>
+          <NavLink to={`/photo/${props.match.params.id}`}>
             <i className="fas fa-chevron-left fa-2x grow"></i>
           </NavLink>
         </div>

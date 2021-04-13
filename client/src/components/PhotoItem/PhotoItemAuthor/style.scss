@@ -18,12 +18,17 @@
   &__link {
     text-decoration: none;
     font-weight: 700;
-    color: var(--primary-dark);
+    color: white;
     margin-top: 1rem;
     margin-left: 0.6rem;
   }
 }
+@media screen and (max-width: 500px) {
+  .author {
+    &__image-container {
+      height: 30px;
+      width: 30px;
+    }
+  }
 
-.author {
-  margin-top: 1rem;
 }

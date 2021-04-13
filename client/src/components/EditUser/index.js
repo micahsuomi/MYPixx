@@ -18,10 +18,11 @@ const EditUser = (props) => {
     },
   });
   const dispatch = useDispatch();
-  const loadedEditUser = useSelector((state) => state.users.user);
+  const loadedEditUser = useSelector((state) => state.user.user);
   // const [err, loadedUser] = useUser();
-  const isUserLoaded = useSelector((state) => state.users.isUserLoaded);
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const isGoogleUser = useSelector((state) => state.user.isGoogleUser);
+  console.log(isGoogleUser)
   const [isImageEditing, setIsImageEditing] = useState(false);
   const [updatedImage, setUpdatedImage] = useState(null);
   const [previewSource, setPreviewSource] = useState(null);
@@ -33,27 +34,34 @@ const EditUser = (props) => {
 
   const id = props.match.params.id;
 
-  useEffect(() => {
-    if (!isAuthenticated) props.history.push("/login");
-  }, []);
-
   const handleSubmit = (e) => {
+    console.log('calling', user)
     e.preventDefault();
     user.medium = mediumArr;
     if (isImageChanged) {
       setUser(previewSource);
     }
-    dispatch(updateUser(id, user));
-
+    dispatch(updateUser(id, user));    
     setTimeout(() => {
       props.history.push(`/user/${id}`);
       props.openUserPopup();
       setTimeout(() => {
         dispatch(getUsers());
         dispatch(getUser(id));
+        dispatch(getPhotos())
       }, 2000);
     }, 2000);
   };
+
+  const loadUser = async () => {
+    try {
+      setMediumArr(loadedEditUser.medium);
+      setUser({ ...loadedEditUser, medium: '' });
+    }
+    catch(err) {
+      return 'something went wrong'
+    }
+  }
 
   const fileSelectedHandler = (e) => {
     const file = e.target.files[0];
@@ -76,7 +84,7 @@ const EditUser = (props) => {
 
   const openImageEditing = () => {
     setIsImageEditing(true);
-    setUser({ ...user, avatar: updatedImage, medium: mediumArr });
+    setUser({ ...user, medium: mediumArr });
   };
 
   const cancelImage = () => {
@@ -85,25 +93,13 @@ const EditUser = (props) => {
     setIsImageChanged(false);
   };
 
-  /*
   useEffect(() => {
-    const foundUser = props.users.find((user) => {
-      return user._id === props.match.params.id;
-    });
-    setUser(foundUser);
-  }, []);*/
-
-  useEffect(() => {
-    if (!isUserLoaded) {
-      dispatch(getUser(id));
+    if (!isAuthenticated) {
+      props.history.push("/login")
+    } else {
+      loadUser();
     }
-  }, [dispatch, id]);
-
-  useEffect(() => {
-    setUser(loadedEditUser);
-    setMediumArr(loadedEditUser.medium);
-    setUser({ ...loadedEditUser, medium: "" });
-  }, []);
+  }, [isAuthenticated, props.history]);
 
   const handleChange = (e) => {
     let { name, value } = e.target;
@@ -112,9 +108,7 @@ const EditUser = (props) => {
 
   const addToMedium = (e) => {
     e.preventDefault();
-
-    let mediumIndex = mediumArr.indexOf(medium);
-
+    const mediumIndex = mediumArr.indexOf(medium);
     if (medium.length < 1) {
       setWarning("Please enter a value");
     }
@@ -143,7 +137,7 @@ const EditUser = (props) => {
       <form onSubmit={handleSubmit} className="edit-user__form animate-modal">
         <div className="edit-user__cancel-wrapper">
           <NavLink to={`/user/${id}`} className="delete-link">
-            <i className="fas fa-times fa-2x"></i>
+          <i className="fas fa-times-circle fa-2x"></i>
           </NavLink>
         </div>
         <h2>Edit User Profile</h2>
@@ -156,6 +150,7 @@ const EditUser = (props) => {
             value={name}
             placeholder="Full Name"
             onChange={handleChange}
+            disabled={isGoogleUser ? true : false}
           />
         </div>
 
@@ -167,9 +162,10 @@ const EditUser = (props) => {
             value={email}
             placeholder="email"
             onChange={handleChange}
+            disabled={isGoogleUser ? true : false}
           />
         </div>
-        {!isImageChanged ? (
+        {/* {!isImageChanged ? ( */}
           <div className="input-topics">
             <label htmlFor="image" className="edit-user__image-label">
               Image
@@ -190,9 +186,8 @@ const EditUser = (props) => {
               />
             </div>
           </div>
-        ) : null}
 
-        {!isImageEditing ? (
+        {!isImageEditing && !isGoogleUser ? (
           <button
             onClick={openImageEditing}
             className="edit-user__change-photo grow"
@@ -250,9 +245,10 @@ const EditUser = (props) => {
               name="medium"
               value={medium}
               placeholder={
-                "eg(oil, acrylics, dripping, analog photography etc)"
+                "painting, photography, street art... etc)"
               }
               onChange={handleChange}
+              onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }}
             />
             <button
               onClick={addToMedium}
@@ -263,10 +259,10 @@ const EditUser = (props) => {
           </div>
           <div className="edit-user__mediums-container">
             <div className="edit-user__mediums-wrapper">
-              {mediumArr.map((m) => (
+              {mediumArr.length > 0 && mediumArr.map((m) => (
                 <div className="edit-user__medium-item grow animate-modal">
                   <div className="edit-user__medium-item-body">
-                    <p>{`${m}`}</p>
+                    <p key={m}>{`${m}`}</p>
                   </div>
                   <div className="edit-user__medium-item-delete">
                     <i
@@ -295,7 +291,7 @@ const EditUser = (props) => {
         <div className="edit-user__btn-save-wrapper">
           <button className="edit-user__btn-save">Update</button>
         </div>
-      </form>
+      </form> 
     </div>
   );
 };

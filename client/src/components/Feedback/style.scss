@@ -1,0 +1,17 @@
+.feedback {
+  display: flex;
+  justify-content: flex-start;
+  width: 22rem;
+ 
+  &__message {
+    color: var(--primary);
+    font-size: 13px;
+    opacity: .8;
+  }
+}
+@media screen and (max-width: 500px) {
+  .feedback {
+    width: 18rem;
+  }
+}
+

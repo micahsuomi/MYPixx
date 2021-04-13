@@ -15,6 +15,7 @@ const authorized = (req, res, next) => {
     console.log("this is req.user from middleware", req.user);
     next();
   } catch (e) {
+    console.log(e)
     res.status(400).json({ msg: "token is not valid" });
   }
 };

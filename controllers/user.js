@@ -1,11 +1,11 @@
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const multer = require("multer");
+const cloudinary = require("cloudinary");
+
 const User = require("../models/User");
 const Photo = require("../models/Photo");
 const Comment = require("../models/Comment");
 const UserService = require("../services/users");
-const multer = require("multer");
-const cloudinary = require("cloudinary");
 
 const {
   nameValidator,
@@ -36,7 +36,7 @@ cloudinary.config({
 //@POST ROUTE /api/user
 //@DESC - registers user
 //@ACCESS Public
-const register = (req, res) => {
+const register = async (req, res) => {
   const { name, email, password, repeatPassword } = req.body;
   //if any of the fields are empty, throw warning with 400 err (bad request)
   if (!name || !email || !password || !repeatPassword) {
@@ -68,42 +68,38 @@ const register = (req, res) => {
   //check for existing user using the email, throw 400 err
   User.findOne({ email }).then((user) => {
     if (user)
-      return res
-        .status(400)
-        .json({ msg: "A user with this email is already registered" });
+      return (
+        res
+          .status(400)
+          .json({ msg: "A user with this email is already registered" })
+      );
     const newUser = new User({
       name,
       email,
       password,
     });
-
+    console.log("new user", newUser);
     //if no user exists, generate salt which is used to hash a password with bcryptjs
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(newUser.password, salt, (err, hash) => {
         if (err) throw err;
         (newUser.password = hash),
           //save the user as new user within mongoose schema
+
           newUser.save().then((user) => {
-            //send the token, create object for user with id, name and user email
-            jwt.sign(
-              { id: user.id },
-              process.env.jwtSecret,
-              //we set an expiration for the token
-              { expiresIn: "30d" },
-              (err, token) => {
-                if (err) throw err;
-                //we make a json file for token and user
-                res.json({
-                  token,
-                  user: {
-                    id: user.id,
-                    name: user.name,
-                    email: user.email,
-                    avatar: user.avatar,
-                  },
-                });
-              }
-            );
+            console.log("user after saving", user);
+            //we make a json file for token and user
+            res.json({
+              user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                avatar: user.avatar,
+                photos: user.photos,
+                medium: user.medium,
+                bio: user.bio,
+              },
+            });
           });
       });
     });
@@ -116,7 +112,6 @@ const register = (req, res) => {
 const findAll = async (req, res) => {
   try {
     const user = await UserService.findAllUsers();
-
     res.json(user);
   } catch (err) {
     return res.status(404).json({ msg: "Not Found" });
@@ -170,7 +165,7 @@ const updateUser =
             .populate("comments")
             .exec((err, foundGallery) => {
               if (err) {
-                console.log(err);
+                return res.status(404).json({ msg: "Not found" });
               } else {
                 for (const gallery of foundGallery) {
                   gallery.author.name = user.name;
@@ -183,10 +178,10 @@ const updateUser =
               //to save all the multiple updated mongoose documents
 
               let total = foundGallery.length;
-              let result = [];
+              const result = [];
               if (total > 0) {
                 const saveAll = () => {
-                  let doc = foundGallery.pop();
+                  const doc = foundGallery.pop();
 
                   doc.save((err, saved) => {
                     if (err) throw err; //handle error
@@ -215,15 +210,14 @@ const updateUser =
                     //to save all the multiple updated mongoose documents
 
                     let total = foundComments.length;
-                    let result = [];
+                    const result = [];
                     if (total > 0) {
                       const saveAll = () => {
-                        let doc = foundComments.pop();
+                        const doc = foundComments.pop();
 
                         doc.save((err, saved) => {
                           if (err) throw err; //handle error
                           result.push(saved[0]);
-                          console.log(result);
                           if (--total) saveAll();
                           else console.log("saved here"); // all saved here
                         });

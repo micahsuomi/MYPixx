@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "./style.scss";
 
@@ -35,3 +36,11 @@ const CommunityUser = ({ avatar, name, bio, photos }) => {
 };
 
 export default CommunityUser;
+
+CommunityUser.propTypes = {
+  avatar: PropTypes.string,
+  name: PropTypes.string,
+  bio: PropTypes.string,
+  photos: PropTypes.array,
+};
+

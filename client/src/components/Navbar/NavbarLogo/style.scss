@@ -1,12 +1,23 @@
 .logo {
-  background-color: rgb(236, 8, 103);
+  color: white;
+  color: var(--primary);
   padding: 0.7rem;
   border-radius: 3px;
   font-weight: 700;
   margin: 0;
   text-decoration: none;
-  color: white;
   height: 3rem;
   font-size: 20px;
   font-family: "Sansita Swashed", cursive;
+}
+@media screen and (max-width: 500px) {
+  .logo {
+    position: absolute;
+    margin-top: -402%;
+  }
+}
+@media screen and (max-width: 320px) {
+  .logo {
+    margin-top: -320%;
+  }
 }

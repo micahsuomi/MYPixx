@@ -1,9 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "./style.scss";
 
 const NavbarUserPhoto = ({ user }) => {
   return (
+    <>
     <div className="nav-user-image grow">
       {user.avatar === undefined || user.avatar === "" ? (
         <img
@@ -14,7 +16,12 @@ const NavbarUserPhoto = ({ user }) => {
         <img src={user.avatar} alt={user.name} />
       )}
     </div>
+    </>
   );
 };
 
 export default NavbarUserPhoto;
+
+NavbarUserPhoto.propTypes = {
+  user: PropTypes.object
+};

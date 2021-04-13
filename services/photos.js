@@ -1,4 +1,5 @@
 const Photo = require("../models/Photo");
+const Comment = require("../models/Comment");
 
 function createPhoto(newPhoto) {
   return newPhoto.save();
@@ -12,10 +13,17 @@ function findAll() {
     .exec();
 }
 
-async function findById(id) {
+async function findPhotoById(id) {
   return Photo.findById(id)
     .populate("comments")
     .populate("likes")
+    .populate({
+      path: "comments",
+      populate: ({
+        path: "replies",
+        model: Comment
+      })
+    })  
     .exec()
     .then((photo) => {
       if (!photo) {
@@ -27,6 +35,6 @@ async function findById(id) {
 
 module.exports = {
   findAll,
-  findById,
+  findPhotoById,
   createPhoto,
 };

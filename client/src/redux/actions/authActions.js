@@ -5,13 +5,14 @@ import {
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  USER_LOADING,
-  USER_LOADED,
+  GOOGLE_LOGIN,
   LOGOUT_SUCCESS,
-  AUTH_ERR,
+  FORGOT_PASSWORD,
+  RESET_PASSWORD,
+  CLEAR_RESET_CONFIRMATION,
 } from "./types";
 
-import { showErrors } from "./errorActions";
+import { showErrors, clearErrors } from "./errorActions";
 
 export const register = ({ name, email, password, repeatPassword }) => {
   return async (dispatch) => {
@@ -21,18 +22,18 @@ export const register = ({ name, email, password, repeatPassword }) => {
           "Content-Type": "application/json",
         },
       };
+      const url = `/api/v1/user`;
       const body = JSON.stringify({ name, email, password, repeatPassword });
-      const response = await axios.post("/api/v1/user", body, config);
-
+      const res = await axios.post(url, body, config);
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: response.data,
+        payload: res.data,
       });
+      dispatch(clearErrors());
     } catch (err) {
       dispatch({
         type: REGISTER_FAIL,
       });
-      console.log(err.response.data);
       dispatch(showErrors(err.response.data, err.response.status));
     }
   };
@@ -46,11 +47,40 @@ export const login = ({ email, password }) => {
           "Content-Type": "application/json",
         },
       };
+      const url = `/api/v1/auth`;
       const body = JSON.stringify({ email, password });
-      const response = await axios.post("/api/v1/auth", body, config);
+      const res = await axios.post(url, body, config);
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: response.data,
+        payload: res.data,
+      });
+      console.log(res.data);
+    } catch (err) {
+      dispatch({
+        type: LOGIN_FAIL,
+      });
+      dispatch(showErrors(err.response.data, err.response.status));
+    }
+  };
+};
+
+export const googleLogin = (response) => {
+  return async (dispatch) => {
+    try {
+      const url = `/api/v1/auth/google-auth`;
+      axios({
+        method: "POST",
+        url,
+        data: { tokenId: response.tokenId },
+      }).then((res) => {
+        console.log(res.data);
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: res.data,
+        });
+        dispatch({
+          type: GOOGLE_LOGIN,
+        });
       });
     } catch (err) {
       dispatch({
@@ -61,27 +91,48 @@ export const login = ({ email, password }) => {
   };
 };
 
-export const loadUser = () => (dispatch, getState) => {
-  console.log("loading user");
-  dispatch({
-    type: USER_LOADING,
-  });
+export const forgotPassword = (email) => {
+  return async (dispatch) => {
+    try {
+      const url = `/api/v1/auth/forgot-password`;
+      const res = await axios.put(url, email);
+      dispatch({
+        type: FORGOT_PASSWORD,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err.response);
+      // dispatch(showErrors(err.response.data, err.response.status));
+    }
+  };
+};
 
-  axios
-    .get("/api/v1/login/user", tokenConfig(getState))
-    .then((response) =>
+export const resetPassword = ({
+  newPassword,
+  repeatNewPassword,
+  resetToken,
+}) => {
+  return async (dispatch) => {
+    try {
+      const body = { newPassword, repeatNewPassword, resetToken };
+      const url = `/api/v1/auth/reset-password`;
+      const res = await axios.put(url, body);
       dispatch({
-        type: USER_LOADED,
-        payload: response.data,
-        // console.log('response from loadUser', response.data)
-      })
-    )
-    .catch((err) =>
-      dispatch({
-        type: AUTH_ERR,
-        payload: err.response.data,
-      })
-    );
+        type: RESET_PASSWORD,
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch(showErrors(err.response.data, err.response.status));
+    }
+  };
+};
+
+export const clearResetConfirmation = () => {
+  return (dispatch) => {
+    dispatch({
+      type: CLEAR_RESET_CONFIRMATION,
+    });
+  };
 };
 
 export const logout = () => {
@@ -91,7 +142,7 @@ export const logout = () => {
 };
 
 export const tokenConfig = (getState) => {
-  const token = getState().auth.token;
+  const token = getState().user.token;
   const config = {
     headers: {
       "Content-type": "application/json",

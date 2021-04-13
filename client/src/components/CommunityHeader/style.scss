@@ -1,9 +1,24 @@
-.community-header h1 {
+@import "../../scss/abstracts/mixins.scss";
+
+.community-header {
+  h1 {
   text-align: center;
-  color: rgb(150, 132, 132);
+  color: var(--overlay-mask);
   font-family: "Sansita Swashed", cursive;
 }
-.community-paragraph {
+&__paragraph {
   margin-top: 2rem;
   line-height: 1.7;
+}
+&__link {
+  text-decoration: none;
+}
+&__btn-container {
+  @include flex-property-row-center;
+  button {
+    @include standard-button;
+    width: 15rem;
+    text-decoration: none;
+  }
+}
 }

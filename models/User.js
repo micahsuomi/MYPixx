@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = Schema({
-  _id: Schema.Types.ObjectId,
   name: {
     type: String,
     required: true,
@@ -15,10 +14,13 @@ const userSchema = Schema({
     type: String,
     required: true,
   },
-
   registeredAt: {
     type: Date,
     default: Date.now,
+  },
+  resetToken: {
+    type: String,
+    default: ''
   },
   bio: String,
   avatar: String,

@@ -1,0 +1,87 @@
+@-webkit-keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+.community-header h1 {
+  text-align: center;
+  color: #968484;
+  font-family: "Sansita Swashed", cursive;
+}
+
+.community-header__paragraph {
+  margin-top: 2rem;
+  line-height: 1.7;
+}
+
+.community-header__link {
+  text-decoration: none;
+}
+
+.community-header__btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.community-header__btn-container button {
+  padding: 0.7rem;
+  background-color: var(--primary);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  cursor: pointer;
+  margin: 1.5rem;
+  width: 8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 16px;
+  text-transform: uppercase;
+  -webkit-box-shadow: 0 1rem 1rem rgba(136, 136, 153, 0.3);
+          box-shadow: 0 1rem 1rem rgba(136, 136, 153, 0.3);
+  width: 15rem;
+  text-decoration: none;
+}
+
+.community-header__btn-container button:hover {
+  background-color: var(--primary-dark);
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.community-header__btn-container button:active {
+  outline: none;
+}
+/*# sourceMappingURL=style.css.map */

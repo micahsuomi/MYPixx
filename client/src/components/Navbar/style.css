@@ -1,0 +1,209 @@
+@-webkit-keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+.navbar {
+  background-color: #d0dbe0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  position: fixed;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 4rem;
+  width: 100%;
+  padding: 0 1rem;
+  z-index: 2;
+}
+
+.nav-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style: none;
+  width: 100vw;
+}
+
+.navbar-link {
+  text-decoration: none;
+  margin-left: 2rem;
+  color: #4b4a4a;
+  font-weight: 700;
+}
+
+.navbar-link:hover {
+  color: grey;
+}
+
+.nav-list__icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 1.2em;
+  margin-top: 0.1rem;
+}
+
+.nav-list__icon span {
+  font-family: "Montserrat";
+  font-size: var(--font-size-small);
+  margin-left: 0.4rem;
+}
+
+.register-login {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 34rem;
+}
+
+.register-login li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.login-link span {
+  margin-top: -0.2rem;
+}
+
+.user-link {
+  text-decoration: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #4b4a4a;
+}
+
+.grow {
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.grow:hover {
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+}
+
+@media screen and (max-width: 1024px) {
+  .navbar {
+    padding: 1rem;
+    height: 5rem;
+    -ms-grid-columns: 13% 87%;
+        grid-template-columns: 13% 87%;
+  }
+  .navbar .nav-list {
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .navbar span {
+    display: none;
+  }
+  .navbar-link,
+  .user-link {
+    font-size: 16px;
+    margin: 0;
+    color: white;
+  }
+  .navbar-link {
+    font-size: 26px;
+  }
+  .logo {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .navbar {
+    padding: 1rem .5rem;
+    height: 3.3rem;
+    -ms-grid-columns: 25% 75%;
+        grid-template-columns: 25% 75%;
+    bottom: -.1rem;
+  }
+  .navbar-links {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .nav-list__icon {
+    font-size: .7em;
+  }
+  .register-login {
+    margin-left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .login {
+    margin-left: 2.2rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .navbar {
+    -ms-grid-columns: 33% 67%;
+        grid-template-columns: 33% 67%;
+  }
+  .navbar-link,
+  .user-link {
+    font-size: 23px;
+    margin: 0;
+  }
+}
+/*# sourceMappingURL=style.css.map */

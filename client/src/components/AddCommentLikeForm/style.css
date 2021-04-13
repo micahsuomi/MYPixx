@@ -1,0 +1,135 @@
+@-webkit-keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+.like-comment__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.like-comment__btn {
+  border: none;
+  background-color: transparent;
+  border-radius: 3px;
+  font-family: "Montserrat";
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+
+.like-comment__btn i {
+  font-size: 1.3em;
+}
+
+.like-comment .like-comments-num {
+  font-size: 12px;
+}
+
+.like-comment__nums {
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 700;
+  margin-left: .5rem;
+}
+
+.like-comment .likes-comments-box {
+  width: 18rem;
+  background-color: #f2f7f8;
+  border: none;
+  border-radius: 5px;
+  position: absolute;
+  top: 42%;
+  left: 40%;
+  -webkit-transition: ease-in-out 0.5s;
+  transition: ease-in-out 0.5s;
+  padding: 0.5rem;
+  -webkit-animation: fadein 0.3s ease-in;
+          animation: fadein 0.3s ease-in;
+  -webkit-box-shadow: 0 1rem 1rem rgba(88, 83, 83, 0.6);
+          box-shadow: 0 1rem 1rem rgba(88, 83, 83, 0.6);
+}
+
+.like-comment .likes-comments-box__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.like-comment .likes-comments-box__header i {
+  color: var(--primary);
+}
+
+.like-comment .likes-comments-box__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  line-height: 1.8;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .like-comments__container {
+    top: 31%;
+    left: 13%;
+  }
+}
+/*# sourceMappingURL=style.css.map */

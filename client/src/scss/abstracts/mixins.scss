@@ -41,6 +41,16 @@
   justify-content: flex-end;
 }
 
+@mixin flex-property-row-space-between {
+  @include flex-property-row;
+  justify-content: space-between;
+}
+
+@mixin flex-property-row-space-evenly {
+  @include flex-property-row;
+  justify-content: space-evenly;
+}
+
 @mixin grid {
   display: grid;
   justify-items: center;
@@ -102,7 +112,7 @@
   padding: 0.7rem;
   background-color: var(--primary);
   border: none;
-  border-radius: 50px;
+  border-radius: 5px;
   color: white;
   cursor: pointer;
   margin: 1.5rem;
@@ -120,6 +130,23 @@
   &:active {
     outline: none;
   }
+}
+
+
+@mixin standard-button-disabled {
+  padding: 0.7rem;
+  background-color: var(--primary-disabled);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  margin: 1.5rem;
+  width: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  text-transform: uppercase;
+  box-shadow: 0 1rem 1rem rgba(rgb(136, 136, 153), 0.3);
 }
 
 @mixin small-button {

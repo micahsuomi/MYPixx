@@ -6,16 +6,18 @@ import {
   GET_PHOTO,
   EDIT_PHOTO,
   LIKE_PHOTO,
-  GET_PHOTOLIKES,
+  GET_PHOTO_LIKES,
 } from "./types";
 
 import { tokenConfig } from "./authActions";
 import { showErrors } from "./errorActions";
 
+const proxyUrl = 'http://localhost:5000'
+
 export const getPhotos = () => {
   return async (dispatch) => {
     try {
-      const url = "/api/v1/photos/";
+      const url = `/api/v1/photos`;
       const res = await axios.get(url);
       dispatch({
         type: GET_PHOTOS,
@@ -30,14 +32,18 @@ export const getPhotos = () => {
 export const addPhoto = (newPhoto) => {
   return async (dispatch, getState) => {
     try {
-      const url = "/api/v1/photos";
+      const url = `/api/v1/photos`;
+      console.log("new photo before req", newPhoto);
+
       const res = await axios.post(url, newPhoto, tokenConfig(getState));
+      console.log(res)
       dispatch({
         type: ADD_PHOTO,
         payload: res.data,
       });
     } catch (err) {
-      dispatch(showErrors(err.response.data, err.response.status));
+      console.log(err)
+      // dispatch(showErrors(err.response.data, err.response.status));
     }
   };
 };
@@ -45,11 +51,11 @@ export const addPhoto = (newPhoto) => {
 export const getPhoto = (id) => {
   return async (dispatch) => {
     try {
-      const url = `/api/v1/photos`;
+      const url = `/api/v1/photos/${id}`;
       const res = await axios.get(url);
       dispatch({
         type: GET_PHOTO,
-        payload: res.data.find((photo) => photo._id === id),
+        payload: res.data 
       });
     } catch (err) {
       dispatch(showErrors(err.response.data, err.response.status));
@@ -104,9 +110,11 @@ export const getPhotoLikes = (id) => {
     try {
       const url = `/api/v1/photos/${id}`;
       const res = await axios.get(url);
-      dispatch({ type: GET_PHOTOLIKES, payload: res.data });
+      dispatch({ type: GET_PHOTO_LIKES, payload: res.data });
     } catch (err) {
       dispatch(showErrors(err.response.data, err.response.status));
     }
   };
 };
+
+

@@ -1,12 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "./style.scss";
 
-const Search = ({ search, handleSubmit, handleChange }) => {
+const Search = ({ search, handleSubmit, handleChange, scrolled }) => { 
   return (
-    <div>
       <form
-        className="search-form"
+        className={scrolled ? "search-form scrolled" : "search-form"}
         onSubmit={(e) => handleSubmit(e.preventDefault())}
       >
         <input
@@ -16,8 +16,14 @@ const Search = ({ search, handleSubmit, handleChange }) => {
           onChange={handleChange}
         />
       </form>
-    </div>
   );
 };
 
 export default Search;
+
+Search.propTypes = {
+  search: PropTypes.string,
+  handleSubmit: PropTypes.func,
+  handleChange: PropTypes.func,
+  scrolled: PropTypes.bool
+};

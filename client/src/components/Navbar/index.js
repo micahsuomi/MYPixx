@@ -1,111 +1,88 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import NavbarLogo from "./NavbarLogo/index";
-import NavbarToggler from "./NavbarToggler/index";
 import NavbarUser from "./NavbarUser/index";
 import NavbarUserRegister from "./NavbarUser/NavbarUserRegister/index";
 import NavbarUserLogin from "./NavbarUser/NavbarUserLogin/index";
 import NavbarUserLogout from "./NavbarUser/NavbarUserLogout/index";
+import { activeStyle, activeStyleScrolled } from "../../utils/navStyles";
 
 import "./style.scss";
 
 const Navbar = () => {
-  const state = useSelector((state) => state.auth);
-
-  const { isAuthenticated, user } = state;
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const user = useSelector((state) => state.user.user);
   const [isClicked, setState] = useState(false);
-
-  const navList = ["nav-list"];
-  const navListOpen = ["nav-list open"];
-
-  const lineClassOne = ["line top"];
-  const lineClassOneActive = ["line top active"];
-
-  const lineClassTwo = ["line middle"];
-  const lineClassTwoActive = ["line middle active"];
-
-  const lineClassThree = ["line bottom"];
-  const lineClassThreeActive = ["line bottom active"];
+  const [scrolled, setScrolled] = useState(false);
 
   const toggle = () => {
     setState(!isClicked);
   };
 
+  const changeBackground = () => {
+    if (window.scrollY >= 50 || window.innerWidth <= 800) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    changeBackground();
+    window.addEventListener("scroll", changeBackground);
+  });
+
   return (
-    <div className="navbar">
+    <nav className={scrolled ? "navbar active" : "navbar"}>
       <NavbarLogo />
-      <NavbarToggler
-        toggle={toggle}
-        isClicked={isClicked}
-        lineClassOneActive={lineClassOneActive}
-        lineClassOne={lineClassOne}
-        lineClassTwoActive={lineClassTwoActive}
-        lineClassTwo={lineClassTwo}
-        lineClassThreeActive={lineClassThreeActive}
-        lineClassThree={lineClassThree}
-      />
-      <ul className={isClicked ? navListOpen : navList}>
+      <ul className="navbar__list-left">
         <li>
           <NavLink
-            exact
             to="/"
-            className="navbar-link"
-            activeStyle={{ color: "black" }}
+            className={scrolled ? "navbar__link scrolled" : "navbar__link"}
+            activeStyle={scrolled ? activeStyleScrolled : activeStyle}
             onClick={toggle}
           >
-            <i className="fas fa-home nav-list__icon grow" title="home">
-              <span> Home</span>
-            </i>
+            <i className="fas fa-home grow" title="home"></i>
+            <span>Home</span>
           </NavLink>
         </li>
         <li>
           <NavLink
             to="/community"
-            className="navbar-link"
-            activeStyle={{ color: "black" }}
+            className={scrolled ? "navbar__link scrolled" : "navbar__link"}
+            activeStyle={scrolled ? activeStyleScrolled : activeStyle}
             onClick={toggle}
           >
-            <i className="fas fa-users nav-list__icon grow" title="community">
-              <span> Community</span>
-            </i>
+            <i className="fas fa-users grow" title="community"></i>
+            <span> Community</span>
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to="/photos"
-            className="navbar-link"
-            activeStyle={{ color: "black" }}
-            onClick={toggle}
-          >
-            <i
-              className="fas fa-images nav-list__icon grow"
-              title="photo gallery"
-            >
-              <span> Gallery</span>
-            </i>
-          </NavLink>
-        </li>
+        </ul>
+        <ul className="navbar__list-right">
         {isAuthenticated && user ? (
-          <NavbarUser user={user} toggle={toggle} />
-        ) : null}
-        <li>
-          {isAuthenticated && user ? (
-            <NavbarUserLogout toggle={toggle} />
-          ) : (
-            <ul className="register-login">
-              <li>
-                <NavbarUserRegister toggle={toggle} />
-              </li>
-              <li>
-                <NavbarUserLogin toggle={toggle} />
-              </li>
-            </ul>
-          )}
-        </li>
+          <>
+            <li>
+              <NavbarUser user={user} toggle={toggle} scrolled={scrolled} />
+            </li>
+            <li>
+              <NavbarUserLogout toggle={toggle} scrolled={scrolled} />
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <NavbarUserRegister toggle={toggle} scrolled={scrolled} />
+            </li>
+            <li>
+              <NavbarUserLogin toggle={toggle} scrolled={scrolled} />
+            </li>
+          </>
+        )}
       </ul>
-    </div>
+    </nav>
   );
 };
 

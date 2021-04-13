@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-import { getUsers } from "../redux/actions/userActions";
-export default function useUser() {
-  const dispatch = useDispatch();
-  const users = useSelector((state) => state.users.users);
+export default function useUsers() {
+  const users = useSelector((state) => state.user.users);
   const [data, setData] = useState([]);
   const [err, setErr] = useState(null);
 
   useEffect(() => {
+    if(err) {
+      setErr('Something went wrong')
+    }
     setData(users);
-    dispatch(getUsers());
-  }, [dispatch]);
+  }, [users, err]);
 
   return [err, data];
 }

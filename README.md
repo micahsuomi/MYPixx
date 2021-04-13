@@ -1,68 +1,73 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MYPixx MERN APP (React Js, Redux, Sass, MongoDB, ExpressJS, NodeJS, JWT, Google Auth)
+MYPixx is a social media art gallery where users can register and share their artwork
 
-## Available Scripts
+# Table of contents:
 
-In the project directory, you can run:
+- [Overview](#overview)
+- [Tech Stack Used](#tech-stack-used)
+- [Sign Up](#sign-up)
+- [Sign In](#sign-in)
+- [User Profile](#user-profile)
+- [Add, edit, delete pictures](#add-edit-delete-pictures)
+- [Community](#community)
+- [Likes and Comments](#likes-and-comments)
+- [Database](#database)
+- [Models](#models)
+- [Deployment](#deployment)
 
-### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Overview
+MYPixx is a social media art sharing app for art fanatics. Users can register an account or sign in with Google, create their own gallery work, update their profile, edit, delete their pictures, comment or like other users' work.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+![Home Page UI](./readme-imgs/mypixx_home.png)
 
-### `yarn test`
+# Tech Stack Used
+- JavaScript 
+- Sass
+- React Js 
+- Redux
+- Axios
+- Node Js
+- Express
+- Mongo DB
+- Mongoose
+- JSON Web Tokens
+- Google Auth
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Sign Up
+Users can register on MYPixx creating a new account. The app uses React validators to check proper input filling and checks whether users are already registered. 
 
-### `yarn build`
+![Sign Up](./readme-imgs/mypixx_register.png)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Sign In
+Users can sign in either after creating a new account or directly sign in using Google authentication. In case a user signs in with Google, a new User model will be created the first time the user signs in. Both sign in use JSON Web Tokens for authentication.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+![Sign In](./readme-imgs/mypixx_login.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# User Profile
+Users can view and edit their profile, switch view and check their own photos. Users can edit details such as personal info or medium used in their artwork (i.e. painting, photography, digital art). The app checks whether a user is signed in as Google user, and doesn't allow Google users to update their profile.
 
-### `yarn eject`
+![User Profile](./readme-imgs/mypixx_user.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Add, edit, delete pictures
+Only signed in and authorized users can add, edit or delete their own artwork. A guest user with no registered account or Google authentication can still view users' profiles and artwork.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Add, edit, delete pictures](./readme-imgs/mypixx_viewphoto.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+# Community
+The community page offers an overview of users, most commented and most likes pictures. It is also accessible to guest users.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![Community](./readme-imgs/mypixx_community.png)
 
-## Learn More
+# Likes and Comments
+Register users can like and comment on each other's other artwork, reply to comments, like comments and comment replies. When adding comment users can use emojis thanks to the emoji-mart React library.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Likes and Comments](./readme-imgs/mypixx_comments.png)
+![Likes and Comments](./readme-imgs/mypixx_emoji.png)
+![Likes and Comments](./readme-imgs/mypixx_likes.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Deployment
+The app is deployed on Heroku and can be found at the following link: https://mypixx.herokuapp.com/
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## License
+Copyright (c) Michele Zucca Web Dev

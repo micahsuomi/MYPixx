@@ -1,0 +1,20 @@
+.category-form {
+    select {
+        padding: .6rem;
+        width: 8.9rem;
+        border-radius: 5px;
+        background-color: var(--primary);
+        color: white;
+        font-family: 'Montserrat';
+        border: none;
+        cursor: pointer;
+    }
+    option {
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    select:focus {
+        outline: none;
+    }
+}

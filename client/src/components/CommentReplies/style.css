@@ -1,0 +1,29 @@
+@-webkit-keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+@keyframes conditionalOpen {
+  from {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }
+  to {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+
+.comments-replies__header {
+  color: #ae3bdb;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+}
+/*# sourceMappingURL=style.css.map */

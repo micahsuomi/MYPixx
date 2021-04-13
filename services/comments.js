@@ -1,8 +1,13 @@
 const Comment = require("../models/Comment");
 
-async function findById(id) {
+async function findAllComments() {
+  return Comment.find().populate("likes").populate("replies").exec()
+}
+
+async function findCommentById(id) {
   return Comment.findById(id)
     .populate("likes")
+    .populate("replies")
     .exec()
     .then((comment) => {
       if (!comment) {
@@ -13,12 +18,10 @@ async function findById(id) {
 }
 
 async function updateComment(id, update) {
-  console.log("here daaaaamn");
   return Comment.findById(id)
     .exec()
     .then((comment) => {
       console.log("from services", update);
-
       if (!comment) {
         throw new Error(`Comment ${id} not found`);
       }
@@ -30,7 +33,8 @@ async function updateComment(id, update) {
     });
 }
 
-module.export = {
-  findById,
+module.exports = {
+  findAllComments,
+  findCommentById,
   updateComment,
 };
