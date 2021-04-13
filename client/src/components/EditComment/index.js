@@ -40,7 +40,6 @@ const EditComment = ({ photoId, commentId, closeEditComment }, props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let updatedComment = comment;
-    console.log(updatedComment);
     dispatch(editComment(photoId, commentId, updatedComment));
     setTimeout(() => {
       closeEditComment();

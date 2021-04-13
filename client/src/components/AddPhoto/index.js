@@ -97,6 +97,7 @@ const AddPhoto = ({ history }) => {
       setMediumArr([...mediumArr, medium]);
       setText({ ...text, medium: "" });
       console.log(mediumArr);
+
       setWarning("");
       setIsMediumDup(false);
     }
