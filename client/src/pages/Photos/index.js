@@ -22,7 +22,6 @@ import "./style.scss";
 
 const PhotoList = (props) => {
   const [search, setSearch] = useState("");
-  // console.log('coming from photos', props.isAuthenticated)
   const isLoading = useSelector((state) => state.photos.isLoading);
   const errMessage = useSelector((state) => state.photos.err);
   const dispatch = useDispatch();
@@ -48,58 +47,12 @@ const PhotoList = (props) => {
     userProfile,
   } = props;
 
-  // const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
-  // console.log(isAuthenticated)
-  //   useEffect(() => {
-  //     dispatch(getPhotos())
-  //     setIsPhotoLoaded(true)
-  //     // props.getPhotos()
-  //   })
-
-  // useEffect(() => {
-  //      dispatch(getPhotos())
-
-  //    }, [dispatch]);
-
-  /*
-      let maxWidth = 500;
-      let slice
-      //if the screen is not a mobile screen
-      if(window.innerWidth > maxWidth) {
-        if(offset === undefined) {
-          slice = photos.slice(offset, offset + perPage);
-          // console.log(this.state.offset, this.state.offset + this.state.perPage)
-          // console.log('here', slice)
-          
-        } else {
-          // console.log(offset)
-          slice = photos.slice(offset, offset + perPage);
-          // console.log(offset, offset + this.state.perPage)
-        }
-         
-        
-          setPageCount(Math.ceil(photos.length / perPage));
-        //   setPhotos(slice)
-          setIsPageLoading(true)
-          setShowPagination(true)
-          setShowPullToRefresh(false)
-      
-  
-      } else {
-          setShowPagination(false)
-          setShowPullToRefresh(true)
-        
-      }*/
-
   const onRefresh = () => {
     refreshPage();
     return new Promise((resolve) => {
       setTimeout(resolve, 2000);
     });
   };
-  // useEffect(() => {
-  //     isUserPage && userProfile ? props.history.push('/user') : console.log('is photo page')
-  // })
 
   const handleSubmit = (e) => {
     e.preventDefault();

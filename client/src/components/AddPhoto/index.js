@@ -53,7 +53,6 @@ const AddPhoto = (props) => {
       technique: techniqueArr,
       description: description,
     };
-    console.log("new photo is here", newPhoto);
 
     dispatch(addPhoto(newPhoto));
     setTimeout(() => {
@@ -68,7 +67,6 @@ const AddPhoto = (props) => {
       ...text,
       [name]: value,
     });
-    console.log(value);
   };
 
   const filePreview = (file) => {
@@ -93,7 +91,6 @@ const AddPhoto = (props) => {
     } else {
       setTechniqueArr([...techniqueArr, technique]);
       setText({ ...text, technique: "" });
-      console.log(techniqueArr);
       setWarning("");
     }
   };

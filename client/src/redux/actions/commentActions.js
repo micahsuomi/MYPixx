@@ -112,7 +112,6 @@ export const likeComment = (photoId, commentId, likedComment) => {
     try {
       const url = `/api/v1/photos/${photoId}/comments/${commentId}/like`;
       const res = await axios.post(url, likedComment, tokenConfig(getState));
-      console.log("from actions", res);
       dispatch({
         type: LIKE_COMMENT,
         payload: res.data,
