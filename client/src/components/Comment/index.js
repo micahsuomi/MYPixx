@@ -13,7 +13,6 @@ import LikeComment from "../LikeComment/index";
 import "./style.scss";
 
 const Comment = (props) => {
-  console.log("comment props", props);
   const {
     avatar,
     authorId,
@@ -70,8 +69,6 @@ const Comment = (props) => {
     }, 1000);
     props.closeEditingComment(isEditing);
   };
-
-  // console.log('this is the author id',  user, isAuthenticated, authorId, user.id)
 
   return (
     <div className="comment-user animate-modal">

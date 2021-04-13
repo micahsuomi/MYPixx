@@ -8,7 +8,6 @@ const initialState = {
 export default function error(state = initialState, action) {
   switch (action.type) {
     case SHOW_ERRORS:
-      console.log("from reducer", action.payload);
       return {
         ...state,
         msg: action.payload.msg,

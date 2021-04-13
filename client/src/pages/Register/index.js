@@ -15,7 +15,6 @@ const Register = (props) => {
   const isValidated = useSelector((state) => state.auth.isValidated);
   const errorMsg = useSelector((state) => state.errors.msg.msg);
   const [isRegistered, setIsRegistered] = useState(false);
-  // console.log(errorMsg)
   const dispatch = useDispatch();
 
   const [state, setState] = useState({

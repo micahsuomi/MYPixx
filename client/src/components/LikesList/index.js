@@ -22,8 +22,6 @@ const LikesList = (props) => {
     setLikes(photoLikes);
   }, [photoLikes]);
 
-  console.log(likes);
-
   const formattedLikes = likes.map((like) => (
     <Like
       key={like._id}
