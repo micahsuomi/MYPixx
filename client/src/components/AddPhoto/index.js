@@ -28,12 +28,12 @@ const AddPhoto = ({ history }) => {
     selectedFile: null,
   });
   const [mediumArr, setMediumArr] = useState([]);
-  const [isMediumDup, setIsMediumDup] = useState(false)
+  const [isMediumDup, setIsMediumDup] = useState(false);
   const [warning, setWarning] = useState("");
 
   useEffect(() => {
     if (!isAuthenticated) {
-     history.push("/login");
+      history.push("/login");
     }
   }, [isAuthenticated, history]);
 
@@ -85,18 +85,15 @@ const AddPhoto = ({ history }) => {
   const addToMedium = (e) => {
     e.preventDefault();
     const mediumIndex = mediumArr.indexOf(medium);
-    console.log(medium.length)
     if (medium.length < 1) {
       setWarning("Please enter a value");
-    } else
-    if (mediumIndex !== -1) {
+    } else if (mediumIndex !== -1) {
       setWarning("Tag already present");
-      prompt('tag already present')
+      prompt("tag already present");
       setIsMediumDup(true);
     } else {
       setMediumArr([...mediumArr, medium]);
       setText({ ...text, medium: "" });
-      console.log(mediumArr);
 
       setWarning("");
       setIsMediumDup(false);
@@ -169,9 +166,7 @@ const AddPhoto = ({ history }) => {
               type="text"
               name="medium"
               value={medium}
-              placeholder={
-                "eg(oil, acrylics, dripping, photography etc)"
-              }
+              placeholder={"eg(oil, acrylics, dripping, photography etc)"}
               onChange={handleChange}
             />
             <button
@@ -198,7 +193,7 @@ const AddPhoto = ({ history }) => {
             ))}
           </div>
           <span className="add-photo__medium-warning">{warning}</span>
-          {medium.length < 1 || medium !== '' || isMediumDup && warning}
+          {medium.length < 1 || medium !== "" || (isMediumDup && warning)}
         </div>
 
         <div className="add-photo__input-topics">

@@ -54,7 +54,6 @@ export const login = ({ email, password }) => {
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
-      console.log(res.data);
     } catch (err) {
       dispatch({
         type: LOGIN_FAIL,
@@ -73,7 +72,6 @@ export const googleLogin = (response) => {
         url,
         data: { tokenId: response.tokenId },
       }).then((res) => {
-        console.log(res.data);
         dispatch({
           type: LOGIN_SUCCESS,
           payload: res.data,
@@ -150,7 +148,6 @@ export const tokenConfig = (getState) => {
   };
   if (token) {
     config.headers["x-auth-token"] = token;
-    console.log("I am calling token config here setting headers", token);
   }
   return config;
 };

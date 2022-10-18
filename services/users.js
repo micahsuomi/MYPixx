@@ -20,8 +20,6 @@ function findAllUsers() {
 }
 
 async function findUserById(userId) {
-  console.log('from services', userId)
-
   return User.findById(userId)
     .select("-password")
     .populate("photos")

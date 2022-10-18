@@ -24,7 +24,6 @@ const User = (props) => {
       );
       setUserProfile(user);
       setUserLoaded(true);
-      console.log(userProfile);
     } catch (err) {
       console.log(err);
     }
@@ -33,7 +32,6 @@ const User = (props) => {
   useEffect(() => {
     if (isAuthenticated && currentUser._id === props.match.params.id) {
       setCurrentUserProfile(currentUser);
-      console.log(currentUser);
       setIsUserPage(true);
       setUserLoaded(true);
     } else {

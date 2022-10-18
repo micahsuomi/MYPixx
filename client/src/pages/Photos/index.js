@@ -28,7 +28,6 @@ const PhotoList = (
 ) => {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
-  // console.log('coming from photos', props.isAuthenticated)
   const isLoading = useSelector((state) => state.photo.isLoading);
 
   const dispatch = useDispatch();

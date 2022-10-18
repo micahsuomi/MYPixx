@@ -48,7 +48,6 @@ export default function usePhotos(search, category) {
 
   const selectCategory = useCallback(
     (category) => {
-      console.log(category)
       const selectedPhotos = photos.filter((photo) => {
         const { type } = photo;
         if(type.includes(category)) {
