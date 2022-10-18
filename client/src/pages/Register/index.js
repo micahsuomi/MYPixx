@@ -10,23 +10,19 @@ import {
   clearErrors,
   clearAllValidations,
 } from "../../redux/actions/errorActions";
-import {
-  nameValidator,
-  passwordValidator,
-} from '../../validators'
+import { nameValidator, passwordValidator } from "../../validators";
 
 import "./style.scss";
 
 const inputStyleErr = {
-  border: '2px solid red'
-}
+  border: "2px solid red",
+};
 const inputStyleValidated = {
-  border: '2px solid lightgrey'
-}
+  border: "2px solid lightgrey",
+};
 
 const Register = ({ history }) => {
   const isValidated = useSelector((state) => state.user.isValidated);
-  console.log(isValidated)
   const errorMsg = useSelector((state) => state.error.msg.msg);
   const [isRegistered, setIsRegistered] = useState(false);
   const dispatch = useDispatch();
@@ -41,39 +37,40 @@ const Register = ({ history }) => {
     name: false,
     email: false,
     password: false,
-    repeatPassword: false
-  })
+    repeatPassword: false,
+  });
 
   const { name, email, password, repeatPassword } = newUser;
 
   const validate = () => {
     const errors = {
-      name: '',
-      email: '',
-      password: '',
-      repeatPassword: ''
-    }
-   
+      name: "",
+      email: "",
+      password: "",
+      repeatPassword: "",
+    };
+
     if (touched.name && !name.match(nameValidator)) {
-      errors.name = 'Full name should include only letters'
+      errors.name = "Full name should include only letters";
     }
     if (touched.name && !validator.isLength(name, { min: 2, max: 30 })) {
-      errors.name = 'Name must be between 1 and 30 characters'
-      console.log(errors.name)
+      errors.name = "Name must be between 1 and 30 characters";
+      console.log(errors.name);
     }
     if (touched.email && !validator.isEmail(email)) {
-      errors.email = 'email should be a valid email format'
+      errors.email = "email should be a valid email format";
     }
     if (touched.password && !password.match(passwordValidator)) {
-      errors.password = 'Password must be at least 8 characters long, include an uppercase character, a lowercase character, a number and a special character'
+      errors.password =
+        "Password must be at least 8 characters long, include an uppercase character, a lowercase character, a number and a special character";
     }
     if (password !== repeatPassword) {
-      errors.repeatPassword = 'passwords do not match'
+      errors.repeatPassword = "passwords do not match";
     }
-    return errors
-  }
+    return errors;
+  };
 
-  const errors = validate()
+  const errors = validate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -92,12 +89,12 @@ const Register = ({ history }) => {
   };
 
   const handleBlur = (e) => {
-    const { name } = e.target
+    const { name } = e.target;
     setTouched({
       ...touched,
       [name]: true,
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     if (isValidated) {
@@ -145,11 +142,10 @@ const Register = ({ history }) => {
               />
             </div>
             {errors.name && (
-            <div>
-              <FeedBack validationErr={errors.name} />
-            </div>
-          )}
-
+              <div>
+                <FeedBack validationErr={errors.name} />
+              </div>
+            )}
 
             <div className="input-topics">
               <label htmlFor="image">Email</label>
@@ -164,10 +160,10 @@ const Register = ({ history }) => {
               />
             </div>
             {errors.email && (
-            <div>
-              <FeedBack validationErr={errors.email} />
-            </div>
-          )}
+              <div>
+                <FeedBack validationErr={errors.email} />
+              </div>
+            )}
 
             <div className="input-topics">
               <label htmlFor="description">Password</label>
@@ -182,10 +178,10 @@ const Register = ({ history }) => {
               />
             </div>
             {errors.password && (
-            <div>
-              <FeedBack validationErr={errors.password} />
-            </div>
-          )}
+              <div>
+                <FeedBack validationErr={errors.password} />
+              </div>
+            )}
 
             <div className="input-topics">
               <label htmlFor="description">Repeat Password</label>
@@ -197,31 +193,38 @@ const Register = ({ history }) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 required={true}
-                style={password !== repeatPassword ? inputStyleErr : inputStyleValidated}
+                style={
+                  password !== repeatPassword
+                    ? inputStyleErr
+                    : inputStyleValidated
+                }
                 className="password-input"
               />
             </div>
             {errors.repeatPassword && (
-            <div>
-              <FeedBack validationErr={errors.repeatPassword} />
-            </div>
-          )}
+              <div>
+                <FeedBack validationErr={errors.repeatPassword} />
+              </div>
+            )}
             <p className="warning-msg">{errorMsg}</p>
 
             <p>
               Have an account already? <NavLink to="/login">Sign in</NavLink>
             </p>
             <div className="registration__btn-wrapper">
-              {
-                errors.name ||
-                errors.email ||
-                errors.password ||
-                errors.repeatPassword ? 
-                <button className="registration__btn-register--disabled" disabled>Sign Up</button>
-                :
+              {errors.name ||
+              errors.email ||
+              errors.password ||
+              errors.repeatPassword ? (
+                <button
+                  className="registration__btn-register--disabled"
+                  disabled
+                >
+                  Sign Up
+                </button>
+              ) : (
                 <button className="registration__btn-register">Sign Up</button>
-
-              }
+              )}
             </div>
           </form>
         </div>
@@ -231,7 +234,7 @@ const Register = ({ history }) => {
 };
 
 Register.propTypes = {
-  history: PropTypes.object
+  history: PropTypes.object,
 };
 
 export default Register;

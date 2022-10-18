@@ -172,7 +172,6 @@ const CommentReply = ({
               </div>
               {commentReply.likes !== undefined &&
                 users.map((user) => {
-                  console.log(commentReply.likes)
                   for (let i = 0; i < commentReply.likes.length; i++) {
                     const like = commentReply.likes[i];
                     if (user._id === like) {

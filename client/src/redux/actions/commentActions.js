@@ -29,7 +29,6 @@ export const getComments = (id) => {
 };
 
 export const getComment = (photoId, commentId) => {
-  // console.log('from get comment action', photoId, commentId)
   return async (dispatch) => {
     try {
       const url = `/api/v1/photos/${photoId}/comments/${commentId}`;

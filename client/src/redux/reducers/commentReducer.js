@@ -20,7 +20,6 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case GET_COMMENTS:
       const { comments } = action.payload;
-      console.log('from reducer', comments)
       return {
         ...state,
         comments: comments,
@@ -42,7 +41,6 @@ export default function (state = initialState, action) {
         ...state,
       };
     case LIKE_COMMENT:
-      console.log("from reducer likes", action.payload);
       return {
         ...state,
         comments: [...state.comments],

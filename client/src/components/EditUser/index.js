@@ -22,7 +22,6 @@ const EditUser = (props) => {
   // const [err, loadedUser] = useUser();
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const isGoogleUser = useSelector((state) => state.user.isGoogleUser);
-  console.log(isGoogleUser)
   const [isImageEditing, setIsImageEditing] = useState(false);
   const [updatedImage, setUpdatedImage] = useState(null);
   const [previewSource, setPreviewSource] = useState(null);
@@ -35,7 +34,6 @@ const EditUser = (props) => {
   const id = props.match.params.id;
 
   const handleSubmit = (e) => {
-    console.log('calling', user)
     e.preventDefault();
     user.medium = mediumArr;
     if (isImageChanged) {

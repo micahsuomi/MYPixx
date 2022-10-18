@@ -55,8 +55,7 @@ const register = async (req, res) => {
   }
   if (!password.match(passwordValidator)) {
     return res.status(400).json({
-      msg:
-        "Password must be at least 8 characters long, include an uppercase character, a lowercase character, a number and a special character",
+      msg: "Password must be at least 8 characters long, include an uppercase character, a lowercase character, a number and a special character",
     });
   }
   //check for password match
@@ -68,17 +67,14 @@ const register = async (req, res) => {
   //check for existing user using the email, throw 400 err
   User.findOne({ email }).then((user) => {
     if (user)
-      return (
-        res
-          .status(400)
-          .json({ msg: "A user with this email is already registered" })
-      );
+      return res
+        .status(400)
+        .json({ msg: "A user with this email is already registered" });
     const newUser = new User({
       name,
       email,
       password,
     });
-    console.log("new user", newUser);
     //if no user exists, generate salt which is used to hash a password with bcryptjs
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -87,7 +83,6 @@ const register = async (req, res) => {
           //save the user as new user within mongoose schema
 
           newUser.save().then((user) => {
-            console.log("user after saving", user);
             //we make a json file for token and user
             res.json({
               user: {
@@ -171,7 +166,6 @@ const updateUser =
                   gallery.author.name = user.name;
                   gallery.author.avatar = user.avatar;
                   gallery.author.bio = user.bio;
-                  console.log("here the gallery should update", gallery);
                 }
               }
 
@@ -186,7 +180,6 @@ const updateUser =
                   doc.save((err, saved) => {
                     if (err) throw err; //handle error
                     result.push(saved[0]);
-                    console.log(result);
                     if (--total) saveAll();
                     else console.log("saved here"); // all saved here
                   });
@@ -198,12 +191,10 @@ const updateUser =
                   .equals(user._id)
                   .exec((err, foundComments) => {
                     if (err) {
-                      console.log(err);
                     } else {
                       for (const comment of foundComments) {
                         comment.author.name = user.name;
                         comment.author.avatar = user.avatar;
-                        console.log("here the gallery should update", comment);
                       }
                     }
 

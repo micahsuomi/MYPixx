@@ -37,7 +37,6 @@ cloudinary.config({
 const findAll = async (req, res) => {
   try {
     res.json(await PhotoService.findAll());
-    console.log(res)
   } catch (err) {
     res.status(404).json({ msg: "Not Found" });
   }
@@ -48,7 +47,7 @@ const findAll = async (req, res) => {
 //ACCESS: private
 const addPhoto =
   (upload.single("image"),
-  async(req, res, next) => {
+  async (req, res, next) => {
     try {
       const userId = req.user.id;
       const user = await UserService.findUserByReq(userId);
@@ -61,28 +60,26 @@ const addPhoto =
           name: user.name,
           avatar: user.avatar,
         };
-        // console.log('this is the author', author)
-
+        
         const newPhoto = new Photo({
           title,
           image: uploadedCloudinaryImage,
           type,
           medium,
           description,
-          author
+          author,
         });
         const date = new Date();
-        newPhoto.createdAt = moment(date).format('LL');
-        console.log('photo before saving', newPhoto)
+        newPhoto.createdAt = moment(date).format("LL");
+        console.log("photo before saving", newPhoto);
 
         newPhoto.save();
         user.photos.push(newPhoto);
-        user.populate("photos").execPopulate()
+        user.populate("photos").execPopulate();
 
         user.save();
-        console.log('user here', user)
+        console.log("user here", user);
         res.json(newPhoto);
-
       });
     } catch (err) {
       next(res.status(500).json({ err: "Something went wrong" }));
@@ -121,9 +118,9 @@ const editPhoto =
 const deletePhoto = async (req, res) => {
   try {
     const id = req.params.id;
-    const photo = await Photo.findById(id)
-      photo.remove()
-      res.json({ success: true })
+    const photo = await Photo.findById(id);
+    photo.remove();
+    res.json({ success: true });
   } catch (err) {
     return res.status(404).json({ success: false });
   }
@@ -134,8 +131,6 @@ const deletePhoto = async (req, res) => {
 //ACCESS: private
 const likePhoto = (req, res) => {
   const id = req.params.id;
-  console.log("req.user from like photo", req.user);
-
   Photo.findById(id, (err, photo) => {
     if (err) {
       return res.status(404).json({ msg: "Not found" });
@@ -157,14 +152,11 @@ const likePhoto = (req, res) => {
 const findPhotoById = async (req, res) => {
   try {
     const id = req.params.id;
-    const photo = await PhotoService.findPhotoById(id)
-    // console.log('photo', photo)
-    // photo.comments.forEach((comment) => comment.populate("reply").execPopulate())
-    for(const comment of photo.comments) {
-      comment.populate("likes").execPopulate()
+    const photo = await PhotoService.findPhotoById(id);
+    for (const comment of photo.comments) {
+      comment.populate("likes").execPopulate();
     }
-    res.json(photo)
-    
+    res.json(photo);
   } catch (err) {
     return res.status(404).json({ msg: err });
   }
