@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  PullToRefresh,
-  PullDownContent,
-  ReleaseContent,
-  RefreshContent,
-} from "react-js-pull-to-refresh";
+// import {
+//   PullToRefresh,
+//   PullDownContent,
+//   ReleaseContent,
+//   RefreshContent,
+// } from "react-js-pull-to-refresh";
 import PropTypes from "prop-types";
 
 import { getPhotos } from "../../redux/actions/photoActions";
@@ -26,6 +26,7 @@ const PhotoList = (
   { closePopup, refreshPage, isAuthenticated, isPopupOpen, isEditPopupOpen },
   props
 ) => {
+
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
   const isLoading = useSelector((state) => state.photo.isLoading);
@@ -41,10 +42,11 @@ const PhotoList = (
   const [showPullToRefresh, setShowPullToRefresh] = useState(false);
   const [isUserPage] = useState(false);
 
+  console.log(photos)
   const checkScreenSize = () => {
     const maxWidth = 500;
     if (window.innerWidth < maxWidth) {
-      setShowPullToRefresh(true);
+      // setShowPullToRefresh(true);
     }
   };
 
@@ -76,8 +78,10 @@ const PhotoList = (
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const photoList = !showPullToRefresh
-    ? currentPhotos.map((photo) => (
+  const photoList =
+  /*!showPullToRefresh
+    ?*/ 
+    currentPhotos.map((photo) => (
         <PhotoItem
           key={photo._id}
           id={photo._id}
@@ -95,7 +99,7 @@ const PhotoList = (
           {...props}
         />
       ))
-    : photos.map((photo) => (
+    /* : photos.map((photo) => (
         <PhotoItem
           key={photo._id}
           id={photo._id}
@@ -112,7 +116,7 @@ const PhotoList = (
           isUserPage={isUserPage}
           {...props}
         />
-      ));
+      ));*/
 
   return (
     <>
@@ -124,7 +128,7 @@ const PhotoList = (
       <div className="photo-gallery">
         {isLoading ? (
           <div>
-            <PullToRefresh
+            {/* <PullToRefresh
               pullDownContent={<PullDownContent />}
               releaseContent={<ReleaseContent />}
               refreshContent={<RefreshContent />}
@@ -133,14 +137,14 @@ const PhotoList = (
               triggerHeight={50}
               startInvisible={true}
               className="pull-to-refresh"
-            >
+            > */}
               <div>
-                {showPullToRefresh && (
+                {/* {showPullToRefresh && (
                   <div className="pull-to-refresh__wrapper">
                     <p>Pull To Refresh</p>
                     <i className="fas fa-chevron-down"></i>
                   </div>
-                )}
+                )} */}
                 <div className="photo-gallery__add-photo-sort">
                   {isAuthenticated && <AddPhotoButton />}
                   <SelectCategoryForm selectCategory={selectCategoryOnClick} />
@@ -155,7 +159,7 @@ const PhotoList = (
                   )}
                 </div>
                 {!search &&
-                  !showPullToRefresh &&
+                  // !showPullToRefresh &&
                   category === "all" && (
                     <>
                       <Pagination
@@ -169,7 +173,7 @@ const PhotoList = (
                 {isPopupOpen && <AddPopup closePopup={closePopup} />}
                 {isEditPopupOpen && <EditPopup closePopup={closePopup} />}
               </div>
-            </PullToRefresh>
+            {/* </PullToRefresh> */}
           </div>
         ) : (
           <div>
@@ -179,7 +183,7 @@ const PhotoList = (
               <Loader />
             )}
           </div>
-        )}
+        )} 
       </div>
     </>
   );
