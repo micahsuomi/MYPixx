@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -198,7 +199,7 @@ const Comment = ({
                       ></i>
                     </div>
                     {comment.likes !== undefined &&
-                      users.map((user) => {
+                      users.map((user) => { 
                         for (let i = 0; i < comment.likes.length; i++) {
                           const like = comment.likes[i];
                           if (user._id === like) {

@@ -16,7 +16,7 @@
     border-radius: 14px;
     font-weight: 700;
     background-color: white;
-    width: 43vw;
+    width: 40rem;
     box-shadow: 0 2rem 2rem rgba(172, 159, 159, 0.5);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -27,7 +27,7 @@
   &__cancel-wrapper {
     display: flex;
     justify-content: flex-end;
-    width: 39vw;
+    width: 100%;
   }
 
   &__input-topics {
