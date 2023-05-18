@@ -45,7 +45,6 @@ const googleLogin = (req, res) => {
                         path: "comments",
                       },
                     })
-                    .execPopulate();
                   res.json({
                     token,
                     user: {
@@ -98,7 +97,7 @@ const googleLogin = (req, res) => {
               });
             }
           }
-        });
+        }).execPopulate();
       }
     });
 };
@@ -134,14 +133,14 @@ const login = (req, res) => {
           if (err) throw err;
           //we make a json file for token and user
           await user
-            .populate("photos")
+            // .populate("photos")
             .populate({
               path: "photos",
               populate: {
                 path: "comments",
               },
             })
-            .execPopulate();
+            // .execPopulate();
           res.json({
             token,
             user: {
