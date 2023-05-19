@@ -7,7 +7,7 @@ import {
   EDIT_COMMENT,
   DELETE_COMMENT,
   LIKE_COMMENT,
-  ADD_COMMENT_REPLY
+  ADD_COMMENT_REPLY,
 } from "./types";
 
 import { tokenConfig } from "./authActions";
@@ -29,7 +29,6 @@ export const getComments = (id) => {
 };
 
 export const getComment = (photoId, commentId) => {
-  // console.log('from get comment action', photoId, commentId)
   return async (dispatch) => {
     try {
       const url = `/api/v1/photos/${photoId}/comments/${commentId}`;
@@ -78,7 +77,7 @@ export const deleteComment = (photoId, commentId) => {
   return async (dispatch, getState) => {
     try {
       const url = `/api/v1/photos/${photoId}/comments/${commentId}`;
-      const res = await axios.delete(url, tokenConfig(getState));
+      await axios.delete(url, tokenConfig(getState));
       dispatch({
         type: DELETE_COMMENT,
         payload: commentId,
@@ -110,13 +109,11 @@ export const addCommentReply = (photoId, commentId, commentReply) => {
       const url = `/api/v1/photos/${photoId}/comments/${commentId}`;
       const res = await axios.post(url, commentReply, tokenConfig(getState));
       console.log("from actions", res);
+
       dispatch({
         type: ADD_COMMENT_REPLY,
-        payload: res.data
-      })
-    } catch(err) {
-      
-
-    }
-  }
-}
+        payload: res.data,
+      });
+    } catch (err) {}
+  };
+};

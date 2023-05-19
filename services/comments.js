@@ -21,14 +21,12 @@ async function updateComment(id, update) {
   return Comment.findById(id)
     .exec()
     .then((comment) => {
-      console.log("from services", update);
       if (!comment) {
         throw new Error(`Comment ${id} not found`);
       }
       if (update.text) {
         comment.text = update.text;
       }
-      console.log("from services", comment);
       return comment.save();
     });
 }

@@ -16,7 +16,7 @@
     overflow-y: scroll;
     overflow-x: hidden;
     border-radius: 14px;
-    position: relative;  
+    position: relative;
     h3 {
       text-align: center;
       margin-top: 1rem;
@@ -49,12 +49,12 @@
     @include standard-button;
     margin-top: 2rem;
     width: 20rem;
-    padding: .6rem;
+    padding: 0.6rem;
     @include flex-property-row-center;
     i {
       color: white;
       font-size: 1.3em;
-      margin-left: .5rem;
+      margin-left: 0.5rem;
     }
   }
 }
@@ -73,7 +73,7 @@
 
 @media screen and (max-width: 500px) {
   .comments {
-    padding: .5rem .5rem;
+    padding: 0.5rem 0.5rem;
     &__wrapper {
       height: 99vh;
     }
@@ -82,12 +82,8 @@
     }
   }
 
-  
-
   .add-comment__form textarea {
     width: 19rem;
     height: 11rem;
   }
 }
-
-

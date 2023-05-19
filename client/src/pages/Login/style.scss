@@ -68,27 +68,6 @@
       background-position: 96.5% 50%;
     }
   }
-  &__divider {
-    margin-top: 1.6rem;
-    @include flex-property-row-center;
-    hr {
-      width: 20px;
-      height: 3px;
-      width: 20rem;
-      border: none;
-      border-top: 1px solid #e0e0e0;
-      color: #6e6d7a;
-      position: relative;
-    }
-    p {
-      font-weight: 700;
-      position:absolute;
-      margin-top: -5px;
-      background: white;
-      padding: .1rem .7rem;
-      color: rgb(75, 74, 74);
-    }
-  }
 
   .google-auth-btn {
     margin-top: 1rem;
@@ -114,6 +93,28 @@
   }
   .google-auth-btn:hover {
     background-color: #2e70db;
+  }
+
+  &__divider {
+    margin-top: 1.6rem;
+    @include flex-property-row-center;
+    hr {
+      width: 20px;
+      height: 3px;
+      width: 20rem;
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      color: #6e6d7a;
+      position: relative;
+    }
+    p {
+      font-weight: 700;
+      position:absolute;
+      margin-top: -5px;
+      background: white;
+      padding: .1rem .7rem;
+      color: rgb(75, 74, 74);
+    }
   }
 
   &__forgot-password {

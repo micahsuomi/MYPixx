@@ -64,7 +64,6 @@ const deleteComment = (req, res) => {
 //@ACCESS: private
 const likeComment = (req, res) => {
   const id = req.params.id;
-  console.log('req prams id', id)
   Comment.findById(id)
     .populate("likes")
     .populate("replies")
@@ -77,7 +76,6 @@ const likeComment = (req, res) => {
           like.equals(req.user.id)
         );
         foundUser ? comment.likes.pull(newLike) : comment.likes.push(newLike);
-        console.log("updating comment", comment);
         comment
           .save()
           .then((comment) => res.json(comment))
@@ -90,10 +88,8 @@ const replyToComment = async(req, res, next) => {
   try {
     const id = req.params.id
     const foundComment = await CommentService.findCommentById(id);
-    console.log('found comment here', foundComment)
     const userId = req.user.id
     const user = await UserService.findUserByReq(userId);
-    console.log('user here', user)
   
       const author = {
         id: req.user.id,
@@ -105,10 +101,8 @@ const replyToComment = async(req, res, next) => {
         author: author,
       });
       newReply.save()
-      console.log('new reply', newReply)
       foundComment.replies.push(newReply)
       // foundComment.populate("replies").execPopulate()
-      console.log('found comment', foundComment)
       foundComment.save().then((comment) => res.json(comment))
   }
   catch(err) {

@@ -12,12 +12,7 @@ import {
   CLEAR_RESET_CONFIRMATION,
 } from "./types";
 
-import { 
-  showErrors,
-  clearErrors
- } from "./errorActions";
-
-const proxyUrl = "http://localhost:5000";
+import { showErrors, clearErrors } from "./errorActions";
 
 export const register = ({ name, email, password, repeatPassword }) => {
   return async (dispatch) => {
@@ -27,8 +22,9 @@ export const register = ({ name, email, password, repeatPassword }) => {
           "Content-Type": "application/json",
         },
       };
+      const url = `/api/v1/user`;
       const body = JSON.stringify({ name, email, password, repeatPassword });
-      const res = await axios.post(`${proxyUrl}/api/v1/user`, body, config);
+      const res = await axios.post(url, body, config);
       dispatch({
         type: REGISTER_SUCCESS,
         payload: res.data,
@@ -51,13 +47,13 @@ export const login = ({ email, password }) => {
           "Content-Type": "application/json",
         },
       };
+      const url = `/api/v1/auth`;
       const body = JSON.stringify({ email, password });
-      const res = await axios.post(`${proxyUrl}/api/v1/auth`, body, config);
+      const res = await axios.post(url, body, config);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
-      console.log(res.data);
     } catch (err) {
       dispatch({
         type: LOGIN_FAIL,
@@ -70,20 +66,19 @@ export const login = ({ email, password }) => {
 export const googleLogin = (response) => {
   return async (dispatch) => {
     try {
-      const url = `${proxyUrl}/api/v1/auth/google-auth`;
+      const url = `/api/v1/auth/google-auth`;
       axios({
         method: "POST",
         url,
         data: { tokenId: response.tokenId },
       }).then((res) => {
-        console.log(res.data);
         dispatch({
           type: LOGIN_SUCCESS,
           payload: res.data,
-        })
+        });
         dispatch({
-          type: GOOGLE_LOGIN
-        })
+          type: GOOGLE_LOGIN,
+        });
       });
     } catch (err) {
       dispatch({
@@ -97,7 +92,7 @@ export const googleLogin = (response) => {
 export const forgotPassword = (email) => {
   return async (dispatch) => {
     try {
-      const url = `${proxyUrl}/api/v1/auth/forgot-password`;
+      const url = `/api/v1/auth/forgot-password`;
       const res = await axios.put(url, email);
       dispatch({
         type: FORGOT_PASSWORD,
@@ -118,7 +113,7 @@ export const resetPassword = ({
   return async (dispatch) => {
     try {
       const body = { newPassword, repeatNewPassword, resetToken };
-      const url = `http://localhost:5000/api/v1/auth/reset-password`;
+      const url = `/api/v1/auth/reset-password`;
       const res = await axios.put(url, body);
       dispatch({
         type: RESET_PASSWORD,
@@ -153,7 +148,6 @@ export const tokenConfig = (getState) => {
   };
   if (token) {
     config.headers["x-auth-token"] = token;
-    console.log("I am calling token config here setting headers", token);
   }
   return config;
 };

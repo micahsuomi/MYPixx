@@ -14,7 +14,6 @@ const Comments = ({ isAuthenticated, users, user, match, history }, props) => {
   const dispatch = useDispatch();
   const [err, comments] = useComments();
   const [isCommentFieldOpened, setIsCommentFieldOpened] = useState(false);
-  const [isCommentReplyOpen, setIsCommentReplyOpen] = useState(false);
   const [isAddButtonShowing, setIsAddButtonShowing] = useState(true);
   const [comment, setComment] = useState({
     text: "",
@@ -44,7 +43,6 @@ const Comments = ({ isAuthenticated, users, user, match, history }, props) => {
   const deleteComment = () => {
     dispatch(getComments(photoId));
   };
-
   const editingComment = () => {
     setIsAddButtonShowing(false);
   };

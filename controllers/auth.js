@@ -1,31 +1,27 @@
+require("dotenv").config();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { OAuth2Client } = require("google-auth-library");
 const _ = require("lodash");
 const sgMail = require("@sendgrid/mail");
-
 const User = require("../models/User");
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-const client = new OAuth2Client(
-  "917092315724-7rg232f22vkqflmabjcb3rrrah6u364u.apps.googleusercontent.com"
-);
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 //POST request to API api/auth/google-auth
 //DESCRIPTION - authenticates user with google login
 //ACCESS Public
 const googleLogin = (req, res) => {
   const { tokenId } = req.body;
-  console.log("token id here", tokenId);
   client
     .verifyIdToken({
       idToken: tokenId,
-      audience:
-        "917092315724-7rg232f22vkqflmabjcb3rrrah6u364u.apps.googleusercontent.com",
+      audience: process.env.GOOGLE_CLIENT_ID,
     })
     .then((response) => {
       const { email_verified, name, email, picture } = response.payload;
-      console.log("response", response.payload);
+
       if (email_verified) {
         User.findOne({ email }).exec((err, user) => {
           if (err) {
@@ -34,7 +30,6 @@ const googleLogin = (req, res) => {
             });
           } else {
             if (user) {
-              console.log("user found", user);
               jwt.sign(
                 { id: user._id },
                 process.env.jwtSecret,
@@ -43,16 +38,14 @@ const googleLogin = (req, res) => {
                 async (err, token) => {
                   if (err) throw err;
                   //we make a json file for token and user
-                  console.log("user is here", user);
                   await user
-                    .populate("photos")
+                    // .populate("photos")
                     .populate({
                       path: "photos",
                       populate: {
                         path: "comments",
                       },
                     })
-                    .execPopulate();
                   res.json({
                     token,
                     user: {
@@ -68,7 +61,6 @@ const googleLogin = (req, res) => {
                 }
               );
             } else {
-              console.log("found user", user);
               const password = email + process.env.jwtSecret;
               const newUser = new User({
                 name,
@@ -76,10 +68,8 @@ const googleLogin = (req, res) => {
                 password,
                 avatar: picture,
               });
-              console.log("new user here", newUser);
               newUser.save((err, user) => {
                 if (err) {
-                  console.log("error", err);
                   return res.status(400).json({ msg: "Something went wrong" });
                 }
                 jwt.sign(
@@ -90,7 +80,6 @@ const googleLogin = (req, res) => {
                   async (err, token) => {
                     if (err) throw err;
                     //we make a json file for token and user
-                    console.log("user is here", user);
                     const { _id, name, email, avatar } = newUser;
                     res.json({
                       token,
@@ -109,7 +98,7 @@ const googleLogin = (req, res) => {
               });
             }
           }
-        });
+        })
       }
     });
 };
@@ -126,7 +115,6 @@ const login = (req, res) => {
   }
   //check for existing user, if it doesn't exist we throw a 400 bad request message
   User.findOne({ email }).then((user) => {
-    console.log(" here is the user", user);
     if (!user)
       return res
         .status(400)
@@ -145,16 +133,15 @@ const login = (req, res) => {
         async (err, token) => {
           if (err) throw err;
           //we make a json file for token and user
-          console.log("user is here", user);
           await user
-            .populate("photos")
+            // .populate("photos")
             .populate({
               path: "photos",
               populate: {
                 path: "comments",
               },
             })
-            .execPopulate();
+            // .execPopulate();
           res.json({
             token,
             user: {
@@ -199,7 +186,6 @@ const forgotPassword = async (req, res, next) => {
           .status(400)
           .json({ msg: "There is no user registered with this email" });
       } else {
-        console.log("user here", user);
         const token = jwt.sign(
           { id: user._id },
           process.env.RESET_PASSWORD_KEY,
@@ -207,7 +193,6 @@ const forgotPassword = async (req, res, next) => {
             expiresIn: 3700,
           }
         );
-        console.log("token here", token);
         const emailData = {
           // from: 'noreply@MYPixx.com',
           from: "michele.zucca@integrify.io",
@@ -229,13 +214,11 @@ const forgotPassword = async (req, res, next) => {
             sgMail
               .send(emailData)
               .then(() => {
-                console.log("email here", emailData);
                 return res.json({
                   msg: `An email has been sent to ${email} with instructions to reset your password`,
                 });
               })
               .catch((err) => {
-                console.log("error here", err);
                 return res.json({ msg: err.message });
               });
           }
@@ -258,7 +241,6 @@ const resetPassword = async (req, res, next) => {
   try {
     //receives a new password and a token. reset link is sent from the client side
     const { newPassword, repeatNewPassword, resetToken } = req.body;
-    console.log("req.body", newPassword, repeatNewPassword, resetToken);
     if (newPassword !== repeatNewPassword) {
       return res.status(400).json({ msg: "Passwords do not match" });
     }
@@ -271,9 +253,7 @@ const resetPassword = async (req, res, next) => {
           });
         }
         //the reset link from the client side has to match the token on the database. it's the same token that the user gets sent on his email
-        console.log("reset token here", resetToken);
         User.findOne({ resetToken }, (err, user) => {
-          console.log("user here", user);
           if (err || !user) {
             return res.status(404).json({ msg: "invalid token" });
           }

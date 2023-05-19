@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -35,6 +36,7 @@ const Comment = ({
   lockScrolling,
   unlockScrolling,
 }) => {
+
   const dispatch = useDispatch();
   const [isEditDeleteOpen, setIsEditDeleteOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -197,8 +199,7 @@ const Comment = ({
                       ></i>
                     </div>
                     {comment.likes !== undefined &&
-                      users.map((user) => {
-                        console.log('comment likes', comment.likes)
+                      users.map((user) => { 
                         for (let i = 0; i < comment.likes.length; i++) {
                           const like = comment.likes[i];
                           if (user._id === like) {

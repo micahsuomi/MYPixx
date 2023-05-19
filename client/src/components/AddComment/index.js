@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import { Picker } from "emoji-mart";
-import "emoji-mart/css/emoji-mart.css";
+import Picker from "@emoji-mart/react";
 
 import { addComment, getComments } from "../../redux/actions/commentActions";
-
 
 import "./style.scss";
 
@@ -35,6 +33,8 @@ const AddComment = ({ photoId, closeCommentField, setCommentClose }, props) => {
   const { text } = comment;
 
   const addEmoji = (e) => {
+    console.log(e)
+
     let emoji = e.native;
     setComment({
       text: text + emoji,
@@ -67,7 +67,7 @@ const AddComment = ({ photoId, closeCommentField, setCommentClose }, props) => {
               className="add-comment-form__emoji-menu animate-pop hide-tablet-mobile"
               onMouseLeave={closeMenu}
             >
-              <Picker onSelect={addEmoji} emojiTooltip={true} />
+              <Picker onEmojiSelect={addEmoji} emojiTooltip={true} />
             </span>
           </>
         ) : (
