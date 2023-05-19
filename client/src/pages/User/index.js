@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
-import { getUser } from "../../redux/actions/userActions";
+import useUser from "../../hooks/useUser";
 import CurrentUser from "../../components/CurrentUser";
 import UserProfile from "../../components/UserProfile";
 
@@ -9,14 +8,14 @@ import "./style.scss";
 
 const User = (props) => {
   const [isUserPage, setIsUserPage] = useState(false);
-  const dispatch = useDispatch();
   const [userProfile, setUserProfile] = useState({});
+  const [err, userData] = useUser()
   const [currentUserProfile, setCurrentUserProfile] = useState({});
   const currentUser = useSelector((state) => state.user.user);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const [userLoaded, setUserLoaded] = useState(false);
   const [switchView, setSwitchView] = useState(false);
-
+  
   const loadUser = async () => {
     try {
       const user = props.users.find(
@@ -30,15 +29,19 @@ const User = (props) => {
   };
 
   useEffect(() => {
-    if (isAuthenticated && currentUser._id === props.match.params.id) {
-      setCurrentUserProfile(currentUser);
-      setIsUserPage(true);
-      setUserLoaded(true);
-    } else {
-      loadUser();
-      setIsUserPage(true);
-    }
-  }, [isAuthenticated, dispatch, currentUser, props.match.params.id]);
+        if(isAuthenticated) {
+          if (userData && userData?._id === props.match.params.id) {
+            setCurrentUserProfile(userData);
+            setIsUserPage(true);
+            setUserLoaded(true);
+          }
+        }
+        else {
+        loadUser();
+        setIsUserPage(true);
+      }
+   
+  }, [isAuthenticated,userData, currentUser, props.match.params.id]);
 
   const closePopup = () => {
     props.closePopup();
@@ -97,7 +100,7 @@ const User = (props) => {
         </>
       ) : (
         <div>
-          {/* {!isUserLoaded && errorMsg ? (
+          {/* {!isUserLoaded && err ? (
             <div className="error-container" style={{ height: "100vh" }}>
               <h3>Something went wrong. Refresh the page</h3>
               <button onClick={refreshPage} className="btn-refresh grow">

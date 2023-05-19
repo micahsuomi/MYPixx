@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { getPhotos } from "./redux/actions/photoActions";
-import { getUsers } from "./redux/actions/userActions";
+import { getUsers, getUser } from "./redux/actions/userActions";
 import Navbar from "./components/Navbar";
 import Community from "./pages/Community";
 import Register from "./pages/Register";
@@ -33,10 +33,14 @@ const Routes = () => {
   const user = useSelector((state) => state.user);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isEditPopupOpen, setIsEditPopupOpen] = useState(false);
-
+  
+  // TODO fix later on
   useEffect(() => {
     dispatch(getPhotos());
     dispatch(getUsers());
+    if(user.user) {
+      dispatch(getUser(user?.user._id));
+    }
   }, [dispatch]);
 
   const closePopup = () => {
