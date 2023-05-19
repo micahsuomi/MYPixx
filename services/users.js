@@ -16,7 +16,6 @@ function findAllUsers() {
       path: "likes"
     })
   }) 
-  .exec();
 }
 
 async function findUserById(userId) {
@@ -28,14 +27,13 @@ async function findUserById(userId) {
       populate: ({
         path: "comments"
       })
-    }) 
+    })
     .populate({
       path: "photos",
       populate: ({
         path: "likes"
       })
     }) 
-    .exec()
     .then((user) => {
       if (!user) {
         throw new Error(`User ${userId} not found`);
@@ -49,7 +47,6 @@ async function findUserByReq(userId) {
     .select("-password")
     .select("-comments")
     .select("-likes")
-    .exec()
     .then((user) => {
       if (!user) {
         throw new Error(`User ${userId} not found`);

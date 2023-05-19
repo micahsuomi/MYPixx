@@ -51,7 +51,7 @@ const Login = (props) => {
 
   const responseFailureGoogle = () => {
   }
-  
+ 
   return (
     <div className="login">
       <div className="login__form-container">
@@ -85,6 +85,7 @@ const Login = (props) => {
             placeholder="email"
             onChange={handleChange}
             required={true}
+            autoComplete="off"
           />
         </div>
 
@@ -97,6 +98,7 @@ const Login = (props) => {
             placeholder="password"
             onChange={handleChange}
             required={true}
+            autoComplete="off"
           />
         </div>
 

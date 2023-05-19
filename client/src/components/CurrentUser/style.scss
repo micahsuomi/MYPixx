@@ -73,11 +73,13 @@
   &__photos {
     margin-top: 3rem;
     @include three-col-grid;
+    align-items: stretch;
     grid-gap: 1rem;
     padding: 0 2rem;
   }
   &__photos.switched {
     overflow-y: scroll;
+    align-items: flex-start;
     height: 40rem;
   }
 }

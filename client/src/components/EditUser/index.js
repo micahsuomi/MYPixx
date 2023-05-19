@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { getUsers, getUser, updateUser } from "../../redux/actions/userActions";
+import { getUsers, updateUser } from "../../redux/actions/userActions";
 import { getPhotos } from "../../redux/actions/photoActions";
 
 import "./style.scss";
@@ -17,16 +17,15 @@ const EditUser = (props) => {
       bio: "",
     },
   });
+
   const dispatch = useDispatch();
   const loadedEditUser = useSelector((state) => state.user.user);
-  // const [err, loadedUser] = useUser();
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const isGoogleUser = useSelector((state) => state.user.isGoogleUser);
   const [isImageEditing, setIsImageEditing] = useState(false);
   const [updatedImage, setUpdatedImage] = useState(null);
   const [previewSource, setPreviewSource] = useState(null);
   const [fileInput, setFileInput] = useState(null);
-  const [selectedFile] = useState(null);
   const [isImageChanged, setIsImageChanged] = useState(false);
   const [mediumArr, setMediumArr] = useState([]);
   const [warning, setWarning] = useState("");
@@ -45,22 +44,24 @@ const EditUser = (props) => {
       props.openUserPopup();
       setTimeout(() => {
         dispatch(getUsers());
-        dispatch(getUser(id));
         dispatch(getPhotos())
       }, 2000);
     }, 2000);
   };
 
-  const loadUser = async () => {
-    try {
-      setMediumArr(loadedEditUser.medium);
-      setUser({ ...loadedEditUser, medium: '' });
-    }
-    catch(err) {
-      return 'something went wrong'
-    }
-  }
-
+  const loadUser = useCallback(
+    async() => {
+      try {
+        setMediumArr(loadedEditUser.medium);
+        setUser({ ...loadedEditUser, medium: '' });
+      }
+      catch(err) {
+        return 'something went wrong'
+      }
+    },
+    [loadedEditUser],
+  )
+ 
   const fileSelectedHandler = (e) => {
     const file = e.target.files[0];
     setUpdatedImage(file);
@@ -97,7 +98,7 @@ const EditUser = (props) => {
     } else {
       loadUser();
     }
-  }, [isAuthenticated, props.history]);
+  }, [isAuthenticated, loadUser, props.history]);
 
   const handleChange = (e) => {
     let { name, value } = e.target;

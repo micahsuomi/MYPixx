@@ -21,6 +21,7 @@ const googleLogin = (req, res) => {
     })
     .then((response) => {
       const { email_verified, name, email, picture } = response.payload;
+
       if (email_verified) {
         User.findOne({ email }).exec((err, user) => {
           if (err) {
@@ -38,7 +39,7 @@ const googleLogin = (req, res) => {
                   if (err) throw err;
                   //we make a json file for token and user
                   await user
-                    .populate("photos")
+                    // .populate("photos")
                     .populate({
                       path: "photos",
                       populate: {
@@ -97,7 +98,7 @@ const googleLogin = (req, res) => {
               });
             }
           }
-        }).execPopulate();
+        })
       }
     });
 };

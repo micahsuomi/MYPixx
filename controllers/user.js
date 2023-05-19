@@ -120,12 +120,11 @@ const findOne = async (req, res) => {
   try {
     const userId = req.params.id;
     const user = await UserService.findUserById(userId);
-    const userPhotos = await Photo.find()
+    /*const userPhotos = await Photo.find()
       .where("author.id")
       .equals(user._id)
       .populate("comments")
-      .exec();
-    user.photos = userPhotos;
+    user.photos = userPhotos;*/
     res.json(user);
   } catch (err) {
     return res.status(404).json({ msg: "Not Found" });

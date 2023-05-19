@@ -2,7 +2,6 @@ import { GET_USERS, GET_USER, EDIT_USER } from "./types";
 
 import axios from "axios";
 import { tokenConfig } from "./authActions";
-import { showErrors } from "./errorActions";
 
 export const getUsers = () => {
   return async (dispatch) => {
