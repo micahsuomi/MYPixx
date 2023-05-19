@@ -4,10 +4,8 @@ const moment = require("moment");
 
 const User = require("../models/User");
 const Photo = require("../models/Photo");
-const Comment = require("../models/Comment");
 const PhotoService = require("../services/photos");
 const UserService = require("../services/users");
-const CommentService = require("../services/comments");
 
 //Ckoudinary to upload images
 const storage = multer.diskStorage({
@@ -45,6 +43,10 @@ const findAll = async (req, res) => {
 //POST Route /api/photos
 //Description: adds a new photo
 //ACCESS: private
+const updateUser = async (userId) => {
+  return await UserService.findUserById(userId)
+
+}
 const addPhoto =
   (upload.single("image"),
   async (req, res, next) => {
@@ -74,8 +76,10 @@ const addPhoto =
 
         newPhoto.save();
         user.photos.push(newPhoto);
-        user.populate("photos").execPopulate();
+        // console.log("user here", user)
+        // user.populate("photos");
 
+        user.markModified("photos");
         user.save();
         res.json(newPhoto);
       });
@@ -152,7 +156,7 @@ const findPhotoById = async (req, res) => {
     const id = req.params.id;
     const photo = await PhotoService.findPhotoById(id);
     for (const comment of photo.comments) {
-      comment.populate("likes").execPopulate();
+      comment.populate("likes");
     }
     res.json(photo);
   } catch (err) {
