@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Picker from "@emoji-mart/react";
-// import "emoji-mart/css";
 
 import {
   getComments,

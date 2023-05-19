@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import useUser from "../../hooks/useUser";
 import CurrentUser from "../../components/CurrentUser";
 import UserProfile from "../../components/UserProfile";

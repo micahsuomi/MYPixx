@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import Picker from "@emoji-mart/react";
-// import "emoji-mart/css/emoji-mart.css";
-
 import {
   getComments,
   addCommentReply,

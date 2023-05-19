@@ -26,7 +26,6 @@ const initialState = {
   errorMsg: "",
   users: [],
   isUserLoaded: false,
-  errorMsg: "",
   isErrShowing: false,
 };
 

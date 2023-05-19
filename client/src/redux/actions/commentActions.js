@@ -77,7 +77,7 @@ export const deleteComment = (photoId, commentId) => {
   return async (dispatch, getState) => {
     try {
       const url = `/api/v1/photos/${photoId}/comments/${commentId}`;
-      const res = await axios.delete(url, tokenConfig(getState));
+      await axios.delete(url, tokenConfig(getState));
       dispatch({
         type: DELETE_COMMENT,
         payload: commentId,
