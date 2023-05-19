@@ -10,7 +10,7 @@ import "./style.scss";
 const Login = (props) => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const errorMsg = useSelector((state) => state.error.msg.msg);
-  const clientID = `917092315724-7rg232f22vkqflmabjcb3rrrah6u364u.apps.googleusercontent.com`
+  const clientID = process.env.REACT_APP_GOOGLE_CLIENT_ID
 
   const dispatch = useDispatch();
 
