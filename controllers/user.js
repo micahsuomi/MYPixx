@@ -117,7 +117,6 @@ const findAll = async (req, res) => {
 //@DESC - finds  a single user
 //@ACCESS Public
 const findOne = async (req, res) => {
-  console.log("here her here ", req.params.id)
   try {
     const userId = req.params.id;
     const user = await UserService.findUserById(userId);
@@ -126,7 +125,6 @@ const findOne = async (req, res) => {
       .equals(user._id)
       .populate("comments")
     user.photos = userPhotos;*/
-    console.log("user from findOne", user.photos.length)
     res.json(user);
   } catch (err) {
     return res.status(404).json({ msg: "Not Found" });
