@@ -14,20 +14,15 @@
 }
 @media screen and (max-width: 1024px) {
   .nav-user-image {
-    margin-left: 7rem;
+    margin-left: 2rem;
 
   }
 }
-@media screen and (max-width: 768px) {
-  .nav-user-image {
-    margin-left: 5rem;
 
-  }
-}
 @media screen and (max-width: 500px) {
   .nav-user-image {
     height: 22px;
     width: 22px;  
-    margin-left: 1.8rem;
+    // margin-left: 1.8rem;
   }
 }

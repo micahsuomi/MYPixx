@@ -13,11 +13,10 @@
   background-color: rgb(202, 194, 194);
   padding: 9rem 2rem;
   transition: ease-in-out 0.6s;
-  position: sticky;
-  // margin-top: 4rem;
+  margin-top: 4rem;
   padding-bottom: 20rem;
   display: block;
-  width: 100vw;
+  width: 100%;
   &__wrapper,
   .header-search {
     @include flex-property-column;
@@ -36,12 +35,28 @@
   &__wrapper {
     padding: 0.8rem;
   }
+ 
 }
 
+@media screen and (max-width: 1024px) {
+  .header {
+    margin-top: 0;
+    &__wrapper,
+    .header-search {
+      @include flex-property-row-center;
+      justify-content: space-between;
+    }
+  }
+}
 
 @media screen and (max-width: 500px) {
   .header {
+    background-image: none;
+    background-color: lightgray;
     &__title {
       display: none;
-    }  }
+    }  
+  }
 }
+
+

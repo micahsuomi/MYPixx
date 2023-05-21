@@ -1,7 +1,7 @@
 @import "../../scss/abstracts/mixins.scss";
 
 .community {
-  @include flex-property-column;
+  // @include flex-property-column;
   align-items: center;
   padding: 13rem 8rem;
   background-color: #fcfafa;
@@ -13,6 +13,7 @@
     h4 {
       font-family: "Sansita Swashed", cursive;
       color: var(--overlay-mask);
+      margin-bottom: 1rem;
     }
   }
   &__most-commented-wrapper,
@@ -64,8 +65,8 @@
   }
   }
   .photo-sorted__card {
-    width: 20rem;
-    height: 20rem;
+    // width: 20rem;
+    // height: 20rem;
   }
  
 }

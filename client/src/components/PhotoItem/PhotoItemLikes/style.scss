@@ -13,4 +13,18 @@
 .likes-small-empty {
   color: white;
 }
+.likes-wrapper {
+  width: 2.5rem;
+  span {
+    color: var(--white);
+    // color: var(--color-text);
+    // margin: 0.3rem;
+  }
+  i {
+    color: var(--white);
+    @media screen and(max-width: 500px) {
+    color: var(--color-text);
+    }
+  }
+}
 

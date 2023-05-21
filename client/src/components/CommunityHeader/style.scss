@@ -1,6 +1,7 @@
 @import "../../scss/abstracts/mixins.scss";
 
 .community-header {
+  padding: 0 5rem;
   h1 {
   text-align: center;
   color: var(--overlay-mask);
@@ -8,7 +9,7 @@
 }
 &__paragraph {
   margin-top: 2rem;
-  line-height: 1.7;
+  line-height: 2;
 }
 &__link {
   text-decoration: none;

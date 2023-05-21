@@ -2,7 +2,7 @@
 
 .pagination {
   @include flex-property-column;
-  margin-bottom: 3rem;
+  margin: 3rem;
   h4 {
     text-align: center;
   }

@@ -5,8 +5,8 @@
   padding: 1rem;
   box-shadow: 0 1rem 2rem rgba(88, 83, 83, 0.6);
   line-height: 1.9;
-  width: 15rem;
-  height: 16rem;
+  // width: 15rem;
+  // height: 16rem;
 
   &__image-container {
     display: inline-block;
@@ -25,10 +25,3 @@
   }
 }
 
-@media screen and (max-width: 500px) {
-  .photo-sorted {
-    width: 18rem;
-    height: 18rem;
-  }
-
-}

@@ -18,6 +18,8 @@
     "react-google-login": "^5.2.2",
     "react-paginate": "^6.3.2",
     "react-redux": "^7.2.0",
+    "react-responsive": "^9.0.2",
+    "react-responsive-masonry": "^2.1.7",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.1",
     "react-validator": "^0.1.0",

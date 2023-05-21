@@ -20,6 +20,7 @@ const NavbarUser = ({
           activeStyle={{ color: "black" }}
           >
           <i className="fas fa-pen grow" title="add to gallery"></i>
+          <span> Add new</span>
         </NavLink>
       </li>
       <li>

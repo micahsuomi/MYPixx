@@ -1,14 +1,15 @@
 @import "../../scss/abstracts/mixins.scss";
 
 .photo-gallery {
-  padding: 2rem 3rem;
+  padding: 2rem 6em;
   background-color: #fcfafa;
-  @include flex-property-column;
+  // @include flex-property-column;
   min-height: 100vh;
   position: relative;
   &__add-photo-sort {
     @include flex-property-row-space-between;
-    width: 93vw;
+    width: 100%;
+    padding: 1rem 0;
   }
   &__result-msg {
     @include flex-property-column;
@@ -20,19 +21,6 @@
     @include three-col-grid;
     grid-gap: 2rem;
   }
-}
-
-.pull-to-refresh {
-  cursor: pointer;
-}
-
-.pull-to-refresh__wrapper {
-  @include flex-property-column;
-}
-
-.pull-to-refresh__wrapper i {
-  margin-top: 0.6rem;
-  color: var(--primary);
 }
 
 @-webkit-keyframes animatetop {
@@ -97,7 +85,6 @@
 }
 
 .pagination {
-  margin: 15px auto;
   display: flex;
   list-style: none;
   outline: none;
@@ -137,25 +124,12 @@
 
 @media screen and (max-width: 768px) {
   .photo-gallery {
-    padding: 3rem 2rem;
-    &__wrapper {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
- 
-}
-
-@media screen and (max-width: 500px) {
-  .photo-gallery {
     padding: 1rem 0.6rem;
     &__wrapper {
       grid-template-columns: 1fr;
-      padding: 0 2rem 3rem 2rem;
+      padding: 0 0 1rem 0;
     }
   }
-
- 
 
   .photo-added__popup {
     top: 22%;

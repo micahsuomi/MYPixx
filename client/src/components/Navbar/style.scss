@@ -1,7 +1,7 @@
 @import "../../scss/abstracts/mixins.scss";
 
 .navbar {
-  background-color: transparent;
+  background-color: #201b23;
   display: flex;
   justify-content: space-between;
   position: fixed;
@@ -10,32 +10,45 @@
   width: 100%;
   padding: 0 1rem;
   z-index: 2;
+  &__home {
+    background-color: transparent;
+
+  }
+  &__list-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
   &__list-left {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     list-style: none;
-    width: 100vw;
+    width:  100%;
   }
   &__list-right {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     list-style: none;
-    width: 100vw;
+    width: 100%;
+  }
+  li {
+    margin: 0.5rem 1.1rem;
   }
   &__link {
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    font-weight: 700;
-    margin-left: 1.4rem;
+    // font-weight: 700;
     padding: 0.4rem 0 0.4rem 0;
     i {
-      color: var(--primary);
-      font-size: 1.1em;
+      color: var(--white);
+      font-size: 20px;
     }
     span {
-      color: var(--primary);
-      margin-left: 0.3rem;
+      color: var(--white);
+      margin-left: 0.6rem;
     }
     :link {
       color: white;
@@ -44,7 +57,7 @@
   &__link.scrolled {
     i,
     span {
-      color: rgb(75, 74, 74);
+      color: var(--white);
     }
   }
   &__link:hover {
@@ -53,7 +66,7 @@
 }
 
 .navbar.active {
-  background-color: rgb(208, 219, 224);
+  background-color: #201b23;
 }
 
 .user-link {
@@ -70,17 +83,16 @@
   transform: scale(1.03);
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1020px) {
   .navbar {
     padding: 1rem;
     height: 5rem;
     grid-template-columns: 13% 87%;
     &__list-left {
-      justify-content: space-evenly;
+      justify-content: flex-start;
     }
     &__list-right {
-      justify-content: space-evenly;
-      margin-left: -9rem;
+      justify-content: flex-end;
     }
     span {
       display: none;
@@ -93,27 +105,22 @@
     margin: 0;
     color: white;
   }
-  .logo {
-    font-size: 20px;
-  }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 1020px) {
   .navbar {
     height: 3.3rem;
     grid-template-columns: 25% 75%;
-    bottom: -0.1rem;
-    background-color: black;
+    bottom: 0;
+    background-color: #201b23;
     padding: 0.2rem 0;
 
     &__list-right {
       justify-content: space-evenly;
-      margin-left: -3rem;
     }
     &__link {
-      margin-left: 0.3rem;
       i {
-        font-size: 1em;
+        font-size: 20px;
         color: white;
       }
     }
