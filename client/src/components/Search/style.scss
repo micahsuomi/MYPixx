@@ -1,12 +1,12 @@
 .search-form {
-  padding: 1.6rem;
+  padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   input {
-    width: 44vw;
-    padding: 1rem;
+    width: 40rem;
+    padding: 0.7rem;
     border-radius: 8px;
     border: none;
     font-family: "open sans";
@@ -17,7 +17,7 @@
   input[type="text"] {
     background: url("../../imgs/search-solid.svg");
     background-repeat: no-repeat;
-    background-size: 5% auto;
+    background-size: 3% auto;
     background-position: 96.5% 50%;
   }
 
@@ -28,17 +28,24 @@
 
 @media screen and (max-width: 1024px) {
   .search-form {
-    width: 67vw;
+    padding: 0;
+    height: fit-content;
   }
 }
 
 @media screen and (max-width: 500px) {
   .search-form {
+    background-color: #f0ecec;;
     input {
       padding: .5rem;
       font-size: 8px;
-      width: 44vw;
-      margin-top: -2rem;
+      width: 20rem;
     }
+  }
+  input[type="text"] {
+    background: url("../../imgs/search-solid.svg");
+    background-repeat: no-repeat;
+    background-size: 3% auto;
+    background-position: 96.5% 50%;
   }
 }
