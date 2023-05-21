@@ -9,8 +9,10 @@
   --primary: #764ba2;
   --primary-dark: #57327c;
   --primary: rgb(255, 27, 122);
+  --primary: #201b23;
   --primary-dark: rgb(236, 8, 103);
   --primary-disabled: rgb(211, 134, 166);
+  --color-text: rgb(22, 21, 21);
   --secondary: #f09819;
   --secondary-dark: #d68719;
   --nav-hover: #f5d8af;
@@ -18,10 +20,11 @@
   --yellow: rgba(240, 236, 29, 0.7);
   --purple: rgba(206, 14, 142, 0.7);
   --dark: rgba(18, 31, 26, 0.7);
+  --white: #fff;
   --red: #f70944b3;
   --red-light: #f53c6ab3;
-  --dark: rgb(46, 39, 40);
-  --overlay-mask: rgba(48, 52, 58, 0.9);
+  --dark: rgb(67, 58, 59);
+  --overlay-mask: rgba(16, 16, 17, 0.9);
 
   /*fonts */
   --font-size-small: 14px;
