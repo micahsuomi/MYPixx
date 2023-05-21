@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 
 import CommunityHeader from "../../components/CommunityHeader/index";
 import CommunityMostCommented from "../../components/CommunityMostCommented/index";
@@ -29,8 +30,11 @@ const Community = ({ users, photos }) => {
       <CommunityHeader />
       <div className="community__most-commented">
         <h4>Most Commented</h4>
-        <div className="community__most-commented-wrapper">
-          {sortedByLikes.map((photo) => (
+        <ResponsiveMasonry
+                    columnsCountBreakPoints={{350: 1, 750: 2, 900: 4}}
+                >
+                    <Masonry columnsCount={4} gutter="1rem">
+                    {sortedByLikes.map((photo) => (
             <NavLink
               key={photo._id}
               to={`/photo/${photo._id}`}
@@ -44,14 +48,20 @@ const Community = ({ users, photos }) => {
                 comments={photo.comments}
               />
             </NavLink>
-          ))}
-        </div>
+          ))}                    </Masonry>
+                </ResponsiveMasonry>
+        {/* <div className="community__most-commented-wrapper"> */}
+        
+        {/* </div> */}
       </div>
 
       <div className="community__most-liked">
         <h4>Most Liked</h4>
-        <div className="community__most-liked-wrapper">
-          {sortedByComments.map((photo) => (
+        <ResponsiveMasonry
+                     columnsCountBreakPoints={{350: 1, 750: 2, 900: 4}}
+                >
+                    <Masonry columnsCount={4} gutter="1rem">
+                    {sortedByComments.map((photo) => (
             <NavLink
               key={photo._id}
               to={`/photo/${photo._id}`}
@@ -65,8 +75,11 @@ const Community = ({ users, photos }) => {
                 likes={photo.likes}
               />
             </NavLink>
-          ))}
-        </div>
+          ))}                    </Masonry>
+                </ResponsiveMasonry>
+        {/* <div className="community__most-liked-wrapper">
+         
+        </div> */}
       </div>
 
       <div className="community__users">

@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-// import {
-//   PullToRefresh,
-//   PullDownContent,
-//   ReleaseContent,
-//   RefreshContent,
-// } from "react-js-pull-to-refresh";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 
-import { getPhotos } from "../../redux/actions/photoActions";
 import usePhotos from "../../hooks/usePhotos";
 import Header from "../../components/Header";
 import PhotoItem from "../../components/PhotoItem/index";
@@ -107,8 +101,16 @@ const PhotoList = (
                       <h2>{resultMsg}</h2>
                     </div>
                   ) : (
-                    <div className="photo-gallery__wrapper">{photoList}</div>
-                  )}
+                    <ResponsiveMasonry
+                    // columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
+                >
+                    <Masonry columnsCount={3} gutter="1rem">
+                    {photoList}
+                    </Masonry>
+                </ResponsiveMasonry>
+            )
+                    // <div className="photo-gallery__wrapper">{photoList}</div>
+                  }
                 </div>
                 {!search &&
                   category === "all" && (
