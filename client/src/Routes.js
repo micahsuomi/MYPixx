@@ -54,12 +54,12 @@ const Routes = () => {
 
   return (
     <div className="wrapper">
-      <Navbar
+        <Navbar
         isAuthenticated={isAuthenticated}
         user={user}
         isLoading={isLoading}
       />
-
+      
       <Switch>
         <Route
           path="/community"

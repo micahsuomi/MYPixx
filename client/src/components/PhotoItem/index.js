@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 
@@ -24,25 +24,35 @@ const PhotoItem = ({
   const showDetails = () => {
     setDetailsShowing(true);
   };
+
   const hideDetails = () => {
     setDetailsShowing(false);
   };
-  const checkWindowSize = () => {
-    if (window.innerWidth < 1024) {
-      setDetailsShowing(true);
-    }
-  };
+
+  const checkWindowSize = useCallback(
+    () => {
+      if (window.innerWidth < 1024) {
+        setDetailsShowing(true);
+      }
+    },
+    [],
+  )
+  
   useEffect(() => {
     checkWindowSize();
   }, [checkWindowSize]);
 
   return (
+    <NavLink
+    to={isUserPage ? `/view-user/${authorId}/user-photo/${id}` : `/photo/${id}`}
+    className="view-photo__link"
+  >
     <div
       className="gallery-photo grow"
       onMouseEnter={window.innerWidth > 1024 ? showDetails : showDetails}
       onMouseLeave={window.innerWidth > 1024 ? hideDetails : showDetails}
     >
-      {isUserPage ? (
+      {/* {isUserPage ? (
         <NavLink
           to={`/view-user/${authorId}/user-photo/${id}`}
           className="view-photo__link"
@@ -53,7 +63,8 @@ const PhotoItem = ({
         <NavLink to={`/photo/${id}`} className="view-photo__link">
           <img src={image} alt={title} className="gallery-photo__image" />
         </NavLink>
-      )}
+      )} */}
+          <img src={image} alt={title} className="gallery-photo__image" />
 
       {detailsShowing && (
         <div className="gallery-photo__body animate-appear">
@@ -74,6 +85,7 @@ const PhotoItem = ({
         </div>
       )}
     </div>
+    </NavLink>
   );
 };
 
