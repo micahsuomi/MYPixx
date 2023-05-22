@@ -12,7 +12,7 @@ import {
 import { tokenConfig } from "./authActions";
 import { showErrors } from "./errorActions";
 
-const proxyUrl = 'http://localhost:5000'
+const proxyUrl = "http://localhost:5000";
 
 export const getPhotos = () => {
   return async (dispatch) => {
@@ -33,15 +33,15 @@ export const addPhoto = (newPhoto) => {
   return async (dispatch, getState) => {
     try {
       const url = `/api/v1/photos`;
-      console.log("new photo before req", newPhoto);
+
       const res = await axios.post(url, newPhoto, tokenConfig(getState));
-      console.log(res)
+      console.log(res);
       dispatch({
         type: ADD_PHOTO,
         payload: res.data,
       });
     } catch (err) {
-      console.log(err)
+      console.log(err);
       // dispatch(showErrors(err.response.data, err.response.status));
     }
   };
@@ -54,7 +54,7 @@ export const getPhoto = (id) => {
       const res = await axios.get(url);
       dispatch({
         type: GET_PHOTO,
-        payload: res.data 
+        payload: res.data,
       });
     } catch (err) {
       dispatch(showErrors(err.response.data, err.response.status));
@@ -115,5 +115,3 @@ export const getPhotoLikes = (id) => {
     }
   };
 };
-
-

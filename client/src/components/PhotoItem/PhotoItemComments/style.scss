@@ -5,11 +5,20 @@
     font-weight: 700;
     color: white;
     font-family: "open sans";
+    @media screen and (max-width: 500px) {
+      color: var(--color-text);
+    }
   }
   i {
     color: white;
+    @media screen and (max-width: 500px) {
+      color: var(--color-text);
+    }
   }
 }
 .comments-icon {
   color: white;
+  @media screen and (max-width: 500px) {
+    color: var(--color-text);
+  }
 }

@@ -1,0 +1,78 @@
+.toggle-wrapper {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .toggle-wrapper {
+    background-color: var(--primary-blue);
+    display: inline-block;
+    border-radius: 500px;
+    margin-top: -3px;
+    position: relative;
+    padding: 1px;
+    cursor: pointer;
+    z-index: 8;
+    margin-left: 75vw;
+  }
+
+  .toggle-bar {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 7;
+  }
+
+  .line {
+    position: absolute;
+    height: 4px;
+    background: white;
+    border-radius: 8px;
+  }
+  .top {
+    transition: all cubic-bezier(0.26, 0.1, 0.27, 1.55), 0.35s;
+    top: 31%;
+    width: 53%;
+  }
+
+  .middle {
+    transition: all cubic-bezier(0.26, 0.1, 0.27, 1.55), 0.35s;
+    top: 47%;
+    width: 35%;
+    margin-left: 4px;
+  }
+
+  .bottom {
+    transition: all cubic-bezier(0.26, 0.1, 0.27, 1.55), 0.35s;
+    top: 63%;
+    width: 23%;
+    margin-left: 7px;
+  }
+
+  .top.active {
+    transform: rotate(45deg);
+    top: 46%;
+    width: 53%;
+  }
+
+  .middle.active,
+  .bottom.active {
+    transform: rotate(-45deg);
+    top: 46%;
+    width: 53%;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .toggle-wrapper {
+    margin-left: 58vw;
+  }
+
+  .toggle-wrapper {
+    margin-left: 48vw;
+  }
+}

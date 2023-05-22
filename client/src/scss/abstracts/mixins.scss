@@ -24,6 +24,7 @@
 @mixin flex-property-row {
   display: flex;
   align-items: center;
+  flex-direction: row;
 }
 
 @mixin flex-property-row-center {
@@ -115,7 +116,7 @@
   border-radius: 5px;
   color: white;
   cursor: pointer;
-  margin: 1.5rem;
+  margin-top: 1rem;
   width: 8rem;
   display: flex;
   justify-content: center;
@@ -165,8 +166,8 @@
   background-color: var(--primary);
   color: white;
   padding: 0.3rem;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   cursor: pointer;
   border: none;
   border-radius: 50px;

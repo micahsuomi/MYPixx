@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import { Picker } from "emoji-mart";
-import "emoji-mart/css/emoji-mart.css";
-
+import Picker from "@emoji-mart/react";
 import {
   getComments,
   addCommentReply,
@@ -70,7 +68,7 @@ const AddCommentReply = ({ photoId, commentId, closeCommentReply }) => {
               className="add-commentreply-form__emoji-menu animate-pop hide-tablet-mobile"
               onMouseLeave={closeMenu}
             >
-              <Picker onSelect={addEmoji} emojiTooltip={true} />
+              <Picker onEmojiSelect={addEmoji} emojiTooltip={true} />
             </span>
           </>
         ) : (

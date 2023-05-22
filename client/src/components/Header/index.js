@@ -1,36 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 
 import Search from "../Search";
+import { useMediaQueries } from "../../hooks/useMediaQueries";
+import NavbarLogo from "../Navbar/NavbarLogo";
 
 import "./style.scss";
 
 const Header = ({ handleSubmit, handleChange, search, placeHolder }) => {
   const [scrolled, setScrolled] = useState(false);
+  const { isTablet } = useMediaQueries();
+  const adjustHeaderHeight = useCallback(
+    () => {
+      setScrolled(window.scrollY > 50)
+    },
+    [],
+  )
 
-  const changeHeader = () => {
-    if (window.scrollY >= 50 || window.innerWidth <= 800) {
-      setScrolled(true)
-    } else {
-      setScrolled(false)
-    }
-  };
-    
   useEffect(() => {
-    changeHeader()
-    window.addEventListener('scroll', changeHeader)
-  });
-
+    window.addEventListener('scroll', adjustHeaderHeight)
+    return () => {
+      window.removeEventListener("scroll", adjustHeaderHeight)
+    }
+  }, [adjustHeaderHeight])
+  
   return (
     <div
       className={scrolled ? "header scrolled" : "header"}
       style={{
-        height: `${search === "" && window.innerWidth > 1024 ? "81vh" : "23vh"}`,
-        padding: `${search === "" && window.innerWidth > 1024 ? "9rem 2rem" : "1rem 2rem"}`,
+        height: `${search === "" && !isTablet ? "100%" : "fit-content"}`,
+        padding: `${search === "" && !isTablet ? "7rem 2rem" : "0"}`,
       }}
     >
       <div className="header__wrapper">
-        {search === "" ? (
+        {
+          isTablet &&
+          <NavbarLogo />
+        }
+        {search === ""  && window.innerWidth > 1024 ? (
           <div className="header__title">
             <h3>Discover the Best Artwork</h3>
           </div>

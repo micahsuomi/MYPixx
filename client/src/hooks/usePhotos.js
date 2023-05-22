@@ -7,6 +7,35 @@ export default function usePhotos(search, category) {
   const [err, setErr] = useState(null);
   const [resultMsg, setResultMsg] = useState(null);
 
+  const searchPhotosResults = useCallback(() => {
+    const results = photos.filter((photo) => {
+      if(category === "all") {
+        return photo          
+      }      
+      if(photo.type === category) {
+        if (
+          (photo.title.includes(search) ||
+          photo.title.toLowerCase().includes(search)) ||
+          (photo.author.name.includes(search) ||
+          photo.author.name.toLowerCase().includes(search)) ||
+          (photo.type.includes(search) ||
+          photo.type.toLowerCase().includes(search))
+        ) {
+          console.log("here here here")
+          return photo;
+        }
+      }
+   
+    });
+
+    if (results.length < 1) {
+      setResultMsg("No results");
+    } else {
+      setData(results);
+      setResultMsg(null);
+    }
+  }, [photos, search, category]);
+
 
   useEffect(() => {
     const errMessage = 'Not Found'
@@ -17,58 +46,9 @@ export default function usePhotos(search, category) {
   }, [photos, err]);
 
   useEffect(() => {
+    console.log("category", category)
     searchPhotosResults();
-  }, [search]);
-
-  useEffect(() => {
-    selectCategory(category)
-  }, [category])
-
-  const searchPhotosResults = useCallback(() => {
-    const results = photos.filter((photo) => {
-      if (
-        photo.title.includes(search) ||
-        photo.title.toLowerCase().includes(search) ||
-        photo.author.name.includes(search) ||
-        photo.author.name.toLowerCase().includes(search) ||
-        photo.type.includes(search) ||
-        photo.type.toLowerCase().includes(search)
-      ) {
-        return photo;
-      }
-    });
-
-    if (results.length < 1) {
-      setResultMsg("No results");
-    } else {
-      setData(results);
-      setResultMsg(null);
-    }
-  }, [photos, search]);
-
-  const selectCategory = useCallback(
-    (category) => {
-      console.log(category)
-      const selectedPhotos = photos.filter((photo) => {
-        const { type } = photo;
-        if(type.includes(category)) {
-           return photo
-        }
-        if(category.includes('all')) {
-          return photo
-        }
-      })
-      if(selectedPhotos.length < 1) {
-        setResultMsg('No results')
-      } else {
-        setData(selectedPhotos);
-        setResultMsg(null);
-      }
-       
-      
-    },
-    [category],
-  )
+  }, [search, category]);
 
   return [err, data, resultMsg];
 }

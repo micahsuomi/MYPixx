@@ -11,16 +11,4 @@
   font-family: "Sansita Swashed", cursive;
 }
 
-@media screen and (max-width: 500px) {
-  .logo {
-    position: absolute;
-    margin-top: -402%;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  .logo {
-    margin-top: -320%;
-  }
-}
 /*# sourceMappingURL=style.css.map */

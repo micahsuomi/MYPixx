@@ -9,7 +9,7 @@ const PhotoItemLikes = ({ likes, id }) => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const user = useSelector((state) => state.user.user);
   return (
-    <div>
+    <div className="likes-wrapper">
       {likes.length > 0 ? (
         <>
           {isAuthenticated && likes.some((like) => like._id === user._id) ? (
@@ -29,7 +29,6 @@ const PhotoItemLikes = ({ likes, id }) => {
       ) : (
         <i
           className="far fa-heart empty-heart grow likes-small-empty"
-          style={{ margin: ".5rem", color: "white" }}
         ></i>
       )}
     </div>

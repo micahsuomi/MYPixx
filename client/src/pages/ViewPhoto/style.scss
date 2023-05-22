@@ -4,9 +4,9 @@
   padding: 2.5rem 0;
   background-color: var(--overlay-mask);
   z-index: 4;
-  width: 100vw;
-  min-height: 170vh;
-  position: relative;
+  width: 100%;
+  min-height: 100%;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,11 +24,11 @@
     align-items: center;
     margin-top: 3rem;
     z-index: 6;
-    width: 90vw;
+    width: 90%;
   }
   &__wrapper {
     display: grid;
-    grid-template-columns: 15% 70% 15%;
+    grid-template-columns: 10% 80% 10%;
     justify-items: center;
     align-items: center;
     margin-top: 1rem;
@@ -43,7 +43,7 @@
     background-size: cover;
     border: 1px solid lightgray;
     border-radius: 14px;
-    width: 65vw;
+    width: 100%;
     color: var(--dark);
     background-color: rgb(247, 243, 243);
     padding: 1rem 7rem;
@@ -51,7 +51,7 @@
 
   &__header {
     padding: 1rem 0;
-    width: 51vw;
+    width: 51%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -314,26 +314,18 @@ button {
 }
 
 @media screen and (max-width: 1024px) {
-  .viewphoto {
-    min-height: 100vh;
-
-    &__exit-header {
-      width: 101vw;
-    }
-    &__container {
-      width: 80vw;
-    }
-    &__header {
-      width: 83vw;
-    }
-  }
   
   .viewphoto-wrapper {
     padding: 5rem 1rem;
-    min-height: 100vw;
+    min-height: 100%;
     margin-top: 0;
   }
-
+  .viewphoto {
+    &__image {
+      width: 100%;
+      align-self: center;
+    }
+  }
   .viewphoto-body {
     padding: 2rem 2rem;
   }
@@ -344,17 +336,17 @@ button {
     padding: 1rem 0;
 
     &__exit-header {
-      width: 110vw;
+      width: 100%;
       margin-top: 2rem;
     }
     &__container {
-      width: 97vw;
+      width: 100%;
       color: var(--dark);
       background-color: #f7f3f3;
       padding: 2rem 1rem;    
     }
     &__header {
-      width: 96vw;
+      width: 100%;
   }
   &__image {
     width: 100%;
@@ -397,7 +389,7 @@ button {
 
   .viewphoto-header {
     padding: 1rem 1rem;
-    width: 91vw;
+    width: 100%;
   }
 
   .viewphoto-description {
@@ -432,7 +424,7 @@ button {
 
 @media screen and (max-width: 320px) {
   .viewphoto {
-    min-height: 130vh;
+    min-height: 100%;
   }
   .viewphoto-container,
   .viewphoto-body {

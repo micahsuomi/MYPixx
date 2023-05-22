@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  PullToRefresh,
-  PullDownContent,
-  ReleaseContent,
-  RefreshContent,
-} from "react-js-pull-to-refresh";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 
-import { getPhotos } from "../../redux/actions/photoActions";
 import usePhotos from "../../hooks/usePhotos";
 import Header from "../../components/Header";
 import PhotoItem from "../../components/PhotoItem/index";
@@ -26,11 +20,11 @@ const PhotoList = (
   { closePopup, refreshPage, isAuthenticated, isPopupOpen, isEditPopupOpen },
   props
 ) => {
+
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
-  // console.log('coming from photos', props.isAuthenticated)
   const isLoading = useSelector((state) => state.photo.isLoading);
-  const dispatch = useDispatch();
+
   const [err, photos, resultMsg] = usePhotos(search, category);
   const [currentPage, setCurrentPage] = useState(1);
   const [photosPerPage, setPhotosPerPage] = useState(9);
@@ -38,13 +32,11 @@ const PhotoList = (
   const indexLastPhoto = currentPage * photosPerPage;
   const indexFirstPhoto = indexLastPhoto - photosPerPage;
   const currentPhotos = photos?.slice(indexFirstPhoto, indexLastPhoto);
-  const [showPullToRefresh, setShowPullToRefresh] = useState(false);
   const [isUserPage] = useState(false);
 
   const checkScreenSize = () => {
     const maxWidth = 500;
     if (window.innerWidth < maxWidth) {
-      setShowPullToRefresh(true);
     }
   };
 
@@ -54,13 +46,6 @@ const PhotoList = (
       console.log("err here", err);
     }
   });
-
-  const onRefresh = () => {
-    dispatch(getPhotos());
-    return new Promise((resolve) => {
-      setTimeout(resolve, 2000);
-    });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -76,8 +61,7 @@ const PhotoList = (
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const photoList = !showPullToRefresh
-    ? currentPhotos.map((photo) => (
+  const photoList = currentPhotos.map((photo) => (
         <PhotoItem
           key={photo._id}
           id={photo._id}
@@ -95,25 +79,7 @@ const PhotoList = (
           {...props}
         />
       ))
-    : photos.map((photo) => (
-        <PhotoItem
-          key={photo._id}
-          id={photo._id}
-          title={photo.title}
-          image={photo.image}
-          type={photo.type}
-          camera={photo.camera}
-          description={photo.description}
-          author={photo.author.name}
-          authorId={photo.author.id}
-          authorImg={photo.author.avatar}
-          likes={photo.likes}
-          comments={photo.comments}
-          isUserPage={isUserPage}
-          {...props}
-        />
-      ));
-
+ 
   return (
     <>
       <Header
@@ -124,23 +90,7 @@ const PhotoList = (
       <div className="photo-gallery">
         {isLoading ? (
           <div>
-            <PullToRefresh
-              pullDownContent={<PullDownContent />}
-              releaseContent={<ReleaseContent />}
-              refreshContent={<RefreshContent />}
-              pullDownThreshold={200}
-              onRefresh={onRefresh}
-              triggerHeight={50}
-              startInvisible={true}
-              className="pull-to-refresh"
-            >
               <div>
-                {showPullToRefresh && (
-                  <div className="pull-to-refresh__wrapper">
-                    <p>Pull To Refresh</p>
-                    <i className="fas fa-chevron-down"></i>
-                  </div>
-                )}
                 <div className="photo-gallery__add-photo-sort">
                   {isAuthenticated && <AddPhotoButton />}
                   <SelectCategoryForm selectCategory={selectCategoryOnClick} />
@@ -151,11 +101,18 @@ const PhotoList = (
                       <h2>{resultMsg}</h2>
                     </div>
                   ) : (
-                    <div className="photo-gallery__wrapper">{photoList}</div>
-                  )}
+                    <ResponsiveMasonry
+                    // columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}
+                >
+                    <Masonry columnsCount={3} gutter="1rem">
+                    {photoList}
+                    </Masonry>
+                </ResponsiveMasonry>
+            )
+                    // <div className="photo-gallery__wrapper">{photoList}</div>
+                  }
                 </div>
                 {!search &&
-                  !showPullToRefresh &&
                   category === "all" && (
                     <>
                       <Pagination
@@ -169,7 +126,6 @@ const PhotoList = (
                 {isPopupOpen && <AddPopup closePopup={closePopup} />}
                 {isEditPopupOpen && <EditPopup closePopup={closePopup} />}
               </div>
-            </PullToRefresh>
           </div>
         ) : (
           <div>
@@ -179,7 +135,7 @@ const PhotoList = (
               <Loader />
             )}
           </div>
-        )}
+        )} 
       </div>
     </>
   );

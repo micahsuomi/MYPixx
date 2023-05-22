@@ -1,9 +1,10 @@
 @import "../../scss/abstracts/mixins.scss";
 
 .add-photo {
-  padding: 4rem 10rem;
+  padding: 9rem 10rem;
   background-color: rgb(243, 237, 237);
-  width: 100vw;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
 
@@ -16,7 +17,7 @@
     border-radius: 14px;
     font-weight: 700;
     background-color: white;
-    width: 43vw;
+    width: 32rem;
     box-shadow: 0 2rem 2rem rgba(172, 159, 159, 0.5);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -27,7 +28,7 @@
   &__cancel-wrapper {
     display: flex;
     justify-content: flex-end;
-    width: 39vw;
+    width: 100%;
   }
 
   &__input-topics {
@@ -112,10 +113,12 @@
   }
   &__btn-save-wrapper {
     @include flex-property-row-center;
+    width: 100%;
   }
 
   &__btn-save {
     @include standard-button;
+    margin-top: 1rem;
     width: 25rem;
   }
 }
@@ -131,56 +134,20 @@
 
 @media screen and (max-width: 1024px) {
   .add-photo {
-    width: 100vw;
-    &__form {
-      width: 57vw;
-    }
-    &__cancel-wrapper {
-      width: 53vw;
-    }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .add-photo {
-    width: 100vw;
-    &__form {
-      width: 74vw;
-    }
-    &__cancel-wrapper {
-      width: 63vw;
-    }
+    padding: 1rem;
   }
 }
 
 @media screen and (max-width: 500px) {
   .add-photo {
-    padding: 3rem 2rem;
-    min-height: 100vh;
-    &__form {
-      width: 98vw;
-    }
-    &__cancel-wrapper {
-      width: 82vw;
-    }
+    padding: 0;
     input {
-      width: 16rem;
       padding: 0.7rem;
     }
     select {
-      width: 16rem;
       padding: 0.8rem;
-    }
-    .input-topics-medium {
-      input {
-        width: 12rem;
-      }
-    }
-    textarea {
-      width: 20rem;
-    }
+    } 
     &__btn-save {
-      width: 13rem;
       font-size: 14px;
     }
   }

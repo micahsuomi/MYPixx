@@ -3,7 +3,7 @@
   background-color: rgb(17, 45, 58);
   display: flex;
   justify-content: space-between;
-  width: 100vw;
+  width: 100%;
   &__logo {
     font-family: "Sansita Swashed", cursive;
     color: white;
@@ -19,7 +19,7 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 1024px) {
   .hide-mobile {
     display: none;
   }

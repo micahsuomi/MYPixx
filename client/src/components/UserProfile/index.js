@@ -5,16 +5,15 @@ import PhotoItem from "../../components/PhotoItem";
 
 import "./style.scss";
 
-const UserProfile = ({ 
-  avatar, 
-  name, 
-  medium, 
-  bio, 
+const UserProfile = ({
+  avatar,
+  name,
+  medium,
+  bio,
   photos,
   isUserPage,
-  switchView
+  switchView,
 }) => {
-  console.log('is user page', isUserPage)
   return (
     <div className={switchView ? "user-switched" : "user-unswitched"}>
       <div className="user-details">

@@ -8,6 +8,7 @@ import NavbarUserRegister from "./NavbarUser/NavbarUserRegister/index";
 import NavbarUserLogin from "./NavbarUser/NavbarUserLogin/index";
 import NavbarUserLogout from "./NavbarUser/NavbarUserLogout/index";
 import { activeStyle, activeStyleScrolled } from "../../utils/navStyles";
+import { useMediaQueries } from "../../hooks/useMediaQueries"
 
 import "./style.scss";
 
@@ -16,6 +17,8 @@ const Navbar = () => {
   const user = useSelector((state) => state.user.user);
   const [isClicked, setState] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isHomePage, setIsHomePage] = useState(true);
+  const { isTablet } = useMediaQueries();
 
   const toggle = () => {
     setState(!isClicked);
@@ -30,18 +33,27 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    changeBackground();
+    if(window.location.pathname !== "/") {
+      setIsHomePage(false);
+    }
     window.addEventListener("scroll", changeBackground);
-  });
+    return () => {
+      window.removeEventListener("scroll", changeBackground);
+    }
+  }, []);
 
   return (
-    <nav className={scrolled ? "navbar active" : "navbar"}>
-      <NavbarLogo />
+    <nav className={scrolled ? "navbar active" : `navbar`}>
+      {
+        !isTablet &&
+        <NavbarLogo />
+      }
+      <div className="navbar__list-wrapper">
       <ul className="navbar__list-left">
         <li>
           <NavLink
             to="/"
-            className={scrolled ? "navbar__link scrolled" : "navbar__link"}
+            className={scrolled ? "navbar__link scrolled" : `navbar__link${isHomePage ? "--home" : ""}`}
             activeStyle={scrolled ? activeStyleScrolled : activeStyle}
             onClick={toggle}
           >
@@ -52,7 +64,7 @@ const Navbar = () => {
         <li>
           <NavLink
             to="/community"
-            className={scrolled ? "navbar__link scrolled" : "navbar__link"}
+            className={scrolled ? "navbar__link scrolled" : `navbar__link ${isHomePage ? "navbar__link--home" : ""}`}
             activeStyle={scrolled ? activeStyleScrolled : activeStyle}
             onClick={toggle}
           >
@@ -82,6 +94,7 @@ const Navbar = () => {
           </>
         )}
       </ul>
+      </div>
     </nav>
   );
 };
