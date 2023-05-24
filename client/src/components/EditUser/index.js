@@ -181,19 +181,20 @@ const EditUser = (props) => {
               <img
                 src={avatar}
                 alt="curent user profile"
-                style={{ height: "200px" }}
               />
             </div>
           </div>
 
-        {!isImageEditing && !isGoogleUser ? (
+        {!isImageEditing && !isGoogleUser && (
+          <div className="edit-user__change-photo-wrapper">
           <button
             onClick={openImageEditing}
             className="edit-user__change-photo grow"
           >
             Change
           </button>
-        ) : null}
+          </div>
+        )}
         {isImageEditing || isImageChanged ? (
           <div>
             <div className="input-topics">

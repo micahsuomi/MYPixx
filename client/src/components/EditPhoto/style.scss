@@ -13,10 +13,10 @@
     @include flex-property-column;
     line-height: 1.9;
     border: 1px solid lightgray;
-    border-radius: 14px;
+    border-radius: 5px;
     font-weight: 700;
     background-color: white;
-    width: 43vw;
+    width: 32rem;
     box-shadow: 0 2rem 2rem rgba(172, 159, 159, 0.5);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -30,10 +30,12 @@
     width: 39vw;
   }
 
-  input-topics {
+  &__input-topics {
     @include flex-property-column;
     margin: 0.5rem;
     align-items: center;
+    width: 100%;
+    padding: 0 1rem;
   }
 
   i {
@@ -52,7 +54,7 @@
   &__change-photo,
   &__cancel {
     @include standard-button;
-    width: 25rem;
+    width: 100%;
     margin-top: 2rem;
   }
 
@@ -74,11 +76,11 @@
   }
   label {
     align-self: flex-start;
-    margin-left: 1rem;
+    color: var(--dark);
   }
   input,
   select {
-    width: 25rem;
+    width: 100%;
     padding: 0.6rem;
     font-size: 16px;
     font-family: "Roboto";
@@ -154,11 +156,12 @@
 
   &__btn-save-wrapper {
     @include flex-property-row-center;
+    width: 100%;
   }
 
   &__btn-save {
     @include standard-button;
-    width: 25rem;
+    width: 100%;
   }
 }
 
@@ -247,8 +250,13 @@
   }
 }
 
-@media screen and (max-width: 500px) {
-  .edit-photo__container {
-    padding: 4rem 10rem;
+@media screen and (max-width: 768px) {
+  .edit-photo {
+    padding: 0;
+    width: 100%;
+    &__form {
+      width: 100%;
+    }
   }
+ 
 }

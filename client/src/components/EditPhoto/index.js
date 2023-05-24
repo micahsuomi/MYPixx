@@ -172,7 +172,7 @@ const EditPhoto = (props) => {
                 <div className="edit-photo__preview-container">
                   <img
                     src={image}
-                    alt="current photo"
+                    alt={title}
                     style={{ height: "200px" }}
                   />
                 </div>

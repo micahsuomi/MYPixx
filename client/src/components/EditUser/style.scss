@@ -6,14 +6,14 @@
   width: 100vw;
   display: flex;
   justify-content: center;
-
+  min-height: 100%;
   &__form {
     padding: 2rem 2rem;
     margin: 2rem 0;
     @include flex-property-column;
     line-height: 1.9;
     border: 1px solid lightgray;
-    border-radius: 14px;
+    border-radius: 5px;
     font-weight: 700;
     background-color: white;
     width: 35rem;
@@ -22,7 +22,7 @@
   &__cancel-wrapper {
     display: flex;
     justify-content: flex-end;
-    width: 38vw;
+    width: 100%;
     a {
       i {
         color: var(--primary);
@@ -34,16 +34,18 @@
     align-self: flex-start;
   }
   .input-topics {
-    @include flex-property-row-center;
+    @include flex-property-column;
     margin: .4rem;
+    width: 100%;
+    padding: 0 1rem;
   }
 
   input,
   textarea {
-    width: 25rem;
+    width: 100%;
     padding: 0.6rem;
     font-size: 16px;
-    font-family: "Roboto";
+    font-family: "Open sans";
     border-radius: 3px;
     border: 1px solid lightgray;
     margin-top: 0.6rem;
@@ -58,12 +60,19 @@
   &__preview-image {
     margin-top: 1.5rem;
     @include flex-property-column;
+    img {
+      height: 150px;
+    }
+  }
+  &__change-photo-wrapper {
+    width: 100%;
+    padding: 0 1rem;
   }
   &__change-photo,
   &__remove-photo,
   &__cancel-photo {
     @include standard-button;
-    width: 25rem;
+    width: 100%;
   }
   &__remove-photo,
   &__cancel-photo {
@@ -72,8 +81,9 @@
 
   .input-topics-medium {
     @include flex-property-row-center;
+    width: 100%;
     input {
-      width: 20.5rem;
+      width: 100%;
     }
     &__add-btn {
       border: none;
@@ -138,11 +148,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    margin: 0.4rem;
+    padding: 0 1rem;
   }
 
   &__btn-save {
     @include standard-button;
-    width: 25rem;
+    width: 100%;
   }
 }
 
@@ -157,38 +170,25 @@
     &__cancel-wrapper {
       display: flex;
       justify-content: flex-end;
-      width: 49vw;
     }
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .edit-user {
-    &__cancel-wrapper {
-      width: 57vw;
-    }
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .edit-user {
-    padding: 5rem 2rem;
+    padding: 0;
     min-height: 100vh;
     &__form {
-      width: 23rem;
-    }
-    &__cancel-wrapper {
-      width: 81vw;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      border-radius: 0;
     }
     input,
     textarea {
-      width: 18rem;
       padding: 0.7rem;
     }
     .input-topics-medium {
-      input {
-        width: 14rem;
-      }
       &__add-btn {
         border: none;
         background: none;
@@ -201,14 +201,13 @@
       min-width: 4rem;
     }
     textarea {
-      width: 20rem;
+      width: 100%;
       height: 14rem;
     }
     &__btn-save,
     &__btn-cancel {
       padding: 0.6rem;
       margin: 0.6rem;
-      width: 10rem;
       font-size: 14px;
     }
   }
