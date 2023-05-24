@@ -28,17 +28,7 @@ export default function usePhotos(search, category) {
            
       }      
       if(photo.type === category) {
-        if (
-          (photo.title.includes(search) ||
-          photo.title.toLowerCase().includes(search)) ||
-          (photo.author.name.includes(search) ||
-          photo.author.name.toLowerCase().includes(search)) ||
-          (photo.type.includes(search) ||
-          photo.type.toLowerCase().includes(search))
-        ) {
-          console.log("here here here")
-          return photo;
-        }
+        return showSearchResults(photo, search)
       }
    
     });
@@ -61,7 +51,6 @@ export default function usePhotos(search, category) {
   }, [photos, err]);
 
   useEffect(() => {
-    console.log("category", category)
     searchPhotosResults();
   }, [search, category]);
 

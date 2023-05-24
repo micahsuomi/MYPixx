@@ -90,7 +90,7 @@ const ResetPassword = (props) => {
 
   return (
     <>
-        <div className="registration">
+        <div className="forgot-password">
         { resetPasswordConfirmation !== "" ? (
         <Dialog
           confirmation={resetPasswordConfirmation}

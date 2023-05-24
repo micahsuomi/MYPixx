@@ -53,7 +53,7 @@ h4 {
 p,
 a {
   font-family: "Open Sans", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 label {
@@ -175,6 +175,6 @@ h3 {
 
 @media screen and (max-width: 500px) {
   p {
-    font-size: 11px;
+    font-size: 14px;
   }
 }

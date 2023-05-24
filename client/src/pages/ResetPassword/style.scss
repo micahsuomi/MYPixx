@@ -1,6 +1,6 @@
 @import "../../scss/abstracts/mixins.scss";
 
-.registration {
+.forgot-password {
   @include auth-padding;
   @include full-sizing;
   @include flex-property-row-center;
@@ -32,7 +32,7 @@
     }
 
     .input-topics {
-      @include flex-property-row-center;
+      @include flex-property-column;
       margin: 0.5rem;
       align-items: center;
     }
@@ -120,7 +120,7 @@
   }
 }
 @media screen and (max-width: 500px) {
-  .registration {
+  .forgot-password {
     padding: 1rem 2rem;
     min-height: 100vh;
     &__form {
