@@ -7,10 +7,25 @@ export default function usePhotos(search, category) {
   const [err, setErr] = useState(null);
   const [resultMsg, setResultMsg] = useState(null);
 
+  const showSearchResults = (photo, search) => {
+    if (
+      (photo.title.includes(search) ||
+      photo.title.toLowerCase().includes(search)) ||
+      (photo.author.name.includes(search) ||
+      photo.author.name.toLowerCase().includes(search)) ||
+      (photo.type.includes(search) ||
+      photo.type.toLowerCase().includes(search))
+    ) {
+      console.log("here here here")
+      return photo;
+    }  
+  }
   const searchPhotosResults = useCallback(() => {
+    console.log("search", search)
     const results = photos.filter((photo) => {
       if(category === "all") {
-        return photo          
+        return showSearchResults(photo, search)
+           
       }      
       if(photo.type === category) {
         if (
