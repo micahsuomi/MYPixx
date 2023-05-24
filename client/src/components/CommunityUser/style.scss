@@ -3,18 +3,23 @@
 .community-user {
   padding: 1rem 1rem;
   @include flex-property-column;
-  box-shadow: 0 1rem 1rem rgba(88, 83, 83, 0.6);
-  width: 15rem;
-  height: 21rem;
+  box-shadow: 0 1rem 1rem rgba(88, 83, 83, 0.1);
+  max-width: 20rem;
+  height: 100%;
   text-decoration: none;
   color: var(--primary-dark);
   border-radius: 3px;
-
+  text-align: center;
+  &:hover {
+    &__name {
+      color: var(--primary-dark);
+    }
+  }
   &__image-container {
     display: inline-block;
     overflow: hidden;
-    height: 110px;
-    width: 110px;
+    height: 120px;
+    width: 120px;
     object-fit: cover;
     margin-top: 1rem;
     border-radius: 50%;
@@ -31,9 +36,6 @@
     text-decoration: none;
     color: var(--primary);
     text-decoration: none;
-    &:hover {
-      color: var(--primary-dark);
-    }
   }
 
   &__body {
@@ -55,11 +57,9 @@
   text-decoration: none;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 500px) {
   .user {
-    width: 20rem;
-    height: 24rem;
-
+    max-width: 100%;
     &__image-container {
       height: 130px;
       width: 130px;

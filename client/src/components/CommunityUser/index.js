@@ -1,11 +1,17 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import "./style.scss";
 
-const CommunityUser = ({ avatar, name, bio, photos }) => {
+const CommunityUser = ({ id, avatar, name, bio, photos }) => {
   return (
     <div className="community-user">
+         <NavLink
+              key={id}
+              to={`/user/${id}`}
+              className="community__users-link-container grow"
+            >
       <div className="community-user__image-container">
         {avatar === undefined || avatar === "" ? (
           <img
@@ -31,6 +37,7 @@ const CommunityUser = ({ avatar, name, bio, photos }) => {
           )}
         </ul>
       </div>
+      </NavLink>
     </div>
   );
 };
@@ -38,6 +45,7 @@ const CommunityUser = ({ avatar, name, bio, photos }) => {
 export default CommunityUser;
 
 CommunityUser.propTypes = {
+  id: PropTypes.string,
   avatar: PropTypes.string,
   name: PropTypes.string,
   bio: PropTypes.string,

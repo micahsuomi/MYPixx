@@ -3,8 +3,11 @@
 .photo-sorted {
   @include flex-property-column;
   padding: 1rem;
-  box-shadow: 0 1rem 2rem rgba(88, 83, 83, 0.6);
+  box-shadow: 0 1rem 2rem rgba(88, 83, 83, 0.1);
   line-height: 1.9;
+  h4, h5 {
+    color: var(--color-text);
+  }
   // width: 15rem;
   // height: 16rem;
 
@@ -18,7 +21,7 @@
     }
   }
   &__likes {
-    font-family: "Roboto";
+    font-family: "Open sans";
     span {
       margin-left: 0.3rem;
     }
