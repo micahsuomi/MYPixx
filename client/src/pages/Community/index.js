@@ -10,6 +10,7 @@ import CommunityUser from "../../components/CommunityUser/index";
 import "./style.scss";
 
 const Community = ({ users, photos }) => {
+  console.log("photos", photos)
   const sortedByLikes = photos.sort((a, b) => {
     if (a.likes.length > b.likes.length) return -1;
     if (b.likes.length < a.likes.length) return 1;
@@ -43,16 +44,14 @@ const Community = ({ users, photos }) => {
               <CommunityMostCommented
                 key={photo._id}
                 image={photo.image}
-                name={photo.name}
+                title={photo.title}
                 author={photo.author}
                 comments={photo.comments}
               />
             </NavLink>
           ))}                    </Masonry>
                 </ResponsiveMasonry>
-        {/* <div className="community__most-commented-wrapper"> */}
-        
-        {/* </div> */}
+     
       </div>
 
       <div className="community__most-liked">
@@ -70,35 +69,28 @@ const Community = ({ users, photos }) => {
               <CommunityMostLiked
                 key={photo._id}
                 image={photo.image}
-                name={photo.name}
+                title={photo.title}
                 author={photo.author}
                 likes={photo.likes}
               />
             </NavLink>
           ))}                    </Masonry>
                 </ResponsiveMasonry>
-        {/* <div className="community__most-liked-wrapper">
-         
-        </div> */}
+  
       </div>
 
       <div className="community__users">
         <h4>Active Users</h4>
         <div className="community__users-wrapper">
           {users.map((user) => (
-            <NavLink
-              key={user._id}
-              to={`/user/${user._id}`}
-              className="community__users-link-container grow"
-            >
               <CommunityUser
                 key={user._id}
+                id={user._id}
                 name={user.name}
                 avatar={user.avatar}
                 bio={user.bio}
                 photos={user.photos}
               />
-            </NavLink>
           ))}
         </div>
       </div>

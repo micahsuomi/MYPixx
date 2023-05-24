@@ -28,7 +28,8 @@
     text-decoration: none;
   }
   &__users-wrapper {
-    @include four-col-grid;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     grid-gap: 1rem;
     margin-top: 3rem;
   }
@@ -42,20 +43,26 @@
   text-align: center;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .community {
+    padding: 5rem 1rem;
     &__most-commented-wrapper,
     &__most-liked-wrapper {
       grid-template-columns: repeat(3, 1fr);
     }
     &__users-wrapper {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
     }
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   .community {
     padding: 8rem 1rem;
+    &__most-commented,
+    &__most-liked,
+    &__users {
+    padding: 3rem 1em;
+  }
     &__most-commented-wrapper,
     &__most-liked-wrapper {
     grid-template-columns: 1fr;
@@ -64,9 +71,4 @@
     grid-template-columns: 1fr;
   }
   }
-  .photo-sorted__card {
-    // width: 20rem;
-    // height: 20rem;
-  }
- 
 }
