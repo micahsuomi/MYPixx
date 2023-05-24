@@ -3,7 +3,7 @@
 .photo-sorted {
   @include flex-property-column;
   padding: 1rem;
-  box-shadow: 0 1rem 2rem rgba(88, 83, 83, 0.6);
+  box-shadow: 0 0 2rem rgba(225, 216, 216, 0.1);
   line-height: 1.9;
   // width: 15rem;
   // height: 16rem;
@@ -27,6 +27,7 @@
       font-size: 14px;
       font-weight: 700;
       margin-left: .3rem;
+      color: rgba(88, 83, 83, 0.6);
     }
 
   }

@@ -3,13 +3,14 @@ import PropTypes from "prop-types";
 
 import "./style.scss";
 
-const CommunityMostCommented = ({ image, name, author, comments }) => {
+const CommunityMostCommented = ({ image, title, author, comments }) => {
+  console.log("name", )
   return (
     <div className="photo-sorted grow">
       <div className="photo-sorted__image-container">
-        <img src={image} alt={name} />
+        <img src={image} alt={title} />
       </div>
-      <h4>{name}</h4>
+      <h4>{title}</h4>
       <h5>{author.name}</h5>
       <div className="photo-sorted__comments">
         {comments.length < 1 ? (
