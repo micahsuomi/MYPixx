@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import validator from "validator";
 import PropTypes from "prop-types";
@@ -39,39 +39,41 @@ const Register = ({ history }) => {
     password: false,
     repeatPassword: false,
   });
-
+  const errors = useRef();
+  const isError = typeof errors.current !== "undefined";
   const { name, email, password, repeatPassword } = newUser;
 
-  const validate = () => {
-    const errors = {
-      name: "",
-      email: "",
-      password: "",
-      repeatPassword: "",
-    };
-
-    if (touched.name && !name.match(nameValidator)) {
-      errors.name = "Full name should include only letters";
-    }
-    if (touched.name && !validator.isLength(name, { min: 2, max: 30 })) {
-      errors.name = "Name must be between 1 and 30 characters";
-      console.log(errors.name);
-    }
-    if (touched.email && !validator.isEmail(email)) {
-      errors.email = "email should be a valid email format";
-    }
-    if (touched.password && !password.match(passwordValidator)) {
-      errors.password =
-        "Password must be at least 8 characters long, include an uppercase character, a lowercase character, a number and a special character";
-    }
-    if (password !== repeatPassword) {
-      errors.repeatPassword = "passwords do not match";
-    }
-    return errors;
-  };
-
-  const errors = validate();
-
+  const validate = useCallback(
+    () => {
+      const errors = {
+        name: "",
+        email: "",
+        password: "",
+        repeatPassword: "",
+      };
+  
+      if (touched.name && !name.match(nameValidator)) {
+        errors.name = "Full name should include only letters";
+      }
+      if (touched.name && !validator.isLength(name, { min: 2, max: 30 })) {
+        errors.name = "Name must be between 1 and 30 characters";
+      }
+      if (touched.email && !validator.isEmail(email)) {
+        errors.email = "email should be a valid email format";
+      }
+      if (touched.password && !password.match(passwordValidator)) {
+        errors.password =
+          "Password must be at least 8 characters long, include an uppercase character, a lowercase character, a number and a special character";
+      }
+      if (password !== repeatPassword) {
+        errors.repeatPassword = "passwords do not match";
+      }
+      return errors;
+    },
+    [name, touched.name, email, password, repeatPassword],
+  )
+  
+  // console.log("errors", errors)
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(register(newUser));
@@ -96,17 +98,23 @@ const Register = ({ history }) => {
     });
   };
 
+  const redirectLogin = () => {
+    history.push("/login");
+    setIsRegistered(false);
+    dispatch(clearAllValidations());
+  };
+
+  useEffect(() => {
+    errors.current = validate()
+  }, [touched, validate])
+  
   useEffect(() => {
     if (isValidated) {
       setIsRegistered(true);
     }
   }, [dispatch, isValidated]);
 
-  const redirectLogin = () => {
-    history.push("/login");
-    setIsRegistered(false);
-    dispatch(clearAllValidations());
-  };
+  console.log(errors)
 
   return (
     <>
@@ -126,8 +134,9 @@ const Register = ({ history }) => {
         </div>
       ) : (
         <div className="registration">
+          <div className="registration__form-container">
+          <h2>Sign up to MyPixx</h2>
           <form onSubmit={handleSubmit} className="registration__form">
-            <h2>Sign up to MyPixx</h2>
 
             <div className="input-topics">
               <label htmlFor="name">Full Name</label>
@@ -139,11 +148,12 @@ const Register = ({ history }) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 required={true}
+                autoComplete="off"
               />
             </div>
-            {errors.name && (
+            {isError && errors.current.name && (
               <div>
-                <FeedBack validationErr={errors.name} />
+                <FeedBack validationErr={errors.current.name} />
               </div>
             )}
 
@@ -157,11 +167,12 @@ const Register = ({ history }) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 required={true}
+                autoComplete="off"
               />
             </div>
-            {errors.email && (
+            {isError && errors.current.email && (
               <div>
-                <FeedBack validationErr={errors.email} />
+                <FeedBack validationErr={errors.current.email} />
               </div>
             )}
 
@@ -175,11 +186,12 @@ const Register = ({ history }) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 required={true}
+                autoComplete="off"
               />
             </div>
-            {errors.password && (
+            {isError && errors.current.password && (
               <div>
-                <FeedBack validationErr={errors.password} />
+                <FeedBack validationErr={errors.current.password} />
               </div>
             )}
 
@@ -199,11 +211,12 @@ const Register = ({ history }) => {
                     : inputStyleValidated
                 }
                 className="password-input"
+                autoComplete="off"
               />
             </div>
-            {errors.repeatPassword && (
+            {isError && errors.current.repeatPassword && (
               <div>
-                <FeedBack validationErr={errors.repeatPassword} />
+                <FeedBack validationErr={errors.current.repeatPassword} />
               </div>
             )}
             <p className="warning-msg">{errorMsg}</p>
@@ -212,10 +225,10 @@ const Register = ({ history }) => {
               Have an account already? <NavLink to="/login">Sign in</NavLink>
             </p>
             <div className="registration__btn-wrapper">
-              {errors.name ||
-              errors.email ||
-              errors.password ||
-              errors.repeatPassword ? (
+              {(isError && errors.current.name) ||
+              (isError && errors.current.email) ||
+              (isError && errors.current.password) ||
+              (isError && errors.current.repeatPassword) ? (
                 <button
                   className="registration__btn-register--disabled"
                   disabled
@@ -227,6 +240,7 @@ const Register = ({ history }) => {
               )}
             </div>
           </form>
+          </div>
         </div>
       )}
     </>

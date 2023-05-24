@@ -14,34 +14,35 @@
     url("https://images.pexels.com/photos/3025620/pexels-photo-3025620.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
   background-size: cover;
   background-position: top;
-  &__form {
-    padding: 2rem 2rem;
+  &__form-container {
+    padding: 2rem 3rem;
     margin: 2rem 0;
     display: flex;
     @include flex-property-column;
     line-height: 1.9;
     border: 1px solid lightgray;
-    border-radius: 14px;
+    border-radius: 5px;
     font-weight: 700;
     background-color: white;
-    width: 30rem;
-
+    width: 27rem;
     h2 {
       margin-bottom: 1rem;
       color: rgb(75, 74, 74);
     }
-
+  }
+  &__form {
+    width: 100%;
     .input-topics {
-      @include flex-property-row-center;
-      margin: 0.5rem;
-      align-items: center;
+      @include flex-property-column;
+      margin-top: 1rem;
+      width: 100%;
     }
 
     label {
       align-self: flex-start;
     }
     input {
-      width: 22rem;
+      width: 100%;
       padding: 0.6rem;
       font-size: 16px;
       font-family: "Open sans";
@@ -52,21 +53,21 @@
     input[type="text"] {
       background: url("../../imgs/user-solid.svg");
       background-repeat: no-repeat;
-      background-size: 6% auto;
+      background-size: 5% auto;
       background-position: 96.5% 50%;
     }
 
     input[type="email"] {
       background: url("../../imgs/envelope-solid.svg");
       background-repeat: no-repeat;
-      background-size: 6% auto;
+      background-size: 5% auto;
       background-position: 96.5% 50%;
     }
 
     input[type="password"] {
       background: url("../../imgs/lock-solid.svg");
       background-repeat: no-repeat;
-      background-size: 6% auto;
+      background-size: 5% auto;
       background-position: 96.5% 50%;
     }
     .password-input:active {
@@ -76,17 +77,21 @@
       outline: none;
     }
   }
+  p {
+    margin-top: 1rem;
+  }
   &__btn-wrapper {
     @include flex-property-row-center;
+    width: 100%;
   }
   &__btn-register {
     @include standard-button;
     padding: 0.6rem;
-    width: 22rem;
+    width: 100%;
     &--disabled {
-      @include standard-button-disabled;
+      @include standard-button;
       padding: 0.6rem;
-      width: 22rem;
+      width: 100%;
     }
   }
 }
@@ -112,55 +117,44 @@
 
   &__btn-wrapper {
     @include flex-property-row-center;
+    width: 100%
   }
   &__btn {
     @include standard-button;
     padding: 0.6rem;
-    width: 13rem;
+    width: 100%;
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .registration {
+    padding: 4rem 4rem;
+    min-height: 100vh;
+   
+    &__form {
+      height: 100%;
+    }
+  }
+}
+
 @media screen and (max-width: 500px) {
   .registration {
-    padding: 1rem 2rem;
+    padding: 6rem 0;
+    background-image: none;
     min-height: 100vh;
+    justify-content: flex-start;
+    &__form-container {
+      border: none;
+      width: 100%;
+    }
     &__form {
-      width: 21rem;
-      height: 33rem;
+      width: 100%;
       line-height: 1.2;
-      .input-topics {
-        margin: 0.3rem;
-      }
+      
       input {
-        width: 16rem;
-        padding: 0.4rem;
-      }
-    }
-    .warning-msg {
-      margin-left: 1rem;
-    }
-    &__btn-register {
-      width: 16rem;
-      &--disabled {
-        width: 16rem;
+        width: 100%;
       }
     }
   }
 }
 
-
-
-@media screen and (max-width: 320px) {
-  .register-form__container {
-    padding: 2rem 2rem;
-  }
-
-  .register-form {
-    width: 19rem;
-    height: 32rem;
-  }
-
-  .register-form input {
-    width: 16rem;
-    padding: 0.7rem;
-  }
-}
