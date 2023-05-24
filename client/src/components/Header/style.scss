@@ -38,7 +38,7 @@
  
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 768px) {
   .header {
     margin-top: 0;
     &__wrapper,
@@ -49,7 +49,7 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 768px) {
   .header {
     background-image: none;
     background-color: lightgray;

@@ -43,7 +43,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={scrolled ? "navbar active" : `navbar`}>
+    <nav className={scrolled ? "navbar scrolled" : `navbar`}>
       {
         !isTablet &&
         <NavbarLogo />
@@ -52,8 +52,8 @@ const Navbar = () => {
       <ul className="navbar__list-left">
         <li>
           <NavLink
-            to="/"
-            className={scrolled ? "navbar__link scrolled" : `navbar__link${isHomePage ? "--home" : ""}`}
+            exact to="/"
+            className={scrolled ? "navbar__link scrolled" : "navbar__link"}
             activeStyle={scrolled ? activeStyleScrolled : activeStyle}
             onClick={toggle}
           >
@@ -64,7 +64,7 @@ const Navbar = () => {
         <li>
           <NavLink
             to="/community"
-            className={scrolled ? "navbar__link scrolled" : `navbar__link ${isHomePage ? "navbar__link--home" : ""}`}
+            className={scrolled ? "navbar__link scrolled" : "navbar__link"}
             activeStyle={scrolled ? activeStyleScrolled : activeStyle}
             onClick={toggle}
           >

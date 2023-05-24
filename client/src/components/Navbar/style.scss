@@ -1,14 +1,14 @@
 @import "../../scss/abstracts/mixins.scss";
 
 .navbar {
-  background-color: #201b23;
+  background-color: var(--white);
   display: flex;
   justify-content: space-between;
   position: fixed;
   align-items: center;
   height: 4rem;
   width: 100%;
-  padding: 0 1rem;
+  padding: 0 6rem;
   z-index: 2;
   &__home {
     background-color: transparent;
@@ -16,7 +16,7 @@
   }
   &__list-wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     width: 100%;
   }
   &__list-left {
@@ -24,14 +24,12 @@
     justify-content: flex-start;
     align-items: center;
     list-style: none;
-    width:  100%;
   }
   &__list-right {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     list-style: none;
-    width: 100%;
   }
   li {
     margin: 0.5rem 1.1rem;
@@ -40,14 +38,12 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    // font-weight: 700;
+    color: var(--text);
     padding: 0.4rem 0 0.4rem 0;
     i {
-      color: var(--white);
       font-size: 20px;
     }
     span {
-      color: var(--white);
       margin-left: 0.6rem;
     }
     :link {
@@ -65,8 +61,8 @@
   }
 }
 
-.navbar.active {
-  background-color: #201b23;
+.navbar.scrolled {
+  background-color: #1c0529;
 }
 
 .user-link {
@@ -94,9 +90,6 @@
     &__list-right {
       justify-content: flex-end;
     }
-    span {
-      display: none;
-    }
   }
 
   .navbar-link,
@@ -107,16 +100,17 @@
   }
 }
 
-@media screen and (max-width: 1020px) {
+@media screen and (max-width: 768px) {
   .navbar {
     height: 3.3rem;
     grid-template-columns: 25% 75%;
     bottom: 0;
-    background-color: #201b23;
+    background-color: #1c0529;
     padding: 0.2rem 0;
-
+    &__list-left, 
     &__list-right {
-      justify-content: space-evenly;
+      width: 100%;
+      justify-content: space-around;
     }
     &__link {
       i {
@@ -129,6 +123,9 @@
       span {
         color: white;
       }
+    }
+    span {
+      display: none;
     }
   }
   .navbar.active {

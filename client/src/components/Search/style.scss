@@ -7,7 +7,7 @@
   input {
     width: 40rem;
     padding: 0.7rem;
-    border-radius: 8px;
+    border-radius: 4px;
     border: none;
     font-family: "open sans";
     border: 1px solid white;
@@ -28,14 +28,18 @@
 
 @media screen and (max-width: 1024px) {
   .search-form {
+    background-color: #fff;
     padding: 0;
     height: fit-content;
+    input {
+      max-width: 30rem;
+      color: var(--text);
+    }
   }
 }
 
 @media screen and (max-width: 500px) {
   .search-form {
-    background-color: #f0ecec;;
     input {
       padding: .5rem;
       font-size: 8px;
